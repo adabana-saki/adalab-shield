@@ -94,17 +94,17 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download Chrome artifact
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: shortshield-chrome-v${{ needs.validate.outputs.version }}
 
       - name: Download Firefox artifact
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: shortshield-firefox-v${{ needs.validate.outputs.version }}
 
       - name: Download Edge artifact
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: shortshield-edge-v${{ needs.validate.outputs.version }}
 
