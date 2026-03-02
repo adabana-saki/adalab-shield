@@ -78,7 +78,7 @@ jobs:
           zip -r ../../shortshield-${{ matrix.browser }}-v${{ needs.validate.outputs.version }}.zip .
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: shortshield-${{ matrix.browser }}-v${{ needs.validate.outputs.version }}
           path: shortshield-${{ matrix.browser }}-v${{ needs.validate.outputs.version }}.zip
