@@ -22,7 +22,13 @@ const UPDATE_INTERVAL_MS = 10000; // 10 seconds
 const INACTIVITY_THRESHOLD_MS = 60000; // 1 minute
 
 /** Activity events to track */
-const ACTIVITY_EVENTS = ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'] as const;
+const ACTIVITY_EVENTS = [
+  'mousemove',
+  'keydown',
+  'scroll',
+  'click',
+  'touchstart',
+] as const;
 
 interface TimeTrackerState {
   platform: Platform;
@@ -162,7 +168,10 @@ async function checkTimeLimit(): Promise<void> {
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    const response = await browser.runtime.sendMessage(message) as { success: boolean; data?: { limitReached: boolean } };
+    const response = (await browser.runtime.sendMessage(message)) as {
+      success: boolean;
+      data?: { limitReached: boolean };
+    };
 
     if (response.success && response.data) {
       const result = response.data;
@@ -270,7 +279,10 @@ export async function forceCheckLimit(): Promise<TimeCheckLimitResult | null> {
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    const response = await browser.runtime.sendMessage(message) as { success: boolean; data?: TimeCheckLimitResult };
+    const response = (await browser.runtime.sendMessage(message)) as {
+      success: boolean;
+      data?: TimeCheckLimitResult;
+    };
 
     if (response.success && response.data) {
       const result = response.data;

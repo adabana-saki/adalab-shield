@@ -75,7 +75,7 @@ describe('i18n utilities', () => {
   describe('getUILanguage()', () => {
     it('returns current UI language', () => {
       const result = getUILanguage();
-      expect(result).toBe('en-US');
+      expect(result).toBe('en_US');
     });
   });
 

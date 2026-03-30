@@ -11,8 +11,6 @@ import {
   isValidMessage,
   type UpdateSettingsMessage,
   type LogBlockMessage,
-  type WhitelistAddMessage,
-  type WhitelistRemoveMessage,
 } from '@/shared/types';
 
 // Mock the logger
@@ -61,28 +59,6 @@ describe('Messaging Integration', () => {
         },
       });
       expect(message.type).toBe('LOG_BLOCK');
-      expect(isValidMessage(message)).toBe(true);
-    });
-
-    it('should create valid WHITELIST_ADD message', () => {
-      const message = createMessage<WhitelistAddMessage>({
-        type: 'WHITELIST_ADD',
-        payload: {
-          platform: 'youtube',
-          type: 'channel',
-          value: '@TestChannel',
-        },
-      });
-      expect(message.type).toBe('WHITELIST_ADD');
-      expect(isValidMessage(message)).toBe(true);
-    });
-
-    it('should create valid WHITELIST_REMOVE message', () => {
-      const message = createMessage<WhitelistRemoveMessage>({
-        type: 'WHITELIST_REMOVE',
-        payload: { id: 'whitelist-entry-123' },
-      });
-      expect(message.type).toBe('WHITELIST_REMOVE');
       expect(isValidMessage(message)).toBe(true);
     });
 
@@ -207,34 +183,36 @@ describe('Messaging Integration', () => {
 
     it('should handle special characters in payloads', () => {
       const message = createMessage({
-        type: 'WHITELIST_ADD',
+        type: 'UPDATE_SETTINGS',
         payload: {
-          platform: 'youtube',
-          type: 'channel',
-          value: '@Test_Channel-123 "Special"',
+          blockPage: {
+            title: 'Test "Special" & <chars>',
+          },
         },
       });
 
       const serialized = JSON.stringify(message);
       const deserialized = JSON.parse(serialized);
 
-      expect(deserialized.payload.value).toBe('@Test_Channel-123 "Special"');
+      expect(deserialized.payload.blockPage.title).toBe(
+        'Test "Special" & <chars>'
+      );
     });
 
     it('should handle unicode characters', () => {
       const message = createMessage({
-        type: 'WHITELIST_ADD',
+        type: 'UPDATE_SETTINGS',
         payload: {
-          platform: 'youtube',
-          type: 'channel',
-          value: '@日本語チャンネル',
+          blockPage: {
+            title: '日本語タイトル',
+          },
         },
       });
 
       const serialized = JSON.stringify(message);
       const deserialized = JSON.parse(serialized);
 
-      expect(deserialized.payload.value).toBe('@日本語チャンネル');
+      expect(deserialized.payload.blockPage.title).toBe('日本語タイトル');
     });
   });
 });

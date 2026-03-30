@@ -104,7 +104,9 @@ export function PomodoroSettings() {
           <label className="settings-item-label" htmlFor="pomodoro-enabled">
             {t('pomodoroEnabled')}
           </label>
-          <p className="settings-item-description">{t('pomodoroEnabledDescription')}</p>
+          <p className="settings-item-description">
+            {t('pomodoroEnabledDescription')}
+          </p>
         </div>
         <label className="toggle-switch">
           <input
@@ -120,10 +122,15 @@ export function PomodoroSettings() {
       {/* Work Duration */}
       <div className="settings-item">
         <div className="settings-item-info">
-          <label className="settings-item-label" htmlFor="pomodoro-work-duration">
+          <label
+            className="settings-item-label"
+            htmlFor="pomodoro-work-duration"
+          >
             {t('pomodoroWorkDuration')}
           </label>
-          <p className="settings-item-description">{t('pomodoroWorkDurationDescription')}</p>
+          <p className="settings-item-description">
+            {t('pomodoroWorkDurationDescription')}
+          </p>
         </div>
         <select
           id="pomodoro-work-duration"
@@ -143,10 +150,15 @@ export function PomodoroSettings() {
       {/* Break Duration */}
       <div className="settings-item">
         <div className="settings-item-info">
-          <label className="settings-item-label" htmlFor="pomodoro-break-duration">
+          <label
+            className="settings-item-label"
+            htmlFor="pomodoro-break-duration"
+          >
             {t('pomodoroBreakDuration')}
           </label>
-          <p className="settings-item-description">{t('pomodoroBreakDurationDescription')}</p>
+          <p className="settings-item-description">
+            {t('pomodoroBreakDurationDescription')}
+          </p>
         </div>
         <select
           id="pomodoro-break-duration"
@@ -166,10 +178,15 @@ export function PomodoroSettings() {
       {/* Long Break Duration */}
       <div className="settings-item">
         <div className="settings-item-info">
-          <label className="settings-item-label" htmlFor="pomodoro-long-break-duration">
+          <label
+            className="settings-item-label"
+            htmlFor="pomodoro-long-break-duration"
+          >
             {t('pomodoroLongBreakDuration')}
           </label>
-          <p className="settings-item-description">{t('pomodoroLongBreakDurationDescription')}</p>
+          <p className="settings-item-description">
+            {t('pomodoroLongBreakDurationDescription')}
+          </p>
         </div>
         <select
           id="pomodoro-long-break-duration"
@@ -217,7 +234,9 @@ export function PomodoroSettings() {
           <label className="settings-item-label" htmlFor="pomodoro-auto-breaks">
             {t('pomodoroAutoStartBreaks')}
           </label>
-          <p className="settings-item-description">{t('pomodoroAutoStartBreaksDescription')}</p>
+          <p className="settings-item-description">
+            {t('pomodoroAutoStartBreaksDescription')}
+          </p>
         </div>
         <label className="toggle-switch">
           <input
@@ -237,7 +256,9 @@ export function PomodoroSettings() {
           <label className="settings-item-label" htmlFor="pomodoro-auto-work">
             {t('pomodoroAutoStartWork')}
           </label>
-          <p className="settings-item-description">{t('pomodoroAutoStartWorkDescription')}</p>
+          <p className="settings-item-description">
+            {t('pomodoroAutoStartWorkDescription')}
+          </p>
         </div>
         <label className="toggle-switch">
           <input
@@ -257,7 +278,9 @@ export function PomodoroSettings() {
           <label className="settings-item-label" htmlFor="pomodoro-sound">
             {t('pomodoroSoundEnabled')}
           </label>
-          <p className="settings-item-description">{t('pomodoroSoundEnabledDescription')}</p>
+          <p className="settings-item-description">
+            {t('pomodoroSoundEnabledDescription')}
+          </p>
         </div>
         <label className="toggle-switch">
           <input

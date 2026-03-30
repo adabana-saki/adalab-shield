@@ -36,7 +36,9 @@ export function FeatureCard({
         <span className="feature-card-title">{title}</span>
         <span className="feature-card-value">{value}</span>
         {subtitle && (
-          <span className={`feature-card-subtitle ${trend ? `trend-${trend}` : ''}`}>
+          <span
+            className={`feature-card-subtitle ${trend ? `trend-${trend}` : ''}`}
+          >
             {subtitle}
           </span>
         )}

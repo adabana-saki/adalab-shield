@@ -88,10 +88,7 @@ export function TimeLimitsConfig() {
     });
   };
 
-  const handleLimitChange = async (
-    platform: Platform,
-    minutes: number
-  ) => {
+  const handleLimitChange = async (platform: Platform, minutes: number) => {
     const currentLimits = settings.timeLimits.limits;
     const existingLimit = currentLimits.find((l) => l.platform === platform);
 
@@ -146,7 +143,9 @@ export function TimeLimitsConfig() {
           />
           <span className="toggle-text">{t('timeLimitsEnabled')}</span>
         </label>
-        <p className="setting-description">{t('timeLimitsEnabledDescription')}</p>
+        <p className="setting-description">
+          {t('timeLimitsEnabledDescription')}
+        </p>
       </div>
 
       {settings.timeLimits.enabled && (
@@ -154,7 +153,9 @@ export function TimeLimitsConfig() {
           {/* Warning threshold */}
           <div className="setting-row">
             <label className="select-label">
-              <span className="label-text">{t('timeLimitsWarningThreshold')}</span>
+              <span className="label-text">
+                {t('timeLimitsWarningThreshold')}
+              </span>
               <select
                 value={settings.timeLimits.warningThresholdPercent}
                 onChange={(e) => void handleWarningThresholdChange(e)}
@@ -179,7 +180,9 @@ export function TimeLimitsConfig() {
                 checked={settings.timeLimits.blockWhenLimitReached}
                 onChange={() => void handleToggleBlockWhenReached()}
               />
-              <span className="toggle-text">{t('timeLimitsBlockWhenReached')}</span>
+              <span className="toggle-text">
+                {t('timeLimitsBlockWhenReached')}
+              </span>
             </label>
             <p className="setting-description">
               {t('timeLimitsBlockWhenReachedDescription')}
@@ -188,7 +191,9 @@ export function TimeLimitsConfig() {
 
           {/* Platform limits */}
           <div className="platform-limits">
-            <h3 className="subsection-title">{t('timeLimitsPlatformLimits')}</h3>
+            <h3 className="subsection-title">
+              {t('timeLimitsPlatformLimits')}
+            </h3>
 
             {PLATFORM_CONFIG.map(({ platform, labelKey }) => {
               const limit = getLimit(platform);
@@ -203,7 +208,9 @@ export function TimeLimitsConfig() {
                       checked={isEnabled}
                       onChange={() => void handlePlatformToggle(platform)}
                     />
-                    <span className="toggle-text platform-name">{t(labelKey)}</span>
+                    <span className="toggle-text platform-name">
+                      {t(labelKey)}
+                    </span>
                   </label>
 
                   {isEnabled && (
@@ -226,7 +233,9 @@ export function TimeLimitsConfig() {
                   )}
 
                   {!isEnabled && (
-                    <span className="limit-disabled">{t('timeLimitsNoLimit')}</span>
+                    <span className="limit-disabled">
+                      {t('timeLimitsNoLimit')}
+                    </span>
                   )}
                 </div>
               );

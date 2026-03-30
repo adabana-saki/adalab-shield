@@ -55,7 +55,9 @@ export function FocusModeSettings() {
   return (
     <div className="focus-mode-settings">
       <h2 className="settings-section-title">{t('focusModeTitle')}</h2>
-      <p className="settings-section-description">{t('focusModeDescription')}</p>
+      <p className="settings-section-description">
+        {t('focusModeDescription')}
+      </p>
 
       {/* Enable/Disable Focus Mode */}
       <div className="settings-item">
@@ -63,7 +65,9 @@ export function FocusModeSettings() {
           <label className="settings-item-label" htmlFor="focus-enabled">
             {t('focusModeEnabled')}
           </label>
-          <p className="settings-item-description">{t('focusModeEnabledDescription')}</p>
+          <p className="settings-item-description">
+            {t('focusModeEnabledDescription')}
+          </p>
         </div>
         <label className="toggle-switch">
           <input
@@ -79,8 +83,12 @@ export function FocusModeSettings() {
       {/* Default Duration */}
       <div className="settings-item">
         <div className="settings-item-info">
-          <label className="settings-item-label">{t('focusModeDefaultDuration')}</label>
-          <p className="settings-item-description">{t('focusModeDefaultDurationDescription')}</p>
+          <label className="settings-item-label">
+            {t('focusModeDefaultDuration')}
+          </label>
+          <p className="settings-item-description">
+            {t('focusModeDefaultDurationDescription')}
+          </p>
         </div>
         <div className="settings-duration-options">
           {DURATION_OPTIONS.map((option) => (
@@ -103,7 +111,9 @@ export function FocusModeSettings() {
           <label className="settings-item-label" htmlFor="focus-soft-lock">
             {t('focusModeSoftLock')}
           </label>
-          <p className="settings-item-description">{t('focusModeSoftLockDescription')}</p>
+          <p className="settings-item-description">
+            {t('focusModeSoftLockDescription')}
+          </p>
         </div>
         <label className="toggle-switch">
           <input
@@ -123,7 +133,9 @@ export function FocusModeSettings() {
           <label className="settings-item-label" htmlFor="focus-notifications">
             {t('focusModeNotifications')}
           </label>
-          <p className="settings-item-description">{t('focusModeNotificationsDescription')}</p>
+          <p className="settings-item-description">
+            {t('focusModeNotificationsDescription')}
+          </p>
         </div>
         <label className="toggle-switch">
           <input

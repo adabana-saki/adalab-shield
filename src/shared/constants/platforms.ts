@@ -258,7 +258,12 @@ export const REDDIT_CONFIG: PlatformRules = {
  */
 export const DISCORD_CONFIG: PlatformRules = {
   platform: 'discord',
-  hosts: ['discord.com', 'www.discord.com', 'discordapp.com', 'www.discordapp.com'],
+  hosts: [
+    'discord.com',
+    'www.discord.com',
+    'discordapp.com',
+    'www.discordapp.com',
+  ],
   urlRules: [],
   selectorRules: [],
   attributeRules: [],
@@ -269,7 +274,12 @@ export const DISCORD_CONFIG: PlatformRules = {
  */
 export const PINTEREST_CONFIG: PlatformRules = {
   platform: 'pinterest',
-  hosts: ['pinterest.com', 'www.pinterest.com', 'jp.pinterest.com', 'pinterest.jp'],
+  hosts: [
+    'pinterest.com',
+    'www.pinterest.com',
+    'jp.pinterest.com',
+    'pinterest.jp',
+  ],
   urlRules: [],
   selectorRules: [],
   attributeRules: [],

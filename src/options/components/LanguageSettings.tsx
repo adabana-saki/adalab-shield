@@ -21,7 +21,11 @@ const LANGUAGE_OPTIONS: LanguageOption[] = [
   { value: 'es', label: 'Spanish', nativeLabel: 'Español' },
   { value: 'fr', label: 'French', nativeLabel: 'Français' },
   { value: 'ko', label: 'Korean', nativeLabel: '한국어' },
-  { value: 'pt_BR', label: 'Portuguese (Brazil)', nativeLabel: 'Português (Brasil)' },
+  {
+    value: 'pt_BR',
+    label: 'Portuguese (Brazil)',
+    nativeLabel: 'Português (Brasil)',
+  },
   { value: 'zh_CN', label: 'Chinese (Simplified)', nativeLabel: '简体中文' },
   { value: 'zh_TW', label: 'Chinese (Traditional)', nativeLabel: '繁體中文' },
 ];
@@ -61,11 +65,14 @@ export function LanguageSettings() {
           <select
             className="language-select"
             value={currentLanguage}
-            onChange={(e) => void handleLanguageChange(e.target.value as SupportedLanguage)}
+            onChange={(e) =>
+              void handleLanguageChange(e.target.value as SupportedLanguage)
+            }
           >
             {LANGUAGE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.nativeLabel} {option.value !== 'auto' && `(${option.label})`}
+                {option.nativeLabel}{' '}
+                {option.value !== 'auto' && `(${option.label})`}
               </option>
             ))}
           </select>
@@ -79,7 +86,12 @@ export function LanguageSettings() {
       </div>
 
       <div className="language-note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
           <circle cx="12" cy="12" r="10" />
           <line x1="12" y1="16" x2="12" y2="12" />
           <line x1="12" y1="8" x2="12.01" y2="8" />

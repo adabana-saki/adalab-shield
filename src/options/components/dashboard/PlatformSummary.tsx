@@ -23,7 +23,10 @@ const PLATFORM_INFO: { key: Platform; emoji: string; labelKey: string }[] = [
   { key: 'reddit', emoji: '', labelKey: 'popupPlatformReddit' },
 ];
 
-export function PlatformSummary({ platforms, onEditClick }: PlatformSummaryProps) {
+export function PlatformSummary({
+  platforms,
+  onEditClick,
+}: PlatformSummaryProps) {
   const { t } = useI18n();
 
   const activePlatforms = PLATFORM_INFO.filter((p) => platforms[p.key]);
@@ -32,14 +35,21 @@ export function PlatformSummary({ platforms, onEditClick }: PlatformSummaryProps
   return (
     <div className="platform-summary">
       <div className="platform-summary-header">
-        <h3 className="platform-summary-title">{t('dashboardActivePlatforms')}</h3>
+        <h3 className="platform-summary-title">
+          {t('dashboardActivePlatforms')}
+        </h3>
         <button
           type="button"
           className="platform-summary-edit"
           onClick={onEditClick}
         >
           {t('dashboardEdit')}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <polyline points="9,18 15,12 9,6" />
           </svg>
         </button>

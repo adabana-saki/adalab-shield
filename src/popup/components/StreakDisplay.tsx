@@ -14,10 +14,12 @@ interface StreakDisplayProps {
 export function StreakDisplay({ streakData }: StreakDisplayProps) {
   const { t } = useI18n();
 
-  const { currentStreak, longestStreak, totalFocusDays, achievedMilestones } = streakData;
+  const { currentStreak, longestStreak, totalFocusDays, achievedMilestones } =
+    streakData;
 
   // Find next milestone
-  const nextMilestone = STREAK_MILESTONES.find((m) => m > currentStreak) ?? null;
+  const nextMilestone =
+    STREAK_MILESTONES.find((m) => m > currentStreak) ?? null;
   const progressToNext = nextMilestone
     ? Math.min(100, (currentStreak / nextMilestone) * 100)
     : 100;
@@ -71,7 +73,9 @@ export function StreakDisplay({ streakData }: StreakDisplayProps) {
       {/* Achieved milestones */}
       {achievedMilestones.length > 0 && (
         <div className="streak-milestones">
-          <span className="streak-milestones-label">{t('streakMilestones')}</span>
+          <span className="streak-milestones-label">
+            {t('streakMilestones')}
+          </span>
           <div className="streak-milestone-badges">
             {achievedMilestones.map((milestone) => (
               <span key={milestone} className="streak-milestone-badge">

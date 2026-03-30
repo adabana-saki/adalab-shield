@@ -10,13 +10,29 @@ interface PlatformStepProps {
   onPlatformToggle: (platform: Platform, enabled: boolean) => void;
 }
 
-const PLATFORMS: { key: Platform; labelKey: string; descriptionKey: string }[] = [
-  { key: 'youtube', labelKey: 'popupPlatformYouTube', descriptionKey: 'onboardingYouTubeDesc' },
-  { key: 'tiktok', labelKey: 'popupPlatformTikTok', descriptionKey: 'onboardingTikTokDesc' },
-  { key: 'instagram', labelKey: 'popupPlatformInstagram', descriptionKey: 'onboardingInstagramDesc' },
-];
+const PLATFORMS: { key: Platform; labelKey: string; descriptionKey: string }[] =
+  [
+    {
+      key: 'youtube',
+      labelKey: 'popupPlatformYouTube',
+      descriptionKey: 'onboardingYouTubeDesc',
+    },
+    {
+      key: 'tiktok',
+      labelKey: 'popupPlatformTikTok',
+      descriptionKey: 'onboardingTikTokDesc',
+    },
+    {
+      key: 'instagram',
+      labelKey: 'popupPlatformInstagram',
+      descriptionKey: 'onboardingInstagramDesc',
+    },
+  ];
 
-export function PlatformStep({ selectedPlatforms, onPlatformToggle }: PlatformStepProps) {
+export function PlatformStep({
+  selectedPlatforms,
+  onPlatformToggle,
+}: PlatformStepProps) {
   const { t } = useI18n();
 
   return (
@@ -37,10 +53,17 @@ export function PlatformStep({ selectedPlatforms, onPlatformToggle }: PlatformSt
             />
             <div className="platform-card-content">
               <span className="platform-card-name">{t(platform.labelKey)}</span>
-              <span className="platform-card-desc">{t(platform.descriptionKey)}</span>
+              <span className="platform-card-desc">
+                {t(platform.descriptionKey)}
+              </span>
             </div>
             <div className="platform-card-check">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+              >
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>

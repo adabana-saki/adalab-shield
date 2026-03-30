@@ -67,7 +67,9 @@ async function getSettingsSafely(): Promise<Settings | null> {
 async function getPomodoroStateSafely(): Promise<PomodoroState | null> {
   try {
     const result = await browser.storage.local.get(STORAGE_KEYS.POMODORO_STATE);
-    const state = result[STORAGE_KEYS.POMODORO_STATE] as PomodoroState | undefined;
+    const state = result[STORAGE_KEYS.POMODORO_STATE] as
+      | PomodoroState
+      | undefined;
     return state ?? null;
   } catch (error) {
     logger.warn('Failed to get Pomodoro state', { error: String(error) });
@@ -151,14 +153,14 @@ async function initialize(): Promise<void> {
 
   // Listen for settings and Pomodoro state changes
   browser.storage.onChanged.addListener((changes, areaName) => {
-    if (areaName !== 'local') {return;}
+    if (areaName !== 'local') {
+      return;
+    }
 
     // Handle settings changes
     const settingsChange = changes[STORAGE_KEYS.SETTINGS];
     if (settingsChange !== undefined) {
-      const newSettings = settingsChange.newValue as
-        | Settings
-        | undefined;
+      const newSettings = settingsChange.newValue as Settings | undefined;
       if (newSettings !== undefined) {
         detector.setSettings(newSettings);
 
@@ -192,7 +194,10 @@ async function initialize(): Promise<void> {
       // If entering break, could remove block overlays
       // If exiting break, re-scan to apply blocks
       if (newPomodoroState?.isRunning === true) {
-        if (newPomodoroState.mode === 'break' || newPomodoroState.mode === 'longBreak') {
+        if (
+          newPomodoroState.mode === 'break' ||
+          newPomodoroState.mode === 'longBreak'
+        ) {
           // In break - blocks should be removed (page reload recommended)
           logger.info('Pomodoro break started - blocking disabled');
         } else if (newPomodoroState.mode === 'work') {

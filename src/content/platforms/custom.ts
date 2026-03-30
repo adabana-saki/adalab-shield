@@ -152,7 +152,11 @@ export class CustomDomainDetector extends BasePlatformDetector {
 
     const blockPageSettings = this.settings?.blockPage ?? DEFAULT_BLOCK_PAGE;
 
-    showBlockPage(blockPageSettings, displayDomain, 'shortshield-custom-overlay');
+    showBlockPage(
+      blockPageSettings,
+      displayDomain,
+      'shortshield-custom-overlay'
+    );
 
     // Log the block only once (using youtube as placeholder platform)
     this.hasBlocked = true;

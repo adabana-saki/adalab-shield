@@ -11,7 +11,13 @@ import { BlockPageCustomizer } from '../BlockPageCustomizer';
 import { LanguageSettings } from '../LanguageSettings';
 import { ExportImport } from '../ExportImport';
 
-type AdvancedSubSection = 'challenge' | 'lockdown' | 'commitmentLock' | 'appearance' | 'language' | 'backup';
+type AdvancedSubSection =
+  | 'challenge'
+  | 'lockdown'
+  | 'commitmentLock'
+  | 'appearance'
+  | 'language'
+  | 'backup';
 
 interface AdvancedSectionProps {
   subSection: AdvancedSubSection;

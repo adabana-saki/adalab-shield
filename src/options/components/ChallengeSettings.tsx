@@ -18,7 +18,9 @@ export function ChallengeSettings() {
     });
   };
 
-  const handleDifficultyChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleDifficultyChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const difficulty = e.target.value as ChallengeDifficulty;
     await updateSettings({
       challenge: {
@@ -27,7 +29,9 @@ export function ChallengeSettings() {
     });
   };
 
-  const handleChallengeTypeChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChallengeTypeChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const challengeType = e.target.value as ChallengeType;
     await updateSettings({
       challenge: {
@@ -36,7 +40,9 @@ export function ChallengeSettings() {
     });
   };
 
-  const handleCooldownChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCooldownChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const cooldownSeconds = parseInt(e.target.value, 10);
     if (!isNaN(cooldownSeconds) && cooldownSeconds >= 0) {
       await updateSettings({
@@ -73,7 +79,9 @@ export function ChallengeSettings() {
           />
           <span className="toggle-text">{t('challengeEnabled')}</span>
         </label>
-        <p className="setting-description">{t('challengeEnabledDescription')}</p>
+        <p className="setting-description">
+          {t('challengeEnabledDescription')}
+        </p>
       </div>
 
       {settings.challenge.enabled && (
@@ -88,7 +96,9 @@ export function ChallengeSettings() {
               />
               <span className="toggle-text">{t('challengeDisableBypass')}</span>
             </label>
-            <p className="setting-description">{t('challengeDisableBypassDescription')}</p>
+            <p className="setting-description">
+              {t('challengeDisableBypassDescription')}
+            </p>
           </div>
 
           {!settings.challenge.disableBypassEntirely && (
@@ -106,7 +116,9 @@ export function ChallengeSettings() {
                     <option value="pattern">{t('challengeTypePattern')}</option>
                   </select>
                 </label>
-                <p className="setting-description">{t('challengeTypeDescription')}</p>
+                <p className="setting-description">
+                  {t('challengeTypeDescription')}
+                </p>
               </div>
 
               {/* Difficulty selection */}
@@ -118,11 +130,15 @@ export function ChallengeSettings() {
                     onChange={(e) => void handleDifficultyChange(e)}
                   >
                     <option value="easy">{t('challengeDifficultyEasy')}</option>
-                    <option value="medium">{t('challengeDifficultyMedium')}</option>
+                    <option value="medium">
+                      {t('challengeDifficultyMedium')}
+                    </option>
                     <option value="hard">{t('challengeDifficultyHard')}</option>
                   </select>
                 </label>
-                <p className="setting-description">{t('challengeDifficultyDescription')}</p>
+                <p className="setting-description">
+                  {t('challengeDifficultyDescription')}
+                </p>
               </div>
 
               {/* Cooldown setting */}
@@ -148,7 +164,9 @@ export function ChallengeSettings() {
                     <span className="unit">{t('minutes')}</span>
                   </div>
                 </label>
-                <p className="setting-description">{t('challengeCooldownDescription')}</p>
+                <p className="setting-description">
+                  {t('challengeCooldownDescription')}
+                </p>
               </div>
             </>
           )}

@@ -22,7 +22,10 @@ import {
   COMMITMENT_LOCK_COOLDOWN_ESCALATION,
 } from '@/shared/constants/defaults';
 import { getSettings } from '@/shared/utils/storage';
-import { generateChallenge, verifyChallengeAnswer } from '@/shared/utils/challenges';
+import {
+  generateChallenge,
+  verifyChallengeAnswer,
+} from '@/shared/utils/challenges';
 import { createLogger } from '@/shared/utils/logger';
 
 const logger = createLogger('commitmentLock');
@@ -42,11 +45,16 @@ let currentUnlockFlow: {
  */
 export async function getCommitmentLockState(): Promise<CommitmentLockState> {
   try {
-    const result = await browser.storage.local.get(STORAGE_KEYS.COMMITMENT_LOCK_STATE);
+    const result = await browser.storage.local.get(
+      STORAGE_KEYS.COMMITMENT_LOCK_STATE
+    );
     const stored = result[STORAGE_KEYS.COMMITMENT_LOCK_STATE];
 
     if (stored && typeof stored === 'object') {
-      return { ...DEFAULT_COMMITMENT_LOCK_STATE, ...stored } as CommitmentLockState;
+      return {
+        ...DEFAULT_COMMITMENT_LOCK_STATE,
+        ...stored,
+      } as CommitmentLockState;
     }
   } catch (error) {
     logger.error('Failed to get Commitment Lock state', { error });
@@ -58,7 +66,9 @@ export async function getCommitmentLockState(): Promise<CommitmentLockState> {
 /**
  * Save Commitment Lock state to storage
  */
-export async function saveCommitmentLockState(state: CommitmentLockState): Promise<void> {
+export async function saveCommitmentLockState(
+  state: CommitmentLockState
+): Promise<void> {
   try {
     await browser.storage.local.set({
       [STORAGE_KEYS.COMMITMENT_LOCK_STATE]: state,
@@ -74,7 +84,9 @@ export async function saveCommitmentLockState(state: CommitmentLockState): Promi
  */
 export async function getUnlockHistory(): Promise<UnlockHistory> {
   try {
-    const result = await browser.storage.local.get(STORAGE_KEYS.COMMITMENT_LOCK_HISTORY);
+    const result = await browser.storage.local.get(
+      STORAGE_KEYS.COMMITMENT_LOCK_HISTORY
+    );
     const stored = result[STORAGE_KEYS.COMMITMENT_LOCK_HISTORY];
 
     if (stored && typeof stored === 'object') {
@@ -134,7 +146,9 @@ function getMonday(date: Date): Date {
 /**
  * Check and reset daily/weekly counters if needed
  */
-async function checkAndResetCounters(state: CommitmentLockState): Promise<CommitmentLockState> {
+async function checkAndResetCounters(
+  state: CommitmentLockState
+): Promise<CommitmentLockState> {
   const today = new Date().toISOString().split('T')[0] ?? '';
   const monday = getMonday(new Date()).toISOString().split('T')[0] ?? '';
 
@@ -169,13 +183,20 @@ async function checkAndResetCounters(state: CommitmentLockState): Promise<Commit
 /**
  * Calculate cooldown duration based on consecutive failures
  */
-function calculateCooldownMinutes(consecutiveFailures: number, escalatingEnabled: boolean): number {
+function calculateCooldownMinutes(
+  consecutiveFailures: number,
+  escalatingEnabled: boolean
+): number {
   if (!escalatingEnabled) {
     return COMMITMENT_LOCK_COOLDOWN_ESCALATION.baseMinutes;
   }
 
-  const index = Math.min(consecutiveFailures, COMMITMENT_LOCK_COOLDOWN_ESCALATION.maxMultiplierIndex);
-  const multiplier = COMMITMENT_LOCK_COOLDOWN_ESCALATION.multipliers[index] ?? 1;
+  const index = Math.min(
+    consecutiveFailures,
+    COMMITMENT_LOCK_COOLDOWN_ESCALATION.maxMultiplierIndex
+  );
+  const multiplier =
+    COMMITMENT_LOCK_COOLDOWN_ESCALATION.multipliers[index] ?? 1;
   return COMMITMENT_LOCK_COOLDOWN_ESCALATION.baseMinutes * multiplier;
 }
 
@@ -206,7 +227,9 @@ export async function checkUnlockAllowed(): Promise<UnlockCheckResult> {
 
   // Check cooldown
   if (state.currentCooldownEndsAt && state.currentCooldownEndsAt > Date.now()) {
-    const waitSeconds = Math.ceil((state.currentCooldownEndsAt - Date.now()) / 1000);
+    const waitSeconds = Math.ceil(
+      (state.currentCooldownEndsAt - Date.now()) / 1000
+    );
     return {
       allowed: false,
       reason: 'cooldown_active',
@@ -216,7 +239,11 @@ export async function checkUnlockAllowed(): Promise<UnlockCheckResult> {
   }
 
   // Check time lock (Level 3)
-  if (settings.commitmentLock.timeLockEnabled && state.timeLockEndsAt && state.timeLockEndsAt > Date.now()) {
+  if (
+    settings.commitmentLock.timeLockEnabled &&
+    state.timeLockEndsAt &&
+    state.timeLockEndsAt > Date.now()
+  ) {
     const waitSeconds = Math.ceil((state.timeLockEndsAt - Date.now()) / 1000);
     return {
       allowed: false,
@@ -227,7 +254,10 @@ export async function checkUnlockAllowed(): Promise<UnlockCheckResult> {
   }
 
   // Check weekly limit (Level 3)
-  if (settings.commitmentLock.level === 3 && state.weeklyUnlocksRemaining <= 0) {
+  if (
+    settings.commitmentLock.level === 3 &&
+    state.weeklyUnlocksRemaining <= 0
+  ) {
     return {
       allowed: false,
       reason: 'weekly_limit_reached',
@@ -236,7 +266,10 @@ export async function checkUnlockAllowed(): Promise<UnlockCheckResult> {
   }
 
   // Check schedule restriction (Level 3)
-  if (settings.commitmentLock.scheduleRestriction && settings.commitmentLock.allowedUnlockHours) {
+  if (
+    settings.commitmentLock.scheduleRestriction &&
+    settings.commitmentLock.allowedUnlockHours
+  ) {
     const now = new Date();
     const currentHour = now.getHours();
     const { start, end } = settings.commitmentLock.allowedUnlockHours;
@@ -398,13 +431,18 @@ export async function submitChallengeAnswer(answer: string): Promise<{
   }
 
   const settings = await getSettings();
-  const isCorrect = verifyChallengeAnswer(currentUnlockFlow.currentChallenge, answer);
+  const isCorrect = verifyChallengeAnswer(
+    currentUnlockFlow.currentChallenge,
+    answer
+  );
 
   if (isCorrect) {
     currentUnlockFlow.challengesCompleted++;
     currentUnlockFlow.currentChallenge = null;
 
-    const challengesRemaining = settings.commitmentLock.challengeCount - currentUnlockFlow.challengesCompleted;
+    const challengesRemaining =
+      settings.commitmentLock.challengeCount -
+      currentUnlockFlow.challengesCompleted;
     const allCompleted = challengesRemaining <= 0;
 
     logger.info('Challenge answered correctly', {
@@ -446,7 +484,9 @@ export async function submitChallengeAnswer(answer: string): Promise<{
     );
     currentUnlockFlow.currentChallenge = nextChallenge;
 
-    const challengesRemaining = settings.commitmentLock.challengeCount - currentUnlockFlow.challengesCompleted;
+    const challengesRemaining =
+      settings.commitmentLock.challengeCount -
+      currentUnlockFlow.challengesCompleted;
 
     logger.info('Challenge answered incorrectly', {
       failed: currentUnlockFlow.challengesFailed,
@@ -493,8 +533,12 @@ export async function confirmUnlock(): Promise<{
 
   // Calculate time lock end (Level 3)
   let timeLockEndsAt = state.timeLockEndsAt;
-  if (settings.commitmentLock.level === 3 && settings.commitmentLock.timeLockEnabled) {
-    timeLockEndsAt = Date.now() + settings.commitmentLock.timeLockHours * 60 * 60 * 1000;
+  if (
+    settings.commitmentLock.level === 3 &&
+    settings.commitmentLock.timeLockEnabled
+  ) {
+    timeLockEndsAt =
+      Date.now() + settings.commitmentLock.timeLockHours * 60 * 60 * 1000;
   }
 
   // Update state
@@ -503,7 +547,10 @@ export async function confirmUnlock(): Promise<{
     lastUnlockAt: Date.now(),
     todaySuccesses: state.todaySuccesses + 1,
     weekSuccesses: state.weekSuccesses + 1,
-    weeklyUnlocksRemaining: settings.commitmentLock.level === 3 ? Math.max(0, state.weeklyUnlocksRemaining - 1) : state.weeklyUnlocksRemaining,
+    weeklyUnlocksRemaining:
+      settings.commitmentLock.level === 3
+        ? Math.max(0, state.weeklyUnlocksRemaining - 1)
+        : state.weeklyUnlocksRemaining,
     currentCooldownEndsAt: cooldownEndsAt,
     timeLockEndsAt,
     consecutiveFailures: 0, // Reset on success
@@ -574,7 +621,10 @@ export async function cancelUnlockFlow(): Promise<{
 
     await saveUnlockHistory({
       ...history,
-      attempts: [...history.attempts.slice(-(history.maxAttempts - 1)), attempt],
+      attempts: [
+        ...history.attempts.slice(-(history.maxAttempts - 1)),
+        attempt,
+      ],
     });
 
     logger.info('Unlock cancelled by user');
@@ -593,23 +643,33 @@ export async function getUnlockStats(): Promise<CommitmentLockStats> {
 
   const attempts = history.attempts;
   const totalAttempts = attempts.length;
-  const totalSuccesses = attempts.filter(a => a.success).length;
-  const successRate = totalAttempts > 0 ? (totalSuccesses / totalAttempts) * 100 : 0;
+  const totalSuccesses = attempts.filter((a) => a.success).length;
+  const successRate =
+    totalAttempts > 0 ? (totalSuccesses / totalAttempts) * 100 : 0;
 
   // Calculate average time to unlock for successful attempts
-  const successfulAttempts = attempts.filter(a => a.success && a.timeToComplete);
-  const averageTimeToUnlock = successfulAttempts.length > 0
-    ? successfulAttempts.reduce((sum, a) => sum + (a.timeToComplete ?? 0), 0) / successfulAttempts.length
-    : 0;
+  const successfulAttempts = attempts.filter(
+    (a) => a.success && a.timeToComplete
+  );
+  const averageTimeToUnlock =
+    successfulAttempts.length > 0
+      ? successfulAttempts.reduce(
+          (sum, a) => sum + (a.timeToComplete ?? 0),
+          0
+        ) / successfulAttempts.length
+      : 0;
 
   // Find most common failure reason
-  const failedAttempts = attempts.filter(a => !a.success && a.failureReason);
-  const failureReasons = failedAttempts.reduce((acc, a) => {
-    if (a.failureReason) {
-      acc[a.failureReason] = (acc[a.failureReason] ?? 0) + 1;
-    }
-    return acc;
-  }, {} as Record<UnlockFailureReason, number>);
+  const failedAttempts = attempts.filter((a) => !a.success && a.failureReason);
+  const failureReasons = failedAttempts.reduce(
+    (acc, a) => {
+      if (a.failureReason) {
+        acc[a.failureReason] = (acc[a.failureReason] ?? 0) + 1;
+      }
+      return acc;
+    },
+    {} as Record<UnlockFailureReason, number>
+  );
 
   let mostCommonFailure: UnlockFailureReason | null = null;
   let maxCount = 0;
@@ -626,7 +686,9 @@ export async function getUnlockStats(): Promise<CommitmentLockStats> {
 
   // Simple streak calculation based on last unlock
   if (state.lastUnlockAt) {
-    const daysSinceLastUnlock = Math.floor((Date.now() - state.lastUnlockAt) / (24 * 60 * 60 * 1000));
+    const daysSinceLastUnlock = Math.floor(
+      (Date.now() - state.lastUnlockAt) / (24 * 60 * 60 * 1000)
+    );
     noUnlockStreak = daysSinceLastUnlock;
   }
 

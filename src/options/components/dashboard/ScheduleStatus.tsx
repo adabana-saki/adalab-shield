@@ -29,7 +29,9 @@ export function ScheduleStatus({ schedule, onEditClick }: ScheduleStatusProps) {
     }
 
     const firstRange = schedule.timeRanges[0];
-    if (!firstRange) {return activeDays;}
+    if (!firstRange) {
+      return activeDays;
+    }
     const timeRange = `${formatTime(firstRange.startHour, firstRange.startMinute)} - ${formatTime(firstRange.endHour, firstRange.endMinute)}`;
 
     return `${activeDays} (${timeRange})`;
@@ -40,7 +42,9 @@ export function ScheduleStatus({ schedule, onEditClick }: ScheduleStatusProps) {
       <div className="schedule-status-header">
         <div className="schedule-status-info">
           <h3 className="schedule-status-title">{t('scheduleTitle')}</h3>
-          <span className={`schedule-status-badge ${isActive ? 'active' : 'inactive'}`}>
+          <span
+            className={`schedule-status-badge ${isActive ? 'active' : 'inactive'}`}
+          >
             {isActive ? t('scheduleActive') : t('scheduleInactive')}
           </span>
         </div>
@@ -50,7 +54,12 @@ export function ScheduleStatus({ schedule, onEditClick }: ScheduleStatusProps) {
           onClick={onEditClick}
         >
           {t('dashboardEdit')}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <polyline points="9,18 15,12 9,6" />
           </svg>
         </button>

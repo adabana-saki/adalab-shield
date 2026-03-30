@@ -81,7 +81,9 @@ export function getUILanguage(): string {
 /**
  * Load translations for a specific locale
  */
-async function loadTranslations(locale: string): Promise<Record<string, MessageEntry>> {
+async function loadTranslations(
+  locale: string
+): Promise<Record<string, MessageEntry>> {
   // Check cache first
   const cached = translationCache.get(locale);
   if (cached) {
@@ -94,7 +96,9 @@ async function loadTranslations(locale: string): Promise<Record<string, MessageE
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Failed to load translations for ${locale}: ${response.status}`);
+      throw new Error(
+        `Failed to load translations for ${locale}: ${response.status}`
+      );
     }
 
     const messages = (await response.json()) as Record<string, MessageEntry>;
@@ -150,7 +154,9 @@ export async function initializeTranslations(): Promise<void> {
 /**
  * Force reload translations for a new language
  */
-export async function reloadTranslations(language: SupportedLanguage): Promise<void> {
+export async function reloadTranslations(
+  language: SupportedLanguage
+): Promise<void> {
   setLanguage(language);
   initPromise = null; // Reset init promise
   isInitialized = false;
@@ -206,7 +212,10 @@ function applySubstitutions(
 /**
  * Get translation from cache
  */
-function getFromCache(messageName: string, substitutions?: string | string[]): string | null {
+function getFromCache(
+  messageName: string,
+  substitutions?: string | string[]
+): string | null {
   const locale = getEffectiveLocale();
 
   // Try the effective locale first
@@ -281,7 +290,9 @@ export function formatDate(
 ): string {
   const lang = locale ?? getEffectiveLocale();
   try {
-    return new Intl.DateTimeFormat(lang.replace('_', '-'), options).format(date);
+    return new Intl.DateTimeFormat(lang.replace('_', '-'), options).format(
+      date
+    );
   } catch {
     return date.toISOString();
   }
@@ -294,7 +305,9 @@ export function formatRelativeTime(date: Date, locale?: string): string {
   const lang = locale ?? getEffectiveLocale();
 
   try {
-    const rtf = new Intl.RelativeTimeFormat(lang.replace('_', '-'), { numeric: 'auto' });
+    const rtf = new Intl.RelativeTimeFormat(lang.replace('_', '-'), {
+      numeric: 'auto',
+    });
     const now = Date.now();
     const diffMs = date.getTime() - now;
     const diffSec = Math.round(diffMs / 1000);
@@ -329,7 +342,9 @@ export function formatDuration(seconds: number, locale?: string): string {
   const parts: string[] = [];
 
   try {
-    const nf = new Intl.NumberFormat(lang.replace('_', '-'), { minimumIntegerDigits: 2 });
+    const nf = new Intl.NumberFormat(lang.replace('_', '-'), {
+      minimumIntegerDigits: 2,
+    });
 
     if (hours > 0) {
       parts.push(nf.format(hours));

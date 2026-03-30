@@ -3,7 +3,13 @@
  */
 
 import { useI18n } from '@/shared/hooks/useI18n';
-import type { BlockingStats, TimeLimitsState, Settings, Platform, StreakData } from '@/shared/types';
+import type {
+  BlockingStats,
+  TimeLimitsState,
+  Settings,
+  Platform,
+  StreakData,
+} from '@/shared/types';
 import { StreakDisplay } from './StreakDisplay';
 
 /** Platform display names mapping */
@@ -32,7 +38,12 @@ interface StatsProps {
   settings?: Settings;
 }
 
-export function Stats({ stats, timeLimitsState, streakData, settings }: StatsProps) {
+export function Stats({
+  stats,
+  timeLimitsState,
+  streakData,
+  settings,
+}: StatsProps) {
   const { t, formatNumber } = useI18n();
 
   const formatDuration = (ms: number): string => {
@@ -47,22 +58,30 @@ export function Stats({ stats, timeLimitsState, streakData, settings }: StatsPro
   };
 
   const getUsagePercent = (platform: Platform): number => {
-    if (!timeLimitsState || !settings?.timeLimits.enabled) {return 0;}
+    if (!timeLimitsState || !settings?.timeLimits.enabled) {
+      return 0;
+    }
 
     const usage = timeLimitsState.usage.find((u) => u.platform === platform);
     const limit = settings.timeLimits.limits.find(
       (l) => l.platform === platform && l.enabled
     );
 
-    if (!usage || !limit) {return 0;}
+    if (!usage || !limit) {
+      return 0;
+    }
 
     const limitMs = limit.dailyLimitMinutes * 60 * 1000;
     return Math.min(100, (usage.usedTodayMs / limitMs) * 100);
   };
 
   const getUsageColor = (percent: number, warningThreshold: number): string => {
-    if (percent >= 100) {return '#ef4444';} // red
-    if (percent >= warningThreshold) {return '#f59e0b';} // yellow/orange
+    if (percent >= 100) {
+      return '#ef4444';
+    } // red
+    if (percent >= warningThreshold) {
+      return '#f59e0b';
+    } // yellow/orange
     return '#22c55e'; // green
   };
 
@@ -98,7 +117,8 @@ export function Stats({ stats, timeLimitsState, streakData, settings }: StatsPro
                 (l) => l.platform === usage.platform && l.enabled
               );
               const percent = getUsagePercent(usage.platform);
-              const warningThreshold = settings.timeLimits.warningThresholdPercent;
+              const warningThreshold =
+                settings.timeLimits.warningThresholdPercent;
 
               return (
                 <div key={usage.platform} className="time-usage-item">
@@ -122,7 +142,10 @@ export function Stats({ stats, timeLimitsState, streakData, settings }: StatsPro
                         className="usage-progress-fill"
                         style={{
                           width: `${Math.min(100, percent)}%`,
-                          backgroundColor: getUsageColor(percent, warningThreshold),
+                          backgroundColor: getUsageColor(
+                            percent,
+                            warningThreshold
+                          ),
                         }}
                       />
                     </div>

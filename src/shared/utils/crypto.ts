@@ -18,7 +18,9 @@ export async function hashPin(pin: string): Promise<string> {
 
   // Convert to hex string
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+  const hashHex = hashArray
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 
   return hashHex;
 }
@@ -29,7 +31,10 @@ export async function hashPin(pin: string): Promise<string> {
  * @param storedHash The stored hash to compare against
  * @returns True if the PIN matches the hash
  */
-export async function verifyPin(pin: string, storedHash: string): Promise<boolean> {
+export async function verifyPin(
+  pin: string,
+  storedHash: string
+): Promise<boolean> {
   const pinHash = await hashPin(pin);
   return pinHash === storedHash;
 }

@@ -246,7 +246,9 @@ function generatePatternChallenge(difficulty: ChallengeDifficulty): {
         },
       ];
       const generator = options[randomInt(0, options.length - 1)];
-      return generator ? generator() : { question: '2, 4, 6, 8, ?', answer: '10' };
+      return generator
+        ? generator()
+        : { question: '2, 4, 6, 8, ?', answer: '10' };
     }
 
     case 'hard': {
@@ -280,7 +282,9 @@ function generatePatternChallenge(difficulty: ChallengeDifficulty): {
         },
       ];
       const generator = options[randomInt(0, options.length - 1)];
-      return generator ? generator() : { question: '1, 1, 2, 3, 5, ?', answer: '8' };
+      return generator
+        ? generator()
+        : { question: '1, 1, 2, 3, 5, ?', answer: '8' };
     }
   }
 }

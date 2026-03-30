@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-unsafe-argument, @typescript-eslint/require-await, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-unsafe-argument, @typescript-eslint/require-await, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
 // @ts-nocheck
 /**
  * Storage integration tests
@@ -236,24 +236,22 @@ describe('Storage Integration', () => {
     });
   });
 
-  describe('Whitelist Storage', () => {
-    it('should add whitelist entries', async () => {
+  describe('Custom Domains Storage', () => {
+    it('should add custom domain entries', async () => {
       await mockStorage.set({ shortshield_settings: DEFAULT_SETTINGS });
 
       const result = await mockStorage.get('shortshield_settings');
       const settings = result.shortshield_settings as Settings;
 
       const newEntry = {
-        id: `whitelist-${Date.now()}` as Settings['whitelist'][0]['id'],
-        type: 'channel' as const,
-        value: '@NewChannel',
-        platform: 'youtube' as const,
+        id: `domain-${Date.now()}` as Settings['customDomains'][0]['id'],
+        domain: 'example.com',
         createdAt: Date.now(),
       };
 
       const updatedSettings: Settings = {
         ...settings,
-        whitelist: [...settings.whitelist, newEntry],
+        customDomains: [...settings.customDomains, newEntry],
       };
 
       await mockStorage.set({ shortshield_settings: updatedSettings });
@@ -261,39 +259,37 @@ describe('Storage Integration', () => {
       const updated = await mockStorage.get('shortshield_settings');
       const newSettings = updated.shortshield_settings as Settings;
 
-      expect(newSettings.whitelist.length).toBe(1);
-      expect(newSettings.whitelist[0].value).toBe('@NewChannel');
+      expect(newSettings.customDomains.length).toBe(1);
+      expect(newSettings.customDomains[0].domain).toBe('example.com');
     });
 
-    it('should remove whitelist entries', async () => {
-      const settingsWithWhitelist: Settings = {
+    it('should remove custom domain entries', async () => {
+      const settingsWithDomains: Settings = {
         ...DEFAULT_SETTINGS,
-        whitelist: [
+        customDomains: [
           {
-            id: 'entry-1' as Settings['whitelist'][0]['id'],
-            type: 'channel',
-            value: '@Channel1',
-            platform: 'youtube',
+            id: 'entry-1' as Settings['customDomains'][0]['id'],
+            domain: 'example.com',
             createdAt: Date.now(),
           },
           {
-            id: 'entry-2' as Settings['whitelist'][0]['id'],
-            type: 'channel',
-            value: '@Channel2',
-            platform: 'tiktok',
+            id: 'entry-2' as Settings['customDomains'][0]['id'],
+            domain: 'another.com',
             createdAt: Date.now(),
           },
         ],
       };
 
-      await mockStorage.set({ shortshield_settings: settingsWithWhitelist });
+      await mockStorage.set({ shortshield_settings: settingsWithDomains });
 
       const result = await mockStorage.get('shortshield_settings');
       const settings = result.shortshield_settings as Settings;
 
       const updatedSettings: Settings = {
         ...settings,
-        whitelist: settings.whitelist.filter((entry) => entry.id !== 'entry-1'),
+        customDomains: settings.customDomains.filter(
+          (entry) => entry.id !== 'entry-1'
+        ),
       };
 
       await mockStorage.set({ shortshield_settings: updatedSettings });
@@ -301,8 +297,8 @@ describe('Storage Integration', () => {
       const updated = await mockStorage.get('shortshield_settings');
       const newSettings = updated.shortshield_settings as Settings;
 
-      expect(newSettings.whitelist.length).toBe(1);
-      expect(newSettings.whitelist[0].id).toBe('entry-2');
+      expect(newSettings.customDomains.length).toBe(1);
+      expect(newSettings.customDomains[0].id).toBe('entry-2');
     });
   });
 
