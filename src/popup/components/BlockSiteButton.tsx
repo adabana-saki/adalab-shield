@@ -12,7 +12,10 @@ interface BlockSiteButtonProps {
   onDomainsChange: (domains: CustomBlockedDomain[]) => void;
 }
 
-export function BlockSiteButton({ customDomains, onDomainsChange }: BlockSiteButtonProps) {
+export function BlockSiteButton({
+  customDomains,
+  onDomainsChange,
+}: BlockSiteButtonProps) {
   const { t } = useI18n();
   const [currentDomain, setCurrentDomain] = useState<string | null>(null);
   const [isBlocked, setIsBlocked] = useState(false);
@@ -22,7 +25,10 @@ export function BlockSiteButton({ customDomains, onDomainsChange }: BlockSiteBut
   useEffect(() => {
     const getCurrentDomain = async () => {
       try {
-        const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+        const tabs = await browser.tabs.query({
+          active: true,
+          currentWindow: true,
+        });
         const tab = tabs[0];
         if (tab?.url) {
           const url = new URL(tab.url);
@@ -31,7 +37,7 @@ export function BlockSiteButton({ customDomains, onDomainsChange }: BlockSiteBut
             const domain = url.hostname.replace(/^www\./, '');
             setCurrentDomain(domain);
             // Check if already blocked
-            const blocked = customDomains.some(d => d.domain === domain);
+            const blocked = customDomains.some((d) => d.domain === domain);
             setIsBlocked(blocked);
           }
         }
@@ -45,14 +51,18 @@ export function BlockSiteButton({ customDomains, onDomainsChange }: BlockSiteBut
     void getCurrentDomain();
   }, [customDomains]);
 
-  const handleToggleBlock = useCallback(async () => {
-    if (!currentDomain) return;
+  const handleToggleBlock = useCallback(() => {
+    if (!currentDomain) {
+      return;
+    }
 
     setIsLoading(true);
     try {
       if (isBlocked) {
         // Remove from blocked domains
-        const newDomains = customDomains.filter(d => d.domain !== currentDomain);
+        const newDomains = customDomains.filter(
+          (d) => d.domain !== currentDomain
+        );
         onDomainsChange([...newDomains]);
         setIsBlocked(false);
       } else {
@@ -88,7 +98,12 @@ export function BlockSiteButton({ customDomains, onDomainsChange }: BlockSiteBut
       >
         {isBlocked ? (
           <>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
               <line x1="12" y1="2" x2="12" y2="12" />
             </svg>
@@ -96,7 +111,12 @@ export function BlockSiteButton({ customDomains, onDomainsChange }: BlockSiteBut
           </>
         ) : (
           <>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <circle cx="12" cy="12" r="10" />
               <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
             </svg>

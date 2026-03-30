@@ -2,7 +2,7 @@
  * Main popup application component - Single scroll view design
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import browser from 'webextension-polyfill';
 import { useSettings } from '@/shared/hooks/useSettings';
 import { useI18n } from '@/shared/hooks/useI18n';
@@ -103,6 +103,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect -- async data fetching: setState is called after await in callbacks, not synchronously */
     void fetchFocusState();
     void fetchPomodoroState();
     void fetchStreakData();
@@ -113,6 +114,7 @@ export function App() {
       void fetchPomodoroState();
       void fetchTimeUsage();
     }, 1000);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     return () => clearInterval(interval);
   }, [fetchFocusState, fetchPomodoroState, fetchStreakData, fetchTimeUsage]);
@@ -175,6 +177,30 @@ export function App() {
     void updateSettings({ customDomains: domains });
   };
 
+  // Check if pomodoro is paused (not running but not in idle mode)
+  const isPaused = !pomodoroState.isRunning && pomodoroState.mode !== 'idle';
+  const hasActiveTimer =
+    focusState.isActive || pomodoroState.isRunning || isPaused;
+
+  // Find the most recently active platform (active within last 60 seconds)
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  const activeUsage = useMemo(
+    () =>
+      timeLimitsState.usage
+        .filter(
+          (u) => u.lastActiveAt !== null && now - (u.lastActiveAt ?? 0) < 60000
+        )
+        .sort((a, b) => (b.lastActiveAt ?? 0) - (a.lastActiveAt ?? 0))[0] ??
+      null,
+    [timeLimitsState.usage, now]
+  );
+
   // Loading state
   if (isLoading || !i18nReady) {
     return (
@@ -199,20 +225,6 @@ export function App() {
       </div>
     );
   }
-
-  // Check if pomodoro is paused (not running but not in idle mode)
-  const isPaused = !pomodoroState.isRunning && pomodoroState.mode !== 'idle';
-  const hasActiveTimer =
-    focusState.isActive || pomodoroState.isRunning || isPaused;
-
-  // Find the most recently active platform (active within last 60 seconds)
-  const activeUsage =
-    timeLimitsState.usage
-      .filter(
-        (u) =>
-          u.lastActiveAt !== null && Date.now() - (u.lastActiveAt ?? 0) < 60000
-      )
-      .sort((a, b) => (b.lastActiveAt ?? 0) - (a.lastActiveAt ?? 0))[0] ?? null;
 
   return (
     <div className="popup-container">

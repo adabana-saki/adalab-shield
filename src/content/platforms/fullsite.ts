@@ -20,7 +20,10 @@ const logger = createLogger('fullsite');
 /**
  * Configuration for full site blocking platforms
  */
-const FULLSITE_CONFIGS: Record<FullSitePlatform, { hosts: readonly string[]; displayName: string }> = {
+const FULLSITE_CONFIGS: Record<
+  FullSitePlatform,
+  { hosts: readonly string[]; displayName: string }
+> = {
   youtube_full: {
     hosts: YOUTUBE_CONFIG.hosts,
     displayName: 'YouTube',
@@ -68,7 +71,6 @@ export class FullSiteBlocker extends BasePlatformDetector {
     }
 
     // Check if global and platform-specific settings are enabled
-    // eslint-disable-next-line security/detect-object-injection
     const platformEnabled = this.settings.platforms[this.fullSitePlatform];
     if (!this.settings.enabled || !platformEnabled) {
       return false;
@@ -112,7 +114,11 @@ export class FullSiteBlocker extends BasePlatformDetector {
 
     const blockPageSettings = this.settings?.blockPage ?? DEFAULT_BLOCK_PAGE;
 
-    showBlockPage(blockPageSettings, this.displayName, 'shortshield-fullsite-overlay');
+    showBlockPage(
+      blockPageSettings,
+      this.displayName,
+      'shortshield-fullsite-overlay'
+    );
 
     // Log the block only once
     this.hasBlocked = true;

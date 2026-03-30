@@ -68,7 +68,6 @@ export function useI18n() {
     (key: string, substitutions?: string | string[]) => {
       return t(key, substitutions);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

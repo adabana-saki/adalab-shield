@@ -23,10 +23,12 @@ export function CommitmentLockSettings() {
   const { t } = useI18n();
 
   // Get commitment lock settings with defaults
-  const commitmentLockSettings = settings.commitmentLock ?? DEFAULT_COMMITMENT_LOCK;
+  const commitmentLockSettings =
+    settings.commitmentLock ?? DEFAULT_COMMITMENT_LOCK;
 
   // Local state
-  const [commitmentLockState, setCommitmentLockState] = useState<CommitmentLockState | null>(null);
+  const [commitmentLockState, setCommitmentLockState] =
+    useState<CommitmentLockState | null>(null);
   const [premiumState, setPremiumState] = useState<PremiumState | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,31 +37,28 @@ export function CommitmentLockSettings() {
   const isPremium = premiumState?.isPremium ?? false;
   const canUseLevel3 = isPremium;
 
-  // Load states on mount
-  useEffect(() => {
-    void loadStates();
-  }, []);
-
-  const loadStates = async () => {
+  const loadStates = useCallback(async () => {
     setIsLoading(true);
     try {
       // Load Commitment Lock state
-      const lockResponse = (await browser.runtime.sendMessage({
-        type: 'COMMITMENT_LOCK_GET_STATE',
-        timestamp: Date.now(),
-      })) as { success: boolean; data?: CommitmentLockState };
+      const lockResponse: { success: boolean; data?: CommitmentLockState } =
+        await browser.runtime.sendMessage({
+          type: 'COMMITMENT_LOCK_GET_STATE',
+          timestamp: Date.now(),
+        });
 
-      if (lockResponse.success === true && lockResponse.data != null) {
+      if (lockResponse.success === true && lockResponse.data !== null) {
         setCommitmentLockState(lockResponse.data);
       }
 
       // Load Premium state
-      const premiumResponse = (await browser.runtime.sendMessage({
-        type: 'PREMIUM_GET_STATE',
-        timestamp: Date.now(),
-      })) as { success: boolean; data?: PremiumState };
+      const premiumResponse: { success: boolean; data?: PremiumState } =
+        await browser.runtime.sendMessage({
+          type: 'PREMIUM_GET_STATE',
+          timestamp: Date.now(),
+        });
 
-      if (premiumResponse.success === true && premiumResponse.data != null) {
+      if (premiumResponse.success === true && premiumResponse.data !== null) {
         setPremiumState(premiumResponse.data);
       }
     } catch (err) {
@@ -68,7 +67,12 @@ export function CommitmentLockSettings() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [t]);
+
+  // Load states on mount
+  useEffect(() => {
+    void loadStates();
+  }, [loadStates]);
 
   const handleToggleEnabled = useCallback(async () => {
     try {
@@ -83,60 +87,78 @@ export function CommitmentLockSettings() {
     }
   }, [commitmentLockSettings.enabled, updateSettings, t]);
 
-  const handleLevelChange = useCallback(async (level: CommitmentLockLevel) => {
-    // Check if Level 3 requires premium
-    if (level === 3 && !canUseLevel3) {
-      setError(t('commitmentLockPremiumRequired'));
-      return;
-    }
+  const handleLevelChange = useCallback(
+    async (level: CommitmentLockLevel) => {
+      // Check if Level 3 requires premium
+      if (level === 3 && !canUseLevel3) {
+        setError(t('commitmentLockPremiumRequired'));
+        return;
+      }
 
-    try {
-      await updateSettings({
-        commitmentLock: {
-          level,
-        },
-      });
-    } catch (err) {
-      console.error('Failed to change level:', err);
-      setError(t('commitmentLockErrorUpdate'));
-    }
-  }, [canUseLevel3, updateSettings, t]);
-
-  const handleWaitSecondsChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= COMMITMENT_LOCK_LIMITS.MIN_WAIT_SECONDS && value <= COMMITMENT_LOCK_LIMITS.MAX_WAIT_SECONDS) {
       try {
         await updateSettings({
           commitmentLock: {
-            confirmationWaitSeconds: value,
+            level,
           },
         });
       } catch (err) {
-        console.error('Failed to update wait seconds:', err);
+        console.error('Failed to change level:', err);
+        setError(t('commitmentLockErrorUpdate'));
       }
-    }
-  }, [updateSettings]);
+    },
+    [canUseLevel3, updateSettings, t]
+  );
 
-  const handleCooldownChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= COMMITMENT_LOCK_LIMITS.MIN_COOLDOWN_MINUTES && value <= COMMITMENT_LOCK_LIMITS.MAX_COOLDOWN_MINUTES) {
-      try {
-        await updateSettings({
-          commitmentLock: {
-            cooldownAfterUnlockMinutes: value,
-          },
-        });
-      } catch (err) {
-        console.error('Failed to update cooldown:', err);
+  const handleWaitSecondsChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(e.target.value, 10);
+      if (
+        !isNaN(value) &&
+        value >= COMMITMENT_LOCK_LIMITS.MIN_WAIT_SECONDS &&
+        value <= COMMITMENT_LOCK_LIMITS.MAX_WAIT_SECONDS
+      ) {
+        try {
+          await updateSettings({
+            commitmentLock: {
+              confirmationWaitSeconds: value,
+            },
+          });
+        } catch (err) {
+          console.error('Failed to update wait seconds:', err);
+        }
       }
-    }
-  }, [updateSettings]);
+    },
+    [updateSettings]
+  );
+
+  const handleCooldownChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(e.target.value, 10);
+      if (
+        !isNaN(value) &&
+        value >= COMMITMENT_LOCK_LIMITS.MIN_COOLDOWN_MINUTES &&
+        value <= COMMITMENT_LOCK_LIMITS.MAX_COOLDOWN_MINUTES
+      ) {
+        try {
+          await updateSettings({
+            commitmentLock: {
+              cooldownAfterUnlockMinutes: value,
+            },
+          });
+        } catch (err) {
+          console.error('Failed to update cooldown:', err);
+        }
+      }
+    },
+    [updateSettings]
+  );
 
   const handleIntentionToggle = useCallback(async () => {
     try {
       await updateSettings({
         commitmentLock: {
-          requireIntentionStatement: !commitmentLockSettings.requireIntentionStatement,
+          requireIntentionStatement:
+            !commitmentLockSettings.requireIntentionStatement,
         },
       });
     } catch (err) {
@@ -144,41 +166,56 @@ export function CommitmentLockSettings() {
     }
   }, [commitmentLockSettings.requireIntentionStatement, updateSettings]);
 
-  const handleIntentionLengthChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= COMMITMENT_LOCK_LIMITS.MIN_INTENTION_LENGTH && value <= COMMITMENT_LOCK_LIMITS.MAX_INTENTION_LENGTH) {
-      try {
-        await updateSettings({
-          commitmentLock: {
-            intentionMinLength: value,
-          },
-        });
-      } catch (err) {
-        console.error('Failed to update intention length:', err);
+  const handleIntentionLengthChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(e.target.value, 10);
+      if (
+        !isNaN(value) &&
+        value >= COMMITMENT_LOCK_LIMITS.MIN_INTENTION_LENGTH &&
+        value <= COMMITMENT_LOCK_LIMITS.MAX_INTENTION_LENGTH
+      ) {
+        try {
+          await updateSettings({
+            commitmentLock: {
+              intentionMinLength: value,
+            },
+          });
+        } catch (err) {
+          console.error('Failed to update intention length:', err);
+        }
       }
-    }
-  }, [updateSettings]);
+    },
+    [updateSettings]
+  );
 
-  const handleChallengeCountChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= COMMITMENT_LOCK_LIMITS.MIN_CHALLENGES && value <= COMMITMENT_LOCK_LIMITS.MAX_CHALLENGES) {
-      try {
-        await updateSettings({
-          commitmentLock: {
-            challengeCount: value,
-          },
-        });
-      } catch (err) {
-        console.error('Failed to update challenge count:', err);
+  const handleChallengeCountChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(e.target.value, 10);
+      if (
+        !isNaN(value) &&
+        value >= COMMITMENT_LOCK_LIMITS.MIN_CHALLENGES &&
+        value <= COMMITMENT_LOCK_LIMITS.MAX_CHALLENGES
+      ) {
+        try {
+          await updateSettings({
+            commitmentLock: {
+              challengeCount: value,
+            },
+          });
+        } catch (err) {
+          console.error('Failed to update challenge count:', err);
+        }
       }
-    }
-  }, [updateSettings]);
+    },
+    [updateSettings]
+  );
 
   const handleConsecutiveToggle = useCallback(async () => {
     try {
       await updateSettings({
         commitmentLock: {
-          challengesMustBeConsecutive: !commitmentLockSettings.challengesMustBeConsecutive,
+          challengesMustBeConsecutive:
+            !commitmentLockSettings.challengesMustBeConsecutive,
         },
       });
     } catch (err) {
@@ -214,35 +251,49 @@ export function CommitmentLockSettings() {
     }
   }, [canUseLevel3, commitmentLockSettings.timeLockEnabled, updateSettings, t]);
 
-  const handleTimeLockHoursChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= COMMITMENT_LOCK_LIMITS.MIN_TIME_LOCK_HOURS && value <= COMMITMENT_LOCK_LIMITS.MAX_TIME_LOCK_HOURS) {
-      try {
-        await updateSettings({
-          commitmentLock: {
-            timeLockHours: value,
-          },
-        });
-      } catch (err) {
-        console.error('Failed to update time lock hours:', err);
+  const handleTimeLockHoursChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(e.target.value, 10);
+      if (
+        !isNaN(value) &&
+        value >= COMMITMENT_LOCK_LIMITS.MIN_TIME_LOCK_HOURS &&
+        value <= COMMITMENT_LOCK_LIMITS.MAX_TIME_LOCK_HOURS
+      ) {
+        try {
+          await updateSettings({
+            commitmentLock: {
+              timeLockHours: value,
+            },
+          });
+        } catch (err) {
+          console.error('Failed to update time lock hours:', err);
+        }
       }
-    }
-  }, [updateSettings]);
+    },
+    [updateSettings]
+  );
 
-  const handleWeeklyLimitChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= COMMITMENT_LOCK_LIMITS.MIN_WEEKLY_UNLOCKS && value <= COMMITMENT_LOCK_LIMITS.MAX_WEEKLY_UNLOCKS) {
-      try {
-        await updateSettings({
-          commitmentLock: {
-            weeklyUnlockLimit: value,
-          },
-        });
-      } catch (err) {
-        console.error('Failed to update weekly limit:', err);
+  const handleWeeklyLimitChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = parseInt(e.target.value, 10);
+      if (
+        !isNaN(value) &&
+        value >= COMMITMENT_LOCK_LIMITS.MIN_WEEKLY_UNLOCKS &&
+        value <= COMMITMENT_LOCK_LIMITS.MAX_WEEKLY_UNLOCKS
+      ) {
+        try {
+          await updateSettings({
+            commitmentLock: {
+              weeklyUnlockLimit: value,
+            },
+          });
+        } catch (err) {
+          console.error('Failed to update weekly limit:', err);
+        }
       }
-    }
-  }, [updateSettings]);
+    },
+    [updateSettings]
+  );
 
   const handleScheduleRestrictionToggle = useCallback(async () => {
     if (!canUseLevel3) {
@@ -258,19 +309,27 @@ export function CommitmentLockSettings() {
     } catch (err) {
       console.error('Failed to toggle schedule restriction:', err);
     }
-  }, [canUseLevel3, commitmentLockSettings.scheduleRestriction, updateSettings, t]);
+  }, [
+    canUseLevel3,
+    commitmentLockSettings.scheduleRestriction,
+    updateSettings,
+    t,
+  ]);
 
-  const handleAllowedHoursChange = useCallback(async (start: number, end: number) => {
-    try {
-      await updateSettings({
-        commitmentLock: {
-          allowedUnlockHours: { start, end },
-        },
-      });
-    } catch (err) {
-      console.error('Failed to update allowed hours:', err);
-    }
-  }, [updateSettings]);
+  const handleAllowedHoursChange = useCallback(
+    async (start: number, end: number) => {
+      try {
+        await updateSettings({
+          commitmentLock: {
+            allowedUnlockHours: { start, end },
+          },
+        });
+      } catch (err) {
+        console.error('Failed to update allowed hours:', err);
+      }
+    },
+    [updateSettings]
+  );
 
   const handleNuclearModeToggle = useCallback(async () => {
     if (!canUseLevel3) {
@@ -281,7 +340,9 @@ export function CommitmentLockSettings() {
     // Show confirmation dialog for nuclear mode
     if (!commitmentLockSettings.nuclearModeEnabled) {
       const confirmed = window.confirm(t('commitmentLockNuclearConfirm'));
-      if (!confirmed) {return;}
+      if (!confirmed) {
+        return;
+      }
     }
 
     try {
@@ -293,12 +354,19 @@ export function CommitmentLockSettings() {
     } catch (err) {
       console.error('Failed to toggle nuclear mode:', err);
     }
-  }, [canUseLevel3, commitmentLockSettings.nuclearModeEnabled, updateSettings, t]);
+  }, [
+    canUseLevel3,
+    commitmentLockSettings.nuclearModeEnabled,
+    updateSettings,
+    t,
+  ]);
 
   // Format cooldown escalation display
   const formatEscalation = (): string => {
     const { baseMinutes, multipliers } = COMMITMENT_LOCK_COOLDOWN_ESCALATION;
-    return multipliers.map(m => `${baseMinutes * m}${t('minutes')}`).join(' → ');
+    return multipliers
+      .map((m) => `${baseMinutes * m}${t('minutes')}`)
+      .join(' → ');
   };
 
   if (isLoading) {
@@ -337,7 +405,9 @@ export function CommitmentLockSettings() {
           />
           <span className="toggle-text">{t('commitmentLockEnabled')}</span>
         </label>
-        <p className="setting-description">{t('commitmentLockEnabledDescription')}</p>
+        <p className="setting-description">
+          {t('commitmentLockEnabledDescription')}
+        </p>
       </div>
 
       {commitmentLockSettings.enabled && (
@@ -353,21 +423,26 @@ export function CommitmentLockSettings() {
                 <span>{t('commitmentLockWeeklyUnlocksRemaining')}:</span>
                 <strong>{commitmentLockState.weeklyUnlocksRemaining}</strong>
               </div>
-              {commitmentLockState.currentCooldownEndsAt && commitmentLockState.currentCooldownEndsAt > Date.now() && (
-                <div className="state-row cooldown-active">
-                  <span>{t('commitmentLockCooldownActive')}</span>
-                </div>
-              )}
+              {commitmentLockState.currentCooldownEndsAt &&
+                commitmentLockState.currentCooldownEndsAt > Date.now() && (
+                  <div className="state-row cooldown-active">
+                    <span>{t('commitmentLockCooldownActive')}</span>
+                  </div>
+                )}
             </div>
           )}
 
           {/* Level selection */}
           <div className="setting-section">
-            <h3 className="subsection-title">{t('commitmentLockLevelTitle')}</h3>
+            <h3 className="subsection-title">
+              {t('commitmentLockLevelTitle')}
+            </h3>
 
             <div className="level-options">
               {/* Level 1 */}
-              <label className={`level-option ${commitmentLockSettings.level === 1 ? 'selected' : ''}`}>
+              <label
+                className={`level-option ${commitmentLockSettings.level === 1 ? 'selected' : ''}`}
+              >
                 <input
                   type="radio"
                   name="commitment-level"
@@ -375,14 +450,22 @@ export function CommitmentLockSettings() {
                   onChange={() => void handleLevelChange(1)}
                 />
                 <div className="level-content">
-                  <span className="level-badge level-1">{t('commitmentLockLevel1')}</span>
-                  <span className="level-name">{t('commitmentLockLevel1Name')}</span>
-                  <p className="level-description">{t('commitmentLockLevel1Description')}</p>
+                  <span className="level-badge level-1">
+                    {t('commitmentLockLevel1')}
+                  </span>
+                  <span className="level-name">
+                    {t('commitmentLockLevel1Name')}
+                  </span>
+                  <p className="level-description">
+                    {t('commitmentLockLevel1Description')}
+                  </p>
                 </div>
               </label>
 
               {/* Level 2 */}
-              <label className={`level-option ${commitmentLockSettings.level === 2 ? 'selected' : ''}`}>
+              <label
+                className={`level-option ${commitmentLockSettings.level === 2 ? 'selected' : ''}`}
+              >
                 <input
                   type="radio"
                   name="commitment-level"
@@ -390,14 +473,22 @@ export function CommitmentLockSettings() {
                   onChange={() => void handleLevelChange(2)}
                 />
                 <div className="level-content">
-                  <span className="level-badge level-2">{t('commitmentLockLevel2')}</span>
-                  <span className="level-name">{t('commitmentLockLevel2Name')}</span>
-                  <p className="level-description">{t('commitmentLockLevel2Description')}</p>
+                  <span className="level-badge level-2">
+                    {t('commitmentLockLevel2')}
+                  </span>
+                  <span className="level-name">
+                    {t('commitmentLockLevel2Name')}
+                  </span>
+                  <p className="level-description">
+                    {t('commitmentLockLevel2Description')}
+                  </p>
                 </div>
               </label>
 
               {/* Level 3 (Premium) */}
-              <label className={`level-option ${commitmentLockSettings.level === 3 ? 'selected' : ''} ${!canUseLevel3 ? 'disabled premium-required' : ''}`}>
+              <label
+                className={`level-option ${commitmentLockSettings.level === 3 ? 'selected' : ''} ${!canUseLevel3 ? 'disabled premium-required' : ''}`}
+              >
                 <input
                   type="radio"
                   name="commitment-level"
@@ -408,10 +499,16 @@ export function CommitmentLockSettings() {
                 <div className="level-content">
                   <span className="level-badge level-3">
                     {t('commitmentLockLevel3')}
-                    {!canUseLevel3 && <span className="premium-badge">PRO</span>}
+                    {!canUseLevel3 && (
+                      <span className="premium-badge">PRO</span>
+                    )}
                   </span>
-                  <span className="level-name">{t('commitmentLockLevel3Name')}</span>
-                  <p className="level-description">{t('commitmentLockLevel3Description')}</p>
+                  <span className="level-name">
+                    {t('commitmentLockLevel3Name')}
+                  </span>
+                  <p className="level-description">
+                    {t('commitmentLockLevel3Description')}
+                  </p>
                   {!canUseLevel3 && (
                     <button type="button" className="btn btn-premium btn-small">
                       {t('upgradeToPremium')}
@@ -424,12 +521,16 @@ export function CommitmentLockSettings() {
 
           {/* Level 1+ Settings */}
           <div className="setting-section">
-            <h3 className="subsection-title">{t('commitmentLockBasicSettings')}</h3>
+            <h3 className="subsection-title">
+              {t('commitmentLockBasicSettings')}
+            </h3>
 
             {/* Wait time */}
             <div className="setting-row">
               <label className="input-label">
-                <span className="label-text">{t('commitmentLockWaitTime')}</span>
+                <span className="label-text">
+                  {t('commitmentLockWaitTime')}
+                </span>
                 <div className="input-with-unit">
                   <input
                     type="number"
@@ -441,13 +542,17 @@ export function CommitmentLockSettings() {
                   <span className="unit">{t('seconds')}</span>
                 </div>
               </label>
-              <p className="setting-description">{t('commitmentLockWaitTimeDescription')}</p>
+              <p className="setting-description">
+                {t('commitmentLockWaitTimeDescription')}
+              </p>
             </div>
 
             {/* Cooldown */}
             <div className="setting-row">
               <label className="input-label">
-                <span className="label-text">{t('commitmentLockCooldown')}</span>
+                <span className="label-text">
+                  {t('commitmentLockCooldown')}
+                </span>
                 <div className="input-with-unit">
                   <input
                     type="number"
@@ -459,7 +564,9 @@ export function CommitmentLockSettings() {
                   <span className="unit">{t('minutes')}</span>
                 </div>
               </label>
-              <p className="setting-description">{t('commitmentLockCooldownDescription')}</p>
+              <p className="setting-description">
+                {t('commitmentLockCooldownDescription')}
+              </p>
             </div>
 
             {/* Intention statement */}
@@ -470,15 +577,21 @@ export function CommitmentLockSettings() {
                   checked={commitmentLockSettings.requireIntentionStatement}
                   onChange={() => void handleIntentionToggle()}
                 />
-                <span className="toggle-text">{t('commitmentLockRequireIntention')}</span>
+                <span className="toggle-text">
+                  {t('commitmentLockRequireIntention')}
+                </span>
               </label>
-              <p className="setting-description">{t('commitmentLockRequireIntentionDescription')}</p>
+              <p className="setting-description">
+                {t('commitmentLockRequireIntentionDescription')}
+              </p>
             </div>
 
             {commitmentLockSettings.requireIntentionStatement && (
               <div className="setting-row nested">
                 <label className="input-label">
-                  <span className="label-text">{t('commitmentLockIntentionMinLength')}</span>
+                  <span className="label-text">
+                    {t('commitmentLockIntentionMinLength')}
+                  </span>
                   <div className="input-with-unit">
                     <input
                       type="number"
@@ -497,12 +610,16 @@ export function CommitmentLockSettings() {
           {/* Level 2+ Settings */}
           {commitmentLockSettings.level >= 2 && (
             <div className="setting-section">
-              <h3 className="subsection-title">{t('commitmentLockChallengeSettings')}</h3>
+              <h3 className="subsection-title">
+                {t('commitmentLockChallengeSettings')}
+              </h3>
 
               {/* Challenge count */}
               <div className="setting-row">
                 <label className="input-label">
-                  <span className="label-text">{t('commitmentLockChallengeCount')}</span>
+                  <span className="label-text">
+                    {t('commitmentLockChallengeCount')}
+                  </span>
                   <div className="input-with-unit">
                     <input
                       type="number"
@@ -514,7 +631,9 @@ export function CommitmentLockSettings() {
                     <span className="unit">{t('questions')}</span>
                   </div>
                 </label>
-                <p className="setting-description">{t('commitmentLockChallengeCountDescription')}</p>
+                <p className="setting-description">
+                  {t('commitmentLockChallengeCountDescription')}
+                </p>
               </div>
 
               {/* Consecutive requirement */}
@@ -525,9 +644,13 @@ export function CommitmentLockSettings() {
                     checked={commitmentLockSettings.challengesMustBeConsecutive}
                     onChange={() => void handleConsecutiveToggle()}
                   />
-                  <span className="toggle-text">{t('commitmentLockConsecutive')}</span>
+                  <span className="toggle-text">
+                    {t('commitmentLockConsecutive')}
+                  </span>
                 </label>
-                <p className="setting-description">{t('commitmentLockConsecutiveDescription')}</p>
+                <p className="setting-description">
+                  {t('commitmentLockConsecutiveDescription')}
+                </p>
               </div>
 
               {/* Escalating cooldown */}
@@ -538,12 +661,16 @@ export function CommitmentLockSettings() {
                     checked={commitmentLockSettings.escalatingCooldown}
                     onChange={() => void handleEscalatingToggle()}
                   />
-                  <span className="toggle-text">{t('commitmentLockEscalating')}</span>
+                  <span className="toggle-text">
+                    {t('commitmentLockEscalating')}
+                  </span>
                 </label>
                 <p className="setting-description">
                   {t('commitmentLockEscalatingDescription')}
                   <br />
-                  <span className="escalation-preview">{formatEscalation()}</span>
+                  <span className="escalation-preview">
+                    {formatEscalation()}
+                  </span>
                 </p>
               </div>
             </div>
@@ -565,15 +692,21 @@ export function CommitmentLockSettings() {
                     checked={commitmentLockSettings.timeLockEnabled}
                     onChange={() => void handleTimeLockToggle()}
                   />
-                  <span className="toggle-text">{t('commitmentLockTimeLock')}</span>
+                  <span className="toggle-text">
+                    {t('commitmentLockTimeLock')}
+                  </span>
                 </label>
-                <p className="setting-description">{t('commitmentLockTimeLockDescription')}</p>
+                <p className="setting-description">
+                  {t('commitmentLockTimeLockDescription')}
+                </p>
               </div>
 
               {commitmentLockSettings.timeLockEnabled && (
                 <div className="setting-row nested">
                   <label className="input-label">
-                    <span className="label-text">{t('commitmentLockTimeLockDuration')}</span>
+                    <span className="label-text">
+                      {t('commitmentLockTimeLockDuration')}
+                    </span>
                     <div className="input-with-unit">
                       <input
                         type="number"
@@ -594,7 +727,9 @@ export function CommitmentLockSettings() {
               {/* Weekly unlock limit */}
               <div className="setting-row">
                 <label className="input-label">
-                  <span className="label-text">{t('commitmentLockWeeklyLimit')}</span>
+                  <span className="label-text">
+                    {t('commitmentLockWeeklyLimit')}
+                  </span>
                   <div className="input-with-unit">
                     <input
                       type="number"
@@ -606,7 +741,9 @@ export function CommitmentLockSettings() {
                     <span className="unit">{t('timesPerWeek')}</span>
                   </div>
                 </label>
-                <p className="setting-description">{t('commitmentLockWeeklyLimitDescription')}</p>
+                <p className="setting-description">
+                  {t('commitmentLockWeeklyLimitDescription')}
+                </p>
               </div>
 
               {/* Schedule restriction */}
@@ -617,37 +754,58 @@ export function CommitmentLockSettings() {
                     checked={commitmentLockSettings.scheduleRestriction}
                     onChange={() => void handleScheduleRestrictionToggle()}
                   />
-                  <span className="toggle-text">{t('commitmentLockScheduleRestriction')}</span>
+                  <span className="toggle-text">
+                    {t('commitmentLockScheduleRestriction')}
+                  </span>
                 </label>
-                <p className="setting-description">{t('commitmentLockScheduleRestrictionDescription')}</p>
+                <p className="setting-description">
+                  {t('commitmentLockScheduleRestrictionDescription')}
+                </p>
               </div>
 
               {commitmentLockSettings.scheduleRestriction && (
                 <div className="setting-row nested">
                   <label className="input-label">
-                    <span className="label-text">{t('commitmentLockAllowedHours')}</span>
+                    <span className="label-text">
+                      {t('commitmentLockAllowedHours')}
+                    </span>
                     <div className="time-range-input">
                       <select
-                        value={commitmentLockSettings.allowedUnlockHours?.start ?? 9}
-                        onChange={(e) => void handleAllowedHoursChange(
-                          parseInt(e.target.value, 10),
-                          commitmentLockSettings.allowedUnlockHours?.end ?? 18
-                        )}
+                        value={
+                          commitmentLockSettings.allowedUnlockHours?.start ?? 9
+                        }
+                        onChange={(e) =>
+                          void handleAllowedHoursChange(
+                            parseInt(e.target.value, 10),
+                            commitmentLockSettings.allowedUnlockHours?.end ?? 18
+                          )
+                        }
                       >
                         {Array.from({ length: 24 }, (_, i) => (
-                          <option key={i} value={i}>{`${i.toString().padStart(2, '0')}:00`}</option>
+                          <option
+                            key={i}
+                            value={i}
+                          >{`${i.toString().padStart(2, '0')}:00`}</option>
                         ))}
                       </select>
                       <span className="range-separator">〜</span>
                       <select
-                        value={commitmentLockSettings.allowedUnlockHours?.end ?? 18}
-                        onChange={(e) => void handleAllowedHoursChange(
-                          commitmentLockSettings.allowedUnlockHours?.start ?? 9,
-                          parseInt(e.target.value, 10)
-                        )}
+                        value={
+                          commitmentLockSettings.allowedUnlockHours?.end ?? 18
+                        }
+                        onChange={(e) =>
+                          void handleAllowedHoursChange(
+                            commitmentLockSettings.allowedUnlockHours?.start ??
+                              9,
+                            parseInt(e.target.value, 10)
+                          )
+                        }
                       >
                         {Array.from({ length: 24 }, (_, i) => (
-                          <option key={i} value={i}>{`${i.toString().padStart(2, '0')}:00`}</option>
+                          <option
+                            key={i}
+                            value={i}
+                          >{`${i.toString().padStart(2, '0')}:00`}</option>
                         ))}
                       </select>
                     </div>
@@ -663,7 +821,9 @@ export function CommitmentLockSettings() {
                     checked={commitmentLockSettings.nuclearModeEnabled}
                     onChange={() => void handleNuclearModeToggle()}
                   />
-                  <span className="toggle-text danger">{t('commitmentLockNuclear')}</span>
+                  <span className="toggle-text danger">
+                    {t('commitmentLockNuclear')}
+                  </span>
                 </label>
                 <p className="setting-description danger-description">
                   {t('commitmentLockNuclearDescription')}

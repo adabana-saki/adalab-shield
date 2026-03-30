@@ -86,7 +86,9 @@ function getRandomQuote(settings: BlockPageSettings): string {
   const quotes =
     settings.customQuotes.length > 0 ? settings.customQuotes : DEFAULT_QUOTES;
   const randomIndex = Math.floor(Math.random() * quotes.length);
-  return quotes[randomIndex] ?? DEFAULT_QUOTES[0] ?? 'Focus on what matters most.';
+  return (
+    quotes[randomIndex] ?? DEFAULT_QUOTES[0] ?? 'Focus on what matters most.'
+  );
 }
 
 /**
@@ -174,8 +176,12 @@ export function createBlockPageOverlay(
     margin: 0 0 24px 0;
     line-height: 1.5;
   `;
-  const messageTemplate = settings.message || `${platformName} is blocked to help you stay focused.`;
-  mainMessage.textContent = messageTemplate.replace('${platform}', platformName);
+  const messageTemplate =
+    settings.message || `${platformName} is blocked to help you stay focused.`;
+  mainMessage.textContent = messageTemplate.replace(
+    '${platform}',
+    platformName
+  );
   contentDiv.appendChild(mainMessage);
 
   // Create motivational quote if enabled
@@ -235,17 +241,24 @@ export function createBlockPageOverlay(
             success: boolean;
             data?: { commitmentLock?: CommitmentLockSettings };
           }
-          const settingsResponse = (await browser.runtime.sendMessage({
-            type: 'GET_SETTINGS',
-            timestamp: Date.now(),
-          })) as SettingsResponse;
+          const settingsResponse: SettingsResponse =
+            await browser.runtime.sendMessage({
+              type: 'GET_SETTINGS',
+              timestamp: Date.now(),
+            });
 
-          const isCommitmentLockEnabled = settingsResponse.success === true &&
+          const isCommitmentLockEnabled =
+            settingsResponse.success === true &&
             settingsResponse.data?.commitmentLock?.enabled === true;
 
           if (isCommitmentLockEnabled) {
             // Show Commitment Lock unlock flow
-            await showCommitmentLockFlow(overlay, overlayId, primaryColor, isDark);
+            await showCommitmentLockFlow(
+              overlay,
+              overlayId,
+              primaryColor,
+              isDark
+            );
           } else {
             // Simple bypass without Commitment Lock
             overlay.remove();
@@ -315,28 +328,46 @@ async function showCommitmentLockFlow(
 
   // Check if unlock is allowed
   try {
-    const checkResponse = (await browser.runtime.sendMessage({
-      type: 'COMMITMENT_LOCK_CHECK_UNLOCK',
-      timestamp: Date.now(),
-    })) as CheckUnlockResponse;
+    const checkResponse: CheckUnlockResponse =
+      await browser.runtime.sendMessage({
+        type: 'COMMITMENT_LOCK_CHECK_UNLOCK',
+        timestamp: Date.now(),
+      });
 
-    if (checkResponse.success !== true || checkResponse.data?.allowed !== true) {
-      showUnlockError(overlay, checkResponse.data?.message ?? 'Unlock not allowed', primaryColor, isDark);
+    if (
+      checkResponse.success !== true ||
+      checkResponse.data?.allowed !== true
+    ) {
+      showUnlockError(
+        overlay,
+        checkResponse.data?.message ?? 'Unlock not allowed',
+        primaryColor,
+        isDark
+      );
       return;
     }
   } catch (err) {
     console.error('Failed to check unlock:', err);
-    showUnlockError(overlay, 'Failed to check unlock status', primaryColor, isDark);
+    showUnlockError(
+      overlay,
+      'Failed to check unlock status',
+      primaryColor,
+      isDark
+    );
     return;
   }
 
   // Get settings for the flow
-  const settingsResponse = (await browser.runtime.sendMessage({
-    type: 'GET_SETTINGS',
-    timestamp: Date.now(),
-  })) as SettingsWithLockResponse;
+  const settingsResponse: SettingsWithLockResponse =
+    await browser.runtime.sendMessage({
+      type: 'GET_SETTINGS',
+      timestamp: Date.now(),
+    });
 
-  if (settingsResponse.success !== true || settingsResponse.data == null) {
+  if (
+    settingsResponse.success !== true ||
+    settingsResponse.data === undefined
+  ) {
     showUnlockError(overlay, 'Failed to load settings', primaryColor, isDark);
     return;
   }
@@ -419,20 +450,39 @@ function showInitialStep(
   modal.querySelector('#unlock-start')?.addEventListener('click', () => {
     void (async () => {
       try {
-        const response = (await browser.runtime.sendMessage({
-          type: 'COMMITMENT_LOCK_START_UNLOCK',
-          timestamp: Date.now(),
-        })) as StartUnlockResponse;
+        const response: StartUnlockResponse = await browser.runtime.sendMessage(
+          {
+            type: 'COMMITMENT_LOCK_START_UNLOCK',
+            timestamp: Date.now(),
+          }
+        );
 
-        if (response.success === true && response.data != null) {
-          showWaitingStep(modal, overlay, settings, response.data.waitSecondsRemaining, primaryColor, isDark);
+        if (response.success === true && response.data !== undefined) {
+          showWaitingStep(
+            modal,
+            overlay,
+            settings,
+            response.data.waitSecondsRemaining,
+            primaryColor,
+            isDark
+          );
         } else {
-          showUnlockError(overlay, 'Failed to start unlock', primaryColor, isDark);
+          showUnlockError(
+            overlay,
+            'Failed to start unlock',
+            primaryColor,
+            isDark
+          );
           modal.remove();
         }
       } catch (err) {
         console.error('Failed to start unlock:', err);
-        showUnlockError(overlay, 'Failed to start unlock', primaryColor, isDark);
+        showUnlockError(
+          overlay,
+          'Failed to start unlock',
+          primaryColor,
+          isDark
+        );
         modal.remove();
       }
     })();
@@ -452,7 +502,9 @@ function showWaitingStep(
 ): void {
   const textColor = isDark ? '#ffffff' : '#1e293b';
   const textSecondary = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(30,41,59,0.7)';
-  const quote = WAITING_QUOTES[Math.floor(Math.random() * WAITING_QUOTES.length)] ?? WAITING_QUOTES[0];
+  const quote =
+    WAITING_QUOTES[Math.floor(Math.random() * WAITING_QUOTES.length)] ??
+    WAITING_QUOTES[0];
   let remaining = waitSeconds;
 
   const formatTime = (seconds: number): string => {
@@ -463,7 +515,9 @@ function showWaitingStep(
 
   const updateDisplay = () => {
     const timerEl = modal.querySelector('#countdown-timer');
-    const progressEl = modal.querySelector('#countdown-progress') as HTMLDivElement;
+    const progressEl = modal.querySelector(
+      '#countdown-progress'
+    ) as HTMLDivElement;
     if (timerEl) {
       timerEl.textContent = formatTime(remaining);
     }
@@ -541,17 +595,19 @@ function showWaitingStep(
     }
   }, 1000);
 
-  modal.querySelector('#unlock-cancel-wait')?.addEventListener('click', async () => {
+  modal.querySelector('#unlock-cancel-wait')?.addEventListener('click', () => {
     clearInterval(timer);
-    try {
-      await browser.runtime.sendMessage({
-        type: 'COMMITMENT_LOCK_CANCEL_UNLOCK',
-        timestamp: Date.now(),
-      });
-    } catch (err) {
-      console.error('Failed to cancel unlock:', err);
-    }
-    modal.remove();
+    void (async () => {
+      try {
+        await browser.runtime.sendMessage({
+          type: 'COMMITMENT_LOCK_CANCEL_UNLOCK',
+          timestamp: Date.now(),
+        });
+      } catch (err) {
+        console.error('Failed to cancel unlock:', err);
+      }
+      modal.remove();
+    })();
   });
 }
 
@@ -618,8 +674,12 @@ function showIntentionStep(
 
   const input = modal.querySelector('#intention-input') as HTMLTextAreaElement;
   const charCount = modal.querySelector('#char-count') as HTMLParagraphElement;
-  const submitBtn = modal.querySelector('#intention-submit') as HTMLButtonElement;
-  const errorEl = modal.querySelector('#intention-error') as HTMLParagraphElement;
+  const submitBtn = modal.querySelector(
+    '#intention-submit'
+  ) as HTMLButtonElement;
+  const errorEl = modal.querySelector(
+    '#intention-error'
+  ) as HTMLParagraphElement;
 
   input?.addEventListener('input', () => {
     const len = input.value.length;
@@ -653,15 +713,22 @@ function showIntentionStep(
       }
 
       try {
-        const response = (await browser.runtime.sendMessage({
-          type: 'COMMITMENT_LOCK_SUBMIT_INTENTION',
-          timestamp: Date.now(),
-          payload: { intention },
-        })) as SubmitIntentionResponse;
+        const response: SubmitIntentionResponse =
+          await browser.runtime.sendMessage({
+            type: 'COMMITMENT_LOCK_SUBMIT_INTENTION',
+            timestamp: Date.now(),
+            payload: { intention },
+          });
 
         if (response.success === true) {
           if (settings.level >= 2) {
-            void showChallengeStep(modal, overlay, settings, primaryColor, isDark);
+            void showChallengeStep(
+              modal,
+              overlay,
+              settings,
+              primaryColor,
+              isDark
+            );
           } else {
             showFinalConfirmStep(modal, overlay, primaryColor, isDark);
           }
@@ -687,32 +754,54 @@ async function showChallengeStep(
   settings: CommitmentLockSettings,
   primaryColor: string,
   isDark: boolean,
-  currentProgress: { current: number; total: number; correct: number } = { current: 0, total: settings.challengeCount, correct: 0 }
+  currentProgress: { current: number; total: number; correct: number } = {
+    current: 0,
+    total: settings.challengeCount,
+    correct: 0,
+  }
 ): Promise<void> {
   const textColor = isDark ? '#ffffff' : '#1e293b';
   const textSecondary = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(30,41,59,0.7)';
   const bgInput = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
 
   try {
-    const response = (await browser.runtime.sendMessage({
-      type: 'COMMITMENT_LOCK_REQUEST_CHALLENGE',
-      timestamp: Date.now(),
-    })) as RequestChallengeResponse;
+    const response: RequestChallengeResponse =
+      await browser.runtime.sendMessage({
+        type: 'COMMITMENT_LOCK_REQUEST_CHALLENGE',
+        timestamp: Date.now(),
+      });
 
-    if (response.success !== true || response.data == null) {
-      showUnlockError(overlay, response.error ?? 'Failed to get challenge', primaryColor, isDark);
+    if (response.success !== true || response.data === undefined) {
+      showUnlockError(
+        overlay,
+        response.error ?? 'Failed to get challenge',
+        primaryColor,
+        isDark
+      );
       modal.remove();
       return;
     }
 
     const challenge = response.data;
-    const progress = { ...currentProgress, current: currentProgress.current + 1 };
+    const progress = {
+      ...currentProgress,
+      current: currentProgress.current + 1,
+    };
 
     // Create progress dots
-    const dots = Array.from({ length: progress.total }).map((_, i) => {
-      const dotColor = i < progress.correct ? '#10b981' : i === progress.correct ? primaryColor : (isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)');
-      return `<span style="width: 10px; height: 10px; border-radius: 50%; background: ${dotColor};"></span>`;
-    }).join('');
+    const dots = Array.from({ length: progress.total })
+      .map((_, i) => {
+        const dotColor =
+          i < progress.correct
+            ? '#10b981'
+            : i === progress.correct
+              ? primaryColor
+              : isDark
+                ? 'rgba(255,255,255,0.3)'
+                : 'rgba(0,0,0,0.2)';
+        return `<span style="width: 10px; height: 10px; border-radius: 50%; background: ${dotColor};"></span>`;
+      })
+      .join('');
 
     modal.innerHTML = `
       <div style="text-align: center;">
@@ -766,12 +855,16 @@ async function showChallengeStep(
     `;
 
     const input = modal.querySelector('#challenge-input') as HTMLInputElement;
-    const errorEl = modal.querySelector('#challenge-error') as HTMLParagraphElement;
+    const errorEl = modal.querySelector(
+      '#challenge-error'
+    ) as HTMLParagraphElement;
 
     input?.focus();
     input?.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && input.value.trim()) {
-        modal.querySelector('#challenge-submit')?.dispatchEvent(new Event('click'));
+        modal
+          .querySelector('#challenge-submit')
+          ?.dispatchEvent(new Event('click'));
       }
     });
 
@@ -799,19 +892,33 @@ async function showChallengeStep(
         }
 
         try {
-          const submitResponse = (await browser.runtime.sendMessage({
-            type: 'COMMITMENT_LOCK_SUBMIT_CHALLENGE',
-            timestamp: Date.now(),
-            payload: { answer },
-          })) as SubmitChallengeResponse;
+          const submitResponse: SubmitChallengeResponse =
+            await browser.runtime.sendMessage({
+              type: 'COMMITMENT_LOCK_SUBMIT_CHALLENGE',
+              timestamp: Date.now(),
+              payload: { answer },
+            });
 
-          if (submitResponse.success === true && submitResponse.data != null) {
+          if (
+            submitResponse.success === true &&
+            submitResponse.data !== undefined
+          ) {
             if (submitResponse.data.correct) {
-              const newProgress = { ...progress, correct: progress.correct + 1 };
+              const newProgress = {
+                ...progress,
+                correct: progress.correct + 1,
+              };
               if (submitResponse.data.allCompleted) {
                 showFinalConfirmStep(modal, overlay, primaryColor, isDark);
               } else {
-                void showChallengeStep(modal, overlay, settings, primaryColor, isDark, newProgress);
+                void showChallengeStep(
+                  modal,
+                  overlay,
+                  settings,
+                  primaryColor,
+                  isDark,
+                  newProgress
+                );
               }
             } else {
               // Wrong answer
@@ -819,7 +926,14 @@ async function showChallengeStep(
                 errorEl.textContent = 'Wrong answer! Progress reset.';
                 errorEl.style.display = 'block';
                 setTimeout(() => {
-                  void showChallengeStep(modal, overlay, settings, primaryColor, isDark, { current: 0, total: settings.challengeCount, correct: 0 });
+                  void showChallengeStep(
+                    modal,
+                    overlay,
+                    settings,
+                    primaryColor,
+                    isDark,
+                    { current: 0, total: settings.challengeCount, correct: 0 }
+                  );
                 }, 1500);
               } else {
                 errorEl.textContent = 'Wrong answer. Try again.';
@@ -829,7 +943,8 @@ async function showChallengeStep(
               }
             }
           } else {
-            errorEl.textContent = submitResponse.error ?? 'Failed to submit answer';
+            errorEl.textContent =
+              submitResponse.error ?? 'Failed to submit answer';
             errorEl.style.display = 'block';
           }
         } catch (err) {
@@ -907,12 +1022,15 @@ function showFinalConfirmStep(
 
   modal.querySelector('#final-confirm')?.addEventListener('click', () => {
     void (async () => {
-      const errorEl = modal.querySelector('#final-error') as HTMLParagraphElement;
+      const errorEl = modal.querySelector(
+        '#final-error'
+      ) as HTMLParagraphElement;
       try {
-        const response = (await browser.runtime.sendMessage({
-          type: 'COMMITMENT_LOCK_CONFIRM_UNLOCK',
-          timestamp: Date.now(),
-        })) as ConfirmUnlockResponse;
+        const response: ConfirmUnlockResponse =
+          await browser.runtime.sendMessage({
+            type: 'COMMITMENT_LOCK_CONFIRM_UNLOCK',
+            timestamp: Date.now(),
+          });
 
         if (response.success === true) {
           showSuccessStep(modal, overlay);

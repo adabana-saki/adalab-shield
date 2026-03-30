@@ -105,19 +105,24 @@ export function Dashboard({
     }
   }, []);
 
+  // Load initial data on mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async data fetching on mount
     void fetchFocusState();
     void fetchStreakData();
     void fetchTimeUsage();
     void fetchTimeHistory();
+  }, [fetchFocusState, fetchStreakData, fetchTimeUsage, fetchTimeHistory]);
 
+  // Poll focus state and time usage every second
+  useEffect(() => {
     const interval = setInterval(() => {
       void fetchFocusState();
       void fetchTimeUsage();
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [fetchFocusState, fetchStreakData, fetchTimeUsage, fetchTimeHistory]);
+  }, [fetchFocusState, fetchTimeUsage]);
 
   return (
     <div className="dashboard">

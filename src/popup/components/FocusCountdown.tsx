@@ -17,7 +17,9 @@ interface FocusCountdownProps {
  * Format remaining time as MM:SS or HH:MM:SS
  */
 function formatTime(ms: number): string {
-  if (ms <= 0) {return '00:00';}
+  if (ms <= 0) {
+    return '00:00';
+  }
 
   const totalSeconds = Math.floor(ms / 1000);
   const hours = Math.floor(totalSeconds / 3600);
@@ -48,11 +50,32 @@ function calculateProgress(state: FocusModeState): number {
   return Math.min(100, Math.max(0, progress));
 }
 
-export function FocusCountdown({ focusState, onStateChange }: FocusCountdownProps) {
+export function FocusCountdown({
+  focusState,
+  onStateChange,
+}: FocusCountdownProps) {
   const { t } = useI18n();
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [isExtending, setIsExtending] = useState(false);
+
+  const refreshState = useCallback(async () => {
+    try {
+      const message = createMessage({
+        type: 'FOCUS_GET_STATE' as const,
+      });
+      const response: {
+        success: boolean;
+        data?: FocusModeState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
+        onStateChange(response.data);
+      }
+    } catch {
+      // Ignore errors
+    }
+  }, [onStateChange]);
 
   // Update countdown every second
   useEffect(() => {
@@ -77,39 +100,32 @@ export function FocusCountdown({ focusState, onStateChange }: FocusCountdownProp
     const interval = setInterval(updateTimer, 1000);
 
     return () => clearInterval(interval);
-  }, [focusState]);
+  }, [focusState, refreshState]);
 
-  const refreshState = useCallback(async () => {
-    try {
-      const message = createMessage({
-        type: 'FOCUS_GET_STATE' as const,
-      });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: FocusModeState; error?: string };
-      if (response.success === true && response.data != null) {
-        onStateChange(response.data);
+  const handleExtend = useCallback(
+    async (minutes: number) => {
+      setIsExtending(true);
+      try {
+        const message = createMessage<FocusExtendMessage>({
+          type: 'FOCUS_EXTEND',
+          payload: { additionalMinutes: minutes },
+        });
+        const response: {
+          success: boolean;
+          data?: FocusModeState;
+          error?: string;
+        } = await browser.runtime.sendMessage(message);
+        if (response.success === true && response.data !== null) {
+          onStateChange(response.data);
+        }
+      } catch {
+        // Ignore errors
+      } finally {
+        setIsExtending(false);
       }
-    } catch {
-      // Ignore errors
-    }
-  }, [onStateChange]);
-
-  const handleExtend = useCallback(async (minutes: number) => {
-    setIsExtending(true);
-    try {
-      const message = createMessage<FocusExtendMessage>({
-        type: 'FOCUS_EXTEND',
-        payload: { additionalMinutes: minutes },
-      });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: FocusModeState; error?: string };
-      if (response.success === true && response.data != null) {
-        onStateChange(response.data);
-      }
-    } catch {
-      // Ignore errors
-    } finally {
-      setIsExtending(false);
-    }
-  }, [onStateChange]);
+    },
+    [onStateChange]
+  );
 
   if (!focusState.isActive) {
     return null;

@@ -60,14 +60,15 @@ export function ActiveWatchingWidget({
   activeUsage,
 }: ActiveWatchingWidgetProps) {
   const { t } = useI18n();
-  const [elapsedMs, setElapsedMs] = useState(0);
+  const [elapsedMs, setElapsedMs] = useState(
+    () => activeUsage?.usedTodayMs ?? 0
+  );
 
   useEffect(() => {
     if (
       activeUsage?.lastActiveAt === null ||
       activeUsage?.lastActiveAt === undefined
     ) {
-      setElapsedMs(0);
       return;
     }
 
@@ -89,6 +90,19 @@ export function ActiveWatchingWidget({
     return () => clearInterval(interval);
   }, [activeUsage]);
 
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  const timeSinceLastActive =
+    activeUsage?.lastActiveAt !== null &&
+    activeUsage?.lastActiveAt !== undefined
+      ? now - activeUsage.lastActiveAt
+      : Infinity;
+
   // Don't render if no active usage or not recently active
   if (
     activeUsage?.lastActiveAt === null ||
@@ -97,7 +111,6 @@ export function ActiveWatchingWidget({
     return null;
   }
 
-  const timeSinceLastActive = Date.now() - activeUsage.lastActiveAt;
   if (timeSinceLastActive > ACTIVE_THRESHOLD_MS) {
     return null;
   }

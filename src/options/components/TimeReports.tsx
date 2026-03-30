@@ -18,7 +18,11 @@ import { createMessage } from '@/shared/types';
 import { DEFAULT_TIME_TRACKING_STATE } from '@/shared/constants';
 
 /** Platform display configuration */
-const PLATFORM_CONFIG: { platform: Platform; labelKey: string; color: string }[] = [
+const PLATFORM_CONFIG: {
+  platform: Platform;
+  labelKey: string;
+  color: string;
+}[] = [
   { platform: 'youtube', labelKey: 'platformYouTube', color: '#FF0000' },
   { platform: 'tiktok', labelKey: 'platformTikTok', color: '#000000' },
   { platform: 'instagram', labelKey: 'platformInstagram', color: '#E1306C' },
@@ -37,7 +41,9 @@ const DATE_RANGE_OPTIONS = [
 export function TimeReports() {
   const { settings, updateSettings } = useSettings();
   const { t } = useI18n();
-  const [history, setHistory] = useState<TimeTrackingState>(DEFAULT_TIME_TRACKING_STATE);
+  const [history, setHistory] = useState<TimeTrackingState>(
+    DEFAULT_TIME_TRACKING_STATE
+  );
   const [selectedDays, setSelectedDays] = useState(7);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -47,8 +53,12 @@ export function TimeReports() {
         type: 'TIME_GET_HISTORY',
         payload: { days: selectedDays },
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: TimeTrackingState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: TimeTrackingState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         setHistory(response.data);
       }
     } catch (error) {
@@ -70,7 +80,9 @@ export function TimeReports() {
     });
   };
 
-  const handleRetentionChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleRetentionChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const days = parseInt(e.target.value, 10);
     await updateSettings({
       timeTracking: {
@@ -88,7 +100,7 @@ export function TimeReports() {
       const message = createMessage<TimeClearHistoryMessage>({
         type: 'TIME_CLEAR_HISTORY',
       });
-      (await browser.runtime.sendMessage(message)) as { success: boolean; data?: TimeTrackingState; error?: string };
+      await browser.runtime.sendMessage(message);
       await fetchHistory();
     } catch (error) {
       console.error('Failed to clear history:', error);
@@ -132,13 +144,17 @@ export function TimeReports() {
   };
 
   const getMaxDailyTotal = (): number => {
-    if (history.history.length === 0) {return 0;}
+    if (history.history.length === 0) {
+      return 0;
+    }
     return Math.max(...history.history.map((r) => r.totalMs));
   };
 
   const renderBarChart = (record: DailyTimeRecord) => {
     const maxTotal = getMaxDailyTotal();
-    if (maxTotal === 0) {return null;}
+    if (maxTotal === 0) {
+      return null;
+    }
 
     const barHeight = 24;
     const totalWidth = 200;
@@ -148,7 +164,9 @@ export function TimeReports() {
 
     for (const { platform, color } of PLATFORM_CONFIG) {
       const ms = record.byPlatform[platform] ?? 0;
-      if (ms === 0) {continue;}
+      if (ms === 0) {
+        continue;
+      }
 
       const width = (ms / maxTotal) * totalWidth;
       segments.push(
@@ -168,14 +186,18 @@ export function TimeReports() {
     }
 
     return (
-      <div className="chart-bar" style={{ width: totalWidth, height: barHeight }}>
+      <div
+        className="chart-bar"
+        style={{ width: totalWidth, height: barHeight }}
+      >
         {segments}
       </div>
     );
   };
 
   const totalMs = calculateTotalMs(history.history);
-  const averageMs = history.history.length > 0 ? totalMs / history.history.length : 0;
+  const averageMs =
+    history.history.length > 0 ? totalMs / history.history.length : 0;
 
   return (
     <div className="time-reports">
@@ -240,15 +262,25 @@ export function TimeReports() {
               <div className="reports-summary">
                 <div className="summary-card">
                   <span className="summary-label">{t('reportsTotalTime')}</span>
-                  <span className="summary-value">{formatDuration(totalMs)}</span>
+                  <span className="summary-value">
+                    {formatDuration(totalMs)}
+                  </span>
                 </div>
                 <div className="summary-card">
-                  <span className="summary-label">{t('reportsDailyAverage')}</span>
-                  <span className="summary-value">{formatDuration(averageMs)}</span>
+                  <span className="summary-label">
+                    {t('reportsDailyAverage')}
+                  </span>
+                  <span className="summary-value">
+                    {formatDuration(averageMs)}
+                  </span>
                 </div>
                 <div className="summary-card">
-                  <span className="summary-label">{t('reportsDaysTracked')}</span>
-                  <span className="summary-value">{history.history.length}</span>
+                  <span className="summary-label">
+                    {t('reportsDaysTracked')}
+                  </span>
+                  <span className="summary-value">
+                    {history.history.length}
+                  </span>
                 </div>
               </div>
 
@@ -257,10 +289,16 @@ export function TimeReports() {
                 <h3 className="subsection-title">{t('reportsByPlatform')}</h3>
                 <div className="platform-totals">
                   {PLATFORM_CONFIG.map(({ platform, labelKey, color }) => {
-                    const platformTotal = calculatePlatformTotal(history.history, platform);
-                    if (platformTotal === 0) {return null;}
+                    const platformTotal = calculatePlatformTotal(
+                      history.history,
+                      platform
+                    );
+                    if (platformTotal === 0) {
+                      return null;
+                    }
 
-                    const percentage = totalMs > 0 ? (platformTotal / totalMs) * 100 : 0;
+                    const percentage =
+                      totalMs > 0 ? (platformTotal / totalMs) * 100 : 0;
 
                     return (
                       <div key={platform} className="platform-total-row">
@@ -287,7 +325,9 @@ export function TimeReports() {
                 <div className="history-list">
                   {history.history.map((record) => (
                     <div key={record.date} className="history-row">
-                      <span className="history-date">{formatDate(record.date)}</span>
+                      <span className="history-date">
+                        {formatDate(record.date)}
+                      </span>
                       {renderBarChart(record)}
                       <span className="history-total">
                         {formatDuration(record.totalMs)}

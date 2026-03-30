@@ -53,8 +53,13 @@ export function useTheme() {
   // Apply theme on mount and when theme changes
   useEffect(() => {
     applyTheme(theme);
-    setResolvedTheme(theme === 'system' ? getSystemTheme() : theme);
   }, [theme]);
+
+  // Keep resolvedTheme in sync with theme
+  const currentResolved = theme === 'system' ? getSystemTheme() : theme;
+  if (currentResolved !== resolvedTheme) {
+    setResolvedTheme(currentResolved);
+  }
 
   // Listen for system theme changes
   useEffect(() => {

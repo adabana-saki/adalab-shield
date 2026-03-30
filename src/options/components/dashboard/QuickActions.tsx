@@ -5,7 +5,11 @@
 import { useState } from 'react';
 import browser from 'webextension-polyfill';
 import { useI18n } from '@/shared/hooks/useI18n';
-import { createMessage, type FocusStartMessage, type FocusCancelMessage } from '@/shared/types/messages';
+import {
+  createMessage,
+  type FocusStartMessage,
+  type FocusCancelMessage,
+} from '@/shared/types/messages';
 import type { FocusDuration, FocusModeState } from '@/shared/types';
 
 interface QuickActionsProps {
@@ -24,7 +28,9 @@ export function QuickActions({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleStartFocus = async () => {
-    if (!focusEnabled || focusState.isActive) {return;}
+    if (!focusEnabled || focusState.isActive) {
+      return;
+    }
 
     setIsLoading(true);
     try {
@@ -32,8 +38,12 @@ export function QuickActions({
         type: 'FOCUS_START',
         payload: { duration: selectedDuration },
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: FocusModeState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: FocusModeState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onFocusStateChange(response.data);
       }
     } catch {
@@ -44,15 +54,21 @@ export function QuickActions({
   };
 
   const handleCancelFocus = async () => {
-    if (!focusState.isActive) {return;}
+    if (!focusState.isActive) {
+      return;
+    }
 
     setIsLoading(true);
     try {
       const message = createMessage<FocusCancelMessage>({
         type: 'FOCUS_CANCEL',
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: FocusModeState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: FocusModeState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onFocusStateChange(response.data);
       }
     } catch {
@@ -74,7 +90,9 @@ export function QuickActions({
       <div className="quick-actions">
         <div className="quick-actions-active">
           <div className="quick-actions-timer">
-            <span className="quick-actions-timer-label">{t('focusModeActive')}</span>
+            <span className="quick-actions-timer-label">
+              {t('focusModeActive')}
+            </span>
             <span className="quick-actions-timer-value">
               {formatRemainingTime(remaining > 0 ? remaining : 0)}
             </span>
@@ -115,7 +133,12 @@ export function QuickActions({
           onClick={() => void handleStartFocus()}
           disabled={!focusEnabled || isLoading}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <polygon points="5,3 19,12 5,21 5,3" />
           </svg>
           {t('dashboardStartFocus')}

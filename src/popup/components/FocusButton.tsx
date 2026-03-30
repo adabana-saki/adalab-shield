@@ -4,7 +4,11 @@
 
 import { useState, useCallback } from 'react';
 import browser from 'webextension-polyfill';
-import type { FocusDuration, FocusModeState, FocusStartMessage } from '@/shared/types';
+import type {
+  FocusDuration,
+  FocusModeState,
+  FocusStartMessage,
+} from '@/shared/types';
 import { createMessage } from '@/shared/types/messages';
 import { useI18n } from '@/shared/hooks/useI18n';
 
@@ -16,7 +20,11 @@ interface FocusButtonProps {
 
 const DURATION_OPTIONS: FocusDuration[] = [30, 60, 120];
 
-export function FocusButton({ focusState, onStateChange, disabled }: FocusButtonProps) {
+export function FocusButton({
+  focusState,
+  onStateChange,
+  disabled,
+}: FocusButtonProps) {
   const { t } = useI18n();
   const [selectedDuration, setSelectedDuration] = useState<FocusDuration>(30);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,9 +40,13 @@ export function FocusButton({ focusState, onStateChange, disabled }: FocusButton
         payload: { duration: selectedDuration },
       });
 
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: FocusModeState; error?: string };
+      const response: {
+        success: boolean;
+        data?: FocusModeState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
 
-      if (response.success === true && response.data != null) {
+      if (response.success === true && response.data !== null) {
         onStateChange(response.data);
       } else {
         setError(response.error ?? 'Failed to start focus mode');
@@ -55,9 +67,13 @@ export function FocusButton({ focusState, onStateChange, disabled }: FocusButton
         type: 'FOCUS_CANCEL' as const,
       });
 
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: FocusModeState; error?: string };
+      const response: {
+        success: boolean;
+        data?: FocusModeState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
 
-      if (response.success === true && response.data != null) {
+      if (response.success === true && response.data !== null) {
         onStateChange(response.data);
       } else {
         setError(response.error ?? 'Failed to cancel focus mode');

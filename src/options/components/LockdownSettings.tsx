@@ -2,14 +2,11 @@
  * Lockdown mode settings component for options page
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import browser from 'webextension-polyfill';
 import { useSettings } from '@/shared/hooks/useSettings';
 import { useI18n } from '@/shared/hooks/useI18n';
-import type {
-  LockdownState,
-  EmergencyBypassCheckResult,
-} from '@/shared/types';
+import type { LockdownState, EmergencyBypassCheckResult } from '@/shared/types';
 import { isValidPinFormat } from '@/shared/utils/crypto';
 
 export function LockdownSettings() {
@@ -17,7 +14,9 @@ export function LockdownSettings() {
   const { t } = useI18n();
 
   // Local state
-  const [lockdownState, setLockdownState] = useState<LockdownState | null>(null);
+  const [lockdownState, setLockdownState] = useState<LockdownState | null>(
+    null
+  );
   const [newPin, setNewPin] = useState('');
   const [confirmPin, setConfirmPin] = useState('');
   const [currentPin, setCurrentPin] = useState('');
@@ -26,24 +25,83 @@ export function LockdownSettings() {
   const [activatePin, setActivatePin] = useState('');
   const [deactivatePin, setDeactivatePin] = useState('');
   const [activateError, setActivateError] = useState<string | null>(null);
-  const [bypassStatus, setBypassStatus] = useState<EmergencyBypassCheckResult | null>(null);
+  const [bypassStatus, setBypassStatus] =
+    useState<EmergencyBypassCheckResult | null>(null);
   const [bypassCountdown, setBypassCountdown] = useState<number | null>(null);
 
   // Check if PIN is set
   const hasPinSet = settings.lockdown.pinHash !== null;
 
+  const checkEmergencyBypassStatus = useCallback(async () => {
+    try {
+      const response: { success: boolean; data?: EmergencyBypassCheckResult } =
+        await browser.runtime.sendMessage({
+          type: 'LOCKDOWN_CHECK_EMERGENCY_BYPASS',
+        });
+
+      if (response.success && response.data) {
+        setBypassStatus(response.data);
+      }
+    } catch (error) {
+      console.error('Failed to check emergency bypass:', error);
+    }
+  }, []);
+
+  const loadLockdownState = useCallback(async () => {
+    try {
+      const response: { success: boolean; data?: LockdownState } =
+        await browser.runtime.sendMessage({
+          type: 'LOCKDOWN_GET_STATE',
+        });
+
+      if (response.success && response.data) {
+        setLockdownState(response.data);
+
+        // If lockdown is active, check bypass status
+        if (response.data.isActive) {
+          await checkEmergencyBypassStatus();
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load lockdown state:', error);
+    }
+  }, [checkEmergencyBypassStatus]);
+
   // Load lockdown state on mount
   useEffect(() => {
-    void loadLockdownState();
-  }, []);
+    let cancelled = false;
+    const load = async () => {
+      await loadLockdownState();
+    };
+    if (!cancelled) {
+      void load();
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [loadLockdownState]);
+
+  // Initialize countdown when bypass status changes
+  useEffect(() => {
+    if (
+      bypassStatus?.requested &&
+      !bypassStatus.ready &&
+      bypassStatus.remainingSeconds > 0
+    ) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- synchronizing derived countdown state from bypass status
+      setBypassCountdown(bypassStatus.remainingSeconds);
+    }
+  }, [bypassStatus]);
 
   // Countdown timer for emergency bypass
   useEffect(() => {
-    if (!bypassStatus?.requested || bypassStatus.ready || bypassStatus.remainingSeconds <= 0) {
+    if (
+      !bypassStatus?.requested ||
+      bypassStatus.ready ||
+      bypassStatus.remainingSeconds <= 0
+    ) {
       return;
     }
-
-    setBypassCountdown(bypassStatus.remainingSeconds);
 
     const interval = setInterval(() => {
       setBypassCountdown((prev) => {
@@ -57,47 +115,7 @@ export function LockdownSettings() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [bypassStatus]);
-
-  const loadLockdownState = async () => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      const response = await browser.runtime.sendMessage({
-        type: 'LOCKDOWN_GET_STATE',
-      }) as { success: boolean; data?: LockdownState };
-
-      if (response.success && response.data) {
-        setLockdownState(response.data);
-
-        // If lockdown is active, check bypass status
-        if (response.data.isActive) {
-          await checkEmergencyBypassStatus();
-        }
-      }
-    } catch (error) {
-      console.error('Failed to load lockdown state:', error);
-    }
-  };
-
-  const checkEmergencyBypassStatus = async () => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      const response = await browser.runtime.sendMessage({
-        type: 'LOCKDOWN_CHECK_EMERGENCY_BYPASS',
-      }) as { success: boolean; data?: EmergencyBypassCheckResult };
-
-      if (response.success && response.data) {
-        setBypassStatus(response.data);
-
-        // If bypass is ready, reload state
-        if (response.data.ready) {
-          await loadLockdownState();
-        }
-      }
-    } catch (error) {
-      console.error('Failed to check emergency bypass:', error);
-    }
-  };
+  }, [bypassStatus, checkEmergencyBypassStatus]);
 
   const handleToggleEnabled = async () => {
     await updateSettings({
@@ -107,7 +125,9 @@ export function LockdownSettings() {
     });
   };
 
-  const handleEmergencyBypassMinutesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmergencyBypassMinutesChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const minutes = parseInt(e.target.value, 10);
     if (!isNaN(minutes) && minutes >= 1 && minutes <= 1440) {
       await updateSettings({
@@ -141,14 +161,14 @@ export function LockdownSettings() {
     }
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      const response = await browser.runtime.sendMessage({
-        type: 'LOCKDOWN_SET_PIN',
-        payload: {
-          pin: newPin,
-          currentPin: hasPinSet ? currentPin : undefined,
-        },
-      }) as { success: boolean; error?: string };
+      const response: { success: boolean; error?: string } =
+        await browser.runtime.sendMessage({
+          type: 'LOCKDOWN_SET_PIN',
+          payload: {
+            pin: newPin,
+            currentPin: hasPinSet ? currentPin : undefined,
+          },
+        });
 
       if (response.success) {
         setPinSuccess(t('lockdownPinSaved'));
@@ -173,11 +193,14 @@ export function LockdownSettings() {
     }
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      const response = await browser.runtime.sendMessage({
+      const response: {
+        success: boolean;
+        data?: LockdownState;
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'LOCKDOWN_ACTIVATE',
         payload: { pin: activatePin },
-      }) as { success: boolean; data?: LockdownState; error?: string };
+      });
 
       if (response.success && response.data) {
         setLockdownState(response.data);
@@ -200,11 +223,14 @@ export function LockdownSettings() {
     }
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      const response = await browser.runtime.sendMessage({
+      const response: {
+        success: boolean;
+        data?: LockdownState;
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'LOCKDOWN_DEACTIVATE',
         payload: { pin: deactivatePin },
-      }) as { success: boolean; data?: LockdownState; error?: string };
+      });
 
       if (response.success && response.data) {
         setLockdownState(response.data);
@@ -222,10 +248,10 @@ export function LockdownSettings() {
 
   const handleRequestEmergencyBypass = async () => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      const response = await browser.runtime.sendMessage({
-        type: 'LOCKDOWN_REQUEST_EMERGENCY_BYPASS',
-      }) as { success: boolean; data?: LockdownState };
+      const response: { success: boolean; data?: LockdownState } =
+        await browser.runtime.sendMessage({
+          type: 'LOCKDOWN_REQUEST_EMERGENCY_BYPASS',
+        });
 
       if (response.success && response.data) {
         setLockdownState(response.data);
@@ -338,7 +364,9 @@ export function LockdownSettings() {
               onClick={() => void handleSetPin()}
               disabled={!newPin || !confirmPin}
             >
-              {hasPinSet ? t('lockdownChangePinButton') : t('lockdownSetPinButton')}
+              {hasPinSet
+                ? t('lockdownChangePinButton')
+                : t('lockdownSetPinButton')}
             </button>
           </div>
 
@@ -357,7 +385,9 @@ export function LockdownSettings() {
                 <span className="unit">{t('minutes')}</span>
               </div>
             </label>
-            <p className="setting-description">{t('lockdownEmergencyBypassDescription')}</p>
+            <p className="setting-description">
+              {t('lockdownEmergencyBypassDescription')}
+            </p>
           </div>
 
           {/* Activate/Deactivate Section */}
@@ -370,7 +400,9 @@ export function LockdownSettings() {
                 <div className="lockdown-activate">
                   <div className="setting-row">
                     <label className="input-label">
-                      <span className="label-text">{t('lockdownEnterPin')}</span>
+                      <span className="label-text">
+                        {t('lockdownEnterPin')}
+                      </span>
                       <input
                         type="password"
                         maxLength={8}
@@ -382,7 +414,9 @@ export function LockdownSettings() {
                     </label>
                   </div>
 
-                  {activateError && <p className="error-message">{activateError}</p>}
+                  {activateError && (
+                    <p className="error-message">{activateError}</p>
+                  )}
 
                   <button
                     type="button"
@@ -399,7 +433,9 @@ export function LockdownSettings() {
                 <div className="lockdown-deactivate">
                   <div className="setting-row">
                     <label className="input-label">
-                      <span className="label-text">{t('lockdownEnterPin')}</span>
+                      <span className="label-text">
+                        {t('lockdownEnterPin')}
+                      </span>
                       <input
                         type="password"
                         maxLength={8}
@@ -411,7 +447,9 @@ export function LockdownSettings() {
                     </label>
                   </div>
 
-                  {activateError && <p className="error-message">{activateError}</p>}
+                  {activateError && (
+                    <p className="error-message">{activateError}</p>
+                  )}
 
                   <button
                     type="button"
@@ -425,7 +463,9 @@ export function LockdownSettings() {
                   {/* Emergency bypass section */}
                   <div className="emergency-bypass-section">
                     <h4>{t('lockdownEmergencyBypassTitle')}</h4>
-                    <p className="setting-description">{t('lockdownEmergencyBypassInfo')}</p>
+                    <p className="setting-description">
+                      {t('lockdownEmergencyBypassInfo')}
+                    </p>
 
                     {!bypassStatus?.requested ? (
                       <button
@@ -436,7 +476,9 @@ export function LockdownSettings() {
                         {t('lockdownRequestBypass')}
                       </button>
                     ) : bypassStatus.ready ? (
-                      <p className="success-message">{t('lockdownBypassReady')}</p>
+                      <p className="success-message">
+                        {t('lockdownBypassReady')}
+                      </p>
                     ) : (
                       <div className="bypass-countdown">
                         <p className="countdown-text">

@@ -5,8 +5,16 @@
 import { useState } from 'react';
 import browser from 'webextension-polyfill';
 import { useI18n } from '@/shared/hooks/useI18n';
-import { createMessage, type FocusStartMessage, type PomodoroStartMessage } from '@/shared/types/messages';
-import type { FocusDuration, FocusModeState, PomodoroState } from '@/shared/types';
+import {
+  createMessage,
+  type FocusStartMessage,
+  type PomodoroStartMessage,
+} from '@/shared/types/messages';
+import type {
+  FocusDuration,
+  FocusModeState,
+  PomodoroState,
+} from '@/shared/types';
 
 interface FocusLauncherProps {
   focusEnabled: boolean;
@@ -32,10 +40,13 @@ export function FocusLauncher({
 
   // Timer is active if focus mode is active or pomodoro is running/paused
   const isPaused = !pomodoroState.isRunning && pomodoroState.mode !== 'idle';
-  const isTimerActive = focusState.isActive || pomodoroState.isRunning || isPaused;
+  const isTimerActive =
+    focusState.isActive || pomodoroState.isRunning || isPaused;
 
   const handleStartFocus = async () => {
-    if (!focusEnabled || isTimerActive) {return;}
+    if (!focusEnabled || isTimerActive) {
+      return;
+    }
 
     setIsLoading(true);
     try {
@@ -43,8 +54,12 @@ export function FocusLauncher({
         type: 'FOCUS_START',
         payload: { duration: selectedDuration },
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: FocusModeState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: FocusModeState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onFocusStateChange(response.data);
       }
     } catch {
@@ -55,7 +70,9 @@ export function FocusLauncher({
   };
 
   const handleStartPomodoro = async () => {
-    if (!pomodoroEnabled || isTimerActive) {return;}
+    if (!pomodoroEnabled || isTimerActive) {
+      return;
+    }
 
     setIsLoading(true);
     try {
@@ -63,8 +80,12 @@ export function FocusLauncher({
         type: 'POMODORO_START',
         payload: { mode: 'work' },
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: PomodoroState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: PomodoroState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onPomodoroStateChange(response.data);
       }
     } catch {
@@ -78,7 +99,9 @@ export function FocusLauncher({
     return null;
   }
 
-  const canStart = (mode === 'focus' && focusEnabled) || (mode === 'pomodoro' && pomodoroEnabled);
+  const canStart =
+    (mode === 'focus' && focusEnabled) ||
+    (mode === 'pomodoro' && pomodoroEnabled);
 
   return (
     <div className="focus-launcher">

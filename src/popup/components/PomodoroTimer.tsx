@@ -17,7 +17,9 @@ interface PomodoroTimerProps {
  * Format remaining time as MM:SS
  */
 function formatTime(ms: number): string {
-  if (ms <= 0) {return '00:00';}
+  if (ms <= 0) {
+    return '00:00';
+  }
 
   const totalSeconds = Math.floor(ms / 1000);
   const minutes = Math.floor(totalSeconds / 60);
@@ -58,16 +60,42 @@ function getModeColor(mode: PomodoroMode): string {
   }
 }
 
-export function PomodoroTimer({ pomodoroState, onStateChange }: PomodoroTimerProps) {
+export function PomodoroTimer({
+  pomodoroState,
+  onStateChange,
+}: PomodoroTimerProps) {
   const { t } = useI18n();
-  const [timeRemaining, setTimeRemaining] = useState<number>(pomodoroState.timeRemainingMs);
+  const [timeRemaining, setTimeRemaining] = useState<number>(
+    pomodoroState.timeRemainingMs
+  );
   const [progress, setProgress] = useState<number>(0);
 
-  // Update countdown every second
+  const refreshState = useCallback(async () => {
+    try {
+      const message = createMessage({
+        type: 'POMODORO_GET_STATE' as const,
+      });
+      const response: {
+        success: boolean;
+        data?: PomodoroState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
+        onStateChange(response.data);
+      }
+    } catch {
+      // Ignore errors
+    }
+  }, [onStateChange]);
+
+  // Update countdown every second when running
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect -- timer sync: setState for initial value and in interval callback are intentional */
     if (!pomodoroState.isRunning || pomodoroState.endTime === null) {
       setTimeRemaining(pomodoroState.timeRemainingMs);
-      setProgress(pomodoroState.isRunning ? calculateProgress(pomodoroState) : 0);
+      setProgress(
+        pomodoroState.isRunning ? calculateProgress(pomodoroState) : 0
+      );
       return;
     }
 
@@ -84,23 +112,10 @@ export function PomodoroTimer({ pomodoroState, onStateChange }: PomodoroTimerPro
 
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     return () => clearInterval(interval);
-  }, [pomodoroState]);
-
-  const refreshState = useCallback(async () => {
-    try {
-      const message = createMessage({
-        type: 'POMODORO_GET_STATE' as const,
-      });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: PomodoroState; error?: string };
-      if (response.success === true && response.data != null) {
-        onStateChange(response.data);
-      }
-    } catch {
-      // Ignore errors
-    }
-  }, [onStateChange]);
+  }, [pomodoroState, refreshState]);
 
   // Calculate circle properties for SVG
   const radius = 45;
@@ -151,7 +166,9 @@ export function PomodoroTimer({ pomodoroState, onStateChange }: PomodoroTimerPro
           />
         </svg>
         <div className="pomodoro-timer-content">
-          <span className="pomodoro-time-value">{formatTime(timeRemaining)}</span>
+          <span className="pomodoro-time-value">
+            {formatTime(timeRemaining)}
+          </span>
           <span className="pomodoro-mode-label" style={{ color: modeColor }}>
             {getModeText()}
           </span>
@@ -161,7 +178,9 @@ export function PomodoroTimer({ pomodoroState, onStateChange }: PomodoroTimerPro
       {/* Session counter */}
       <div className="pomodoro-session-counter">
         <span className="pomodoro-session-label">{t('pomodoroSessions')}</span>
-        <span className="pomodoro-session-value">{pomodoroState.sessionCount}</span>
+        <span className="pomodoro-session-value">
+          {pomodoroState.sessionCount}
+        </span>
       </div>
     </div>
   );

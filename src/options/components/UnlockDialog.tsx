@@ -29,7 +29,11 @@ const MOTIVATIONAL_QUOTES = [
   'The secret of getting ahead is getting started.',
 ];
 
-export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogProps) {
+export function UnlockDialog({
+  isOpen,
+  onClose,
+  onUnlockSuccess,
+}: UnlockDialogProps) {
   const { settings } = useSettings();
   const { t } = useI18n();
 
@@ -37,8 +41,13 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
   const [step, setStep] = useState<UnlockFlowStep>('initial');
   const [waitSecondsRemaining, setWaitSecondsRemaining] = useState(0);
   const [intentionText, setIntentionText] = useState('');
-  const [challengeProgress, setChallengeProgress] = useState({ current: 0, total: 0, correctCount: 0 });
-  const [currentChallenge, setCurrentChallenge] = useState<ChallengeData | null>(null);
+  const [challengeProgress, setChallengeProgress] = useState({
+    current: 0,
+    total: 0,
+    correctCount: 0,
+  });
+  const [currentChallenge, setCurrentChallenge] =
+    useState<ChallengeData | null>(null);
   const [challengeAnswer, setChallengeAnswer] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -50,7 +59,13 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
 
   // Initialize quote on mount
   useEffect(() => {
-    setQuote(MOTIVATIONAL_QUOTES[Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)] ?? MOTIVATIONAL_QUOTES[0] ?? '');
+    setQuote(
+      MOTIVATIONAL_QUOTES[
+        Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)
+      ] ??
+        MOTIVATIONAL_QUOTES[0] ??
+        ''
+    );
   }, []);
 
   // Cleanup timer on unmount
@@ -72,7 +87,11 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
       setCurrentChallenge(null);
       setChallengeAnswer('');
       setError(null);
-      setQuote(MOTIVATIONAL_QUOTES[Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)] ?? '');
+      setQuote(
+        MOTIVATIONAL_QUOTES[
+          Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)
+        ] ?? ''
+      );
       void checkUnlockAllowed();
     }
   }, [isOpen]);
@@ -81,7 +100,7 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
   useEffect(() => {
     if (step === 'waiting' && waitSecondsRemaining > 0) {
       timerRef.current = setInterval(() => {
-        setWaitSecondsRemaining(prev => {
+        setWaitSecondsRemaining((prev) => {
           if (prev <= 1) {
             if (timerRef.current) {
               clearInterval(timerRef.current);
@@ -112,25 +131,37 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
   const checkUnlockAllowed = async () => {
     setIsLoading(true);
     try {
-      const response = (await browser.runtime.sendMessage({
+      const response: {
+        success: boolean;
+        data?: UnlockCheckResult;
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'COMMITMENT_LOCK_CHECK_UNLOCK',
         timestamp: Date.now(),
-      })) as { success: boolean; data?: UnlockCheckResult; error?: string };
+      });
 
-      if (response.success === true && response.data != null) {
+      if (response.success === true && response.data !== null) {
         if (!response.data.allowed) {
-          setError(t(`commitmentLockError_${response.data.reason}`) || response.data.message || t('commitmentLockNotAllowed'));
+          setError(
+            t(`commitmentLockError_${response.data.reason}`) ||
+              response.data.message ||
+              t('commitmentLockNotAllowed')
+          );
           setStep('failed');
         }
       }
 
       // Also get current state
-      const stateResponse = (await browser.runtime.sendMessage({
+      const stateResponse: {
+        success: boolean;
+        data?: CommitmentLockState;
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'COMMITMENT_LOCK_GET_STATE',
         timestamp: Date.now(),
-      })) as { success: boolean; data?: CommitmentLockState; error?: string };
+      });
 
-      if (stateResponse.success === true && stateResponse.data != null) {
+      if (stateResponse.success === true && stateResponse.data !== null) {
         setLockState(stateResponse.data);
       }
     } catch (err) {
@@ -146,13 +177,20 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
     setError(null);
 
     try {
-      const response = (await browser.runtime.sendMessage({
+      const response: {
+        success: boolean;
+        data?: { waitSecondsRemaining: number; state: CommitmentLockState };
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'COMMITMENT_LOCK_START_UNLOCK',
         timestamp: Date.now(),
-      })) as { success: boolean; data?: { waitSecondsRemaining: number; state: CommitmentLockState }; error?: string };
+      });
 
-      if (response.success === true && response.data != null) {
-        setWaitSecondsRemaining(response.data.waitSecondsRemaining || settings.commitmentLock.confirmationWaitSeconds);
+      if (response.success === true && response.data !== null) {
+        setWaitSecondsRemaining(
+          response.data.waitSecondsRemaining ||
+            settings.commitmentLock.confirmationWaitSeconds
+        );
         setLockState(response.data.state);
         setStep('waiting');
       } else {
@@ -168,7 +206,11 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
 
   const submitIntention = async () => {
     if (intentionText.length < settings.commitmentLock.intentionMinLength) {
-      setError(t('commitmentLockIntentionTooShort', [settings.commitmentLock.intentionMinLength.toString()]));
+      setError(
+        t('commitmentLockIntentionTooShort', [
+          settings.commitmentLock.intentionMinLength.toString(),
+        ])
+      );
       return;
     }
 
@@ -176,11 +218,12 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
     setError(null);
 
     try {
-      const response = (await browser.runtime.sendMessage({
-        type: 'COMMITMENT_LOCK_SUBMIT_INTENTION',
-        timestamp: Date.now(),
-        payload: { intention: intentionText },
-      })) as { success: boolean; data?: unknown; error?: string };
+      const response: { success: boolean; data?: unknown; error?: string } =
+        await browser.runtime.sendMessage({
+          type: 'COMMITMENT_LOCK_SUBMIT_INTENTION',
+          timestamp: Date.now(),
+          payload: { intention: intentionText },
+        });
 
       if (response.success === true) {
         // Move to challenges if Level 2+, otherwise final confirm
@@ -206,14 +249,18 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
     setChallengeAnswer('');
 
     try {
-      const response = (await browser.runtime.sendMessage({
+      const response: {
+        success: boolean;
+        data?: ChallengeData;
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'COMMITMENT_LOCK_REQUEST_CHALLENGE',
         timestamp: Date.now(),
-      })) as { success: boolean; data?: ChallengeData; error?: string };
+      });
 
-      if (response.success === true && response.data != null) {
+      if (response.success === true && response.data !== null) {
         setCurrentChallenge(response.data);
-        setChallengeProgress(prev => ({
+        setChallengeProgress((prev) => ({
           ...prev,
           current: prev.current + 1,
           total: settings.commitmentLock.challengeCount,
@@ -240,27 +287,36 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
     setError(null);
 
     try {
-      const response = (await browser.runtime.sendMessage({
+      const response: {
+        success: boolean;
+        data?: {
+          correct: boolean;
+          allCompleted: boolean;
+          nextChallenge?: ChallengeData;
+          state: CommitmentLockState;
+        };
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'COMMITMENT_LOCK_SUBMIT_CHALLENGE',
         timestamp: Date.now(),
         payload: { answer: challengeAnswer },
-      })) as { success: boolean; data?: { correct: boolean; allCompleted: boolean; nextChallenge?: ChallengeData; state: CommitmentLockState }; error?: string };
+      });
 
-      if (response.success === true && response.data != null) {
+      if (response.success === true && response.data !== null) {
         setLockState(response.data.state);
 
         if (response.data.correct) {
-          setChallengeProgress(prev => ({
+          setChallengeProgress((prev) => ({
             ...prev,
             correctCount: prev.correctCount + 1,
           }));
 
           if (response.data.allCompleted) {
             setStep('final_confirm');
-          } else if (response.data.nextChallenge != null) {
+          } else if (response.data.nextChallenge !== null) {
             setCurrentChallenge(response.data.nextChallenge);
             setChallengeAnswer('');
-            setChallengeProgress(prev => ({
+            setChallengeProgress((prev) => ({
               ...prev,
               current: prev.current + 1,
             }));
@@ -269,7 +325,11 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
           // Wrong answer
           if (settings.commitmentLock.challengesMustBeConsecutive) {
             // Reset progress
-            setChallengeProgress({ current: 0, total: settings.commitmentLock.challengeCount, correctCount: 0 });
+            setChallengeProgress({
+              current: 0,
+              total: settings.commitmentLock.challengeCount,
+              correctCount: 0,
+            });
             setError(t('commitmentLockWrongAnswerReset'));
             // Start over with new challenge
             await requestChallenge();
@@ -277,9 +337,9 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
             setError(t('commitmentLockWrongAnswer'));
             setChallengeAnswer('');
             // Get next challenge
-            if (response.data.nextChallenge != null) {
+            if (response.data.nextChallenge !== null) {
               setCurrentChallenge(response.data.nextChallenge);
-              setChallengeProgress(prev => ({
+              setChallengeProgress((prev) => ({
                 ...prev,
                 current: prev.current + 1,
               }));
@@ -302,10 +362,14 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
     setError(null);
 
     try {
-      const response = (await browser.runtime.sendMessage({
+      const response: {
+        success: boolean;
+        data?: CommitmentLockState;
+        error?: string;
+      } = await browser.runtime.sendMessage({
         type: 'COMMITMENT_LOCK_CONFIRM_UNLOCK',
         timestamp: Date.now(),
-      })) as { success: boolean; data?: CommitmentLockState; error?: string };
+      });
 
       if (response.success === true) {
         setStep('completed');
@@ -325,10 +389,10 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
 
   const cancelUnlock = async () => {
     try {
-      (await browser.runtime.sendMessage({
+      await browser.runtime.sendMessage({
         type: 'COMMITMENT_LOCK_CANCEL_UNLOCK',
         timestamp: Date.now(),
-      })) as { success: boolean; data?: CommitmentLockState; error?: string };
+      });
     } catch (err) {
       console.error('Failed to cancel unlock:', err);
     }
@@ -342,11 +406,13 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  if (!isOpen) {return null;}
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className="unlock-dialog-overlay" onClick={() => void cancelUnlock()}>
-      <div className="unlock-dialog" onClick={e => e.stopPropagation()}>
+      <div className="unlock-dialog" onClick={(e) => e.stopPropagation()}>
         <div className="unlock-dialog-header">
           <h2>{t('commitmentLockUnlockTitle')}</h2>
           <button
@@ -361,19 +427,27 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
 
         <div className="unlock-dialog-content">
           {/* Warning banner */}
-          {lockState && lockState.todayAttempts >= (settings.commitmentLock.dailyAttemptWarningThreshold || 3) && (
-            <div className="warning-banner">
-              <span className="warning-icon">!</span>
-              <p>{t('commitmentLockManyAttempts', [lockState.todayAttempts.toString()])}</p>
-            </div>
-          )}
+          {lockState &&
+            lockState.todayAttempts >=
+              (settings.commitmentLock.dailyAttemptWarningThreshold || 3) && (
+              <div className="warning-banner">
+                <span className="warning-icon">!</span>
+                <p>
+                  {t('commitmentLockManyAttempts', [
+                    lockState.todayAttempts.toString(),
+                  ])}
+                </p>
+              </div>
+            )}
 
           {/* Initial step */}
           {step === 'initial' && (
             <div className="unlock-step initial-step">
               <p className="unlock-question">{t('commitmentLockAreYouSure')}</p>
               <p className="unlock-explanation">
-                {t('commitmentLockExplanation', [settings.commitmentLock.level.toString()])}
+                {t('commitmentLockExplanation', [
+                  settings.commitmentLock.level.toString(),
+                ])}
               </p>
 
               <div className="unlock-actions">
@@ -405,7 +479,9 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
 
               <div className="countdown-display">
                 <div className="countdown-circle">
-                  <span className="countdown-time">{formatTime(waitSecondsRemaining)}</span>
+                  <span className="countdown-time">
+                    {formatTime(waitSecondsRemaining)}
+                  </span>
                 </div>
                 <p className="countdown-label">{t('commitmentLockWaiting')}</p>
               </div>
@@ -433,21 +509,28 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
           {step === 'intention' && (
             <div className="unlock-step intention-step">
               <h3>{t('commitmentLockIntentionTitle')}</h3>
-              <p className="intention-prompt">{t('commitmentLockIntentionPrompt')}</p>
+              <p className="intention-prompt">
+                {t('commitmentLockIntentionPrompt')}
+              </p>
 
               <textarea
                 className="intention-input"
                 value={intentionText}
-                onChange={e => setIntentionText(e.target.value)}
+                onChange={(e) => setIntentionText(e.target.value)}
                 placeholder={t('commitmentLockIntentionPlaceholder')}
                 rows={4}
               />
 
               <p className="character-count">
-                {intentionText.length} / {settings.commitmentLock.intentionMinLength} {t('characters')}
-                {intentionText.length < settings.commitmentLock.intentionMinLength && (
+                {intentionText.length} /{' '}
+                {settings.commitmentLock.intentionMinLength} {t('characters')}
+                {intentionText.length <
+                  settings.commitmentLock.intentionMinLength && (
                   <span className="count-warning">
-                    ({settings.commitmentLock.intentionMinLength - intentionText.length} {t('more')})
+                    (
+                    {settings.commitmentLock.intentionMinLength -
+                      intentionText.length}{' '}
+                    {t('more')})
                   </span>
                 )}
               </p>
@@ -466,7 +549,11 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
                   type="button"
                   className="btn btn-primary"
                   onClick={() => void submitIntention()}
-                  disabled={isLoading || intentionText.length < settings.commitmentLock.intentionMinLength}
+                  disabled={
+                    isLoading ||
+                    intentionText.length <
+                      settings.commitmentLock.intentionMinLength
+                  }
                 >
                   {isLoading ? t('loading') : t('continue')}
                 </button>
@@ -478,30 +565,36 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
           {step === 'challenges' && currentChallenge && (
             <div className="unlock-step challenges-step">
               <div className="challenge-progress">
-                <span>{t('commitmentLockChallengeProgress', [
-                  challengeProgress.current.toString(),
-                  challengeProgress.total.toString(),
-                ])}</span>
+                <span>
+                  {t('commitmentLockChallengeProgress', [
+                    challengeProgress.current.toString(),
+                    challengeProgress.total.toString(),
+                  ])}
+                </span>
                 <div className="progress-dots">
-                  {Array.from({ length: challengeProgress.total }).map((_, i) => (
-                    <span
-                      key={i}
-                      className={`dot ${i < challengeProgress.correctCount ? 'completed' : i === challengeProgress.correctCount ? 'current' : ''}`}
-                    />
-                  ))}
+                  {Array.from({ length: challengeProgress.total }).map(
+                    (_, i) => (
+                      <span
+                        key={i}
+                        className={`dot ${i < challengeProgress.correctCount ? 'completed' : i === challengeProgress.correctCount ? 'current' : ''}`}
+                      />
+                    )
+                  )}
                 </div>
               </div>
 
               <div className="challenge-box">
-                <p className="challenge-question">{currentChallenge.question}</p>
+                <p className="challenge-question">
+                  {currentChallenge.question}
+                </p>
                 <input
                   type="text"
                   className="challenge-input"
                   value={challengeAnswer}
-                  onChange={e => setChallengeAnswer(e.target.value)}
+                  onChange={(e) => setChallengeAnswer(e.target.value)}
                   placeholder={t('commitmentLockAnswerPlaceholder')}
                   autoFocus
-                  onKeyDown={e => {
+                  onKeyDown={(e) => {
                     if (e.key === 'Enter' && challengeAnswer.trim()) {
                       void submitChallenge();
                     }
@@ -565,7 +658,11 @@ export function UnlockDialog({ isOpen, onClose, onUnlockSuccess }: UnlockDialogP
             <div className="unlock-step completed-step">
               <div className="success-icon large">&#10003;</div>
               <h3>{t('commitmentLockUnlockSuccess')}</h3>
-              <p>{t('commitmentLockCooldownStarted', [settings.commitmentLock.cooldownAfterUnlockMinutes.toString()])}</p>
+              <p>
+                {t('commitmentLockCooldownStarted', [
+                  settings.commitmentLock.cooldownAfterUnlockMinutes.toString(),
+                ])}
+              </p>
             </div>
           )}
 

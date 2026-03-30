@@ -19,8 +19,9 @@ export function StreakSettings() {
   const fetchStreakData = useCallback(async () => {
     try {
       const message = createMessage({ type: 'STREAK_GET_DATA' as const });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: StreakData; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: { success: boolean; data?: StreakData; error?: string } =
+        await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         setStreakData(response.data);
       }
     } catch (error) {
@@ -42,7 +43,9 @@ export function StreakSettings() {
     });
   };
 
-  const handleGoalTypeChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleGoalTypeChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const goalType = e.target.value as 'focus_time' | 'blocks' | 'no_access';
     await updateSettings({
       streak: {
@@ -51,7 +54,9 @@ export function StreakSettings() {
     });
   };
 
-  const handleMinFocusMinutesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMinFocusMinutesChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const minFocusMinutes = parseInt(e.target.value, 10);
     if (!isNaN(minFocusMinutes) && minFocusMinutes >= 1) {
       await updateSettings({
@@ -62,7 +67,9 @@ export function StreakSettings() {
     }
   };
 
-  const handleMinBlocksChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMinBlocksChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const minBlocks = parseInt(e.target.value, 10);
     if (!isNaN(minBlocks) && minBlocks >= 1) {
       await updateSettings({
@@ -88,8 +95,9 @@ export function StreakSettings() {
 
     try {
       const message = createMessage({ type: 'STREAK_RESET' as const });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: StreakData; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: { success: boolean; data?: StreakData; error?: string } =
+        await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         setStreakData(response.data);
       }
     } catch (error) {
@@ -98,7 +106,8 @@ export function StreakSettings() {
   };
 
   // Find next milestone
-  const nextMilestone = STREAK_MILESTONES.find((m) => m > streakData.currentStreak) ?? null;
+  const nextMilestone =
+    STREAK_MILESTONES.find((m) => m > streakData.currentStreak) ?? null;
   const progressToNext = nextMilestone
     ? Math.min(100, (streakData.currentStreak / nextMilestone) * 100)
     : 100;
@@ -126,16 +135,24 @@ export function StreakSettings() {
           {!isLoading && (
             <div className="streak-overview">
               <div className="streak-card streak-card-current">
-                <span className="streak-card-value">{streakData.currentStreak}</span>
+                <span className="streak-card-value">
+                  {streakData.currentStreak}
+                </span>
                 <span className="streak-card-label">{t('streakCurrent')}</span>
               </div>
               <div className="streak-card">
-                <span className="streak-card-value">{streakData.longestStreak}</span>
+                <span className="streak-card-value">
+                  {streakData.longestStreak}
+                </span>
                 <span className="streak-card-label">{t('streakLongest')}</span>
               </div>
               <div className="streak-card">
-                <span className="streak-card-value">{streakData.totalFocusDays}</span>
-                <span className="streak-card-label">{t('streakTotalDays')}</span>
+                <span className="streak-card-value">
+                  {streakData.totalFocusDays}
+                </span>
+                <span className="streak-card-label">
+                  {t('streakTotalDays')}
+                </span>
               </div>
             </div>
           )}
@@ -144,7 +161,9 @@ export function StreakSettings() {
           {nextMilestone && streakData.currentStreak > 0 && (
             <div className="streak-progress-section">
               <div className="streak-progress-header">
-                <span>{t('streakNextMilestone')}: {nextMilestone} {t('days')}</span>
+                <span>
+                  {t('streakNextMilestone')}: {nextMilestone} {t('days')}
+                </span>
                 <span>{Math.round(progressToNext)}%</span>
               </div>
               <div className="streak-progress-bar-large">
@@ -183,7 +202,9 @@ export function StreakSettings() {
                 <option value="no_access">{t('streakGoalNoAccess')}</option>
               </select>
             </label>
-            <p className="setting-description">{t('streakGoalTypeDescription')}</p>
+            <p className="setting-description">
+              {t('streakGoalTypeDescription')}
+            </p>
           </div>
 
           {/* Minimum focus minutes (for focus_time goal) */}
@@ -199,7 +220,9 @@ export function StreakSettings() {
                   onChange={(e) => void handleMinFocusMinutesChange(e)}
                 />
               </label>
-              <p className="setting-description">{t('streakMinFocusMinutesDescription')}</p>
+              <p className="setting-description">
+                {t('streakMinFocusMinutesDescription')}
+              </p>
             </div>
           )}
 
@@ -216,7 +239,9 @@ export function StreakSettings() {
                   onChange={(e) => void handleMinBlocksChange(e)}
                 />
               </label>
-              <p className="setting-description">{t('streakMinBlocksDescription')}</p>
+              <p className="setting-description">
+                {t('streakMinBlocksDescription')}
+              </p>
             </div>
           )}
 
@@ -230,7 +255,9 @@ export function StreakSettings() {
               />
               <span className="toggle-text">{t('streakNotifications')}</span>
             </label>
-            <p className="setting-description">{t('streakNotificationsDescription')}</p>
+            <p className="setting-description">
+              {t('streakNotificationsDescription')}
+            </p>
           </div>
 
           {/* Reset streak button */}

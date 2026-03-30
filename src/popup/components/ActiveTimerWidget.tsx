@@ -2,8 +2,13 @@
  * Active timer widget showing Focus Mode or Pomodoro progress
  */
 
+import { useState, useEffect } from 'react';
 import { useI18n } from '@/shared/hooks/useI18n';
-import type { FocusModeState, PomodoroState, PomodoroSettings } from '@/shared/types';
+import type {
+  FocusModeState,
+  PomodoroState,
+  PomodoroSettings,
+} from '@/shared/types';
 
 interface ActiveTimerWidgetProps {
   focusState: FocusModeState;
@@ -27,7 +32,9 @@ export function ActiveTimerWidget({
 
   // Format remaining time
   const formatTime = (ms: number): string => {
-    if (ms <= 0) {return '0:00';}
+    if (ms <= 0) {
+      return '0:00';
+    }
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -36,13 +43,28 @@ export function ActiveTimerWidget({
 
   // Calculate progress percentage
   const calculateProgress = (remaining: number, total: number): number => {
-    if (total <= 0) {return 0;}
+    if (total <= 0) {
+      return 0;
+    }
     return Math.max(0, Math.min(100, ((total - remaining) / total) * 100));
   };
 
+  // Track current time for timer calculations
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Show Focus Mode timer
-  if (focusState.isActive && focusState.endTime !== null && focusState.duration !== null) {
-    const remaining = Math.max(0, focusState.endTime - Date.now());
+  if (
+    focusState.isActive &&
+    focusState.endTime !== null &&
+    focusState.duration !== null
+  ) {
+    const remaining = Math.max(0, focusState.endTime - now);
     const total = focusState.duration * 60 * 1000;
     const progress = calculateProgress(total - remaining, total);
 
@@ -92,7 +114,8 @@ export function ActiveTimerWidget({
     // Use settings for total duration, fall back to defaults
     const workMs = (pomodoroSettings?.workDurationMinutes ?? 25) * 60 * 1000;
     const breakMs = (pomodoroSettings?.breakDurationMinutes ?? 5) * 60 * 1000;
-    const longBreakMs = (pomodoroSettings?.longBreakDurationMinutes ?? 15) * 60 * 1000;
+    const longBreakMs =
+      (pomodoroSettings?.longBreakDurationMinutes ?? 15) * 60 * 1000;
     const total =
       pomodoroState.mode === 'work'
         ? workMs

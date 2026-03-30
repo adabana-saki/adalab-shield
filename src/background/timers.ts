@@ -58,14 +58,20 @@ export const ALARM_NAMES = {
 export async function getFocusState(): Promise<FocusModeState> {
   try {
     const result = await browser.storage.local.get(STORAGE_KEYS.FOCUS_STATE);
-    const state = result[STORAGE_KEYS.FOCUS_STATE] as FocusModeState | undefined;
+    const state = result[STORAGE_KEYS.FOCUS_STATE] as
+      | FocusModeState
+      | undefined;
 
     if (!state) {
       return DEFAULT_FOCUS_STATE;
     }
 
     // Check if focus has expired
-    if (state.isActive && state.endTime !== null && Date.now() >= state.endTime) {
+    if (
+      state.isActive &&
+      state.endTime !== null &&
+      Date.now() >= state.endTime
+    ) {
       logger.info('Focus session expired, resetting state');
       await saveFocusState(DEFAULT_FOCUS_STATE);
       return DEFAULT_FOCUS_STATE;
@@ -96,7 +102,9 @@ export async function saveFocusState(state: FocusModeState): Promise<void> {
 /**
  * Start a focus mode session
  */
-export async function startFocusMode(duration: FocusDuration): Promise<FocusModeState> {
+export async function startFocusMode(
+  duration: FocusDuration
+): Promise<FocusModeState> {
   const settings = await getSettings();
 
   if (!settings.focusMode.enabled) {
@@ -166,7 +174,9 @@ export async function cancelFocusMode(): Promise<FocusModeState> {
 /**
  * Extend focus mode by additional minutes
  */
-export async function extendFocusMode(additionalMinutes: number): Promise<FocusModeState> {
+export async function extendFocusMode(
+  additionalMinutes: number
+): Promise<FocusModeState> {
   const currentState = await getFocusState();
 
   if (!currentState.isActive || currentState.endTime === null) {
@@ -273,14 +283,20 @@ async function showFocusNotification(
 export async function getPomodoroState(): Promise<PomodoroState> {
   try {
     const result = await browser.storage.local.get(STORAGE_KEYS.POMODORO_STATE);
-    const state = result[STORAGE_KEYS.POMODORO_STATE] as PomodoroState | undefined;
+    const state = result[STORAGE_KEYS.POMODORO_STATE] as
+      | PomodoroState
+      | undefined;
 
     if (!state) {
       return DEFAULT_POMODORO_STATE;
     }
 
     // Check if timer has expired
-    if (state.isRunning && state.endTime !== null && Date.now() >= state.endTime) {
+    if (
+      state.isRunning &&
+      state.endTime !== null &&
+      Date.now() >= state.endTime
+    ) {
       logger.info('Pomodoro session expired, handling completion');
       return await handlePomodoroComplete(state);
     }
@@ -306,7 +322,10 @@ export async function savePomodoroState(state: PomodoroState): Promise<void> {
     await browser.storage.local.set({
       [STORAGE_KEYS.POMODORO_STATE]: state,
     });
-    logger.debug('Pomodoro state saved', { mode: state.mode, isRunning: state.isRunning });
+    logger.debug('Pomodoro state saved', {
+      mode: state.mode,
+      isRunning: state.isRunning,
+    });
   } catch (error) {
     logger.error('Failed to save pomodoro state', { error });
     throw error;
@@ -333,7 +352,9 @@ async function getPomodoroDuration(mode: PomodoroMode): Promise<number> {
 /**
  * Start a pomodoro session
  */
-export async function startPomodoro(mode: 'work' | 'break' | 'longBreak'): Promise<PomodoroState> {
+export async function startPomodoro(
+  mode: 'work' | 'break' | 'longBreak'
+): Promise<PomodoroState> {
   const settings = await getSettings();
 
   if (!settings.pomodoro.enabled) {
@@ -436,7 +457,9 @@ export async function resumePomodoro(): Promise<PomodoroState> {
 
   await savePomodoroState(newState);
 
-  logger.info('Pomodoro resumed', { timeRemainingMs: currentState.timeRemainingMs });
+  logger.info('Pomodoro resumed', {
+    timeRemainingMs: currentState.timeRemainingMs,
+  });
   return newState;
 }
 
@@ -500,7 +523,7 @@ export async function skipPomodoro(): Promise<PomodoroState> {
 
   // Auto-start if enabled
   const shouldAutoStart =
-    (nextMode === 'break' || nextMode === 'longBreak')
+    nextMode === 'break' || nextMode === 'longBreak'
       ? settings.pomodoro.autoStartBreaks
       : settings.pomodoro.autoStartWork;
 
@@ -527,7 +550,9 @@ export async function skipPomodoro(): Promise<PomodoroState> {
 /**
  * Handle pomodoro timer completion
  */
-async function handlePomodoroComplete(state: PomodoroState): Promise<PomodoroState> {
+async function handlePomodoroComplete(
+  state: PomodoroState
+): Promise<PomodoroState> {
   const settings = await getSettings();
 
   let nextMode: PomodoroMode;
@@ -561,7 +586,7 @@ async function handlePomodoroComplete(state: PomodoroState): Promise<PomodoroSta
 
   // Auto-start next session if enabled
   const shouldAutoStart =
-    (nextMode === 'break' || nextMode === 'longBreak')
+    nextMode === 'break' || nextMode === 'longBreak'
       ? settings.pomodoro.autoStartBreaks
       : settings.pomodoro.autoStartWork;
 
@@ -625,7 +650,8 @@ async function showPomodoroNotification(
     };
 
     const messages: Record<typeof type, string> = {
-      started: mode === 'work' ? 'Time to focus!' : 'Take a break, you earned it!',
+      started:
+        mode === 'work' ? 'Time to focus!' : 'Take a break, you earned it!',
       completed:
         mode === 'work'
           ? 'Great work! Time for a break.'
@@ -647,7 +673,9 @@ async function showPomodoroNotification(
  * Initialize timer listeners
  */
 export function initializeTimers(): void {
-  browser.alarms.onAlarm.addListener(handleAlarm);
+  browser.alarms.onAlarm.addListener((alarm) => {
+    void handleAlarm(alarm);
+  });
   logger.info('Timer listeners initialized');
 
   // Check for any stale focus state on startup
@@ -655,7 +683,9 @@ export function initializeTimers(): void {
     if (state.isActive) {
       logger.info('Active focus session detected on startup', {
         endTime: state.endTime,
-        remaining: state.endTime ? Math.round((state.endTime - Date.now()) / 1000 / 60) : 0,
+        remaining: state.endTime
+          ? Math.round((state.endTime - Date.now()) / 1000 / 60)
+          : 0,
       });
     }
   });
@@ -665,7 +695,9 @@ export function initializeTimers(): void {
     if (state.isRunning) {
       logger.info('Active pomodoro session detected on startup', {
         mode: state.mode,
-        remaining: state.timeRemainingMs ? Math.round(state.timeRemainingMs / 1000 / 60) : 0,
+        remaining: state.timeRemainingMs
+          ? Math.round(state.timeRemainingMs / 1000 / 60)
+          : 0,
       });
     }
   });
@@ -696,8 +728,12 @@ function getTodayDateString(): string {
  */
 export async function getTimeLimitsState(): Promise<TimeLimitsState> {
   try {
-    const result = await browser.storage.local.get(STORAGE_KEYS.TIME_LIMITS_STATE);
-    const state = result[STORAGE_KEYS.TIME_LIMITS_STATE] as TimeLimitsState | undefined;
+    const result = await browser.storage.local.get(
+      STORAGE_KEYS.TIME_LIMITS_STATE
+    );
+    const state = result[STORAGE_KEYS.TIME_LIMITS_STATE] as
+      | TimeLimitsState
+      | undefined;
 
     if (!state) {
       return DEFAULT_TIME_LIMITS_STATE;
@@ -725,7 +761,9 @@ export async function getTimeLimitsState(): Promise<TimeLimitsState> {
 /**
  * Save time limits state to storage
  */
-export async function saveTimeLimitsState(state: TimeLimitsState): Promise<void> {
+export async function saveTimeLimitsState(
+  state: TimeLimitsState
+): Promise<void> {
   try {
     await browser.storage.local.set({
       [STORAGE_KEYS.TIME_LIMITS_STATE]: state,
@@ -783,9 +821,10 @@ export async function trackTimeActivity(
   }
 
   // Update state
-  const newUsage = existingIndex >= 0
-    ? state.usage.map((u, i) => (i === existingIndex ? updatedUsage : u))
-    : [...state.usage, updatedUsage];
+  const newUsage =
+    existingIndex >= 0
+      ? state.usage.map((u, i) => (i === existingIndex ? updatedUsage : u))
+      : [...state.usage, updatedUsage];
 
   const newState: TimeLimitsState = {
     usage: newUsage,
@@ -806,7 +845,9 @@ export async function trackTimeActivity(
 /**
  * Check if time limit is reached for a platform
  */
-export async function checkTimeLimit(platform: Platform): Promise<TimeCheckLimitResult> {
+export async function checkTimeLimit(
+  platform: Platform
+): Promise<TimeCheckLimitResult> {
   const settings = await getSettings();
   const state = await getTimeLimitsState();
 
@@ -849,7 +890,9 @@ export async function checkTimeLimit(platform: Platform): Promise<TimeCheckLimit
 /**
  * Reset time usage for a platform or all platforms
  */
-export async function resetTimeUsage(platform?: Platform): Promise<TimeLimitsState> {
+export async function resetTimeUsage(
+  platform?: Platform
+): Promise<TimeLimitsState> {
   const state = await getTimeLimitsState();
   const today = getTodayDateString();
 
@@ -934,8 +977,12 @@ async function checkTimeLimitsReset(): Promise<void> {
  */
 export async function getTimeTrackingState(): Promise<TimeTrackingState> {
   try {
-    const result = await browser.storage.local.get(STORAGE_KEYS.TIME_TRACKING_STATE);
-    const state = result[STORAGE_KEYS.TIME_TRACKING_STATE] as TimeTrackingState | undefined;
+    const result = await browser.storage.local.get(
+      STORAGE_KEYS.TIME_TRACKING_STATE
+    );
+    const state = result[STORAGE_KEYS.TIME_TRACKING_STATE] as
+      | TimeTrackingState
+      | undefined;
 
     if (!state) {
       return DEFAULT_TIME_TRACKING_STATE;
@@ -951,12 +998,16 @@ export async function getTimeTrackingState(): Promise<TimeTrackingState> {
 /**
  * Save time tracking history state to storage
  */
-export async function saveTimeTrackingState(state: TimeTrackingState): Promise<void> {
+export async function saveTimeTrackingState(
+  state: TimeTrackingState
+): Promise<void> {
   try {
     await browser.storage.local.set({
       [STORAGE_KEYS.TIME_TRACKING_STATE]: state,
     });
-    logger.debug('Time tracking state saved', { historyLength: state.history.length });
+    logger.debug('Time tracking state saved', {
+      historyLength: state.history.length,
+    });
   } catch (error) {
     logger.error('Failed to save time tracking state', { error });
     throw error;
@@ -966,7 +1017,9 @@ export async function saveTimeTrackingState(state: TimeTrackingState): Promise<v
 /**
  * Save today's time usage to history (called before daily reset)
  */
-async function saveToTimeTrackingHistory(timeLimitsState: TimeLimitsState): Promise<void> {
+async function saveToTimeTrackingHistory(
+  timeLimitsState: TimeLimitsState
+): Promise<void> {
   const settings = await getSettings();
 
   // Only save if time tracking is enabled
@@ -997,17 +1050,22 @@ async function saveToTimeTrackingHistory(timeLimitsState: TimeLimitsState): Prom
   };
 
   // Add to history, avoiding duplicates
-  const existingIndex = state.history.findIndex((r) => r.date === dailyRecord.date);
+  const existingIndex = state.history.findIndex(
+    (r) => r.date === dailyRecord.date
+  );
   let newHistory: DailyTimeRecord[];
 
   if (existingIndex >= 0) {
     // Update existing record (merge data)
     const existing = state.history[existingIndex]!;
-    const mergedByPlatform: Partial<Record<Platform, number>> = { ...existing.byPlatform };
+    const mergedByPlatform: Partial<Record<Platform, number>> = {
+      ...existing.byPlatform,
+    };
 
     for (const [platform, ms] of Object.entries(byPlatform)) {
       const platformKey = platform as Platform;
-      mergedByPlatform[platformKey] = (mergedByPlatform[platformKey] ?? 0) + (ms ?? 0);
+      mergedByPlatform[platformKey] =
+        (mergedByPlatform[platformKey] ?? 0) + (ms ?? 0);
     }
 
     const mergedRecord: DailyTimeRecord = {
@@ -1042,13 +1100,18 @@ async function saveToTimeTrackingHistory(timeLimitsState: TimeLimitsState): Prom
   };
 
   await saveTimeTrackingState(newState);
-  logger.info('Time tracking history updated', { date: dailyRecord.date, totalMs });
+  logger.info('Time tracking history updated', {
+    date: dailyRecord.date,
+    totalMs,
+  });
 }
 
 /**
  * Get time tracking history, optionally limited to a number of days
  */
-export async function getTimeTrackingHistory(days?: number): Promise<TimeTrackingState> {
+export async function getTimeTrackingHistory(
+  days?: number
+): Promise<TimeTrackingState> {
   const settings = await getSettings();
   const state = await getTimeTrackingState();
 
@@ -1089,16 +1152,21 @@ export async function getTimeTrackingHistory(days?: number): Promise<TimeTrackin
     cutoffDate.setDate(cutoffDate.getDate() - days);
     const cutoffDateString = cutoffDate.toISOString().split('T')[0] ?? '';
 
-    historyWithToday = historyWithToday.filter((record) => record.date >= cutoffDateString);
+    historyWithToday = historyWithToday.filter(
+      (record) => record.date >= cutoffDateString
+    );
   }
 
   // Apply retention limit
   const retentionDays = settings.timeTracking.retentionDays;
   const retentionCutoff = new Date();
   retentionCutoff.setDate(retentionCutoff.getDate() - retentionDays);
-  const retentionCutoffString = retentionCutoff.toISOString().split('T')[0] ?? '';
+  const retentionCutoffString =
+    retentionCutoff.toISOString().split('T')[0] ?? '';
 
-  historyWithToday = historyWithToday.filter((record) => record.date >= retentionCutoffString);
+  historyWithToday = historyWithToday.filter(
+    (record) => record.date >= retentionCutoffString
+  );
 
   // Sort by date descending
   historyWithToday.sort((a, b) => b.date.localeCompare(a.date));
@@ -1182,7 +1250,9 @@ async function wasYesterdaySuccessful(): Promise<boolean> {
     case 'focus_time': {
       // Check if there was enough focus time yesterday
       const history = await getTimeTrackingHistory(1);
-      const yesterdayRecord = history.history.find((r) => r.date === yesterdayString);
+      const yesterdayRecord = history.history.find(
+        (r) => r.date === yesterdayString
+      );
 
       if (!yesterdayRecord) {
         return false;
@@ -1196,7 +1266,9 @@ async function wasYesterdaySuccessful(): Promise<boolean> {
       // Since we can't access yesterday's blocks directly (they reset daily),
       // we check if there was any tracked usage as a proxy for activity
       const history = await getTimeTrackingHistory(1);
-      const yesterdayRecord = history.history.find((r) => r.date === yesterdayString);
+      const yesterdayRecord = history.history.find(
+        (r) => r.date === yesterdayString
+      );
 
       // If there was any tracking activity, consider it a day with blocks
       return yesterdayRecord !== undefined && yesterdayRecord.totalMs > 0;
@@ -1205,7 +1277,9 @@ async function wasYesterdaySuccessful(): Promise<boolean> {
     case 'no_access': {
       // Check if there was NO access to blocked platforms yesterday
       const history = await getTimeTrackingHistory(1);
-      const yesterdayRecord = history.history.find((r) => r.date === yesterdayString);
+      const yesterdayRecord = history.history.find(
+        (r) => r.date === yesterdayString
+      );
 
       // Success if no usage was tracked
       return !yesterdayRecord || yesterdayRecord.totalMs === 0;
@@ -1344,7 +1418,9 @@ export async function checkStreakDay(): Promise<StreakData> {
     ...streakData,
     currentStreak: newStreak,
     lastActiveDate: today,
-    totalFocusDays: todaySuccess ? streakData.totalFocusDays + 1 : streakData.totalFocusDays,
+    totalFocusDays: todaySuccess
+      ? streakData.totalFocusDays + 1
+      : streakData.totalFocusDays,
   };
 
   await saveStreakData(newData);
@@ -1478,8 +1554,12 @@ async function showStreakNotification(
  */
 export async function getChallengeState(): Promise<ChallengeState> {
   try {
-    const result = await browser.storage.local.get(STORAGE_KEYS.CHALLENGE_STATE);
-    const state = result[STORAGE_KEYS.CHALLENGE_STATE] as ChallengeState | undefined;
+    const result = await browser.storage.local.get(
+      STORAGE_KEYS.CHALLENGE_STATE
+    );
+    const state = result[STORAGE_KEYS.CHALLENGE_STATE] as
+      | ChallengeState
+      | undefined;
 
     if (!state) {
       return DEFAULT_CHALLENGE_STATE;
@@ -1535,10 +1615,13 @@ export async function requestChallenge(): Promise<ChallengeData> {
 
   // Check cooldown
   if (state.lastBypassAt !== null) {
-    const cooldownEnd = state.lastBypassAt + settings.challenge.cooldownSeconds * 1000;
+    const cooldownEnd =
+      state.lastBypassAt + settings.challenge.cooldownSeconds * 1000;
     if (Date.now() < cooldownEnd) {
       const remainingSeconds = Math.ceil((cooldownEnd - Date.now()) / 1000);
-      throw new Error(`Cooldown active. Please wait ${remainingSeconds} seconds.`);
+      throw new Error(
+        `Cooldown active. Please wait ${remainingSeconds} seconds.`
+      );
     }
   }
 
@@ -1555,7 +1638,10 @@ export async function requestChallenge(): Promise<ChallengeData> {
   };
   await saveChallengeState(newState);
 
-  logger.info('Challenge generated', { type: challenge.type, difficulty: challenge.difficulty });
+  logger.info('Challenge generated', {
+    type: challenge.type,
+    difficulty: challenge.difficulty,
+  });
 
   return challenge;
 }
@@ -1563,7 +1649,9 @@ export async function requestChallenge(): Promise<ChallengeData> {
 /**
  * Submit a challenge answer
  */
-export async function submitChallengeAnswer(userAnswer: string): Promise<ChallengeSubmitResult> {
+export async function submitChallengeAnswer(
+  userAnswer: string
+): Promise<ChallengeSubmitResult> {
   const settings = await getSettings();
 
   if (!settings.challenge.enabled) {
@@ -1605,7 +1693,9 @@ export async function submitChallengeAnswer(userAnswer: string): Promise<Challen
     };
     await saveChallengeState(newState);
 
-    logger.info('Challenge failed', { failedAttempts: newState.failedAttempts });
+    logger.info('Challenge failed', {
+      failedAttempts: newState.failedAttempts,
+    });
 
     return {
       correct: false,
@@ -1636,7 +1726,8 @@ export async function isBypassActive(): Promise<boolean> {
     return false;
   }
 
-  const bypassEnd = state.lastBypassAt + CHALLENGE_BYPASS_DURATION_SECONDS * 1000;
+  const bypassEnd =
+    state.lastBypassAt + CHALLENGE_BYPASS_DURATION_SECONDS * 1000;
   return Date.now() < bypassEnd;
 }
 
@@ -1656,7 +1747,8 @@ export async function getBypassRemainingSeconds(): Promise<number> {
     return 0;
   }
 
-  const bypassEnd = state.lastBypassAt + CHALLENGE_BYPASS_DURATION_SECONDS * 1000;
+  const bypassEnd =
+    state.lastBypassAt + CHALLENGE_BYPASS_DURATION_SECONDS * 1000;
   const remaining = bypassEnd - Date.now();
 
   return remaining > 0 ? Math.ceil(remaining / 1000) : 0;
@@ -1668,7 +1760,11 @@ export async function getBypassRemainingSeconds(): Promise<number> {
 
 import { hashPin, verifyPin, isValidPinFormat } from '@/shared/utils/crypto';
 import { DEFAULT_LOCKDOWN_STATE } from '@/shared/constants';
-import type { LockdownState, LockdownVerifyPinResult, EmergencyBypassCheckResult } from '@/shared/types';
+import type {
+  LockdownState,
+  LockdownVerifyPinResult,
+  EmergencyBypassCheckResult,
+} from '@/shared/types';
 
 /**
  * Get lockdown state from storage
@@ -1676,7 +1772,9 @@ import type { LockdownState, LockdownVerifyPinResult, EmergencyBypassCheckResult
 export async function getLockdownState(): Promise<LockdownState> {
   try {
     const result = await browser.storage.local.get(STORAGE_KEYS.LOCKDOWN_STATE);
-    const state = result[STORAGE_KEYS.LOCKDOWN_STATE] as LockdownState | undefined;
+    const state = result[STORAGE_KEYS.LOCKDOWN_STATE] as
+      | LockdownState
+      | undefined;
     return state ?? DEFAULT_LOCKDOWN_STATE;
   } catch {
     return DEFAULT_LOCKDOWN_STATE;
@@ -1731,7 +1829,9 @@ export async function setLockdownPin(
 /**
  * Verify a lockdown PIN
  */
-export async function verifyLockdownPin(pin: string): Promise<LockdownVerifyPinResult> {
+export async function verifyLockdownPin(
+  pin: string
+): Promise<LockdownVerifyPinResult> {
   const settings = await getSettings();
 
   if (settings.lockdown.pinHash === null) {

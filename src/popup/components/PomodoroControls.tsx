@@ -22,23 +22,30 @@ export function PomodoroControls({
   const { t } = useI18n();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleStart = useCallback(async (mode: 'work' | 'break' | 'longBreak') => {
-    setIsLoading(true);
-    try {
-      const message = createMessage<PomodoroStartMessage>({
-        type: 'POMODORO_START',
-        payload: { mode },
-      });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: PomodoroState; error?: string };
-      if (response.success === true && response.data != null) {
-        onStateChange(response.data);
+  const handleStart = useCallback(
+    async (mode: 'work' | 'break' | 'longBreak') => {
+      setIsLoading(true);
+      try {
+        const message = createMessage<PomodoroStartMessage>({
+          type: 'POMODORO_START',
+          payload: { mode },
+        });
+        const response: {
+          success: boolean;
+          data?: PomodoroState;
+          error?: string;
+        } = await browser.runtime.sendMessage(message);
+        if (response.success === true && response.data !== null) {
+          onStateChange(response.data);
+        }
+      } catch {
+        // Ignore errors
+      } finally {
+        setIsLoading(false);
       }
-    } catch {
-      // Ignore errors
-    } finally {
-      setIsLoading(false);
-    }
-  }, [onStateChange]);
+    },
+    [onStateChange]
+  );
 
   const handlePause = useCallback(async () => {
     setIsLoading(true);
@@ -46,8 +53,12 @@ export function PomodoroControls({
       const message = createMessage({
         type: 'POMODORO_PAUSE' as const,
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: PomodoroState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: PomodoroState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onStateChange(response.data);
       }
     } catch {
@@ -63,8 +74,12 @@ export function PomodoroControls({
       const message = createMessage({
         type: 'POMODORO_RESUME' as const,
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: PomodoroState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: PomodoroState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onStateChange(response.data);
       }
     } catch {
@@ -80,8 +95,12 @@ export function PomodoroControls({
       const message = createMessage({
         type: 'POMODORO_STOP' as const,
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: PomodoroState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: PomodoroState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onStateChange(response.data);
       }
     } catch {
@@ -97,8 +116,12 @@ export function PomodoroControls({
       const message = createMessage({
         type: 'POMODORO_SKIP' as const,
       });
-      const response = (await browser.runtime.sendMessage(message)) as { success: boolean; data?: PomodoroState; error?: string };
-      if (response.success === true && response.data != null) {
+      const response: {
+        success: boolean;
+        data?: PomodoroState;
+        error?: string;
+      } = await browser.runtime.sendMessage(message);
+      if (response.success === true && response.data !== null) {
         onStateChange(response.data);
       }
     } catch {
@@ -148,7 +171,12 @@ export function PomodoroControls({
               disabled={isDisabled}
               aria-label={t('pomodoroPause')}
             >
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="currentColor"
+              >
                 <rect x="6" y="4" width="4" height="16" rx="1" />
                 <rect x="14" y="4" width="4" height="16" rx="1" />
               </svg>
@@ -161,7 +189,12 @@ export function PomodoroControls({
               disabled={isDisabled}
               aria-label={t('pomodoroResume')}
             >
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="currentColor"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             </button>
