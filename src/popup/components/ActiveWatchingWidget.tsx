@@ -46,7 +46,7 @@ function getPlatformLabelKey(platform: Platform): string {
     pinterest: 'platformPinterest',
     twitch: 'platformTwitch',
   };
-  // eslint-disable-next-line security/detect-object-injection
+
   return platformKeyMap[platform] ?? platform;
 }
 

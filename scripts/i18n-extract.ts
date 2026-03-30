@@ -209,7 +209,6 @@ function generateReport(extracted: ExtractionResult): void {
       {};
 
     for (const key of missingInBase) {
-      // eslint-disable-next-line security/detect-object-injection
       template[key] = {
         message: `[TODO: Translate ${key}]`,
         description: `Found in: ${(extracted.locations.get(key) || []).slice(0, 2).join(', ')}`,

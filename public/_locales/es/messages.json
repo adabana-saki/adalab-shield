@@ -1396,5 +1396,931 @@
   "lockdownInfoItem3": {
     "message": "Elige un PIN que recuerdes, pero que no sea fácil de adivinar impulsivamente",
     "description": "Third info item about lockdown"
+  },
+  "popupPlatformDiscord": {
+    "message": "Discord",
+    "description": "Discord platform name"
+  },
+  "popupPlatformPinterest": {
+    "message": "Pinterest",
+    "description": "Pinterest platform name"
+  },
+  "popupPlatformTwitch": {
+    "message": "Twitch",
+    "description": "Twitch platform name"
+  },
+  "platformYouTubeFull": {
+    "message": "YouTube (Full Site)",
+    "description": "Full YouTube site blocking option"
+  },
+  "platformYouTubeFullDescription": {
+    "message": "Block all of YouTube, not just Shorts",
+    "description": "Description for full YouTube blocking"
+  },
+  "platformInstagramFull": {
+    "message": "Instagram (Full Site)",
+    "description": "Full Instagram site blocking option"
+  },
+  "platformInstagramFullDescription": {
+    "message": "Block all of Instagram, not just Reels",
+    "description": "Description for full Instagram blocking"
+  },
+  "platformTikTokFull": {
+    "message": "TikTok (Full Site)",
+    "description": "Full TikTok site blocking option"
+  },
+  "platformTikTokFullDescription": {
+    "message": "Block all of TikTok entirely",
+    "description": "Description for full TikTok blocking"
+  },
+  "shortVideoSection": {
+    "message": "Short Video Blocking",
+    "description": "Section title for short video platform blocking"
+  },
+  "fullSiteBlockingSection": {
+    "message": "Full Site Blocking",
+    "description": "Section title for full site blocking options"
+  },
+  "platformYouTubeDescription": {
+    "message": "Block YouTube Shorts only",
+    "description": "Description for YouTube Shorts blocking"
+  },
+  "platformTikTokDescription": {
+    "message": "Block TikTok videos",
+    "description": "Description for TikTok blocking"
+  },
+  "platformInstagramDescription": {
+    "message": "Block Instagram Reels only",
+    "description": "Description for Instagram Reels blocking"
+  },
+  "popupStatsTodayUsage": {
+    "message": "Watched",
+    "description": "Label for today's watch time"
+  },
+  "watchingNow": {
+    "message": "Watching Now",
+    "description": "Label shown when actively watching content"
+  },
+  "dashboardTodayUsage": {
+    "message": "Today's Watch Time",
+    "description": "Dashboard card title for today's usage"
+  },
+  "dashboardWeeklyActivity": {
+    "message": "Weekly Activity",
+    "description": "Dashboard section title for weekly activity heatmap"
+  },
+  "blockThisSite": {
+    "message": "Block this site",
+    "description": "Button to block current website"
+  },
+  "unblockThisSite": {
+    "message": "Unblock",
+    "description": "Button to unblock current website"
+  },
+  "blockedFromPopup": {
+    "message": "Blocked from popup",
+    "description": "Description for domains blocked via popup"
+  },
+  "customDomainsHelpTitle": {
+    "message": "How to use (click to expand)",
+    "description": "Help section title for custom domains"
+  },
+  "customDomainsHelpIntro": {
+    "message": "You can block specific websites or use wildcards (*) to block multiple related sites:",
+    "description": "Help section introduction"
+  },
+  "customDomainsExampleExact": {
+    "message": "Blocks only example.com",
+    "description": "Exact domain example description"
+  },
+  "customDomainsExampleSubdomain": {
+    "message": "Blocks all subdomains (e.g., blog.example.com, shop.example.com)",
+    "description": "Subdomain wildcard example description"
+  },
+  "customDomainsExampleContains": {
+    "message": "Blocks any domain containing 'game' (e.g., games.com, mygame.net)",
+    "description": "Contains wildcard example description"
+  },
+  "customDomainsExampleStartsWith": {
+    "message": "Blocks domains starting with 'news' (e.g., news.com, newsfeed.org)",
+    "description": "Starts with wildcard example description"
+  },
+  "customDomainsHelpTip": {
+    "message": "Tip: URLs are automatically cleaned - you can paste full URLs and ShortShield will extract the domain.",
+    "description": "Help tip about URL handling"
+  },
+  "platformDiscord": {
+    "message": "Discord",
+    "description": "Discord platform name"
+  },
+  "platformPinterest": {
+    "message": "Pinterest",
+    "description": "Pinterest platform name"
+  },
+  "platformTwitch": {
+    "message": "Twitch",
+    "description": "Twitch platform name"
+  },
+  "platformLinkedIn": {
+    "message": "LinkedIn",
+    "description": "LinkedIn platform name"
+  },
+  "platformThreads": {
+    "message": "Threads",
+    "description": "Threads platform name"
+  },
+  "platformSnapchat": {
+    "message": "Snapchat",
+    "description": "Snapchat platform name"
+  },
+  "commitmentLockTitle": {
+    "message": "Commitment Lock",
+    "description": "Title for commitment lock feature"
+  },
+  "commitmentLockDescription": {
+    "message": "Add friction to prevent impulsive unlocking",
+    "description": "Description for commitment lock feature"
+  },
+  "commitmentLockEnabled": {
+    "message": "Enable Commitment Lock",
+    "description": "Label for enabling commitment lock"
+  },
+  "commitmentLockEnabledDescription": {
+    "message": "Require additional steps before unlocking blocked sites",
+    "description": "Description for commitment lock toggle"
+  },
+  "commitmentLockLevel": {
+    "message": "Friction Level",
+    "description": "Label for friction level selection"
+  },
+  "commitmentLockLevelDescription": {
+    "message": "Higher levels make it harder to unlock",
+    "description": "Description for friction level"
+  },
+  "commitmentLockLevel1": {
+    "message": "Level 1: Moderate",
+    "description": "Level 1 option"
+  },
+  "commitmentLockLevel1Description": {
+    "message": "Wait time + intention statement",
+    "description": "Level 1 description"
+  },
+  "commitmentLockLevel2": {
+    "message": "Level 2: Strong",
+    "description": "Level 2 option"
+  },
+  "commitmentLockLevel2Description": {
+    "message": "Challenges + escalating cooldown",
+    "description": "Level 2 description"
+  },
+  "commitmentLockLevel3": {
+    "message": "Level 3: Maximum",
+    "description": "Level 3 option"
+  },
+  "commitmentLockLevel3Description": {
+    "message": "Time lock + weekly limit",
+    "description": "Level 3 description"
+  },
+  "commitmentLockPremiumBadge": {
+    "message": "Premium",
+    "description": "Premium badge text"
+  },
+  "commitmentLockWaitTime": {
+    "message": "Wait Time",
+    "description": "Label for wait time setting"
+  },
+  "commitmentLockWaitTimeDescription": {
+    "message": "Seconds to wait before proceeding",
+    "description": "Description for wait time"
+  },
+  "commitmentLockCooldown": {
+    "message": "Cooldown After Unlock",
+    "description": "Label for cooldown setting"
+  },
+  "commitmentLockCooldownDescription": {
+    "message": "Minutes before next unlock attempt",
+    "description": "Description for cooldown"
+  },
+  "commitmentLockIntention": {
+    "message": "Require Intention Statement",
+    "description": "Label for intention toggle"
+  },
+  "commitmentLockIntentionDescription": {
+    "message": "Must explain why you want to unlock",
+    "description": "Description for intention requirement"
+  },
+  "commitmentLockIntentionMinLength": {
+    "message": "Minimum Intention Length",
+    "description": "Label for intention min length"
+  },
+  "commitmentLockIntentionMinLengthDescription": {
+    "message": "Minimum characters required",
+    "description": "Description for intention min length"
+  },
+  "commitmentLockChallenges": {
+    "message": "Challenge Requirements",
+    "description": "Label for challenge settings"
+  },
+  "commitmentLockChallengesDescription": {
+    "message": "Solve problems to prove intent",
+    "description": "Description for challenges"
+  },
+  "commitmentLockChallengeCount": {
+    "message": "Number of Challenges",
+    "description": "Label for challenge count"
+  },
+  "commitmentLockChallengeCountDescription": {
+    "message": "Challenges to complete",
+    "description": "Description for challenge count"
+  },
+  "commitmentLockConsecutive": {
+    "message": "Must Be Consecutive",
+    "description": "Label for consecutive toggle"
+  },
+  "commitmentLockConsecutiveDescription": {
+    "message": "One wrong answer resets progress",
+    "description": "Description for consecutive requirement"
+  },
+  "commitmentLockEscalating": {
+    "message": "Escalating Cooldown",
+    "description": "Label for escalating cooldown"
+  },
+  "commitmentLockEscalatingDescription": {
+    "message": "Cooldown increases with failures",
+    "description": "Description for escalating cooldown"
+  },
+  "commitmentLockTimeLock": {
+    "message": "Time Lock",
+    "description": "Label for time lock feature"
+  },
+  "commitmentLockTimeLockDescription": {
+    "message": "Lock settings for a period of time",
+    "description": "Description for time lock"
+  },
+  "commitmentLockTimeLockHours": {
+    "message": "Lock Duration (hours)",
+    "description": "Label for time lock duration"
+  },
+  "commitmentLockTimeLockHoursDescription": {
+    "message": "Hours before unlock is possible",
+    "description": "Description for time lock duration"
+  },
+  "commitmentLockWeeklyLimit": {
+    "message": "Weekly Unlock Limit",
+    "description": "Label for weekly limit"
+  },
+  "commitmentLockWeeklyLimitDescription": {
+    "message": "Maximum unlocks per week",
+    "description": "Description for weekly limit"
+  },
+  "commitmentLockNuclear": {
+    "message": "Nuclear Mode",
+    "description": "Label for nuclear mode"
+  },
+  "commitmentLockNuclearDescription": {
+    "message": "Completely disable unlock ability",
+    "description": "Description for nuclear mode"
+  },
+  "commitmentLockPremiumRequired": {
+    "message": "Premium required for Level 3",
+    "description": "Message about premium requirement"
+  },
+  "commitmentLockIntentionTooShort": {
+    "message": "Intention must be at least $1 characters",
+    "description": "Error when intention is too short",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "20"
+      }
+    }
+  },
+  "commitmentLockManyAttempts": {
+    "message": "You've attempted to unlock $1 times today",
+    "description": "Warning about many unlock attempts",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "commitmentLockExplanation": {
+    "message": "Level $1 protection is active. Complete all steps to unlock.",
+    "description": "Explanation of commitment lock level",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "commitmentLockChallengeProgress": {
+    "message": "Challenge $1 of $2",
+    "description": "Challenge progress indicator",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "2"
+      },
+      "2": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "commitmentLockCooldownStarted": {
+    "message": "A $1-minute cooldown has started",
+    "description": "Message when cooldown starts",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "commitmentLockAreYouSure": {
+    "message": "Are you sure you want to unlock?",
+    "description": "Confirmation question"
+  },
+  "commitmentLockNotAllowed": {
+    "message": "Unlock not currently allowed",
+    "description": "Generic not allowed message"
+  },
+  "commitmentLockUnlockSuccess": {
+    "message": "Successfully unlocked!",
+    "description": "Success message"
+  },
+  "commitmentLockUnlockFailed": {
+    "message": "Unlock failed",
+    "description": "Failure message"
+  },
+  "commitmentLockWaitingTitle": {
+    "message": "Please wait...",
+    "description": "Title during waiting period"
+  },
+  "commitmentLockWaitingSeconds": {
+    "message": "$1 seconds remaining",
+    "description": "Countdown during waiting",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "commitmentLockIntentionLabel": {
+    "message": "Why do you need to unlock?",
+    "description": "Label for intention input"
+  },
+  "commitmentLockIntentionPlaceholder": {
+    "message": "Explain your reason for unlocking...",
+    "description": "Placeholder for intention input"
+  },
+  "commitmentLockFinalConfirm": {
+    "message": "Final confirmation: Proceed with unlock?",
+    "description": "Final confirmation message"
+  },
+  "commitmentLockProceed": {
+    "message": "Proceed",
+    "description": "Proceed button text"
+  },
+  "commitmentLockError_cooldown_active": {
+    "message": "Cooldown is still active",
+    "description": "Error: cooldown active"
+  },
+  "commitmentLockError_time_lock_active": {
+    "message": "Time lock is still active",
+    "description": "Error: time lock active"
+  },
+  "commitmentLockError_weekly_limit_reached": {
+    "message": "Weekly unlock limit reached",
+    "description": "Error: weekly limit reached"
+  },
+  "commitmentLockError_challenge_failed": {
+    "message": "Challenge failed",
+    "description": "Error: challenge failed"
+  },
+  "commitmentLockError_nuclear_mode": {
+    "message": "Nuclear mode is active - unlock disabled",
+    "description": "Error: nuclear mode"
+  },
+  "commitmentLockTodayAttempts": {
+    "message": "Today's attempts",
+    "description": "Label for today's attempts"
+  },
+  "commitmentLockWeeklyUnlocks": {
+    "message": "Weekly unlocks remaining",
+    "description": "Label for weekly unlocks remaining"
+  },
+  "commitmentLockWeeklyUnlocksRemaining": {
+    "message": "Weekly unlocks remaining",
+    "description": "Label for weekly unlocks remaining in state display"
+  },
+  "commitmentLockCooldownActive": {
+    "message": "Cooldown is active",
+    "description": "Message when cooldown is active"
+  },
+  "commitmentLockScheduleRestriction": {
+    "message": "Restrict Unlock Hours",
+    "description": "Label for schedule restriction toggle"
+  },
+  "commitmentLockScheduleRestrictionDescription": {
+    "message": "Only allow unlocking during specific hours",
+    "description": "Description for schedule restriction"
+  },
+  "commitmentLockAllowedHours": {
+    "message": "Allowed Hours",
+    "description": "Label for allowed hours setting"
+  },
+  "commitmentLockNuclearConfirm": {
+    "message": "WARNING: Nuclear Mode will completely disable the ability to unlock blocked sites. This cannot be easily undone. Are you absolutely sure?",
+    "description": "Confirmation dialog for nuclear mode"
+  },
+  "commitmentLockNuclearWarning": {
+    "message": "Nuclear Mode is ACTIVE. Unlock is completely disabled!",
+    "description": "Warning when nuclear mode is enabled"
+  },
+  "commitmentLockLevelTitle": {
+    "message": "Protection Level",
+    "description": "Title for level selection section"
+  },
+  "commitmentLockLevel1Name": {
+    "message": "Moderate",
+    "description": "Level 1 name"
+  },
+  "commitmentLockLevel2Name": {
+    "message": "Strong",
+    "description": "Level 2 name"
+  },
+  "commitmentLockLevel3Name": {
+    "message": "Maximum",
+    "description": "Level 3 name"
+  },
+  "commitmentLockBasicSettings": {
+    "message": "Basic Settings",
+    "description": "Title for basic settings section"
+  },
+  "commitmentLockChallengeSettings": {
+    "message": "Challenge Settings",
+    "description": "Title for challenge settings section"
+  },
+  "commitmentLockPremiumSettings": {
+    "message": "Premium Settings",
+    "description": "Title for premium settings section"
+  },
+  "commitmentLockRequireIntention": {
+    "message": "Require Intention Statement",
+    "description": "Label for intention requirement toggle"
+  },
+  "commitmentLockRequireIntentionDescription": {
+    "message": "Must explain why you want to unlock",
+    "description": "Description for intention requirement"
+  },
+  "commitmentLockTimeLockDuration": {
+    "message": "Lock Duration",
+    "description": "Label for time lock duration"
+  },
+  "commitmentLockTimeLockDurationDescription": {
+    "message": "Hours before unlock becomes possible again",
+    "description": "Description for time lock duration"
+  },
+  "commitmentLockInfoTitle": {
+    "message": "How it works",
+    "description": "Title for info section"
+  },
+  "commitmentLockInfo1": {
+    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "description": "Info item 1"
+  },
+  "commitmentLockInfo2": {
+    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "description": "Info item 2"
+  },
+  "commitmentLockInfo3": {
+    "message": "Level 3 Premium features provide maximum self-control",
+    "description": "Info item 3"
+  },
+  "commitmentLockError_outside_allowed_hours": {
+    "message": "Unlock only allowed during scheduled hours",
+    "description": "Error: outside allowed hours"
+  },
+  "upgradeToPremium": {
+    "message": "Upgrade to Premium",
+    "description": "Button text to upgrade to premium"
+  },
+  "seconds": {
+    "message": "seconds",
+    "description": "Unit: seconds"
+  },
+  "characters": {
+    "message": "characters",
+    "description": "Unit: characters"
+  },
+  "questions": {
+    "message": "questions",
+    "description": "Unit: questions"
+  },
+  "timesPerWeek": {
+    "message": "times/week",
+    "description": "Unit: times per week"
+  },
+  "dismiss": {
+    "message": "Dismiss",
+    "description": "Dismiss button"
+  },
+  "goBack": {
+    "message": "Go Back",
+    "description": "Go back button text"
+  },
+  "customDomainBlockTitle": {
+    "message": "ShortShield Active",
+    "description": "Title shown on custom domain block overlay"
+  },
+  "customDomainBlockMessage": {
+    "message": "$DOMAIN$ is blocked to help you stay focused.",
+    "description": "Message shown on custom domain block overlay",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "twitter.com"
+      }
+    }
+  },
+  "customDomainBlockHint": {
+    "message": "You can remove this domain from your block list in ShortShield settings.",
+    "description": "Hint shown on custom domain block overlay"
+  },
+  "dashboardTitle": {
+    "message": "Dashboard",
+    "description": "Dashboard page title"
+  },
+  "dashboardSubtitle": {
+    "message": "Monitor your focus progress",
+    "description": "Dashboard subtitle"
+  },
+  "dashboardEdit": {
+    "message": "Edit",
+    "description": "Dashboard edit button"
+  },
+  "dashboardActivePlatforms": {
+    "message": "Active Platforms",
+    "description": "Dashboard: active platforms section"
+  },
+  "dashboardNoPlatforms": {
+    "message": "No platforms selected",
+    "description": "Dashboard: no platforms message"
+  },
+  "dashboardMore": {
+    "message": "more",
+    "description": "Dashboard more platforms text"
+  },
+  "dashboardQuickActions": {
+    "message": "Quick Actions",
+    "description": "Dashboard: quick actions section"
+  },
+  "dashboardStartFocus": {
+    "message": "Start Focus",
+    "description": "Dashboard: start focus button"
+  },
+  "dashboardFocusDisabledHint": {
+    "message": "Enable Focus Mode in settings to use quick focus",
+    "description": "Dashboard focus disabled hint"
+  },
+  "streakBest": {
+    "message": "Best",
+    "description": "Best streak label"
+  },
+  "scheduleActive": {
+    "message": "Active",
+    "description": "Schedule is currently active"
+  },
+  "scheduleInactive": {
+    "message": "Inactive",
+    "description": "Schedule is currently inactive"
+  },
+  "scheduleDisabled": {
+    "message": "Schedule disabled",
+    "description": "Schedule feature is disabled"
+  },
+  "sidebarDashboard": {
+    "message": "Dashboard",
+    "description": "Sidebar: Dashboard"
+  },
+  "sidebarBlocking": {
+    "message": "Blocking",
+    "description": "Sidebar: Blocking settings"
+  },
+  "sidebarSchedule": {
+    "message": "Schedule",
+    "description": "Sidebar: Schedule settings"
+  },
+  "sidebarProductivity": {
+    "message": "Productivity",
+    "description": "Sidebar: Productivity tools"
+  },
+  "sidebarReports": {
+    "message": "Reports",
+    "description": "Sidebar: Reports"
+  },
+  "sidebarAdvanced": {
+    "message": "Advanced",
+    "description": "Sidebar: Advanced settings"
+  },
+  "sidebarPlatforms": {
+    "message": "Platforms",
+    "description": "Sidebar submenu: Platforms"
+  },
+  "sidebarCustomDomains": {
+    "message": "Custom Domains",
+    "description": "Sidebar submenu: Custom Domains"
+  },
+  "sidebarScheduleConfig": {
+    "message": "Time Schedule",
+    "description": "Sidebar submenu: Schedule configuration"
+  },
+  "sidebarTimeLimits": {
+    "message": "Time Limits",
+    "description": "Sidebar submenu: Time Limits"
+  },
+  "sidebarFocusMode": {
+    "message": "Focus Mode",
+    "description": "Sidebar submenu: Focus Mode"
+  },
+  "sidebarPomodoro": {
+    "message": "Pomodoro",
+    "description": "Sidebar submenu: Pomodoro"
+  },
+  "sidebarStreak": {
+    "message": "Streak",
+    "description": "Sidebar submenu: Streak"
+  },
+  "sidebarChallenge": {
+    "message": "Challenge",
+    "description": "Sidebar submenu: Challenge Mode"
+  },
+  "sidebarLockdown": {
+    "message": "Lockdown",
+    "description": "Sidebar submenu: Lockdown Mode"
+  },
+  "sidebarAppearance": {
+    "message": "Appearance",
+    "description": "Sidebar submenu: Appearance"
+  },
+  "sidebarBackup": {
+    "message": "Backup",
+    "description": "Sidebar submenu: Backup"
+  },
+  "dashboardStatusOn": {
+    "message": "ShortShield is protecting your focus",
+    "description": "Dashboard status when enabled"
+  },
+  "dashboardStatusOff": {
+    "message": "Protection is currently paused",
+    "description": "Dashboard status when disabled"
+  },
+  "dashboardBlockedToday": {
+    "message": "Blocked Today",
+    "description": "Dashboard stat: blocked today"
+  },
+  "dashboardBlockedTotal": {
+    "message": "Total Blocked",
+    "description": "Dashboard stat: total blocked"
+  },
+  "dashboardStreak": {
+    "message": "Streak",
+    "description": "Dashboard stat: streak"
+  },
+  "dashboardManagePlatforms": {
+    "message": "Manage Platforms",
+    "description": "Dashboard: manage platforms link"
+  },
+  "retry": {
+    "message": "Retry",
+    "description": "Retry button text"
+  },
+  "onboardingWelcomeTitle": {
+    "message": "Welcome to ShortShield",
+    "description": "Onboarding: welcome title"
+  },
+  "onboardingWelcomeSubtitle": {
+    "message": "Take control of your digital well-being and reclaim your focus",
+    "description": "Onboarding: welcome subtitle"
+  },
+  "onboardingFeature1": {
+    "message": "Block short-form videos on YouTube, TikTok, Instagram and more",
+    "description": "Onboarding: feature 1"
+  },
+  "onboardingFeature2": {
+    "message": "Set schedules to automatically enable blocking during work hours",
+    "description": "Onboarding: feature 2"
+  },
+  "onboardingFeature3": {
+    "message": "Track your progress with streaks and focus sessions",
+    "description": "Onboarding: feature 3"
+  },
+  "onboardingPlatformTitle": {
+    "message": "Choose Platforms to Block",
+    "description": "Onboarding: platform selection title"
+  },
+  "onboardingPlatformSubtitle": {
+    "message": "Select the platforms where you want to block short-form content",
+    "description": "Onboarding: platform selection subtitle"
+  },
+  "onboardingYouTubeDesc": {
+    "message": "Block YouTube Shorts",
+    "description": "Onboarding: YouTube description"
+  },
+  "onboardingTikTokDesc": {
+    "message": "Block TikTok videos",
+    "description": "Onboarding: TikTok description"
+  },
+  "onboardingInstagramDesc": {
+    "message": "Block Instagram Reels",
+    "description": "Onboarding: Instagram description"
+  },
+  "onboardingPlatformHint": {
+    "message": "You can change these settings anytime",
+    "description": "Onboarding: platform hint"
+  },
+  "onboardingScheduleTitle": {
+    "message": "Set Your Schedule",
+    "description": "Onboarding: schedule title"
+  },
+  "onboardingScheduleSubtitle": {
+    "message": "Choose when ShortShield should protect your focus",
+    "description": "Onboarding: schedule subtitle"
+  },
+  "onboardingScheduleWorkHours": {
+    "message": "Work Hours Only",
+    "description": "Onboarding: work hours option"
+  },
+  "onboardingScheduleWorkHoursDesc": {
+    "message": "Block content during typical work hours (9 AM - 5 PM, weekdays)",
+    "description": "Onboarding: work hours description"
+  },
+  "onboardingScheduleAlways": {
+    "message": "Always Active",
+    "description": "Onboarding: always active option"
+  },
+  "onboardingScheduleAlwaysDesc": {
+    "message": "Block content 24/7 for maximum focus",
+    "description": "Onboarding: always active description"
+  },
+  "onboardingScheduleHint": {
+    "message": "You can customize your schedule in detail later",
+    "description": "Onboarding: schedule hint"
+  },
+  "onboardingCompleteTitle": {
+    "message": "You're All Set!",
+    "description": "Onboarding: complete title"
+  },
+  "onboardingCompleteSubtitle": {
+    "message": "ShortShield is now protecting your focus",
+    "description": "Onboarding: complete subtitle"
+  },
+  "onboardingCompletePlatforms": {
+    "message": "Blocking enabled for:",
+    "description": "Onboarding: complete platforms label"
+  },
+  "onboardingNoPlatforms": {
+    "message": "None selected",
+    "description": "Onboarding: no platforms selected"
+  },
+  "onboardingCompleteSchedule": {
+    "message": "Schedule:",
+    "description": "Onboarding: complete schedule label"
+  },
+  "onboardingCompleteTip": {
+    "message": "Pro tip: Use the popup menu to quickly toggle blocking on/off, or start a focus session when you need extra concentration.",
+    "description": "Onboarding: complete tip"
+  },
+  "onboardingNext": {
+    "message": "Next",
+    "description": "Onboarding: next button"
+  },
+  "onboardingBack": {
+    "message": "Back",
+    "description": "Onboarding: back button"
+  },
+  "onboardingGetStarted": {
+    "message": "Get Started",
+    "description": "Onboarding: get started button"
+  },
+  "onboardingFinish": {
+    "message": "Finish Setup",
+    "description": "Onboarding: finish button"
+  },
+  "popupPlatformsLabel": {
+    "message": "Platforms",
+    "description": "Popup: platforms section label"
+  },
+  "popupScheduleLabel": {
+    "message": "Schedule",
+    "description": "Popup: schedule section label"
+  },
+  "popupFocusLabel": {
+    "message": "Focus",
+    "description": "Popup: focus section label"
+  },
+  "popupPomodoroLabel": {
+    "message": "Pomodoro",
+    "description": "Popup: pomodoro section label"
+  },
+  "popupFocusActive": {
+    "message": "Focus Mode Active",
+    "description": "Popup: focus mode active"
+  },
+  "popupPomodoroActive": {
+    "message": "Pomodoro Active",
+    "description": "Popup: pomodoro active"
+  },
+  "popupStreakLabel": {
+    "message": "day streak",
+    "description": "Popup: streak label"
+  },
+  "optionsTabLanguage": {
+    "message": "Language",
+    "description": "Tab name for language settings"
+  },
+  "languageLabel": {
+    "message": "Display Language",
+    "description": "Label for language selector"
+  },
+  "languageDescription": {
+    "message": "Choose the language for the ShortShield interface",
+    "description": "Description for language settings"
+  },
+  "languageDetected": {
+    "message": "Detected language",
+    "description": "Label for auto-detected language"
+  },
+  "languageReloadNote": {
+    "message": "The page will reload after changing the language to apply the new setting.",
+    "description": "Note about page reload after language change"
+  },
+  "termsOfServiceTitle": {
+    "message": "Terms of Service",
+    "description": "Title for terms of service page"
+  },
+  "privacyPolicyTitle": {
+    "message": "Privacy Policy",
+    "description": "Title for privacy policy page"
+  },
+  "commercialTransactionTitle": {
+    "message": "Commercial Transaction Disclosure",
+    "description": "Title for commercial transaction law page"
+  },
+  "lastUpdated": {
+    "message": "Last updated",
+    "description": "Label for last updated date"
+  },
+  "legalSidebarTitle": {
+    "message": "Legal",
+    "description": "Sidebar section title for legal pages"
+  },
+  "premiumSidebarTitle": {
+    "message": "Premium",
+    "description": "Sidebar section title for premium"
+  },
+  "premiumFeatures": {
+    "message": "Premium Features",
+    "description": "Title for premium features section"
+  },
+  "premiumMonthly": {
+    "message": "Monthly",
+    "description": "Monthly subscription label"
+  },
+  "premiumYearly": {
+    "message": "Yearly",
+    "description": "Yearly subscription label"
+  },
+  "premiumSavings": {
+    "message": "Save 2 months",
+    "description": "Savings text for yearly plan"
+  },
+  "autoRenewalWarning": {
+    "message": "This subscription will automatically renew",
+    "description": "Auto-renewal warning message"
+  },
+  "cancelAnytime": {
+    "message": "Cancel anytime",
+    "description": "Cancel anytime text"
+  },
+  "subscriptionManagement": {
+    "message": "Subscription Management",
+    "description": "Title for subscription management"
+  },
+  "currentPlan": {
+    "message": "Current Plan",
+    "description": "Label for current plan"
+  },
+  "nextBillingDate": {
+    "message": "Next billing date",
+    "description": "Label for next billing date"
+  },
+  "cancelSubscription": {
+    "message": "Cancel Subscription",
+    "description": "Button to cancel subscription"
   }
 }

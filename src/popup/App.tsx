@@ -153,7 +153,7 @@ export function App() {
         skip: 'POMODORO_SKIP',
         stop: 'POMODORO_STOP',
       };
-      // eslint-disable-next-line security/detect-object-injection
+
       const message = createMessage({ type: typeMap[action] });
       const response = await browser.runtime.sendMessage(message);
       if (response?.success === true && response.data !== undefined) {

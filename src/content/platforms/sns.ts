@@ -50,7 +50,7 @@ export class SNSDetector extends BasePlatformDetector {
     super();
     this.snsPlatform = snsPlatform;
     this.platform = snsPlatform;
-    // eslint-disable-next-line security/detect-object-injection -- snsPlatform is typed as SNSPlatform
+
     this.hosts = SNS_CONFIGS[snsPlatform].hosts;
   }
 

@@ -1,4 +1,3 @@
-/* eslint-disable security/detect-object-injection */
 /**
  * React hook for settings management
  */
@@ -78,7 +77,7 @@ export function useSettings(): UseSettingsResult {
     async (update: SettingsUpdate): Promise<void> => {
       try {
         setError(null);
-        console.log('[useSettings] Sending UPDATE_SETTINGS:', update);
+        console.debug('[useSettings] Sending UPDATE_SETTINGS:', update);
 
         const response = await browser.runtime.sendMessage(
           createMessage<UpdateSettingsMessage>({
@@ -87,7 +86,7 @@ export function useSettings(): UseSettingsResult {
           })
         );
 
-        console.log('[useSettings] Received response:', response);
+        console.debug('[useSettings] Received response:', response);
 
         if (
           response !== null &&
@@ -104,7 +103,7 @@ export function useSettings(): UseSettingsResult {
             typedResponse.success === true &&
             typedResponse.data !== undefined
           ) {
-            console.log(
+            console.debug(
               '[useSettings] Settings updated successfully, onboardingCompleted:',
               typedResponse.data.onboardingCompleted
             );

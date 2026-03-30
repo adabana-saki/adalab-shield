@@ -1,4 +1,4 @@
-/* eslint-disable security/detect-unsafe-regex, security/detect-non-literal-regexp */
+/* eslint-disable security/detect-unsafe-regex */
 /**
  * Input validation utilities
  * Security: Validates and sanitizes all user inputs

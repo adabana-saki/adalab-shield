@@ -129,7 +129,6 @@ export function shortsToWatchUrl(shortsUrl: string): string | null {
  */
 export function matchesUrlPattern(url: string, pattern: string): boolean {
   try {
-    // eslint-disable-next-line security/detect-non-literal-regexp
     const regex = new RegExp(pattern);
     const pathname = getPathname(url);
     return pathname !== null && pathname !== '' ? regex.test(pathname) : false;

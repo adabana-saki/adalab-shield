@@ -2283,134 +2283,44 @@
     "message": "プレミアム",
     "description": "Sidebar section title for premium features"
   },
-  "subscriptionTitle": {
-    "message": "サブスクリプション",
-    "description": "Subscription section title"
-  },
-  "subscriptionDescription": {
-    "message": "プレミアム機能を解除してShortShieldの全ての機能をお楽しみください",
-    "description": "Subscription section description"
-  },
-  "subscriptionMonthly": {
-    "message": "月額プラン",
-    "description": "Monthly subscription plan"
-  },
-  "subscriptionYearly": {
-    "message": "年額プラン",
-    "description": "Yearly subscription plan"
-  },
-  "subscriptionSavings": {
-    "message": "$MONTHS$ヶ月分お得",
-    "description": "Savings message for yearly plan",
-    "placeholders": {
-      "months": {
-        "content": "$1",
-        "example": "2"
-      }
-    }
-  },
-  "subscriptionPerMonth": {
-    "message": "月額",
-    "description": "Per month label"
-  },
-  "subscriptionPerYear": {
-    "message": "年額",
-    "description": "Per year label"
-  },
-  "subscriptionTaxIncluded": {
-    "message": "（税込）",
-    "description": "Tax included label"
-  },
-  "subscriptionAutoRenewal": {
-    "message": "自動更新",
-    "description": "Auto-renewal label"
-  },
-  "subscriptionAutoRenewalNotice": {
-    "message": "このサブスクリプションはキャンセルするまで自動更新されます",
-    "description": "Auto-renewal notice"
-  },
-  "subscriptionCancelAnytime": {
-    "message": "いつでもキャンセル可能",
-    "description": "Cancel anytime notice"
-  },
-  "subscriptionAgreeTerms": {
-    "message": "利用規約とプライバシーポリシーに同意する",
-    "description": "Agree to terms checkbox"
-  },
-  "subscriptionAgreeAutoRenewal": {
-    "message": "自動更新に同意する",
-    "description": "Agree to auto-renewal checkbox"
-  },
-  "subscriptionUpgrade": {
-    "message": "プレミアムにアップグレード",
-    "description": "Upgrade to premium button"
-  },
-  "subscriptionManage": {
-    "message": "サブスクリプション管理",
-    "description": "Manage subscription link"
-  },
-  "subscriptionCancel": {
-    "message": "サブスクリプションをキャンセル",
-    "description": "Cancel subscription button"
-  },
-  "subscriptionNextBilling": {
-    "message": "次回請求日",
-    "description": "Next billing date label"
-  },
-  "subscriptionActive": {
-    "message": "有効",
-    "description": "Active subscription status"
-  },
-  "subscriptionCancelled": {
-    "message": "キャンセル済み",
-    "description": "Cancelled subscription status"
-  },
-  "subscriptionExpired": {
-    "message": "期限切れ",
-    "description": "Expired subscription status"
-  },
   "premiumFeatures": {
     "message": "プレミアム機能",
     "description": "Premium features section title"
   },
-  "premiumFeatureUnlimitedPlatforms": {
-    "message": "無制限のプラットフォーム",
-    "description": "Premium feature: unlimited platforms"
+  "premiumMonthly": {
+    "message": "Monthly",
+    "description": "Monthly subscription label"
   },
-  "premiumFeatureAdvancedSchedules": {
-    "message": "高度なスケジュール設定",
-    "description": "Premium feature: advanced schedules"
+  "premiumYearly": {
+    "message": "Yearly",
+    "description": "Yearly subscription label"
   },
-  "premiumFeatureDetailedReports": {
-    "message": "詳細なレポートと分析",
-    "description": "Premium feature: detailed reports"
+  "premiumSavings": {
+    "message": "Save 2 months",
+    "description": "Savings text for yearly plan"
   },
-  "premiumFeaturePrioritySupport": {
-    "message": "優先サポート",
-    "description": "Premium feature: priority support"
+  "autoRenewalWarning": {
+    "message": "This subscription will automatically renew",
+    "description": "Auto-renewal warning message"
   },
-  "refundPolicy": {
-    "message": "返金ポリシー",
-    "description": "Refund policy title"
+  "cancelAnytime": {
+    "message": "Cancel anytime",
+    "description": "Cancel anytime text"
   },
-  "refundPolicyDescription": {
-    "message": "購入後48時間以内はChrome Web Storeのポリシーに従い返金が可能です。",
-    "description": "Refund policy description"
+  "subscriptionManagement": {
+    "message": "Subscription Management",
+    "description": "Title for subscription management"
   },
-  "euCoolingOff": {
-    "message": "EU在住の方は14日間のクーリングオフ権があります",
-    "description": "EU cooling-off period notice"
+  "currentPlan": {
+    "message": "Current Plan",
+    "description": "Label for current plan"
   },
-  "contactSupport": {
-    "message": "サポートに連絡",
-    "description": "Contact support link"
+  "nextBillingDate": {
+    "message": "Next billing date",
+    "description": "Label for next billing date"
   },
-  "supportEmail": {
-    "message": "メールでのお問い合わせ",
-    "description": "Email support label"
-  },
-  "supportResponseTime": {
-    "message": "通常48時間以内に返信いたします",
-    "description": "Support response time notice"
+  "cancelSubscription": {
+    "message": "Cancel Subscription",
+    "description": "Button to cancel subscription"
   }
 }

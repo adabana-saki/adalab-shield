@@ -407,7 +407,6 @@ function matchPattern(pattern: string, pathname: string): boolean {
     .replace(/<<<DOUBLE_STAR>>>/g, '.*')
     .replace(/\//g, '\\/');
 
-  // eslint-disable-next-line security/detect-non-literal-regexp
   const regex = new RegExp(`^${regexPattern}$`);
   return regex.test(pathname);
 }

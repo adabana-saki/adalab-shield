@@ -22,7 +22,9 @@ type Step = 'welcome' | 'platforms' | 'schedule' | 'complete';
 export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
   const { t } = useI18n();
   const [currentStep, setCurrentStep] = useState<Step>('welcome');
-  const [selectedPlatforms, setSelectedPlatforms] = useState<Partial<PlatformSettings>>({
+  const [selectedPlatforms, setSelectedPlatforms] = useState<
+    Partial<PlatformSettings>
+  >({
     youtube: true,
     tiktok: true,
     instagram: true,
@@ -30,7 +32,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
   const [scheduleEnabled, setScheduleEnabled] = useState(false);
 
   const handleNext = () => {
-    console.log('[Onboarding] handleNext called, currentStep:', currentStep);
+    console.debug('[Onboarding] handleNext called, currentStep:', currentStep);
     switch (currentStep) {
       case 'welcome':
         setCurrentStep('platforms');
@@ -42,14 +44,19 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
         setCurrentStep('complete');
         break;
       case 'complete':
-        console.log('[Onboarding] Calling onComplete with:', { platforms: selectedPlatforms, scheduleEnabled });
+        console.debug('[Onboarding] Calling onComplete with:', {
+          platforms: selectedPlatforms,
+          scheduleEnabled,
+        });
         onComplete({
           platforms: selectedPlatforms,
           schedule: scheduleEnabled
             ? {
                 enabled: true,
                 activeDays: [1, 2, 3, 4, 5], // Mon-Fri
-                timeRanges: [{ startHour: 9, startMinute: 0, endHour: 17, endMinute: 0 }],
+                timeRanges: [
+                  { startHour: 9, startMinute: 0, endHour: 17, endMinute: 0 },
+                ],
               }
             : undefined,
         });
@@ -72,7 +79,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
   };
 
   const handleSkip = () => {
-    console.log('[Onboarding] handleSkip called');
+    console.debug('[Onboarding] handleSkip called');
     onComplete({ platforms: selectedPlatforms });
   };
 
@@ -96,7 +103,9 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               }`}
             >
               <div className="onboarding-progress-dot" />
-              {index < steps.length - 1 && <div className="onboarding-progress-line" />}
+              {index < steps.length - 1 && (
+                <div className="onboarding-progress-line" />
+              )}
             </div>
           ))}
         </div>
@@ -109,7 +118,10 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
             <PlatformStep
               selectedPlatforms={selectedPlatforms}
               onPlatformToggle={(platform, enabled) =>
-                setSelectedPlatforms((prev) => ({ ...prev, [platform]: enabled }))
+                setSelectedPlatforms((prev) => ({
+                  ...prev,
+                  [platform]: enabled,
+                }))
               }
             />
           )}

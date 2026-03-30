@@ -54,7 +54,7 @@ export function App() {
     platforms: Partial<PlatformSettings>;
     schedule?: Partial<ScheduleConfig>;
   }) => {
-    console.log(
+    console.debug(
       '[App] handleOnboardingComplete called with:',
       onboardingSettings
     );
@@ -72,7 +72,7 @@ export function App() {
       onboardingCompleted: true,
     })
       .then(() => {
-        console.log('[App] updateSettings completed successfully');
+        console.debug('[App] updateSettings completed successfully');
       })
       .catch((err) => {
         console.error('[App] updateSettings failed:', err);

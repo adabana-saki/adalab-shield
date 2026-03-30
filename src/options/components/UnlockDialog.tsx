@@ -94,7 +94,7 @@ export function UnlockDialog({
       );
       void checkUnlockAllowed();
     }
-  }, [isOpen]);
+  }, [isOpen, checkUnlockAllowed]);
 
   // Countdown timer effect
   useEffect(() => {
@@ -126,9 +126,9 @@ export function UnlockDialog({
       };
     }
     return undefined;
-  }, [step, waitSecondsRemaining, settings.commitmentLock]);
+  }, [step, waitSecondsRemaining, settings.commitmentLock, requestChallenge]);
 
-  const checkUnlockAllowed = async () => {
+  const checkUnlockAllowed = useCallback(async () => {
     setIsLoading(true);
     try {
       const response: {
@@ -170,7 +170,7 @@ export function UnlockDialog({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [t]);
 
   const startUnlock = async () => {
     setIsLoading(true);

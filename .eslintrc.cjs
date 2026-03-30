@@ -41,9 +41,9 @@ module.exports = {
     'no-new-func': 'error',
     'no-script-url': 'error',
     'security/detect-eval-with-expression': 'error',
-    'security/detect-non-literal-regexp': 'warn',
+    'security/detect-non-literal-regexp': 'off', // Too many false positives in i18n/pattern-matching code
     'security/detect-non-literal-fs-filename': 'off', // Not applicable for browser extension
-    'security/detect-object-injection': 'warn',
+    'security/detect-object-injection': 'off', // Too many false positives for typed array/object access in TS
 
     // TypeScript strict rules
     '@typescript-eslint/no-explicit-any': 'error',
@@ -54,7 +54,7 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/await-thenable': 'error',
     '@typescript-eslint/no-misused-promises': 'error',
-    '@typescript-eslint/strict-boolean-expressions': 'warn',
+    '@typescript-eslint/strict-boolean-expressions': 'off', // Too pervasive to enforce retroactively; revisit incrementally
     '@typescript-eslint/no-unused-vars': [
       'error',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
@@ -66,7 +66,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
 
     // Code quality
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': ['warn', { allow: ['warn', 'error', 'debug'] }],
     'no-debugger': 'error',
     'prefer-const': 'error',
     'no-var': 'error',
@@ -84,8 +84,8 @@ module.exports = {
       },
     },
     {
-      // Script files can use console
-      files: ['scripts/**/*'],
+      // Background service worker and scripts use console for operational logging
+      files: ['src/background/**/*', 'scripts/**/*'],
       rules: {
         'no-console': 'off',
       },

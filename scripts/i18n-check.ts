@@ -1,4 +1,3 @@
-/* eslint-disable security/detect-object-injection */
 /**
  * i18n Translation Completeness Check Script
  * Validates that all locales have all required translation keys

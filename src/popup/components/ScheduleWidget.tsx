@@ -52,9 +52,13 @@ export function ScheduleWidget() {
 
   // Format time range for display
   const formatTimeRange = () => {
-    if (schedule.timeRanges.length === 0) {return '';}
+    if (schedule.timeRanges.length === 0) {
+      return '';
+    }
     const range = schedule.timeRanges[0];
-    if (!range) {return '';}
+    if (!range) {
+      return '';
+    }
     const start = `${range.startHour.toString().padStart(2, '0')}:${range.startMinute.toString().padStart(2, '0')}`;
     const end = `${range.endHour.toString().padStart(2, '0')}:${range.endMinute.toString().padStart(2, '0')}`;
     return `${start} - ${end}`;
@@ -65,7 +69,9 @@ export function ScheduleWidget() {
       {/* Schedule toggle */}
       <div className="schedule-widget-header">
         <div className="schedule-widget-status">
-          <span className="schedule-widget-label">{t('popupScheduleStatus')}</span>
+          <span className="schedule-widget-label">
+            {t('popupScheduleStatus')}
+          </span>
           <span
             className={`schedule-widget-badge ${schedule.enabled ? 'active' : 'inactive'}`}
           >
@@ -85,14 +91,11 @@ export function ScheduleWidget() {
       {schedule.enabled && (
         <>
           {/* Time range display */}
-          <div className="schedule-widget-time">
-            {formatTimeRange()}
-          </div>
+          <div className="schedule-widget-time">{formatTimeRange()}</div>
 
           {/* Day selector */}
           <div className="schedule-widget-days">
             {DAYS_OF_WEEK.map((day) => {
-              // eslint-disable-next-line security/detect-object-injection -- safe lookup with DayOfWeek literal type
               const dayKey = DAY_KEYS[day];
               const isSelected = schedule.activeDays.includes(day);
               return (

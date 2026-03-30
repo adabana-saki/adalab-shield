@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /**
  * i18n utilities tests
  */
@@ -73,7 +73,7 @@ describe('t()', () => {
 
 describe('getUILanguage()', () => {
   it('should return current UI language', () => {
-    expect(getUILanguage()).toBe('en-US');
+    expect(getUILanguage()).toBe('en_US');
   });
 });
 

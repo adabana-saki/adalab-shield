@@ -182,7 +182,6 @@ export function Schedule() {
             <h3>{t('scheduleActiveDays')}</h3>
             <div className="day-checkboxes">
               {DAYS_OF_WEEK.map((day) => {
-                // eslint-disable-next-line security/detect-object-injection -- safe lookup with DayOfWeek literal type
                 const dayKey = DAY_KEYS[day];
                 return (
                   <label key={day} className="day-checkbox">
