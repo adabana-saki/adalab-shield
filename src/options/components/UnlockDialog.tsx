@@ -77,57 +77,6 @@ export function UnlockDialog({
     };
   }, []);
 
-  // Reset state when dialog opens
-  useEffect(() => {
-    if (isOpen) {
-      setStep('initial');
-      setWaitSecondsRemaining(0);
-      setIntentionText('');
-      setChallengeProgress({ current: 0, total: 0, correctCount: 0 });
-      setCurrentChallenge(null);
-      setChallengeAnswer('');
-      setError(null);
-      setQuote(
-        MOTIVATIONAL_QUOTES[
-          Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)
-        ] ?? ''
-      );
-      void checkUnlockAllowed();
-    }
-  }, [isOpen, checkUnlockAllowed]);
-
-  // Countdown timer effect
-  useEffect(() => {
-    if (step === 'waiting' && waitSecondsRemaining > 0) {
-      timerRef.current = setInterval(() => {
-        setWaitSecondsRemaining((prev) => {
-          if (prev <= 1) {
-            if (timerRef.current) {
-              clearInterval(timerRef.current);
-            }
-            // Move to next step based on level
-            if (settings.commitmentLock.requireIntentionStatement) {
-              setStep('intention');
-            } else if (settings.commitmentLock.level >= 2) {
-              void requestChallenge();
-            } else {
-              setStep('final_confirm');
-            }
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-
-      return () => {
-        if (timerRef.current) {
-          clearInterval(timerRef.current);
-        }
-      };
-    }
-    return undefined;
-  }, [step, waitSecondsRemaining, settings.commitmentLock, requestChallenge]);
-
   const checkUnlockAllowed = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -171,6 +120,91 @@ export function UnlockDialog({
       setIsLoading(false);
     }
   }, [t]);
+
+  // Reset state when dialog opens
+  useEffect(() => {
+    if (isOpen) {
+      setStep('initial');
+      setWaitSecondsRemaining(0);
+      setIntentionText('');
+      setChallengeProgress({ current: 0, total: 0, correctCount: 0 });
+      setCurrentChallenge(null);
+      setChallengeAnswer('');
+      setError(null);
+      setQuote(
+        MOTIVATIONAL_QUOTES[
+          Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)
+        ] ?? ''
+      );
+      void checkUnlockAllowed();
+    }
+  }, [isOpen, checkUnlockAllowed]);
+
+  const requestChallenge = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    setChallengeAnswer('');
+
+    try {
+      const response: {
+        success: boolean;
+        data?: ChallengeData;
+        error?: string;
+      } = await browser.runtime.sendMessage({
+        type: 'COMMITMENT_LOCK_REQUEST_CHALLENGE',
+        timestamp: Date.now(),
+      });
+
+      if (response.success === true && response.data !== null) {
+        setCurrentChallenge(response.data);
+        setChallengeProgress((prev) => ({
+          ...prev,
+          current: prev.current + 1,
+          total: settings.commitmentLock.challengeCount,
+        }));
+        setStep('challenges');
+      } else {
+        setError(response.error || t('commitmentLockErrorChallenge'));
+      }
+    } catch (err) {
+      console.error('Failed to request challenge:', err);
+      setError(t('commitmentLockErrorChallenge'));
+    } finally {
+      setIsLoading(false);
+    }
+  }, [settings.commitmentLock.challengeCount, t]);
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (step === 'waiting' && waitSecondsRemaining > 0) {
+      timerRef.current = setInterval(() => {
+        setWaitSecondsRemaining((prev) => {
+          if (prev <= 1) {
+            if (timerRef.current) {
+              clearInterval(timerRef.current);
+            }
+            // Move to next step based on level
+            if (settings.commitmentLock.requireIntentionStatement) {
+              setStep('intention');
+            } else if (settings.commitmentLock.level >= 2) {
+              void requestChallenge();
+            } else {
+              setStep('final_confirm');
+            }
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => {
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+        }
+      };
+    }
+    return undefined;
+  }, [step, waitSecondsRemaining, settings.commitmentLock, requestChallenge]);
 
   const startUnlock = async () => {
     setIsLoading(true);
@@ -243,40 +277,6 @@ export function UnlockDialog({
     }
   };
 
-  const requestChallenge = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    setChallengeAnswer('');
-
-    try {
-      const response: {
-        success: boolean;
-        data?: ChallengeData;
-        error?: string;
-      } = await browser.runtime.sendMessage({
-        type: 'COMMITMENT_LOCK_REQUEST_CHALLENGE',
-        timestamp: Date.now(),
-      });
-
-      if (response.success === true && response.data !== null) {
-        setCurrentChallenge(response.data);
-        setChallengeProgress((prev) => ({
-          ...prev,
-          current: prev.current + 1,
-          total: settings.commitmentLock.challengeCount,
-        }));
-        setStep('challenges');
-      } else {
-        setError(response.error || t('commitmentLockErrorChallenge'));
-      }
-    } catch (err) {
-      console.error('Failed to request challenge:', err);
-      setError(t('commitmentLockErrorChallenge'));
-    } finally {
-      setIsLoading(false);
-    }
-  }, [settings.commitmentLock.challengeCount, t]);
-
   const submitChallenge = async () => {
     if (!challengeAnswer.trim()) {
       setError(t('commitmentLockAnswerRequired'));
@@ -313,7 +313,7 @@ export function UnlockDialog({
 
           if (response.data.allCompleted) {
             setStep('final_confirm');
-          } else if (response.data.nextChallenge !== null) {
+          } else if (response.data.nextChallenge !== undefined) {
             setCurrentChallenge(response.data.nextChallenge);
             setChallengeAnswer('');
             setChallengeProgress((prev) => ({
@@ -337,7 +337,7 @@ export function UnlockDialog({
             setError(t('commitmentLockWrongAnswer'));
             setChallengeAnswer('');
             // Get next challenge
-            if (response.data.nextChallenge !== null) {
+            if (response.data.nextChallenge !== undefined) {
               setCurrentChallenge(response.data.nextChallenge);
               setChallengeProgress((prev) => ({
                 ...prev,
