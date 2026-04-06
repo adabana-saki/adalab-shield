@@ -53,9 +53,9 @@ export function App() {
   const fetchFocusState = useCallback(async () => {
     try {
       const message = createMessage({ type: 'FOCUS_GET_STATE' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: { success: boolean; data?: FocusModeState } =
+        await browser.runtime.sendMessage(message);
       if (response?.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setFocusState(response.data);
       }
     } catch {
@@ -66,9 +66,9 @@ export function App() {
   const fetchPomodoroState = useCallback(async () => {
     try {
       const message = createMessage({ type: 'POMODORO_GET_STATE' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: { success: boolean; data?: PomodoroState } =
+        await browser.runtime.sendMessage(message);
       if (response?.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setPomodoroState(response.data);
       }
     } catch {
@@ -79,9 +79,9 @@ export function App() {
   const fetchStreakData = useCallback(async () => {
     try {
       const message = createMessage({ type: 'STREAK_GET_DATA' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: { success: boolean; data?: StreakData } =
+        await browser.runtime.sendMessage(message);
       if (response?.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setStreakData(response.data);
       }
     } catch {
@@ -92,9 +92,9 @@ export function App() {
   const fetchTimeUsage = useCallback(async () => {
     try {
       const message = createMessage({ type: 'TIME_GET_USAGE' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: { success: boolean; data?: TimeLimitsState } =
+        await browser.runtime.sendMessage(message);
       if (response?.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setTimeLimitsState(response.data);
       }
     } catch {
@@ -130,9 +130,9 @@ export function App() {
   const handleCancelFocus = async () => {
     try {
       const message = createMessage({ type: 'FOCUS_CANCEL' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: { success: boolean; data?: FocusModeState } =
+        await browser.runtime.sendMessage(message);
       if (response?.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setFocusState(response.data);
       }
     } catch {
@@ -155,9 +155,9 @@ export function App() {
       };
 
       const message = createMessage({ type: typeMap[action] });
-      const response = await browser.runtime.sendMessage(message);
+      const response: { success: boolean; data?: PomodoroState } =
+        await browser.runtime.sendMessage(message);
       if (response?.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setPomodoroState(response.data);
       }
     } catch {

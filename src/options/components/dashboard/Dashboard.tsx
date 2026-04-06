@@ -13,6 +13,7 @@ import type {
   TimeLimitsState,
   TimeTrackingState,
   TimeGetHistoryMessage,
+  MessageResponse,
 } from '@/shared/types';
 import {
   DEFAULT_FOCUS_STATE,
@@ -53,9 +54,9 @@ export function Dashboard({
   const fetchFocusState = useCallback(async () => {
     try {
       const message = createMessage({ type: 'FOCUS_GET_STATE' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: MessageResponse<FocusModeState> =
+        await browser.runtime.sendMessage(message);
       if (response.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setFocusState(response.data);
       }
     } catch {
@@ -66,9 +67,9 @@ export function Dashboard({
   const fetchStreakData = useCallback(async () => {
     try {
       const message = createMessage({ type: 'STREAK_GET_DATA' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: MessageResponse<StreakData> =
+        await browser.runtime.sendMessage(message);
       if (response.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setStreakData(response.data);
       }
     } catch {
@@ -79,9 +80,9 @@ export function Dashboard({
   const fetchTimeUsage = useCallback(async () => {
     try {
       const message = createMessage({ type: 'TIME_GET_USAGE' as const });
-      const response = await browser.runtime.sendMessage(message);
+      const response: MessageResponse<TimeLimitsState> =
+        await browser.runtime.sendMessage(message);
       if (response.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setTimeLimitsState(response.data);
       }
     } catch {
@@ -95,9 +96,9 @@ export function Dashboard({
         type: 'TIME_GET_HISTORY',
         payload: { days: 7 },
       });
-      const response = await browser.runtime.sendMessage(message);
+      const response: MessageResponse<TimeTrackingState> =
+        await browser.runtime.sendMessage(message);
       if (response.success === true && response.data !== undefined) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         setTimeHistory(response.data);
       }
     } catch {

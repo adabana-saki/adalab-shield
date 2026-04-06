@@ -77,6 +77,50 @@ export function UnlockDialog({
     };
   }, []);
 
+  const checkUnlockAllowed = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response: {
+        success: boolean;
+        data?: UnlockCheckResult;
+        error?: string;
+      } = await browser.runtime.sendMessage({
+        type: 'COMMITMENT_LOCK_CHECK_UNLOCK',
+        timestamp: Date.now(),
+      });
+
+      if (response.success === true && response.data !== undefined) {
+        if (!response.data.allowed) {
+          setError(
+            t(`commitmentLockError_${response.data.reason}`) ||
+              response.data.message ||
+              t('commitmentLockNotAllowed')
+          );
+          setStep('failed');
+        }
+      }
+
+      // Also get current state
+      const stateResponse: {
+        success: boolean;
+        data?: CommitmentLockState;
+        error?: string;
+      } = await browser.runtime.sendMessage({
+        type: 'COMMITMENT_LOCK_GET_STATE',
+        timestamp: Date.now(),
+      });
+
+      if (stateResponse.success === true && stateResponse.data !== undefined) {
+        setLockState(stateResponse.data);
+      }
+    } catch (err) {
+      console.error('Failed to check unlock:', err);
+      setError(t('commitmentLockErrorCheck'));
+    } finally {
+      setIsLoading(false);
+    }
+  }, [t]);
+
   // Reset state when dialog opens
   useEffect(() => {
     if (isOpen) {
@@ -95,6 +139,40 @@ export function UnlockDialog({
       void checkUnlockAllowed();
     }
   }, [isOpen, checkUnlockAllowed]);
+
+  const requestChallenge = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    setChallengeAnswer('');
+
+    try {
+      const response: {
+        success: boolean;
+        data?: ChallengeData;
+        error?: string;
+      } = await browser.runtime.sendMessage({
+        type: 'COMMITMENT_LOCK_REQUEST_CHALLENGE',
+        timestamp: Date.now(),
+      });
+
+      if (response.success === true && response.data !== undefined) {
+        setCurrentChallenge(response.data);
+        setChallengeProgress((prev) => ({
+          ...prev,
+          current: prev.current + 1,
+          total: settings.commitmentLock.challengeCount,
+        }));
+        setStep('challenges');
+      } else {
+        setError(response.error || t('commitmentLockErrorChallenge'));
+      }
+    } catch (err) {
+      console.error('Failed to request challenge:', err);
+      setError(t('commitmentLockErrorChallenge'));
+    } finally {
+      setIsLoading(false);
+    }
+  }, [settings.commitmentLock.challengeCount, t]);
 
   // Countdown timer effect
   useEffect(() => {
@@ -128,50 +206,6 @@ export function UnlockDialog({
     return undefined;
   }, [step, waitSecondsRemaining, settings.commitmentLock, requestChallenge]);
 
-  const checkUnlockAllowed = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response: {
-        success: boolean;
-        data?: UnlockCheckResult;
-        error?: string;
-      } = await browser.runtime.sendMessage({
-        type: 'COMMITMENT_LOCK_CHECK_UNLOCK',
-        timestamp: Date.now(),
-      });
-
-      if (response.success === true && response.data !== null) {
-        if (!response.data.allowed) {
-          setError(
-            t(`commitmentLockError_${response.data.reason}`) ||
-              response.data.message ||
-              t('commitmentLockNotAllowed')
-          );
-          setStep('failed');
-        }
-      }
-
-      // Also get current state
-      const stateResponse: {
-        success: boolean;
-        data?: CommitmentLockState;
-        error?: string;
-      } = await browser.runtime.sendMessage({
-        type: 'COMMITMENT_LOCK_GET_STATE',
-        timestamp: Date.now(),
-      });
-
-      if (stateResponse.success === true && stateResponse.data !== null) {
-        setLockState(stateResponse.data);
-      }
-    } catch (err) {
-      console.error('Failed to check unlock:', err);
-      setError(t('commitmentLockErrorCheck'));
-    } finally {
-      setIsLoading(false);
-    }
-  }, [t]);
-
   const startUnlock = async () => {
     setIsLoading(true);
     setError(null);
@@ -186,7 +220,7 @@ export function UnlockDialog({
         timestamp: Date.now(),
       });
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setWaitSecondsRemaining(
           response.data.waitSecondsRemaining ||
             settings.commitmentLock.confirmationWaitSeconds
@@ -243,40 +277,6 @@ export function UnlockDialog({
     }
   };
 
-  const requestChallenge = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-    setChallengeAnswer('');
-
-    try {
-      const response: {
-        success: boolean;
-        data?: ChallengeData;
-        error?: string;
-      } = await browser.runtime.sendMessage({
-        type: 'COMMITMENT_LOCK_REQUEST_CHALLENGE',
-        timestamp: Date.now(),
-      });
-
-      if (response.success === true && response.data !== null) {
-        setCurrentChallenge(response.data);
-        setChallengeProgress((prev) => ({
-          ...prev,
-          current: prev.current + 1,
-          total: settings.commitmentLock.challengeCount,
-        }));
-        setStep('challenges');
-      } else {
-        setError(response.error || t('commitmentLockErrorChallenge'));
-      }
-    } catch (err) {
-      console.error('Failed to request challenge:', err);
-      setError(t('commitmentLockErrorChallenge'));
-    } finally {
-      setIsLoading(false);
-    }
-  }, [settings.commitmentLock.challengeCount, t]);
-
   const submitChallenge = async () => {
     if (!challengeAnswer.trim()) {
       setError(t('commitmentLockAnswerRequired'));
@@ -302,7 +302,7 @@ export function UnlockDialog({
         payload: { answer: challengeAnswer },
       });
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setLockState(response.data.state);
 
         if (response.data.correct) {
@@ -313,7 +313,7 @@ export function UnlockDialog({
 
           if (response.data.allCompleted) {
             setStep('final_confirm');
-          } else if (response.data.nextChallenge !== null) {
+          } else if (response.data.nextChallenge !== undefined) {
             setCurrentChallenge(response.data.nextChallenge);
             setChallengeAnswer('');
             setChallengeProgress((prev) => ({
@@ -337,7 +337,7 @@ export function UnlockDialog({
             setError(t('commitmentLockWrongAnswer'));
             setChallengeAnswer('');
             // Get next challenge
-            if (response.data.nextChallenge !== null) {
+            if (response.data.nextChallenge !== undefined) {
               setCurrentChallenge(response.data.nextChallenge);
               setChallengeProgress((prev) => ({
                 ...prev,

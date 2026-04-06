@@ -43,7 +43,7 @@ export function QuickActions({
         data?: FocusModeState;
         error?: string;
       } = await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         onFocusStateChange(response.data);
       }
     } catch {
@@ -68,7 +68,7 @@ export function QuickActions({
         data?: FocusModeState;
         error?: string;
       } = await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         onFocusStateChange(response.data);
       }
     } catch {

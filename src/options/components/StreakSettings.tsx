@@ -21,7 +21,7 @@ export function StreakSettings() {
       const message = createMessage({ type: 'STREAK_GET_DATA' as const });
       const response: { success: boolean; data?: StreakData; error?: string } =
         await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setStreakData(response.data);
       }
     } catch (error) {
@@ -97,7 +97,7 @@ export function StreakSettings() {
       const message = createMessage({ type: 'STREAK_RESET' as const });
       const response: { success: boolean; data?: StreakData; error?: string } =
         await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setStreakData(response.data);
       }
     } catch (error) {

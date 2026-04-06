@@ -46,7 +46,7 @@ export function FocusButton({
         error?: string;
       } = await browser.runtime.sendMessage(message);
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         onStateChange(response.data);
       } else {
         setError(response.error ?? 'Failed to start focus mode');
@@ -73,7 +73,7 @@ export function FocusButton({
         error?: string;
       } = await browser.runtime.sendMessage(message);
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         onStateChange(response.data);
       } else {
         setError(response.error ?? 'Failed to cancel focus mode');
