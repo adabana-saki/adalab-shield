@@ -80,7 +80,7 @@ export function PomodoroTimer({
         data?: PomodoroState;
         error?: string;
       } = await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         onStateChange(response.data);
       }
     } catch {

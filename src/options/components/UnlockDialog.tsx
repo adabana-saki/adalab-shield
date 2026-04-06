@@ -89,7 +89,7 @@ export function UnlockDialog({
         timestamp: Date.now(),
       });
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         if (!response.data.allowed) {
           setError(
             t(`commitmentLockError_${response.data.reason}`) ||
@@ -110,7 +110,7 @@ export function UnlockDialog({
         timestamp: Date.now(),
       });
 
-      if (stateResponse.success === true && stateResponse.data !== null) {
+      if (stateResponse.success === true && stateResponse.data !== undefined) {
         setLockState(stateResponse.data);
       }
     } catch (err) {
@@ -155,7 +155,7 @@ export function UnlockDialog({
         timestamp: Date.now(),
       });
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setCurrentChallenge(response.data);
         setChallengeProgress((prev) => ({
           ...prev,
@@ -220,7 +220,7 @@ export function UnlockDialog({
         timestamp: Date.now(),
       });
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setWaitSecondsRemaining(
           response.data.waitSecondsRemaining ||
             settings.commitmentLock.confirmationWaitSeconds
@@ -302,7 +302,7 @@ export function UnlockDialog({
         payload: { answer: challengeAnswer },
       });
 
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setLockState(response.data.state);
 
         if (response.data.correct) {

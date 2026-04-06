@@ -58,7 +58,7 @@ export function TimeReports() {
         data?: TimeTrackingState;
         error?: string;
       } = await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         setHistory(response.data);
       }
     } catch (error) {

@@ -59,7 +59,7 @@ export function FocusLauncher({
         data?: FocusModeState;
         error?: string;
       } = await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         onFocusStateChange(response.data);
       }
     } catch {
@@ -85,7 +85,7 @@ export function FocusLauncher({
         data?: PomodoroState;
         error?: string;
       } = await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== null) {
+      if (response.success === true && response.data !== undefined) {
         onPomodoroStateChange(response.data);
       }
     } catch {

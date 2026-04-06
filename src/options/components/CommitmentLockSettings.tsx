@@ -47,7 +47,7 @@ export function CommitmentLockSettings() {
           timestamp: Date.now(),
         });
 
-      if (lockResponse.success === true && lockResponse.data !== null) {
+      if (lockResponse.success === true && lockResponse.data !== undefined) {
         setCommitmentLockState(lockResponse.data);
       }
 
@@ -58,7 +58,10 @@ export function CommitmentLockSettings() {
           timestamp: Date.now(),
         });
 
-      if (premiumResponse.success === true && premiumResponse.data !== null) {
+      if (
+        premiumResponse.success === true &&
+        premiumResponse.data !== undefined
+      ) {
         setPremiumState(premiumResponse.data);
       }
     } catch (err) {
