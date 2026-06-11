@@ -84,6 +84,8 @@ export const MESSAGE_TYPES = [
   // Premium messages
   'PREMIUM_GET_STATE',
   'PREMIUM_CHECK_FEATURE',
+  // adalab study integration (external pomodoro sync)
+  'ADALAB_SYNC',
 ] as const;
 
 export type MessageType = (typeof MESSAGE_TYPES)[number];
@@ -489,6 +491,26 @@ export interface PremiumCheckFeatureMessage extends BaseMessage<'PREMIUM_CHECK_F
 }
 
 /**
+ * Phases reported by the adalab study web app timer
+ */
+export type AdalabPhase = 'work' | 'short_break' | 'long_break' | 'idle';
+
+/**
+ * ADALAB_SYNC message to mirror the adalab study pomodoro timer.
+ * Sent by the content script bridge running on the adalab study web app.
+ * Work phase keeps blocking active; break phases unblock content.
+ */
+export interface AdalabSyncMessage extends BaseMessage<'ADALAB_SYNC'> {
+  readonly type: 'ADALAB_SYNC';
+  readonly payload: {
+    readonly phase: AdalabPhase;
+    readonly running: boolean;
+    /** Unix epoch ms when the current phase ends (null when idle) */
+    readonly endTime: number | null;
+  };
+}
+
+/**
  * Union type for all messages
  */
 export type Message =
@@ -538,7 +560,8 @@ export type Message =
   | CommitmentLockGetStatsMessage
   | CommitmentLockResetStateMessage
   | PremiumGetStateMessage
-  | PremiumCheckFeatureMessage;
+  | PremiumCheckFeatureMessage
+  | AdalabSyncMessage;
 
 /**
  * Response structure
@@ -693,6 +716,9 @@ export type CommitmentLockResetStateResponse =
 export type PremiumGetStateResponse = MessageResponse<PremiumState>;
 export type PremiumCheckFeatureResponse =
   MessageResponse<PremiumFeatureCheckResult>;
+
+// adalab study integration response types
+export type AdalabSyncResponse = MessageResponse<PomodoroState>;
 
 /**
  * Type guard for Message validation

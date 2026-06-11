@@ -193,6 +193,10 @@ export type {
   // Premium responses
   PremiumGetStateResponse,
   PremiumCheckFeatureResponse,
+  // adalab study integration
+  AdalabPhase,
+  AdalabSyncMessage,
+  AdalabSyncResponse,
 } from './messages';
 
 export {
