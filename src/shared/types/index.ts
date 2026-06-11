@@ -197,6 +197,11 @@ export type {
   AdalabPhase,
   AdalabSyncMessage,
   AdalabSyncResponse,
+  AdalabTaskInfo,
+  AdalabAppState,
+  AdalabCommandAction,
+  AdalabCommandRequest,
+  AdalabCommandResponse,
 } from './messages';
 
 export {

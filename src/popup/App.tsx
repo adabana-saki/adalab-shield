@@ -21,6 +21,7 @@ import {
   DEFAULT_TIME_LIMITS_STATE,
 } from '@/shared/constants';
 import { ActiveTimerWidget } from './components/ActiveTimerWidget';
+import { AdalabWidget } from './components/AdalabWidget';
 import { ActiveWatchingWidget } from './components/ActiveWatchingWidget';
 import { CompactStats } from './components/CompactStats';
 import { PlatformGrid } from './components/PlatformGrid';
@@ -267,6 +268,9 @@ export function App() {
 
         {/* Active Watching Widget - shows when actively viewing a platform */}
         <ActiveWatchingWidget activeUsage={activeUsage} />
+
+        {/* adalab study remote control - shows when an adalab tab is open */}
+        <AdalabWidget />
 
         {/* Stats Row */}
         <CompactStats
