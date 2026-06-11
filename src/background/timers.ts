@@ -548,6 +548,57 @@ export async function skipPomodoro(): Promise<PomodoroState> {
 }
 
 /**
+ * Mirror an external pomodoro timer (adalab study web app).
+ * The external app is the source of truth: work keeps blocking active,
+ * break/longBreak unblock content, idle resets to the default state.
+ */
+export async function syncExternalPomodoro(payload: {
+  readonly phase: 'work' | 'short_break' | 'long_break' | 'idle';
+  readonly running: boolean;
+  readonly endTime: number | null;
+}): Promise<PomodoroState> {
+  const currentState = await getPomodoroState();
+
+  if (!payload.running || payload.phase === 'idle') {
+    await browser.alarms.clear(ALARM_NAMES.POMODORO_END);
+    const idleState: PomodoroState = {
+      ...DEFAULT_POMODORO_STATE,
+      sessionCount: currentState.sessionCount,
+    };
+    await savePomodoroState(idleState);
+    logger.info('External pomodoro sync: idle');
+    return idleState;
+  }
+
+  const mode: PomodoroMode =
+    payload.phase === 'work'
+      ? 'work'
+      : payload.phase === 'short_break'
+        ? 'break'
+        : 'longBreak';
+
+  const now = Date.now();
+  const endTime = payload.endTime ?? now;
+  const timeRemainingMs = Math.max(0, endTime - now);
+
+  const newState: PomodoroState = {
+    isRunning: true,
+    mode,
+    timeRemainingMs,
+    sessionCount: currentState.sessionCount,
+    startedAt: now,
+    endTime,
+  };
+
+  // Keep the end alarm so the phase resolves even if the adalab tab closes
+  await browser.alarms.create(ALARM_NAMES.POMODORO_END, { when: endTime });
+  await savePomodoroState(newState);
+
+  logger.info('External pomodoro sync', { mode, timeRemainingMs });
+  return newState;
+}
+
+/**
  * Handle pomodoro timer completion
  */
 async function handlePomodoroComplete(

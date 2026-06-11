@@ -54,6 +54,7 @@ import type {
   CommitmentLockResetStateResponse,
   PremiumGetStateResponse,
   PremiumCheckFeatureResponse,
+  AdalabSyncResponse,
 } from '@/shared/types';
 import { isValidMessage, isMessageType } from '@/shared/types';
 import { getSettings, updateSettings } from '@/shared/utils';
@@ -64,6 +65,7 @@ import {
   cancelFocusMode,
   extendFocusMode,
   getPomodoroState,
+  syncExternalPomodoro,
   startPomodoro,
   pausePomodoro,
   resumePomodoro,
@@ -257,6 +259,21 @@ async function handleFocusExtend(
     return { success: true, data: state };
   } catch (error) {
     logger.error('Failed to extend focus mode', { error: String(error) });
+    return { success: false, error: String(error) };
+  }
+}
+
+/**
+ * Handle ADALAB_SYNC message (mirror the adalab study pomodoro timer)
+ */
+async function handleAdalabSync(
+  message: Extract<Message, { type: 'ADALAB_SYNC' }>
+): Promise<AdalabSyncResponse> {
+  try {
+    const state = await syncExternalPomodoro(message.payload);
+    return { success: true, data: state };
+  } catch (error) {
+    logger.error('Failed to sync adalab pomodoro', { error: String(error) });
     return { success: false, error: String(error) };
   }
 }
@@ -900,6 +917,12 @@ async function handleMessage(
 
     case 'POMODORO_GET_STATE':
       return handlePomodoroGetState();
+
+    case 'ADALAB_SYNC':
+      if (isMessageType(message, 'ADALAB_SYNC')) {
+        return handleAdalabSync(message);
+      }
+      break;
 
     case 'TIME_TRACK_ACTIVITY':
       if (isMessageType(message, 'TIME_TRACK_ACTIVITY')) {

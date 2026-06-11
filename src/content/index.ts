@@ -11,6 +11,7 @@ import {
   getAllDetectors,
 } from './platforms';
 import { createManagedObserver } from './observer';
+import { initAdalabBridge } from './adalabBridge';
 import { createLogger } from '@/shared/utils/logger';
 import { createMessage } from '@/shared/types';
 import { STORAGE_KEYS } from '@/shared/constants';
@@ -102,6 +103,9 @@ async function initialize(): Promise<void> {
 
   const hostname = window.location.hostname;
   logger.debug('Initializing content script', { hostname });
+
+  // adalab study integration (only active on the adalab study app)
+  initAdalabBridge();
 
   // Get settings first (needed for custom domains)
   const settings = await getSettingsSafely();
