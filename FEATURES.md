@@ -1,6 +1,6 @@
-# ShortShield Features
+# adalab shield Features
 
-Complete guide to all features in ShortShield.
+Complete guide to all features in adalab shield.
 
 ---
 
@@ -15,7 +15,8 @@ Block short-form videos across major platforms:
 - **Instagram Reels** - Hides Reels tab and blocks Reels content
 
 **How to use:**
-1. Click ShortShield icon in toolbar
+
+1. Click adalab shield icon in toolbar
 2. Toggle platforms on/off individually
 3. Changes apply instantly
 
@@ -46,6 +47,7 @@ Add any website to your block list:
 - Enable/disable anytime
 
 **Use cases:**
+
 - Block news sites during work hours
 - Block gaming sites when studying
 - Block any distraction-prone website
@@ -57,6 +59,7 @@ Add any website to your block list:
 Allow specific content while blocking everything else:
 
 **Types:**
+
 - **Channel** - Allow specific YouTube channels
 - **URL** - Allow specific video/post URLs
 - **Domain** - Allow entire domains
@@ -76,6 +79,7 @@ Advanced users can add custom CSS selectors to block:
 ```
 
 **When to use:**
+
 - Platform updates break default blocking
 - You want to block specific UI elements
 - You need more granular control
@@ -89,6 +93,7 @@ Advanced users can add custom CSS selectors to block:
 **One-click distraction blocking for deep work.**
 
 **Durations:**
+
 - 30 minutes - Quick focus session
 - 60 minutes - Standard deep work block
 - 120 minutes - Extended focus time
@@ -97,6 +102,7 @@ Advanced users can add custom CSS selectors to block:
 When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents impulsive disabling.
 
 **How it works:**
+
 1. Click "Focus" in popup
 2. Select duration
 3. All enabled platforms are blocked
@@ -104,6 +110,7 @@ When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents
 5. Notification when session ends
 
 **Perfect for:**
+
 - Writing/coding sessions
 - Studying for exams
 - Important meetings
@@ -116,11 +123,13 @@ When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents
 **Classic 25/5 work/break technique built-in.**
 
 **Default settings:**
+
 - 25 min work sessions
 - 5 min short breaks
 - 15 min long breaks (after 4 sessions)
 
 **Features:**
+
 - Auto-start work sessions after breaks
 - Auto-start breaks after work sessions
 - Sound notifications (optional)
@@ -128,6 +137,7 @@ When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents
 - Session counter
 
 **How to use:**
+
 1. Open popup → Pomodoro tab
 2. Click "Start Pomodoro"
 3. Work for 25 minutes
@@ -135,6 +145,7 @@ When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents
 5. Repeat!
 
 **Customization:**
+
 - Change work/break durations in Options
 - Toggle auto-start features
 - Enable/disable sound notifications
@@ -146,21 +157,25 @@ When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents
 **Set daily usage limits per platform.**
 
 **How it works:**
+
 1. Set max daily time for each platform (e.g., 30 minutes for YouTube)
-2. ShortShield tracks your usage
+2. adalab shield tracks your usage
 3. When limit reached, platform is blocked
 4. Resets at midnight
 
 **Warning system:**
+
 - 80% usage → Yellow warning
 - 100% usage → Red warning + block
 
 **Perfect for:**
+
 - Controlling YouTube binge-watching
 - Limiting social media to 15 min/day
 - Gradually reducing screen time
 
 **View usage:**
+
 - See time spent per platform
 - Track daily limits
 - Reset manually if needed
@@ -172,22 +187,26 @@ When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents
 **Understand your browsing habits with detailed analytics.**
 
 **Data tracked:**
+
 - Time spent per platform (daily)
 - 90-day history
 - Total usage statistics
 - Platform breakdown
 
 **Visualizations:**
+
 - Daily usage chart
 - Per-platform breakdown
 - Trend analysis
 
 **Privacy:**
+
 - All data stored locally
 - No external servers
 - Export/delete anytime
 
 **Use cases:**
+
 - Identify your biggest time wasters
 - Track improvement over weeks
 - Set data-driven limits
@@ -199,21 +218,25 @@ When enabled, you must wait 5 seconds before canceling Focus Mode. This prevents
 **Build consistency with streak counting.**
 
 **How it works:**
+
 - Focus day = day with 0 blocks triggered
 - Streak increases each consecutive focus day
 - Breaks if you trigger blocks
 
 **Milestones:**
+
 - 🔥 7 days - One week focus
 - 🌟 30 days - One month focus
 - 💎 100 days - Master focus
 
 **Displays:**
+
 - Current streak
 - Longest streak
 - Next milestone
 
 **Motivation:**
+
 - Visual progress tracking
 - Gamification element
 - Social proof (share your streak!)
@@ -244,11 +267,13 @@ Makes bypassing intentional, not impulsive.
    - Hard: 8-step sequence
 
 **Cooldown system:**
+
 - After solving, bypass lasts 5 minutes (default)
 - Prevents repeated bypassing
 - Configurable in settings
 
 **Disable bypass:**
+
 - Toggle to completely disable bypassing
 - Ultimate focus mode
 
@@ -259,22 +284,26 @@ Makes bypassing intentional, not impulsive.
 **PIN-protect your settings to prevent impulsive changes.**
 
 **How it works:**
+
 1. Set a 4-8 digit PIN
 2. Activate Lockdown
 3. All settings are locked
 4. Must enter PIN to change anything
 
 **Emergency bypass:**
+
 - Forgot PIN? Request emergency bypass
 - Wait 30 minutes (default, configurable)
 - Lockdown automatically deactivates
 
 **Perfect for:**
+
 - Preventing late-night impulse setting changes
 - Staying committed to focus goals
 - Protecting settings from other users
 
 **Security:**
+
 - PIN is SHA-256 hashed
 - Stored locally only
 - Never transmitted
@@ -286,16 +315,19 @@ Makes bypassing intentional, not impulsive.
 **Auto-block during specific times.**
 
 **Examples:**
+
 - Block 9 AM - 5 PM on weekdays (work hours)
 - Block after 10 PM (sleep hygiene)
 - Block weekends completely
 
 **Schedule types:**
+
 - Daily schedules
 - Day-specific schedules
 - Custom time ranges
 
 **Override:**
+
 - Temporarily disable schedule
 - Permanent exceptions via whitelist
 
@@ -308,6 +340,7 @@ Makes bypassing intentional, not impulsive.
 **Personalize what users see when content is blocked.**
 
 **Customizable elements:**
+
 - Title text
 - Message text
 - Motivational quote
@@ -316,11 +349,13 @@ Makes bypassing intentional, not impulsive.
 - Show/hide bypass button
 
 **Use cases:**
+
 - Motivational messages to reinforce goals
 - Reminders of why you're focusing
 - Encouragement to stay on track
 
 **Examples:**
+
 ```
 Title: "Stay Focused"
 Message: "You have work to do. Get back to it!"
@@ -331,9 +366,10 @@ Quote: "Discipline equals freedom" - Jocko Willink
 
 ### Multi-Language Support
 
-**Use ShortShield in your preferred language.**
+**Use adalab shield in your preferred language.**
 
 **Supported languages:**
+
 - 🇬🇧 English
 - 🇯🇵 Japanese (日本語)
 - 🇩🇪 German (Deutsch)
@@ -345,6 +381,7 @@ Quote: "Discipline equals freedom" - Jocko Willink
 - 🇹🇼 Chinese Traditional (繁體中文)
 
 **Auto-detection:**
+
 - Matches browser language by default
 - Manual override in settings
 
@@ -362,6 +399,7 @@ Quote: "Discipline equals freedom" - Jocko Willink
 - No user accounts
 
 **Data storage:**
+
 - Settings: Browser local storage
 - Statistics: Browser local storage
 - Nothing leaves your device
@@ -376,6 +414,7 @@ Quote: "Discipline equals freedom" - Jocko Willink
 - Regular security audits
 
 **Open source:**
+
 - Full code transparency
 - Community reviewed
 - Security researchers welcome
@@ -392,6 +431,7 @@ Quote: "Discipline equals freedom" - Jocko Willink
 - 🚧 Safari (planned)
 
 **Same features everywhere:**
+
 - Feature parity across browsers
 - Manifest V3 for future-proofing
 - Regular updates for all platforms
@@ -455,10 +495,10 @@ Quote: "Discipline equals freedom" - Jocko Willink
 
 Need help? Found a bug?
 
-- **GitHub Issues**: [Report bugs](https://github.com/adabana-saki/ShortShield/issues)
-- **Discussions**: [Ask questions](https://github.com/adabana-saki/ShortShield/discussions)
+- **GitHub Issues**: [Report bugs](https://github.com/adabana-saki/adalab-shield/issues)
+- **Discussions**: [Ask questions](https://github.com/adabana-saki/adalab-shield/discussions)
 - **Email**: support@adalab.pages.dev
 
 ---
 
-**Enjoy ShortShield? Give us a ⭐ on [GitHub](https://github.com/adabana-saki/ShortShield)!**
+**Enjoy adalab shield? Give us a ⭐ on [GitHub](https://github.com/adabana-saki/adalab-shield)!**

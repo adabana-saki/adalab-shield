@@ -6,9 +6,10 @@
 import browser from 'webextension-polyfill';
 import { setupMessageListener } from './messaging';
 import { initializeTimers } from './timers';
+import { updateDnrRules } from './dnr';
 import { createLogger } from '@/shared/utils/logger';
 import { getSettings, updateSettings } from '@/shared/utils/storage';
-import { PERFORMANCE } from '@/shared/constants';
+import { PERFORMANCE, STORAGE_KEYS } from '@/shared/constants';
 
 const logger = createLogger('background');
 
@@ -55,9 +56,25 @@ async function initialize(): Promise<void> {
     // Check for daily stats reset
     await checkDailyReset();
 
-    // Set up periodic stats check
+    // Network-layer blocking rules (recomputed whenever settings or the
+    // pomodoro state change)
+    await updateDnrRules();
+    browser.storage.onChanged.addListener((changes, areaName) => {
+      if (areaName !== 'local') {
+        return;
+      }
+      if (
+        changes[STORAGE_KEYS.SETTINGS] !== undefined ||
+        changes[STORAGE_KEYS.POMODORO_STATE] !== undefined
+      ) {
+        void updateDnrRules();
+      }
+    });
+
+    // Set up periodic stats check (also refreshes schedule-based DNR rules)
     setInterval(() => {
       void checkDailyReset();
+      void updateDnrRules();
     }, PERFORMANCE.STATS_CHECK_INTERVAL_MS);
 
     logger.info('ShortShield initialized successfully');

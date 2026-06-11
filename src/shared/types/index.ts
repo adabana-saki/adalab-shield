@@ -24,6 +24,7 @@ export type {
   FocusDuration,
   FocusModeSettings,
   FocusModeState,
+  AdalabSyncSettings,
   PomodoroMode,
   PomodoroSettings,
   PomodoroState,

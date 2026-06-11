@@ -4,7 +4,29 @@
  */
 
 import browser from 'webextension-polyfill';
-import type { BlockPageSettings, CommitmentLockSettings } from '@/shared/types';
+import type {
+  BlockPageSettings,
+  CommitmentLockSettings,
+  PomodoroState,
+} from '@/shared/types';
+import { STORAGE_KEYS } from '@/shared/constants';
+
+/**
+ * i18n helper with English fallback
+ */
+function t(key: string, fallback: string): string {
+  try {
+    const m = browser.i18n.getMessage(key);
+    return m !== '' ? m : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+interface AdalabMetaLike {
+  readonly external?: boolean;
+  readonly taskTitle?: string | null;
+}
 
 // Response types for message passing
 interface CheckUnlockResponse {
@@ -208,6 +230,21 @@ export function createBlockPageOverlay(
     contentDiv.appendChild(quoteDiv);
   }
 
+  // adalab study focus context (countdown + current task), shown while a
+  // synced work session is running
+  const adalabDiv = document.createElement('div');
+  adalabDiv.id = `${overlayId}-adalab`;
+  adalabDiv.style.cssText = `
+    display: none;
+    margin: 20px 0 0 0;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: ${isDark ? 'rgba(6,182,212,0.12)' : 'rgba(6,182,212,0.08)'};
+    border: 1px solid rgba(6,182,212,0.35);
+  `;
+  contentDiv.appendChild(adalabDiv);
+  void attachAdalabContext(adalabDiv, textColor, textSecondary);
+
   // Create bypass button if enabled
   if (settings.showBypassButton) {
     const bypassBtn = document.createElement('button');
@@ -284,12 +321,120 @@ export function createBlockPageOverlay(
     color: ${textMuted};
     margin: ${settings.showBypassButton ? '16px' : '24px'} 0 0 0;
   `;
-  settingsHint.textContent = 'You can change this in ShortShield settings.';
+  settingsHint.textContent = t(
+    'blockPageSettingsHint',
+    'You can change this in adalab shield settings.'
+  );
   contentDiv.appendChild(settingsHint);
 
   overlay.appendChild(contentDiv);
 
   return overlay;
+}
+
+/**
+ * Populate and keep the adalab focus context section up to date
+ * (remaining focus time + current task while a synced work session runs)
+ */
+async function attachAdalabContext(
+  container: HTMLDivElement,
+  textColor: string,
+  textSecondary: string
+): Promise<void> {
+  let endTime: number | null = null;
+  let intervalId: number | null = null;
+
+  const stopTicking = (): void => {
+    if (intervalId !== null) {
+      window.clearInterval(intervalId);
+      intervalId = null;
+    }
+  };
+
+  const render = (
+    state: PomodoroState | undefined,
+    meta: AdalabMetaLike | undefined
+  ): void => {
+    const active =
+      state?.isRunning === true &&
+      state.mode === 'work' &&
+      typeof state.endTime === 'number';
+
+    if (!active) {
+      container.style.display = 'none';
+      stopTicking();
+      return;
+    }
+
+    endTime = state.endTime;
+    container.innerHTML = '';
+
+    const label = document.createElement('div');
+    label.style.cssText = `font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: ${textSecondary}; margin-bottom: 4px;`;
+    label.textContent = t('blockPageFocusRemaining', 'Focus — time remaining');
+    container.appendChild(label);
+
+    const time = document.createElement('div');
+    time.style.cssText = `font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; color: ${textColor};`;
+    container.appendChild(time);
+
+    const taskTitle = meta?.taskTitle;
+    if (typeof taskTitle === 'string' && taskTitle !== '') {
+      const taskLine = document.createElement('div');
+      taskLine.style.cssText = `font-size: 13px; color: ${textSecondary}; margin-top: 6px;`;
+      taskLine.textContent = `${t('blockPageWorkingOn', 'Working on')}: ${taskTitle}`;
+      container.appendChild(taskLine);
+    }
+
+    container.style.display = 'block';
+
+    const tick = (): void => {
+      const remSec = Math.max(
+        0,
+        Math.round(((endTime ?? 0) - Date.now()) / 1000)
+      );
+      const m = String(Math.floor(remSec / 60)).padStart(2, '0');
+      const s = String(remSec % 60).padStart(2, '0');
+      time.textContent = `${m}:${s}`;
+    };
+    tick();
+    stopTicking();
+    intervalId = window.setInterval(tick, 1000);
+  };
+
+  const refresh = async (): Promise<void> => {
+    try {
+      const r = await browser.storage.local.get([
+        STORAGE_KEYS.POMODORO_STATE,
+        STORAGE_KEYS.ADALAB_META,
+      ]);
+      render(
+        r[STORAGE_KEYS.POMODORO_STATE] as PomodoroState | undefined,
+        r[STORAGE_KEYS.ADALAB_META] as AdalabMetaLike | undefined
+      );
+    } catch {
+      container.style.display = 'none';
+      stopTicking();
+    }
+  };
+
+  await refresh();
+
+  try {
+    browser.storage.onChanged.addListener((changes, areaName) => {
+      if (areaName !== 'local') {
+        return;
+      }
+      if (
+        changes[STORAGE_KEYS.POMODORO_STATE] !== undefined ||
+        changes[STORAGE_KEYS.ADALAB_META] !== undefined
+      ) {
+        void refresh();
+      }
+    });
+  } catch {
+    // Storage events unavailable: countdown still works from the initial read
+  }
 }
 
 /**

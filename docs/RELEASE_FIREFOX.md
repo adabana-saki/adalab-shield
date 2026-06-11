@@ -20,14 +20,14 @@
 
 ```bash
 cd dist/firefox
-zip -r ../../shortshield-firefox-v0.1.0.zip .
+zip -r ../../adalab shield-firefox-v0.1.0.zip .
 cd ../..
 ```
 
 またはWindows PowerShellで：
 
 ```powershell
-Compress-Archive -Path dist\firefox\* -DestinationPath shortshield-firefox-v0.1.0.zip
+Compress-Archive -Path dist\firefox\* -DestinationPath adalab shield-firefox-v0.1.0.zip
 ```
 
 ### 3. 新しいアドオンを登録
@@ -46,7 +46,7 @@ Compress-Archive -Path dist\firefox\* -DestinationPath shortshield-firefox-v0.1.
 #### アドオン名
 
 ```
-ShortShield
+adalab shield
 ```
 
 #### 概要 (250文字以内)
@@ -63,19 +63,19 @@ Block short-form videos and reclaim your focus. Comprehensive productivity toolk
 #### サポートURL (任意)
 
 ```
-https://github.com/adabana-saki/ShortShield/issues
+https://github.com/adabana-saki/adalab-shield/issues
 ```
 
 #### ホームページURL (任意)
 
 ```
-https://github.com/adabana-saki/ShortShield
+https://github.com/adabana-saki/adalab-shield
 ```
 
 ### 6. 詳細説明
 
 ```markdown
-ShortShield blocks short-form videos across YouTube Shorts, TikTok, and Instagram Reels to help you reclaim your time and focus.
+adalab shield blocks short-form videos across YouTube Shorts, TikTok, and Instagram Reels to help you reclaim your time and focus.
 
 ## Core Features
 
@@ -157,7 +157,7 @@ Perfect for students, professionals, and anyone looking to reduce screen time an
 
 ## Open Source
 
-GitHub: https://github.com/adabana-saki/ShortShield
+GitHub: https://github.com/adabana-saki/adalab-shield
 License: MIT
 ```
 
@@ -190,13 +190,13 @@ MIT License
 #### ソースコードリポジトリ
 
 ```
-https://github.com/adabana-saki/ShortShield
+https://github.com/adabana-saki/adalab-shield
 ```
 
 #### プライバシーポリシーURL
 
 ```
-https://github.com/adabana-saki/ShortShield/blob/main/docs/PRIVACY_POLICY.md
+https://github.com/adabana-saki/adalab-shield/blob/main/docs/PRIVACY_POLICY.md
 ```
 
 #### データ収集の説明
@@ -221,7 +221,7 @@ Features:
 - Multi-language support (9 languages)
 - Privacy-first design (zero data collection)
 
-See full changelog: https://github.com/adabana-saki/ShortShield/blob/main/CHANGELOG.md
+See full changelog: https://github.com/adabana-saki/adalab-shield/blob/main/CHANGELOG.md
 ```
 
 ### 10. 審査に提出
@@ -235,7 +235,7 @@ See full changelog: https://github.com/adabana-saki/ShortShield/blob/main/CHANGE
 
 #### 承認された場合
 
-- URLは: `https://addons.mozilla.org/firefox/addon/shortshield/`
+- URLは: `https://addons.mozilla.org/firefox/addon/adalab shield/`
 - README とソーシャルメディアで共有
 
 #### 手動レビューが必要な場合

@@ -15,6 +15,7 @@
 The Custom Domain feature allows you to block **entire websites** beyond the built-in platforms (YouTube, TikTok, Instagram, etc.).
 
 ### Use Cases
+
 - Block news sites during work hours
 - Block all social media platforms
 - Restrict access to gaming sites
@@ -26,7 +27,7 @@ The Custom Domain feature allows you to block **entire websites** beyond the bui
 
 ### Step 1: Open Settings
 
-1. Click the ShortShield icon in your browser toolbar
+1. Click the adalab shield icon in your browser toolbar
 2. Select "Settings" or "Options"
 
 ### Step 2: Navigate to Custom Domains
@@ -48,7 +49,7 @@ Visit the added domain and you should see the block screen.
 
 ## Pattern Syntax
 
-ShortShield supports multiple pattern formats.
+adalab shield supports multiple pattern formats.
 
 ### 1. **Exact Match** (Recommended)
 
@@ -57,11 +58,13 @@ twitter.com
 ```
 
 **Matches:**
+
 - `https://twitter.com`
 - `https://www.twitter.com`
 - `https://mobile.twitter.com` (includes subdomains)
 
 **Does NOT match:**
+
 - `https://mytwitter.com`
 
 ---
@@ -73,6 +76,7 @@ twitter.com
 ```
 
 **Matches:**
+
 - `https://youtube.com`
 - `https://m.youtube.com`
 - `https://myyoutube.com`
@@ -90,11 +94,13 @@ reddit*
 ```
 
 **Matches:**
+
 - `https://reddit.com`
 - `https://reddit-stream.com`
 - `https://reddit.example.com`
 
 **Does NOT match:**
+
 - `https://myreddit.com`
 
 ---
@@ -106,11 +112,13 @@ reddit*
 ```
 
 **Matches:**
+
 - `https://reddit`
 - `https://myreddit`
 - `https://old.reddit`
 
 **Does NOT match:**
+
 - `https://reddit.com`
 
 ---
@@ -122,11 +130,13 @@ reddit*
 ```
 
 **Matches:**
+
 - `https://m.youtube.com`
 - `https://music.youtube.com`
 - `https://studio.youtube.com`
 
 **Does NOT match:**
+
 - `https://youtube.com` (main domain excluded)
 
 ---
@@ -186,8 +196,8 @@ new.reddit.com
 **Check these:**
 
 1. **Is the extension enabled?**
-   - Click the ShortShield icon
-   - Verify "ShortShield Enabled" is ON
+   - Click the adalab shield icon
+   - Verify "adalab shield Enabled" is ON
 
 2. **Is the pattern correct?**
    - Use domain name only (no `https://` or `/`)
@@ -209,11 +219,13 @@ Yes! Both work:
 ### Q3: Can I temporarily disable blocking?
 
 **Method 1: Remove specific domain**
+
 1. Settings → Custom Domains
 2. Click "Delete" next to the domain
 
 **Method 2: Disable extension**
-1. Click ShortShield icon
+
+1. Click adalab shield icon
 2. Toggle OFF
 
 ### Q4: How many domains can I add?
@@ -245,6 +257,7 @@ Example: Block `m.youtube.com` but allow `youtube.com`
 When you add `youtube.com`, all subdomains are blocked by default.
 
 To block ONLY a subdomain, you would need to:
+
 1. NOT add the parent domain
 2. Add specific subdomains: `m.youtube.com`, `music.youtube.com`
 
@@ -286,8 +299,8 @@ Example: `*news*` set but `news.example.com` not blocked
 
 If issues persist, please report on GitHub:
 
-[https://github.com/anthropics/shortshield/issues](https://github.com/anthropics/shortshield/issues)
+[https://github.com/anthropics/adalab shield/issues](https://github.com/anthropics/adalab shield/issues)
 
 ---
 
-**Stay focused with ShortShield!** 🛡️✨
+**Stay focused with adalab shield!** 🛡️✨

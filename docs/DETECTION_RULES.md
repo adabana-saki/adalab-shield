@@ -1,10 +1,10 @@
 # Detection Rules
 
-This document describes how ShortShield detects and blocks short-form video content across supported platforms.
+This document describes how adalab shield detects and blocks short-form video content across supported platforms.
 
 ## Overview
 
-ShortShield uses a multi-layered detection approach:
+adalab shield uses a multi-layered detection approach:
 
 1. **URL-based detection** - Matches URL patterns for short-form video pages
 2. **DOM-based detection** - Uses CSS selectors to identify short-form content elements
@@ -29,7 +29,7 @@ ShortShield uses a multi-layered detection approach:
 | ----------------- | -------- | -------- | ----------------------------- |
 | `^/shorts/[\w-]+` | redirect | 100      | Individual Shorts video pages |
 
-When a user visits `/shorts/VIDEO_ID`, ShortShield can redirect to the regular video player at `/watch?v=VIDEO_ID`.
+When a user visits `/shorts/VIDEO_ID`, adalab shield can redirect to the regular video player at `/watch?v=VIDEO_ID`.
 
 ### Selector Rules
 
@@ -82,10 +82,10 @@ TikTok's entire feed is short-form content, so the extension blocks video pages 
 
 ### Page Blocking
 
-When blocking TikTok, ShortShield:
+When blocking TikTok, adalab shield:
 
 1. Blurs the main content container
-2. Displays a "ShortShield Active" overlay
+2. Displays a "adalab shield Active" overlay
 3. Prevents autoplay of videos
 
 ---
@@ -118,7 +118,7 @@ When blocking TikTok, ShortShield:
 
 ## Actions
 
-ShortShield supports the following actions:
+adalab shield supports the following actions:
 
 ### Hide
 
@@ -185,7 +185,7 @@ DOM scans are debounced (100ms) to prevent excessive processing during rapid DOM
 
 ### Element Marking
 
-Processed elements are marked with `data-shortshield-hidden="true"` to prevent reprocessing.
+Processed elements are marked with `data-adalab shield-hidden="true"` to prevent reprocessing.
 
 ---
 

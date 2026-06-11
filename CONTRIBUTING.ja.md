@@ -1,6 +1,6 @@
-# ShortShieldへのコントリビューション
+# adalab shieldへのコントリビューション
 
-ShortShieldへのコントリビューションに興味を持っていただきありがとうございます！このドキュメントはコントリビューターのためのガイドラインと情報を提供します。
+adalab shieldへのコントリビューションに興味を持っていただきありがとうございます！このドキュメントはコントリビューターのためのガイドラインと情報を提供します。
 
 [English](CONTRIBUTING.md)
 
@@ -12,7 +12,7 @@ ShortShieldへのコントリビューションに興味を持っていただき
 
 ### バグの報告
 
-1. [Issues](https://github.com/adabana-saki/ShortShield/issues)でバグがすでに報告されていないか確認
+1. [Issues](https://github.com/adabana-saki/adalab-shield/issues)でバグがすでに報告されていないか確認
 2. 報告されていない場合、バグレポートテンプレートを使用して新しいIssueを作成
 3. 以下を含めてください：
    - ブラウザとバージョン
@@ -23,7 +23,7 @@ ShortShieldへのコントリビューションに興味を持っていただき
 
 ### 機能の提案
 
-1. 既存の[Issues](https://github.com/adabana-saki/ShortShield/issues)で類似の提案がないか確認
+1. 既存の[Issues](https://github.com/adabana-saki/adalab-shield/issues)で類似の提案がないか確認
 2. 機能リクエストテンプレートを使用して新しいIssueを作成
 3. 以下を記述：
    - 解決しようとしている問題
@@ -37,8 +37,8 @@ ShortShieldへのコントリビューションに興味を持っていただき
 1. リポジトリをフォーク
 2. フォークをクローン：
    ```bash
-   git clone https://github.com/YOUR_USERNAME/ShortShield.git
-   cd ShortShield
+   git clone https://github.com/YOUR_USERNAME/adalab shield.git
+   cd adalab shield
    ```
 3. 依存関係をインストール：
    ```bash

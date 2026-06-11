@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get ShortShield up and running in 2 minutes.
+Get adalab shield up and running in 2 minutes.
 
 ---
 
@@ -11,8 +11,8 @@ Get ShortShield up and running in 2 minutes.
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/adabana-saki/ShortShield.git
-   cd ShortShield
+   git clone https://github.com/adabana-saki/adalab-shield.git
+   cd adalab shield
    ```
 
 2. **Install dependencies**
@@ -55,19 +55,19 @@ Get ShortShield up and running in 2 minutes.
 
 ### First Use
 
-1. **Click the ShortShield icon** in your browser toolbar
+1. **Click the adalab shield icon** in your browser toolbar
 2. **Toggle the main switch** to enable blocking
 3. **Test it:** Visit YouTube and try to access Shorts - they should be blocked!
 
 ### Essential Features to Try
 
 1. **Focus Mode**
-   - Click ShortShield icon → Focus tab
+   - Click adalab shield icon → Focus tab
    - Start a 30-minute focus session
    - All enabled platforms are blocked during focus time
 
 2. **Pomodoro Timer**
-   - Click ShortShield icon → Pomodoro tab
+   - Click adalab shield icon → Pomodoro tab
    - Start a 25-minute work session
    - Take automatic breaks
 
@@ -92,8 +92,8 @@ Get ShortShield up and running in 2 minutes.
 2. **Clone and install**
 
    ```bash
-   git clone https://github.com/adabana-saki/ShortShield.git
-   cd ShortShield
+   git clone https://github.com/adabana-saki/adalab-shield.git
+   cd adalab shield
    pnpm install
    ```
 
@@ -182,7 +182,7 @@ pnpm release          # Build + test
 ### Making Your First Contribution
 
 1. **Find an issue**
-   - Look for [`good first issue`](https://github.com/adabana-saki/ShortShield/labels/good%20first%20issue) label
+   - Look for [`good first issue`](https://github.com/adabana-saki/adalab-shield/labels/good%20first%20issue) label
    - Comment to claim it
 
 2. **Create a branch**
@@ -268,8 +268,8 @@ pnpm test:unit -- youtube.test.ts
 
 ## Need Help?
 
-- **Issues**: [Report bugs](https://github.com/adabana-saki/ShortShield/issues)
-- **Discussions**: [Ask questions](https://github.com/adabana-saki/ShortShield/discussions)
+- **Issues**: [Report bugs](https://github.com/adabana-saki/adalab-shield/issues)
+- **Discussions**: [Ask questions](https://github.com/adabana-saki/adalab-shield/discussions)
 
 ---
 

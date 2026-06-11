@@ -1,14 +1,14 @@
 {
   "extensionName": {
-    "message": "ShortShield",
-    "description": "拡張機能の名前"
+    "message": "adalab shield",
+    "description": "Name of the extension"
   },
   "extensionDescription": {
     "message": "短尺動画をブロックして集中力を取り戻す",
     "description": "ブラウザ拡張機能ストアに表示される説明"
   },
   "popupTitle": {
-    "message": "ShortShield",
+    "message": "adalab shield",
     "description": "ポップアップヘッダーに表示されるタイトル"
   },
   "popupStatusEnabled": {
@@ -212,7 +212,7 @@
     "description": "ポップアップ経由でブロックされたドメインの説明"
   },
   "optionsTitle": {
-    "message": "ShortShield 設定",
+    "message": "adalab shield 設定",
     "description": "オプションページのタイトル"
   },
   "optionsPlatformsTitle": {
@@ -562,7 +562,7 @@
     "description": "Starts with wildcard example description"
   },
   "customDomainsHelpTip": {
-    "message": "ヒント：URLは自動的にクリーンアップされます。完全なURLを貼り付けても、ShortShieldがドメインを自動抽出します。",
+    "message": "ヒント：URLは自動的にクリーンアップされます。完全なURLを貼り付けても、adalab shieldがドメインを自動抽出します。",
     "description": "Help tip about URL handling"
   },
   "optionsTabCustomDomains": {
@@ -668,8 +668,8 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "ブロックページの外観",
-    "description": "Section title for block page customization"
+    "message": "コンテンツをブロックしました",
+    "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
     "message": "コンテンツがブロックされたときに表示されるオーバーレイの外観をカスタマイズします。",
@@ -764,7 +764,7 @@
     "description": "Default block page title"
   },
   "blockPageDefaultMessage": {
-    "message": "ShortShieldがあなたの集中力を守っています。",
+    "message": "adalab shieldがあなたの集中力を守っています。",
     "description": "Default block page message"
   },
   "blockPageDefaultQuote": {
@@ -1934,7 +1934,7 @@
     "description": "Go back button text"
   },
   "customDomainBlockTitle": {
-    "message": "ShortShield 実行中",
+    "message": "adalab shield 実行中",
     "description": "Title shown on custom domain block overlay"
   },
   "customDomainBlockMessage": {
@@ -1948,7 +1948,7 @@
     }
   },
   "customDomainBlockHint": {
-    "message": "ShortShield設定でこのドメインをブロックリストから削除できます。",
+    "message": "adalab shield設定でこのドメインをブロックリストから削除できます。",
     "description": "Hint shown on custom domain block overlay"
   },
   "dashboardTitle": {
@@ -2072,7 +2072,7 @@
     "description": "Sidebar submenu: Backup"
   },
   "dashboardStatusOn": {
-    "message": "ShortShieldがあなたの集中力を守っています",
+    "message": "adalab shieldがあなたの集中力を守っています",
     "description": "Dashboard status when enabled"
   },
   "dashboardStatusOff": {
@@ -2100,7 +2100,7 @@
     "description": "Retry button text"
   },
   "onboardingWelcomeTitle": {
-    "message": "ShortShieldへようこそ",
+    "message": "adalab shieldへようこそ",
     "description": "Onboarding: welcome title"
   },
   "onboardingWelcomeSubtitle": {
@@ -2148,7 +2148,7 @@
     "description": "Onboarding: schedule title"
   },
   "onboardingScheduleSubtitle": {
-    "message": "ShortShieldがあなたの集中を守るタイミングを選択してください",
+    "message": "adalab shieldがあなたの集中を守るタイミングを選択してください",
     "description": "Onboarding: schedule subtitle"
   },
   "onboardingScheduleWorkHours": {
@@ -2176,7 +2176,7 @@
     "description": "Onboarding: complete title"
   },
   "onboardingCompleteSubtitle": {
-    "message": "ShortShieldがあなたの集中力を守り始めました",
+    "message": "adalab shieldがあなたの集中力を守り始めました",
     "description": "Onboarding: complete subtitle"
   },
   "onboardingCompletePlatforms": {
@@ -2248,7 +2248,7 @@
     "description": "Label for language selector"
   },
   "languageDescription": {
-    "message": "ShortShieldのインターフェース言語を選択します",
+    "message": "adalab shieldのインターフェース言語を選択します",
     "description": "Description for language settings"
   },
   "languageDetected": {
@@ -2346,5 +2346,117 @@
   "popupAdalabComplete": {
     "message": "タスクを完了",
     "description": "Button to mark an adalab study task as done"
+  },
+  "notifFocusStartedTitle": {
+    "message": "フォーカスモード開始",
+    "description": "Auto-added: notifFocusStartedTitle"
+  },
+  "notifFocusStartedMessage": {
+    "message": "$1 分間集中しましょう。きっとできます!",
+    "description": "Auto-added: notifFocusStartedMessage"
+  },
+  "notifFocusCompletedTitle": {
+    "message": "フォーカス完了!",
+    "description": "Auto-added: notifFocusCompletedTitle"
+  },
+  "notifFocusCompletedMessage": {
+    "message": "お疲れさまでした。集中セッションを完了しました。",
+    "description": "Auto-added: notifFocusCompletedMessage"
+  },
+  "notifFocusCancelledTitle": {
+    "message": "フォーカスモード中止",
+    "description": "Auto-added: notifFocusCancelledTitle"
+  },
+  "notifFocusCancelledMessage": {
+    "message": "フォーカスモードを中止しました。",
+    "description": "Auto-added: notifFocusCancelledMessage"
+  },
+  "pomodoroModeWork": {
+    "message": "作業",
+    "description": "Auto-added: pomodoroModeWork"
+  },
+  "pomodoroModeBreak": {
+    "message": "休憩",
+    "description": "Auto-added: pomodoroModeBreak"
+  },
+  "pomodoroModeLongBreak": {
+    "message": "長い休憩",
+    "description": "Auto-added: pomodoroModeLongBreak"
+  },
+  "notifPomodoroStartedTitle": {
+    "message": "$1を開始",
+    "description": "Auto-added: notifPomodoroStartedTitle"
+  },
+  "notifPomodoroCompletedTitle": {
+    "message": "$1が完了!",
+    "description": "Auto-added: notifPomodoroCompletedTitle"
+  },
+  "notifPomodoroWorkStartedMessage": {
+    "message": "集中の時間です!",
+    "description": "Auto-added: notifPomodoroWorkStartedMessage"
+  },
+  "notifPomodoroBreakStartedMessage": {
+    "message": "ひと休みしましょう。",
+    "description": "Auto-added: notifPomodoroBreakStartedMessage"
+  },
+  "notifPomodoroWorkCompletedMessage": {
+    "message": "お疲れさま!休憩の時間です。",
+    "description": "Auto-added: notifPomodoroWorkCompletedMessage"
+  },
+  "notifPomodoroBreakCompletedMessage": {
+    "message": "休憩終了!集中に戻りましょう。",
+    "description": "Auto-added: notifPomodoroBreakCompletedMessage"
+  },
+  "notifStreakMilestoneTitle": {
+    "message": "ストリーク達成!",
+    "description": "Auto-added: notifStreakMilestoneTitle"
+  },
+  "notifStreakMilestoneMessage": {
+    "message": "すごい!$1 日連続を達成しました!",
+    "description": "Auto-added: notifStreakMilestoneMessage"
+  },
+  "notifStreakBrokenTitle": {
+    "message": "ストリークが途切れました",
+    "description": "Auto-added: notifStreakBrokenTitle"
+  },
+  "notifStreakBrokenMessage": {
+    "message": "連続記録がリセットされました。今日からまた始めましょう!",
+    "description": "Auto-added: notifStreakBrokenMessage"
+  },
+  "blockedPageMessageSuffix": {
+    "message": "は集中を守るためにブロックされています。",
+    "description": "Auto-added: blockedPageMessageSuffix"
+  },
+  "blockPageSettingsHint": {
+    "message": "adalab shield の設定で変更できます。",
+    "description": "Auto-added: blockPageSettingsHint"
+  },
+  "blockPageFocusRemaining": {
+    "message": "フォーカス — 残り時間",
+    "description": "Auto-added: blockPageFocusRemaining"
+  },
+  "blockPageWorkingOn": {
+    "message": "取組中",
+    "description": "Auto-added: blockPageWorkingOn"
+  },
+  "optionsTabAdalab": {
+    "message": "adalab study",
+    "description": "Auto-added: optionsTabAdalab"
+  },
+  "adalabSyncTitle": {
+    "message": "adalab study 連携",
+    "description": "Auto-added: adalabSyncTitle"
+  },
+  "adalabSyncDescription": {
+    "message": "adalab study のポモドーロとブロックを同期します。フォーカス中はブロック、休憩中は解除されます。",
+    "description": "Auto-added: adalabSyncDescription"
+  },
+  "adalabSyncToggleLabel": {
+    "message": "adalab study 連携を有効にする",
+    "description": "Auto-added: adalabSyncToggleLabel"
+  },
+  "adalabSyncToggleDescription": {
+    "message": "adalab study のタイマーに追従し、ポップアップから操作できます。",
+    "description": "Auto-added: adalabSyncToggleDescription"
   }
 }

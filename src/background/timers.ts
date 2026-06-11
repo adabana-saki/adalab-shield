@@ -42,6 +42,44 @@ import { getSettings, updateSettings } from './storage';
 const logger = createLogger('timers');
 
 /**
+ * i18n helper with English fallback (notifications)
+ */
+function nMsg(key: string, fallback: string, subs?: string[]): string {
+  try {
+    const m = browser.i18n.getMessage(key, subs);
+    return m !== '' ? m : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+/**
+ * adalab study sync metadata.
+ * `external` marks that the pomodoro state mirrors the adalab timer, so the
+ * extension must not auto-advance its own cycle when a phase completes.
+ */
+export interface AdalabMeta {
+  readonly external: boolean;
+  readonly taskTitle: string | null;
+}
+
+const DEFAULT_ADALAB_META: AdalabMeta = { external: false, taskTitle: null };
+
+export async function getAdalabMeta(): Promise<AdalabMeta> {
+  try {
+    const result = await browser.storage.local.get(STORAGE_KEYS.ADALAB_META);
+    const meta = result[STORAGE_KEYS.ADALAB_META] as AdalabMeta | undefined;
+    return meta ?? DEFAULT_ADALAB_META;
+  } catch {
+    return DEFAULT_ADALAB_META;
+  }
+}
+
+async function saveAdalabMeta(meta: AdalabMeta): Promise<void> {
+  await browser.storage.local.set({ [STORAGE_KEYS.ADALAB_META]: meta });
+}
+
+/**
  * Alarm names
  */
 export const ALARM_NAMES = {
@@ -250,15 +288,28 @@ async function showFocusNotification(
 ): Promise<void> {
   try {
     const titles: Record<typeof type, string> = {
-      focusStarted: 'Focus Mode Started',
-      focusCompleted: 'Focus Session Complete!',
-      focusCancelled: 'Focus Mode Cancelled',
+      focusStarted: nMsg('notifFocusStartedTitle', 'Focus Mode Started'),
+      focusCompleted: nMsg(
+        'notifFocusCompletedTitle',
+        'Focus Session Complete!'
+      ),
+      focusCancelled: nMsg('notifFocusCancelledTitle', 'Focus Mode Cancelled'),
     };
 
     const messages: Record<typeof type, string> = {
-      focusStarted: `Stay focused for ${duration ?? 0} minutes. You can do it!`,
-      focusCompleted: 'Great job! You completed your focus session.',
-      focusCancelled: 'Focus mode has been cancelled.',
+      focusStarted: nMsg(
+        'notifFocusStartedMessage',
+        `Stay focused for ${duration ?? 0} minutes. You can do it!`,
+        [String(duration ?? 0)]
+      ),
+      focusCompleted: nMsg(
+        'notifFocusCompletedMessage',
+        'Great job! You completed your focus session.'
+      ),
+      focusCancelled: nMsg(
+        'notifFocusCancelledMessage',
+        'Focus mode has been cancelled.'
+      ),
     };
 
     await browser.notifications.create({
@@ -556,11 +607,18 @@ export async function syncExternalPomodoro(payload: {
   readonly phase: 'work' | 'short_break' | 'long_break' | 'idle';
   readonly running: boolean;
   readonly endTime: number | null;
+  readonly taskTitle?: string | null;
 }): Promise<PomodoroState> {
+  const settings = await getSettings();
+  if (!settings.adalabSync.enabled) {
+    throw new Error('adalab sync is disabled');
+  }
+
   const currentState = await getPomodoroState();
 
   if (!payload.running || payload.phase === 'idle') {
     await browser.alarms.clear(ALARM_NAMES.POMODORO_END);
+    await saveAdalabMeta(DEFAULT_ADALAB_META);
     const idleState: PomodoroState = {
       ...DEFAULT_POMODORO_STATE,
       sessionCount: currentState.sessionCount,
@@ -592,6 +650,10 @@ export async function syncExternalPomodoro(payload: {
 
   // Keep the end alarm so the phase resolves even if the adalab tab closes
   await browser.alarms.create(ALARM_NAMES.POMODORO_END, { when: endTime });
+  await saveAdalabMeta({
+    external: true,
+    taskTitle: payload.taskTitle ?? null,
+  });
   await savePomodoroState(newState);
 
   logger.info('External pomodoro sync', { mode, timeRemainingMs });
@@ -605,6 +667,20 @@ async function handlePomodoroComplete(
   state: PomodoroState
 ): Promise<PomodoroState> {
   const settings = await getSettings();
+
+  // External (adalab) timer: the web app owns the cycle. Do not auto-advance,
+  // just settle into idle and wait for the next sync.
+  const adalabMeta = await getAdalabMeta();
+  if (adalabMeta.external) {
+    await saveAdalabMeta(DEFAULT_ADALAB_META);
+    const idleState: PomodoroState = {
+      ...DEFAULT_POMODORO_STATE,
+      sessionCount: state.sessionCount,
+    };
+    await savePomodoroState(idleState);
+    logger.info('External pomodoro phase completed, settling to idle');
+    return idleState;
+  }
 
   let nextMode: PomodoroMode;
   let newSessionCount = state.sessionCount;
@@ -687,26 +763,41 @@ async function showPomodoroNotification(
 ): Promise<void> {
   try {
     const modeNames: Record<PomodoroMode, string> = {
-      work: 'Work',
-      break: 'Break',
-      longBreak: 'Long Break',
+      work: nMsg('pomodoroModeWork', 'Work'),
+      break: nMsg('pomodoroModeBreak', 'Break'),
+      longBreak: nMsg('pomodoroModeLongBreak', 'Long Break'),
       idle: 'Idle',
     };
 
     const modeName = modeNames[mode];
 
     const titles: Record<typeof type, string> = {
-      started: `${modeName} Started`,
-      completed: `${modeName} Complete!`,
+      started: nMsg('notifPomodoroStartedTitle', `${modeName} Started`, [
+        modeName,
+      ]),
+      completed: nMsg('notifPomodoroCompletedTitle', `${modeName} Complete!`, [
+        modeName,
+      ]),
     };
 
     const messages: Record<typeof type, string> = {
       started:
-        mode === 'work' ? 'Time to focus!' : 'Take a break, you earned it!',
+        mode === 'work'
+          ? nMsg('notifPomodoroWorkStartedMessage', 'Time to focus!')
+          : nMsg(
+              'notifPomodoroBreakStartedMessage',
+              'Take a break, you earned it!'
+            ),
       completed:
         mode === 'work'
-          ? 'Great work! Time for a break.'
-          : 'Break over! Ready to focus?',
+          ? nMsg(
+              'notifPomodoroWorkCompletedMessage',
+              'Great work! Time for a break.'
+            )
+          : nMsg(
+              'notifPomodoroBreakCompletedMessage',
+              'Break over! Ready to focus?'
+            ),
     };
 
     await browser.notifications.create({
@@ -1576,13 +1667,20 @@ async function showStreakNotification(
 ): Promise<void> {
   try {
     const titles: Record<typeof type, string> = {
-      milestone: 'Streak Milestone!',
-      broken: 'Streak Broken',
+      milestone: nMsg('notifStreakMilestoneTitle', 'Streak Milestone!'),
+      broken: nMsg('notifStreakBrokenTitle', 'Streak Broken'),
     };
 
     const messages: Record<typeof type, string> = {
-      milestone: `Amazing! You've reached a ${streak}-day streak!`,
-      broken: 'Your streak has been reset. Start fresh today!',
+      milestone: nMsg(
+        'notifStreakMilestoneMessage',
+        `Amazing! You've reached a ${streak}-day streak!`,
+        [String(streak)]
+      ),
+      broken: nMsg(
+        'notifStreakBrokenMessage',
+        'Your streak has been reset. Start fresh today!'
+      ),
     };
 
     await browser.notifications.create({

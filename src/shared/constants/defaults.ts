@@ -416,6 +416,13 @@ function getMonday(date: Date): Date {
 }
 
 /**
+ * Default adalab study integration settings
+ */
+export const DEFAULT_ADALAB_SYNC = {
+  enabled: true,
+} as const;
+
+/**
  * Default settings
  */
 export const DEFAULT_SETTINGS: Settings = {
@@ -434,6 +441,7 @@ export const DEFAULT_SETTINGS: Settings = {
   challenge: DEFAULT_CHALLENGE,
   lockdown: DEFAULT_LOCKDOWN,
   commitmentLock: DEFAULT_COMMITMENT_LOCK,
+  adalabSync: DEFAULT_ADALAB_SYNC,
   onboardingCompleted: false,
   version: SETTINGS_VERSION,
 } as const;

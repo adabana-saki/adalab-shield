@@ -1,6 +1,6 @@
 # Translation Guide
 
-Thank you for helping translate ShortShield!
+Thank you for helping translate adalab shield!
 
 [日本語版はこちら](#日本語)
 
@@ -15,17 +15,17 @@ Thank you for helping translate ShortShield!
 
 ## Language Codes
 
-| Code | Language |
-|------|----------|
-| en | English |
-| ja | Japanese |
-| zh_CN | Chinese (Simplified) |
+| Code  | Language              |
+| ----- | --------------------- |
+| en    | English               |
+| ja    | Japanese              |
+| zh_CN | Chinese (Simplified)  |
 | zh_TW | Chinese (Traditional) |
-| ko | Korean |
-| es | Spanish |
-| pt_BR | Portuguese (Brazil) |
-| de | German |
-| fr | French |
+| ko    | Korean                |
+| es    | Spanish               |
+| pt_BR | Portuguese (Brazil)   |
+| de    | German                |
+| fr    | French                |
 
 ## Translation Tips
 
@@ -77,6 +77,7 @@ google-chrome --lang={locale}
 ## Credits
 
 All translators are credited in:
+
 - README.md Contributors section
 - GitHub release notes
 - Extension's About page
@@ -96,17 +97,17 @@ All translators are credited in:
 
 ## 言語コード
 
-| コード | 言語 |
-|--------|------|
-| en | 英語 |
-| ja | 日本語 |
-| zh_CN | 中国語（簡体字） |
-| zh_TW | 中国語（繁体字） |
-| ko | 韓国語 |
-| es | スペイン語 |
-| pt_BR | ポルトガル語（ブラジル） |
-| de | ドイツ語 |
-| fr | フランス語 |
+| コード | 言語                     |
+| ------ | ------------------------ |
+| en     | 英語                     |
+| ja     | 日本語                   |
+| zh_CN  | 中国語（簡体字）         |
+| zh_TW  | 中国語（繁体字）         |
+| ko     | 韓国語                   |
+| es     | スペイン語               |
+| pt_BR  | ポルトガル語（ブラジル） |
+| de     | ドイツ語                 |
+| fr     | フランス語               |
 
 ## 翻訳のヒント
 
@@ -118,6 +119,7 @@ All translators are credited in:
 ## 謝辞
 
 すべての翻訳者は以下でクレジットされます：
+
 - README.md の Contributors セクション
 - GitHub リリースノート
 - 拡張機能の About ページ

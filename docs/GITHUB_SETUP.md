@@ -1,10 +1,10 @@
 # GitHub Repository Setup Guide
 
-This guide explains how to configure the ShortShield GitHub repository for maximum visibility and stars.
+This guide explains how to configure the adalab shield GitHub repository for maximum visibility and stars.
 
 ## Repository Topics
 
-Add these topics to help users discover ShortShield:
+Add these topics to help users discover adalab shield:
 
 **To add topics:**
 
@@ -52,7 +52,7 @@ Block short-form videos and reclaim your focus. Comprehensive productivity toolk
 1. Go to Settings > General
 2. Scroll to "Social preview"
 3. Upload an image that includes:
-   - ShortShield logo
+   - adalab shield logo
    - Tagline: "Block short-form videos. Reclaim your focus."
    - Key features icons (YouTube, TikTok, Instagram)
    - Visual showing before/after
@@ -261,7 +261,7 @@ Regularly tag easy issues with `good first issue` label to attract new contribut
    - r/digitalnomad
 
 2. **Hacker News**
-   - Show HN: ShortShield - Block short-form videos
+   - Show HN: adalab shield - Block short-form videos
 
 3. **Product Hunt**
    - Launch as a new product

@@ -16,8 +16,17 @@ import { createLogger } from '@/shared/utils/logger';
 import { createMessage } from '@/shared/types';
 import { STORAGE_KEYS } from '@/shared/constants';
 import type { Settings, PomodoroState } from '@/shared/types';
+import type { BasePlatformDetector } from './platforms/base';
 
 const logger = createLogger('content');
+
+/**
+ * Block overlay element ids used by full-site and custom-domain blocking
+ */
+const BLOCK_OVERLAY_IDS = [
+  'shortshield-fullsite-overlay',
+  'shortshield-custom-overlay',
+] as const;
 
 /**
  * Check if extension context is valid
@@ -79,16 +88,45 @@ async function getPomodoroStateSafely(): Promise<PomodoroState | null> {
 }
 
 /**
- * Update Pomodoro state on all detectors
+ * Apply settings to every detector
  */
-function updatePomodoroStateOnDetectors(state: PomodoroState | null): void {
-  const allDetectors = getAllDetectors();
-  for (const detector of allDetectors) {
-    detector.setPomodoroState(state);
-  }
-  // Also update custom domain detector
+function applySettingsToAll(settings: Settings): void {
   const customDetector = getCustomDomainDetector();
-  customDetector.setPomodoroState(state);
+  setCustomDomains(settings.customDomains);
+  customDetector.setSettings(settings);
+  for (const d of getAllDetectors()) {
+    d.setSettings(settings);
+  }
+}
+
+/**
+ * Apply Pomodoro state to every detector
+ */
+function applyPomodoroToAll(pomodoroState: PomodoroState | null): void {
+  getCustomDomainDetector().setPomodoroState(pomodoroState);
+  for (const d of getAllDetectors()) {
+    d.setPomodoroState(pomodoroState);
+  }
+}
+
+/**
+ * Remove full-page block overlays and restore page visibility
+ * (used when a Pomodoro break starts or blocking gets disabled)
+ */
+function removeBlockOverlays(): void {
+  let removed = false;
+  for (const id of BLOCK_OVERLAY_IDS) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.remove();
+      removed = true;
+    }
+  }
+  if (removed) {
+    document.body.style.removeProperty('visibility');
+    document.body.style.removeProperty('overflow');
+    logger.info('Block overlay removed');
+  }
 }
 
 /**
@@ -107,60 +145,52 @@ async function initialize(): Promise<void> {
   // adalab study integration (only active on the adalab study app)
   initAdalabBridge();
 
-  // Get settings first (needed for custom domains)
+  // Get settings and Pomodoro state, apply to all detectors BEFORE selection:
+  // getDetectorForHostname skips disabled detectors, and FullSiteBlocker
+  // reports disabled until it has settings
   const settings = await getSettingsSafely();
-
-  if (settings !== null) {
-    // Update custom domains from settings
-    setCustomDomains(settings.customDomains);
-
-    // Also set settings on custom domain detector
-    const customDetector = getCustomDomainDetector();
-    customDetector.setSettings(settings);
-
-    // Apply settings to all detectors BEFORE selection: getDetectorForHostname
-    // skips disabled detectors, and FullSiteBlocker reports disabled until it
-    // has settings (otherwise full-site blocking is never selected)
-    for (const d of getAllDetectors()) {
-      d.setSettings(settings);
-    }
-  }
-
-  // Get Pomodoro state and update all detectors
-  const pomodoroState = await getPomodoroStateSafely();
-  updatePomodoroStateOnDetectors(pomodoroState);
-
-  // Get detector for this hostname (now includes custom domain check)
-  const detector = getDetectorForHostname(hostname);
-
-  if (!detector) {
-    logger.debug('No detector for this hostname');
-    return;
-  }
-
-  // Apply settings to the detector
-  if (!settings) {
-    logger.warn('Could not load settings, using defaults');
+  if (settings) {
+    applySettingsToAll(settings);
   } else {
-    detector.setSettings(settings);
+    logger.warn('Could not load settings, using defaults');
   }
+  applyPomodoroToAll(await getPomodoroStateSafely());
 
-  // Check if blocking is enabled
-  if (!detector.isEnabled()) {
-    logger.debug('Blocking disabled for this platform');
-    return;
-  }
+  // Active detector management (re-evaluated when settings change)
+  let activeDetector: BasePlatformDetector | null = null;
+  let activeObserver: ReturnType<typeof createManagedObserver> | null = null;
 
-  logger.info('Starting content detection', { platform: detector.platform });
+  const deactivate = (): void => {
+    if (activeObserver) {
+      activeObserver.disconnect();
+      activeObserver = null;
+    }
+    activeDetector = null;
+  };
 
-  // Create observer
-  const observer = createManagedObserver(detector);
+  const evaluateDetector = (): void => {
+    const next = getDetectorForHostname(hostname);
 
-  // Initial scan of existing content
-  detector.scan(document.body);
+    if (next === activeDetector) {
+      // Same detector: just re-scan if still enabled
+      if (next?.isEnabled()) {
+        next.scan(document.body);
+      }
+      return;
+    }
 
-  // Start observing for new content
-  observer.observe(document.body);
+    deactivate();
+
+    if (next && next.isEnabled()) {
+      activeDetector = next;
+      activeObserver = createManagedObserver(next);
+      next.scan(document.body);
+      activeObserver.observe(document.body);
+      logger.info('Content detection active', { platform: next.platform });
+    }
+  };
+
+  evaluateDetector();
 
   // Listen for settings and Pomodoro state changes
   browser.storage.onChanged.addListener((changes, areaName) => {
@@ -168,23 +198,18 @@ async function initialize(): Promise<void> {
       return;
     }
 
-    // Handle settings changes
+    // Handle settings changes: re-apply to all detectors and re-select,
+    // so toggling a platform takes effect without a page reload
     const settingsChange = changes[STORAGE_KEYS.SETTINGS];
     if (settingsChange !== undefined) {
       const newSettings = settingsChange.newValue as Settings | undefined;
       if (newSettings !== undefined) {
-        detector.setSettings(newSettings);
-
-        // Update custom domains
-        setCustomDomains(newSettings.customDomains);
-        const customDetector = getCustomDomainDetector();
-        customDetector.setSettings(newSettings);
-
+        applySettingsToAll(newSettings);
         logger.debug('Settings updated');
-
-        // Re-scan if still enabled
-        if (detector.isEnabled()) {
-          detector.scan(document.body);
+        evaluateDetector();
+        // If blocking became disabled for this page, lift any overlay
+        if (activeDetector === null || !activeDetector.isEnabled()) {
+          removeBlockOverlays();
         }
       }
     }
@@ -195,42 +220,37 @@ async function initialize(): Promise<void> {
       const newPomodoroState = pomodoroChange.newValue as
         | PomodoroState
         | undefined;
-      updatePomodoroStateOnDetectors(newPomodoroState ?? null);
+      applyPomodoroToAll(newPomodoroState ?? null);
 
       logger.debug('Pomodoro state updated', {
         mode: newPomodoroState?.mode,
         isRunning: newPomodoroState?.isRunning,
       });
 
-      // If entering break, could remove block overlays
-      // If exiting break, re-scan to apply blocks
-      if (newPomodoroState?.isRunning === true) {
-        if (
-          newPomodoroState.mode === 'break' ||
-          newPomodoroState.mode === 'longBreak'
-        ) {
-          // In break - blocks should be removed (page reload recommended)
-          logger.info('Pomodoro break started - blocking disabled');
-        } else if (newPomodoroState.mode === 'work') {
-          // Work session - re-scan to apply blocks
-          if (detector.isEnabled()) {
-            detector.scan(document.body);
-          }
-        }
+      if (
+        newPomodoroState?.isRunning === true &&
+        (newPomodoroState.mode === 'break' ||
+          newPomodoroState.mode === 'longBreak')
+      ) {
+        // Break started: lift full-page blocks immediately (no reload needed)
+        removeBlockOverlays();
+      } else {
+        // Work started or timer stopped: re-apply blocks
+        evaluateDetector();
       }
     }
   });
 
   // Cleanup on page hide (unload is blocked by some sites' Permissions Policy)
   window.addEventListener('pagehide', () => {
-    observer.disconnect();
+    deactivate();
     logger.debug('Content script unloaded');
   });
 
   // Handle visibility changes (for SPAs)
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && detector.isEnabled()) {
-      detector.scan(document.body);
+    if (document.visibilityState === 'visible' && activeDetector?.isEnabled()) {
+      activeDetector.scan(document.body);
     }
   });
 
@@ -241,10 +261,10 @@ async function initialize(): Promise<void> {
       lastUrl = window.location.href;
       logger.debug('URL changed, rescanning');
 
-      if (detector.isEnabled()) {
+      if (activeDetector?.isEnabled()) {
         // Small delay for DOM to update
         setTimeout(() => {
-          detector.scan(document.body);
+          activeDetector?.scan(document.body);
         }, 100);
       }
     }

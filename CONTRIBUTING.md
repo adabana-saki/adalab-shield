@@ -1,6 +1,6 @@
-# Contributing to ShortShield
+# Contributing to adalab shield
 
-First off, **thank you** for considering contributing to ShortShield! Every contribution helps make the web a less distracting place.
+First off, **thank you** for considering contributing to adalab shield! Every contribution helps make the web a less distracting place.
 
 [日本語](CONTRIBUTING.ja.md)
 
@@ -28,7 +28,7 @@ There are many ways to contribute, even if you don't write code:
 | **Report Bugs**      | Found something broken? Let us know!          | Easy        |
 | **Suggest Features** | Have an idea? We'd love to hear it            | Easy        |
 | **Improve Docs**     | Fix typos, add examples, clarify instructions | Easy        |
-| **Translate**        | Help make ShortShield accessible globally     | Easy-Medium |
+| **Translate**        | Help make adalab shield accessible globally   | Easy-Medium |
 | **Fix Bugs**         | Squash those pesky bugs                       | Medium      |
 | **Add Features**     | Implement new functionality                   | Medium-Hard |
 | **Review PRs**       | Help review other contributions               | Medium      |
@@ -39,9 +39,9 @@ There are many ways to contribute, even if you don't write code:
 
 ### Find Something to Work On
 
-1. **Good First Issues**: Start here! Issues labeled [`good first issue`](https://github.com/adabana-saki/ShortShield/labels/good%20first%20issue) are specifically designed for new contributors.
+1. **Good First Issues**: Start here! Issues labeled [`good first issue`](https://github.com/adabana-saki/adalab-shield/labels/good%20first%20issue) are specifically designed for new contributors.
 
-2. **Help Wanted**: Issues labeled [`help wanted`](https://github.com/adabana-saki/ShortShield/labels/help%20wanted) are ready for anyone to pick up.
+2. **Help Wanted**: Issues labeled [`help wanted`](https://github.com/adabana-saki/adalab-shield/labels/help%20wanted) are ready for anyone to pick up.
 
 3. **Your Own Ideas**: Have something in mind? Open an issue first to discuss!
 
@@ -67,8 +67,8 @@ There are many ways to contribute, even if you don't write code:
 # 1. Fork the repository on GitHub
 
 # 2. Clone your fork
-git clone https://github.com/YOUR_USERNAME/ShortShield.git
-cd ShortShield
+git clone https://github.com/YOUR_USERNAME/adalab shield.git
+cd adalab shield
 
 # 3. Install dependencies
 pnpm install
@@ -106,8 +106,8 @@ pnpm i18n:check     # Validate translations
 1. **Fork & Clone**
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/ShortShield.git
-   cd ShortShield
+   git clone https://github.com/YOUR_USERNAME/adalab shield.git
+   cd adalab shield
    ```
 
 2. **Create a Branch**
@@ -283,7 +283,7 @@ All contributors are recognized! Your GitHub avatar will appear in our README an
 
 ## Thank You!
 
-Every contribution matters. Whether you're fixing a typo, adding a translation, or implementing a new feature — you're helping make ShortShield better for everyone.
+Every contribution matters. Whether you're fixing a typo, adding a translation, or implementing a new feature — you're helping make adalab shield better for everyone.
 
 **Questions?** Open an issue or start a discussion. We're here to help!
 

@@ -34,14 +34,20 @@
       "run_at": "document_idle"
     }
   ],
-  "permissions": ["storage", "activeTab", "alarms", "notifications"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "alarms",
+    "notifications",
+    "declarativeNetRequest"
+  ],
   "host_permissions": ["<all_urls>"],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "web_accessible_resources": [
     {
-      "resources": ["icons/*"],
+      "resources": ["icons/*", "blocked.html", "blocked.js"],
       "matches": ["<all_urls>"]
     }
   ]

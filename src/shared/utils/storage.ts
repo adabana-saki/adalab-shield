@@ -56,6 +56,10 @@ export async function getSettings(): Promise<Settings> {
         ...DEFAULT_SETTINGS.commitmentLock,
         ...(stored.commitmentLock ?? {}),
       },
+      adalabSync: {
+        ...DEFAULT_SETTINGS.adalabSync,
+        ...(stored.adalabSync ?? {}),
+      },
     };
   } catch (error) {
     logger.error('Failed to read settings', { error: String(error) });
@@ -128,6 +132,9 @@ export async function updateSettings(
     commitmentLock: update.commitmentLock
       ? { ...current.commitmentLock, ...update.commitmentLock }
       : current.commitmentLock,
+    adalabSync: update.adalabSync
+      ? { ...current.adalabSync, ...update.adalabSync }
+      : current.adalabSync,
     onboardingCompleted:
       update.onboardingCompleted ?? current.onboardingCompleted,
     version: current.version,
