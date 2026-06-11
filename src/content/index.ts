@@ -117,6 +117,13 @@ async function initialize(): Promise<void> {
     // Also set settings on custom domain detector
     const customDetector = getCustomDomainDetector();
     customDetector.setSettings(settings);
+
+    // Apply settings to all detectors BEFORE selection: getDetectorForHostname
+    // skips disabled detectors, and FullSiteBlocker reports disabled until it
+    // has settings (otherwise full-site blocking is never selected)
+    for (const d of getAllDetectors()) {
+      d.setSettings(settings);
+    }
   }
 
   // Get Pomodoro state and update all detectors
