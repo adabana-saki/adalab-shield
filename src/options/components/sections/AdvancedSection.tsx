@@ -10,6 +10,7 @@ import { CommitmentLockSettings } from '../CommitmentLockSettings';
 import { BlockPageCustomizer } from '../BlockPageCustomizer';
 import { LanguageSettings } from '../LanguageSettings';
 import { ExportImport } from '../ExportImport';
+import { AdalabSettings } from '../AdalabSettings';
 
 type AdvancedSubSection =
   | 'challenge'
@@ -17,7 +18,8 @@ type AdvancedSubSection =
   | 'commitmentLock'
   | 'appearance'
   | 'language'
-  | 'backup';
+  | 'backup'
+  | 'adalabSync';
 
 interface AdvancedSectionProps {
   subSection: AdvancedSubSection;
@@ -147,6 +149,29 @@ export function AdvancedSection({ subSection }: AdvancedSectionProps) {
           }
         />
         <ExportImport />
+      </div>
+    );
+  }
+
+  if (subSection === 'adalabSync') {
+    return (
+      <div className="settings-section">
+        <SectionHeader
+          title={t('adalabSyncTitle')}
+          description={t('adalabSyncDescription')}
+          icon={
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          }
+        />
+        <AdalabSettings />
       </div>
     );
   }

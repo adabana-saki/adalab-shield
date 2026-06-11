@@ -1,21 +1,21 @@
 <div align="center">
 
-# ShortShield
+# adalab shield
 
 **Block short-form videos. Reclaim your focus.**
 
 _The average person spends 2.5 hours daily on short-form videos. Take back your time._
 
-[![CI](https://github.com/adabana-saki/ShortShield/actions/workflows/ci.yml/badge.svg)](https://github.com/adabana-saki/ShortShield/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/adabana-saki/ShortShield/actions/workflows/codeql.yml/badge.svg)](https://github.com/adabana-saki/ShortShield/actions/workflows/codeql.yml)
-[![codecov](https://codecov.io/gh/adabana-saki/ShortShield/branch/main/graph/badge.svg)](https://codecov.io/gh/adabana-saki/ShortShield)
+[![CI](https://github.com/adabana-saki/adalab-shield/actions/workflows/ci.yml/badge.svg)](https://github.com/adabana-saki/adalab-shield/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/adabana-saki/adalab-shield/actions/workflows/codeql.yml/badge.svg)](https://github.com/adabana-saki/adalab-shield/actions/workflows/codeql.yml)
+[![codecov](https://codecov.io/gh/adabana-saki/adalab-shield/branch/main/graph/badge.svg)](https://codecov.io/gh/adabana-saki/adalab-shield)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/adabana-saki/ShortShield?style=social)](https://github.com/adabana-saki/ShortShield/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/adabana-saki/adalab-shield?style=social)](https://github.com/adabana-saki/adalab-shield/stargazers)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-[![Chrome](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)](https://github.com/adabana-saki/ShortShield)
-[![Firefox](https://img.shields.io/badge/Firefox-Add--on-FF7139?logo=firefox&logoColor=white)](https://github.com/adabana-saki/ShortShield)
-[![Edge](https://img.shields.io/badge/Edge-Add--on-0078D7?logo=microsoftedge&logoColor=white)](https://github.com/adabana-saki/ShortShield)
+[![Chrome](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)](https://github.com/adabana-saki/adalab-shield)
+[![Firefox](https://img.shields.io/badge/Firefox-Add--on-FF7139?logo=firefox&logoColor=white)](https://github.com/adabana-saki/adalab-shield)
+[![Edge](https://img.shields.io/badge/Edge-Add--on-0078D7?logo=microsoftedge&logoColor=white)](https://github.com/adabana-saki/adalab-shield)
 
 [**Install**](#installation) · [**Features**](#features) · [**Demo**](#demo) · [**Contributing**](CONTRIBUTING.md)
 
@@ -39,7 +39,7 @@ The result? Fragmented attention, reduced productivity, and hours lost daily.
 
 ## The Solution
 
-**ShortShield blocks short-form video content at the source** — before willpower even enters the equation.
+**adalab shield blocks short-form video content at the source** — before willpower even enters the equation.
 
 ```text
 YouTube Shorts  → Blocked
@@ -57,13 +57,13 @@ No more "just one more video." No more doom scrolling. Just focus.
 
 <!-- TODO: Add actual demo GIF -->
 
-![ShortShield Demo](docs/assets/demo-placeholder.png)
+![adalab shield Demo](docs/assets/demo-placeholder.png)
 
 _One click to block. One click to unblock. Full control._
 
 </div>
 
-|  Without ShortShield  |    With ShortShield     |
+| Without adalab shield |   With adalab shield    |
 | :-------------------: | :---------------------: |
 |  Endless scroll trap  | Clean, focused browsing |
 |  2+ hours lost daily  |     Time reclaimed      |
@@ -86,49 +86,49 @@ _One click to block. One click to unblock. Full control._
 
 ### ⏱️ Focus & Productivity
 
-| Feature                | Description                                             |
-| ---------------------- | ------------------------------------------------------- |
-| **Focus Mode**         | One-click blocking for 30/60/120 minutes with soft lock |
-| **Pomodoro Timer**     | Classic 25/5 work/break cycles with auto-start          |
-| **Site Time Limits**   | Set daily usage limits per platform                     |
-| **Time Tracking**      | 90-day usage history with visual reports               |
-| **Streak Tracking**    | Track consecutive focus days with milestones            |
-| **Challenge Mode**     | Solve math/typing/pattern puzzles to bypass blocks     |
-| **Lockdown Mode**      | PIN-protect settings to prevent impulsive changes       |
-| **Schedule Blocking**  | Auto-block during specific hours (e.g., work time)     |
+| Feature               | Description                                             |
+| --------------------- | ------------------------------------------------------- |
+| **Focus Mode**        | One-click blocking for 30/60/120 minutes with soft lock |
+| **Pomodoro Timer**    | Classic 25/5 work/break cycles with auto-start          |
+| **Site Time Limits**  | Set daily usage limits per platform                     |
+| **Time Tracking**     | 90-day usage history with visual reports                |
+| **Streak Tracking**   | Track consecutive focus days with milestones            |
+| **Challenge Mode**    | Solve math/typing/pattern puzzles to bypass blocks      |
+| **Lockdown Mode**     | PIN-protect settings to prevent impulsive changes       |
+| **Schedule Blocking** | Auto-block during specific hours (e.g., work time)      |
 
 ### 🎨 Customization
 
-| Feature                  | Description                                       |
-| ------------------------ | ------------------------------------------------- |
-| **Custom Block Page**    | Personalize block message, theme, and motivation |
-| **Dark/Light Theme**     | System-aware theme with custom colors             |
-| **Multi-Language**       | 9 languages supported (EN, JA, DE, ES, FR, KO, PT, ZH) |
-| **Privacy-First**        | Zero data collection. Everything stays local      |
-| **Cross-Browser**        | Chrome, Firefox, Edge supported                   |
+| Feature               | Description                                            |
+| --------------------- | ------------------------------------------------------ |
+| **Custom Block Page** | Personalize block message, theme, and motivation       |
+| **Dark/Light Theme**  | System-aware theme with custom colors                  |
+| **Multi-Language**    | 9 languages supported (EN, JA, DE, ES, FR, KO, PT, ZH) |
+| **Privacy-First**     | Zero data collection. Everything stays local           |
+| **Cross-Browser**     | Chrome, Firefox, Edge supported                        |
 
 ---
 
 ## Comparison
 
-| Feature          | ShortShield |  BlockSite  | uBlock Origin | Screen Time | Cold Turkey |
-| ---------------- | :---------: | :---------: | :-----------: | :---------: | :---------: |
-| YouTube Shorts   |     ✅      | ⚠️ Partial  |      ❌       |     ❌      |     ❌      |
-| TikTok           |     ✅      |     ✅      |      ❌       |     ✅      |     ✅      |
-| Instagram Reels  |     ✅      | ⚠️ Partial  |      ❌       |     ❌      |     ❌      |
-| SNS Feed Block   |     ✅      |     ❌      |      ❌       |     ❌      |     ❌      |
-| Focus Mode       |     ✅      |     ❌      |      ❌       |     ❌      | ⚠️ Partial  |
-| Pomodoro Timer   |     ✅      |     ❌      |      ❌       |     ❌      |     ❌      |
-| Time Limits      |     ✅      | ⚠️ Partial  |      ❌       |     ✅      |     ✅      |
-| Streak Tracking  |     ✅      |     ❌      |      ❌       |     ❌      |     ❌      |
-| Challenge Mode   |     ✅      |     ❌      |      ❌       |     ❌      |     ❌      |
-| Lockdown Mode    |     ✅      |     ❌      |      ❌       |     ❌      |     ✅      |
-| Whitelist        |   ✅ Free   |   💰 Paid   |      N/A      |     ❌      |   ✅ Free   |
-| Custom Rules     |     ✅      |     ❌      |      ✅       |     ❌      |     ✅      |
-| Multi-Language   |   ✅ 9      |   ✅ Many   |   ✅ Many     |   ✅ Many   |   ✅ Many   |
-| Privacy          | ✅ No data  | ❌ Collects |  ✅ No data   | ❌ Collects | ✅ No data  |
-| Open Source      |     ✅      |     ❌      |      ✅       |     ❌      |     ❌      |
-| Price            |  **Free**   |  Freemium   |     Free      |    Paid     |    Paid     |
+| Feature         | adalab shield |  BlockSite  | uBlock Origin | Screen Time | Cold Turkey |
+| --------------- | :-----------: | :---------: | :-----------: | :---------: | :---------: |
+| YouTube Shorts  |      ✅       | ⚠️ Partial  |      ❌       |     ❌      |     ❌      |
+| TikTok          |      ✅       |     ✅      |      ❌       |     ✅      |     ✅      |
+| Instagram Reels |      ✅       | ⚠️ Partial  |      ❌       |     ❌      |     ❌      |
+| SNS Feed Block  |      ✅       |     ❌      |      ❌       |     ❌      |     ❌      |
+| Focus Mode      |      ✅       |     ❌      |      ❌       |     ❌      | ⚠️ Partial  |
+| Pomodoro Timer  |      ✅       |     ❌      |      ❌       |     ❌      |     ❌      |
+| Time Limits     |      ✅       | ⚠️ Partial  |      ❌       |     ✅      |     ✅      |
+| Streak Tracking |      ✅       |     ❌      |      ❌       |     ❌      |     ❌      |
+| Challenge Mode  |      ✅       |     ❌      |      ❌       |     ❌      |     ❌      |
+| Lockdown Mode   |      ✅       |     ❌      |      ❌       |     ❌      |     ✅      |
+| Whitelist       |    ✅ Free    |   💰 Paid   |      N/A      |     ❌      |   ✅ Free   |
+| Custom Rules    |      ✅       |     ❌      |      ✅       |     ❌      |     ✅      |
+| Multi-Language  |     ✅ 9      |   ✅ Many   |    ✅ Many    |   ✅ Many   |   ✅ Many   |
+| Privacy         |  ✅ No data   | ❌ Collects |  ✅ No data   | ❌ Collects | ✅ No data  |
+| Open Source     |      ✅       |     ❌      |      ✅       |     ❌      |     ❌      |
+| Price           |   **Free**    |  Freemium   |     Free      |    Paid     |    Paid     |
 
 ---
 
@@ -150,8 +150,8 @@ _One click to block. One click to unblock. Full control._
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/adabana-saki/ShortShield.git
-   cd ShortShield
+   git clone https://github.com/adabana-saki/adalab-shield.git
+   cd adalab shield
    ```
 
 2. **Install dependencies**
@@ -189,7 +189,7 @@ _One click to block. One click to unblock. Full control._
 
 ### Quick Start
 
-1. Click the **ShortShield icon** in your browser toolbar
+1. Click the **adalab shield icon** in your browser toolbar
 2. Toggle the **main switch** to enable/disable blocking
 3. Use **platform toggles** to control individual sites
 
@@ -207,9 +207,9 @@ _One click to block. One click to unblock. Full control._
 
 ---
 
-## Why ShortShield Exists
+## Why adalab shield Exists
 
-**I was angry.** Hours lost every day to short-form videos. Late nights scrolling, achieving nothing, just watching time disappear. This frustration with wasted time and the regret that followed drove me to create ShortShield.
+**I was angry.** Hours lost every day to short-form videos. Late nights scrolling, achieving nothing, just watching time disappear. This frustration with wasted time and the regret that followed drove me to create adalab shield.
 
 After realizing I was spending 3+ hours daily on short-form videos, I tried everything:
 
@@ -220,13 +220,13 @@ After realizing I was spending 3+ hours daily on short-form videos, I tried ever
 
 What I needed was **surgical precision**: block the addictive content, but keep the platforms usable for legitimate purposes (search, specific creators, etc.).
 
-ShortShield is that tool.
+adalab shield is that tool.
 
 ### The Mission
 
 **I want you to reclaim your time.** Protect your life from these cleverly engineered time thieves. Use those recovered hours to focus on what truly matters. **Live more efficiently. Live more intentionally.**
 
-ShortShield isn't just a blocker. It's a shield for your time and your life.
+adalab shield isn't just a blocker. It's a shield for your time and your life.
 
 ---
 
@@ -234,7 +234,7 @@ ShortShield isn't just a blocker. It's a shield for your time and your life.
 
 Short-form video platforms use psychological techniques to maximize engagement:
 
-| Technique            | How It Works                              | ShortShield's Response      |
+| Technique            | How It Works                              | adalab shield's Response    |
 | -------------------- | ----------------------------------------- | --------------------------- |
 | **Variable Rewards** | Unpredictable content keeps you scrolling | Block the feed entirely     |
 | **Infinite Scroll**  | No natural stopping point                 | Remove the scroll mechanism |
@@ -248,7 +248,7 @@ Short-form video platforms use psychological techniques to maximize engagement:
 <details>
 <summary><strong>Does this completely block YouTube/TikTok/Instagram?</strong></summary>
 
-No. ShortShield only blocks the **short-form video sections** (Shorts, For You page, Reels). You can still use YouTube search, watch regular videos, browse Instagram posts, etc.
+No. adalab shield only blocks the **short-form video sections** (Shorts, For You page, Reels). You can still use YouTube search, watch regular videos, browse Instagram posts, etc.
 
 </details>
 
@@ -260,23 +260,23 @@ Yes! One click on the extension icon toggles blocking on/off. You can also disab
 </details>
 
 <details>
-<summary><strong>Does ShortShield collect my data?</strong></summary>
+<summary><strong>Does adalab shield collect my data?</strong></summary>
 
-**No.** ShortShield is 100% local. No analytics, no tracking, no external requests. Your browsing data never leaves your device.
+**No.** adalab shield is 100% local. No analytics, no tracking, no external requests. Your browsing data never leaves your device.
 
 </details>
 
 <details>
 <summary><strong>Why not just use uBlock Origin?</strong></summary>
 
-uBlock Origin is great for ads, but blocking short-form videos requires platform-specific rules that update frequently. ShortShield maintains these rules and provides a user-friendly interface.
+uBlock Origin is great for ads, but blocking short-form videos requires platform-specific rules that update frequently. adalab shield maintains these rules and provides a user-friendly interface.
 
 </details>
 
 <details>
 <summary><strong>Will this work on mobile?</strong></summary>
 
-Currently, ShortShield is desktop-only (browser extension). Mobile support is on the roadmap.
+Currently, adalab shield is desktop-only (browser extension). Mobile support is on the roadmap.
 
 </details>
 
@@ -320,7 +320,7 @@ Currently, ShortShield is desktop-only (browser extension). Mobile support is on
 - [ ] Habit insights & recommendations
 - [ ] Team/family sharing features
 
-[View full roadmap →](https://github.com/adabana-saki/ShortShield/projects)
+[View full roadmap →](https://github.com/adabana-saki/adalab-shield/projects)
 
 ---
 
@@ -346,7 +346,7 @@ pnpm typecheck      # Run type checking
 ### Project Structure
 
 ```
-shortshield/
+adalab shield/
 ├── src/
 │   ├── background/     # Service Worker
 │   ├── content/        # Content Scripts
@@ -365,32 +365,32 @@ shortshield/
 
 ## Contributing
 
-We welcome contributions! ShortShield is designed to be contributor-friendly.
+We welcome contributions! adalab shield is designed to be contributor-friendly.
 
 ### Quick Start
 
 ```bash
-git clone https://github.com/adabana-saki/ShortShield.git
-cd ShortShield
+git clone https://github.com/adabana-saki/adalab-shield.git
+cd adalab shield
 pnpm install
 pnpm dev
 ```
 
 ### Good First Issues
 
-Looking to contribute? Check out issues labeled [`good first issue`](https://github.com/adabana-saki/ShortShield/labels/good%20first%20issue).
+Looking to contribute? Check out issues labeled [`good first issue`](https://github.com/adabana-saki/adalab-shield/labels/good%20first%20issue).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ### Translations
 
-Help translate ShortShield! See [TRANSLATING.md](TRANSLATING.md) for instructions.
+Help translate adalab shield! See [TRANSLATING.md](TRANSLATING.md) for instructions.
 
 ---
 
 ## Privacy
 
-ShortShield is built with privacy as a core principle:
+adalab shield is built with privacy as a core principle:
 
 - **No data collection** — We don't collect any user data
 - **No external requests** — All functionality works offline
@@ -425,8 +425,8 @@ Project Lead: Adabana Saki
 
 ---
 
-If ShortShield helped you reclaim your focus, consider giving it a ⭐
+If adalab shield helped you reclaim your focus, consider giving it a ⭐
 
-[⭐ Star this project](https://github.com/adabana-saki/ShortShield)
+[⭐ Star this project](https://github.com/adabana-saki/adalab-shield)
 
 </div>

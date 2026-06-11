@@ -1,19 +1,19 @@
 {
-  "name": "shortshield",
-  "displayName": "ShortShield",
-  "version": "0.1.1",
-  "description": "Block short-form videos and reclaim your focus. Comprehensive productivity toolkit with Focus Mode, Pomodoro Timer, Time Limits, and more.",
+  "name": "adalab-shield",
+  "displayName": "adalab shield",
+  "version": "0.2.0",
+  "description": "Site & short-form video blocker that guards your focus. Syncs with the adalab study pomodoro: block during focus, unblock during breaks.",
   "type": "module",
   "private": true,
   "author": "Adabana Saki <yuuto819midorimatu@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/adabana-saki/ShortShield#readme",
+  "homepage": "https://github.com/adabana-saki/adalab-shield#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adabana-saki/ShortShield.git"
+    "url": "https://github.com/adabana-saki/adalab-shield.git"
   },
   "bugs": {
-    "url": "https://github.com/adabana-saki/ShortShield/issues"
+    "url": "https://github.com/adabana-saki/adalab-shield/issues"
   },
   "keywords": [
     "browser-extension",
@@ -46,7 +46,7 @@
     "test": "vitest",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test",
+    "test:e2e": "pnpm build:chrome && playwright test",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",

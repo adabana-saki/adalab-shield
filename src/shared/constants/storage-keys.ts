@@ -33,6 +33,8 @@ export const STORAGE_KEYS = {
   COMMITMENT_LOCK_HISTORY: 'shortshield_commitment_lock_history',
   /** Premium subscription state key */
   PREMIUM_STATE: 'shortshield_premium_state',
+  /** adalab study sync metadata (external timer flag + current task) */
+  ADALAB_META: 'shortshield_adalab_meta',
 } as const;
 
 /**

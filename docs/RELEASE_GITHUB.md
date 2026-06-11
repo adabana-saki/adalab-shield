@@ -10,20 +10,20 @@ pnpm build:all
 
 # ZIPファイルを作成
 cd dist/chrome
-zip -r ../../shortshield-chrome-v0.1.0.zip .
+zip -r ../../adalab shield-chrome-v0.1.0.zip .
 cd ../firefox
-zip -r ../../shortshield-firefox-v0.1.0.zip .
+zip -r ../../adalab shield-firefox-v0.1.0.zip .
 cd ../edge
-zip -r ../../shortshield-edge-v0.1.0.zip .
+zip -r ../../adalab shield-edge-v0.1.0.zip .
 cd ../..
 ```
 
 PowerShellの場合:
 
 ```powershell
-Compress-Archive -Path dist\chrome\* -DestinationPath shortshield-chrome-v0.1.0.zip -Force
-Compress-Archive -Path dist\firefox\* -DestinationPath shortshield-firefox-v0.1.0.zip -Force
-Compress-Archive -Path dist\edge\* -DestinationPath shortshield-edge-v0.1.0.zip -Force
+Compress-Archive -Path dist\chrome\* -DestinationPath adalab shield-chrome-v0.1.0.zip -Force
+Compress-Archive -Path dist\firefox\* -DestinationPath adalab shield-firefox-v0.1.0.zip -Force
+Compress-Archive -Path dist\edge\* -DestinationPath adalab shield-edge-v0.1.0.zip -Force
 ```
 
 ### 2. Gitタグの作成とプッシュ
@@ -52,7 +52,7 @@ git push origin v0.1.0
 
 ### 4. Releaseドラフトの編集
 
-1. [Releases ページ](https://github.com/adabana-saki/ShortShield/releases) にアクセス
+1. [Releases ページ](https://github.com/adabana-saki/adalab-shield/releases) にアクセス
 2. ドラフトの「Edit」をクリック
 
 ### 5. Release情報の記入
@@ -60,19 +60,19 @@ git push origin v0.1.0
 #### タイトル
 
 ```
-ShortShield v0.1.0
+adalab shield v0.1.0
 ```
 
 #### 説明文
 
 ```markdown
-# ShortShield v0.1.0 - Initial Release 🎉
+# adalab shield v0.1.0 - Initial Release 🎉
 
 Block short-form videos and reclaim your focus. Comprehensive productivity toolkit for Chrome, Firefox, and Edge.
 
 ## ✨ Highlights
 
-ShortShield blocks short-form videos across YouTube Shorts, TikTok, and Instagram Reels, helping you reclaim your time and focus.
+adalab shield blocks short-form videos across YouTube Shorts, TikTok, and Instagram Reels, helping you reclaim your time and focus.
 
 **16+ Features including:**
 
@@ -89,11 +89,11 @@ ShortShield blocks short-form videos across YouTube Shorts, TikTok, and Instagra
 
 ### Browser Extensions
 
-| Browser     | Download                                                                                                                              | Status                     |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| **Chrome**  | [shortshield-chrome-v0.1.0.zip](https://github.com/adabana-saki/ShortShield/releases/download/v0.1.0/shortshield-chrome-v0.1.0.zip)   | Coming to Chrome Web Store |
-| **Firefox** | [shortshield-firefox-v0.1.0.zip](https://github.com/adabana-saki/ShortShield/releases/download/v0.1.0/shortshield-firefox-v0.1.0.zip) | Coming to Firefox Add-ons  |
-| **Edge**    | [shortshield-edge-v0.1.0.zip](https://github.com/adabana-saki/ShortShield/releases/download/v0.1.0/shortshield-edge-v0.1.0.zip)       | Coming to Edge Add-ons     |
+| Browser     | Download                                                                                                                                    | Status                     |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| **Chrome**  | [adalab shield-chrome-v0.1.0.zip](https://github.com/adabana-saki/adalab-shield/releases/download/v0.1.0/adalab shield-chrome-v0.1.0.zip)   | Coming to Chrome Web Store |
+| **Firefox** | [adalab shield-firefox-v0.1.0.zip](https://github.com/adabana-saki/adalab-shield/releases/download/v0.1.0/adalab shield-firefox-v0.1.0.zip) | Coming to Firefox Add-ons  |
+| **Edge**    | [adalab shield-edge-v0.1.0.zip](https://github.com/adabana-saki/adalab-shield/releases/download/v0.1.0/adalab shield-edge-v0.1.0.zip)       | Coming to Edge Add-ons     |
 
 ### Installation (Development)
 
@@ -253,7 +253,7 @@ Supported languages (9):
 
 ## 📝 Full Changelog
 
-See [CHANGELOG.md](https://github.com/adabana-saki/ShortShield/blob/main/CHANGELOG.md) for complete details.
+See [CHANGELOG.md](https://github.com/adabana-saki/adalab-shield/blob/main/CHANGELOG.md) for complete details.
 
 ## 🙏 Acknowledgments
 
@@ -265,19 +265,19 @@ Built with:
 
 ## 📖 Documentation
 
-- [Features Guide](https://github.com/adabana-saki/ShortShield/blob/main/FEATURES.md)
-- [Contributing Guide](https://github.com/adabana-saki/ShortShield/blob/main/CONTRIBUTING.md)
-- [Quick Start Guide](https://github.com/adabana-saki/ShortShield/blob/main/docs/QUICK_START.md)
+- [Features Guide](https://github.com/adabana-saki/adalab-shield/blob/main/FEATURES.md)
+- [Contributing Guide](https://github.com/adabana-saki/adalab-shield/blob/main/CONTRIBUTING.md)
+- [Quick Start Guide](https://github.com/adabana-saki/adalab-shield/blob/main/docs/QUICK_START.md)
 
 ## 💬 Feedback & Support
 
-- 🐛 [Report bugs](https://github.com/adabana-saki/ShortShield/issues)
-- 💡 [Request features](https://github.com/adabana-saki/ShortShield/issues)
-- 💬 [Join discussions](https://github.com/adabana-saki/ShortShield/discussions)
+- 🐛 [Report bugs](https://github.com/adabana-saki/adalab-shield/issues)
+- 💡 [Request features](https://github.com/adabana-saki/adalab-shield/issues)
+- 💬 [Join discussions](https://github.com/adabana-saki/adalab-shield/discussions)
 
 ---
 
-**If ShortShield helped you reclaim your focus, consider giving it a ⭐ on [GitHub](https://github.com/adabana-saki/ShortShield)!**
+**If adalab shield helped you reclaim your focus, consider giving it a ⭐ on [GitHub](https://github.com/adabana-saki/adalab-shield)!**
 
 Developed by [ADALAB](https://adalab.pages.dev/) | Project Lead: Adabana Saki
 ```

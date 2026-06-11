@@ -31,6 +31,7 @@ export type SubSectionId =
   | 'appearance'
   | 'language'
   | 'backup'
+  | 'adalabSync'
   | 'subscription'
   | 'termsOfService'
   | 'privacyPolicy'
@@ -345,6 +346,12 @@ export function Sidebar({
             label={t('optionsTabBackup')}
             active={activeSubSection === 'backup'}
             onClick={() => onSectionChange('advanced', 'backup')}
+            nested
+          />
+          <SidebarItem
+            label={t('optionsTabAdalab')}
+            active={activeSubSection === 'adalabSync'}
+            onClick={() => onSectionChange('advanced', 'adalabSync')}
             nested
           />
         </CollapsibleSection>

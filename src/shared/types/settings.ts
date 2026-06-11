@@ -414,8 +414,17 @@ export interface Settings {
   readonly challenge: ChallengeSettings;
   readonly lockdown: LockdownSettings;
   readonly commitmentLock: CommitmentLockSettings;
+  readonly adalabSync: AdalabSyncSettings;
   readonly onboardingCompleted: boolean; // Whether user has completed initial setup
   readonly version: number; // Schema version for migrations
+}
+
+/**
+ * adalab study integration settings
+ */
+export interface AdalabSyncSettings {
+  /** Sync the adalab study pomodoro into blocking (work = block, break = unblock) */
+  readonly enabled: boolean;
 }
 
 /**
@@ -437,6 +446,7 @@ export type SettingsUpdate = Partial<{
   challenge: Partial<ChallengeSettings>;
   lockdown: Partial<LockdownSettings>;
   commitmentLock: Partial<CommitmentLockSettings>;
+  adalabSync: Partial<AdalabSyncSettings>;
   onboardingCompleted: boolean;
 }>;
 

@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "ShortShield",
+    "message": "adalab shield",
     "description": "Name of the extension"
   },
   "extensionDescription": {
@@ -8,7 +8,7 @@
     "description": "Description shown in browser extension store"
   },
   "popupTitle": {
-    "message": "ShortShield",
+    "message": "adalab shield",
     "description": "Title shown in the popup header"
   },
   "popupStatusEnabled": {
@@ -212,7 +212,7 @@
     "description": "Description for domains blocked via popup"
   },
   "optionsTitle": {
-    "message": "ShortShield Settings",
+    "message": "adalab shield Settings",
     "description": "Title of the options page"
   },
   "optionsPlatformsTitle": {
@@ -562,7 +562,7 @@
     "description": "Starts with wildcard example description"
   },
   "customDomainsHelpTip": {
-    "message": "Tip: URLs are automatically cleaned - you can paste full URLs and ShortShield will extract the domain.",
+    "message": "Tip: URLs are automatically cleaned - you can paste full URLs and adalab shield will extract the domain.",
     "description": "Help tip about URL handling"
   },
   "optionsTabCustomDomains": {
@@ -668,8 +668,8 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "Block Page Appearance",
-    "description": "Section title for block page customization"
+    "message": "Content Blocked",
+    "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
     "message": "Customize how the block overlay looks when content is blocked.",
@@ -764,7 +764,7 @@
     "description": "Default block page title"
   },
   "blockPageDefaultMessage": {
-    "message": "ShortShield is protecting your focus.",
+    "message": "adalab shield is protecting your focus.",
     "description": "Default block page message"
   },
   "blockPageDefaultQuote": {
@@ -1934,7 +1934,7 @@
     "description": "Go back button text"
   },
   "customDomainBlockTitle": {
-    "message": "ShortShield Active",
+    "message": "adalab shield Active",
     "description": "Title shown on custom domain block overlay"
   },
   "customDomainBlockMessage": {
@@ -1948,7 +1948,7 @@
     }
   },
   "customDomainBlockHint": {
-    "message": "You can remove this domain from your block list in ShortShield settings.",
+    "message": "You can remove this domain from your block list in adalab shield settings.",
     "description": "Hint shown on custom domain block overlay"
   },
   "dashboardTitle": {
@@ -2072,7 +2072,7 @@
     "description": "Sidebar submenu: Backup"
   },
   "dashboardStatusOn": {
-    "message": "ShortShield is protecting your focus",
+    "message": "adalab shield is protecting your focus",
     "description": "Dashboard status when enabled"
   },
   "dashboardStatusOff": {
@@ -2100,7 +2100,7 @@
     "description": "Retry button text"
   },
   "onboardingWelcomeTitle": {
-    "message": "Welcome to ShortShield",
+    "message": "Welcome to adalab shield",
     "description": "Onboarding: welcome title"
   },
   "onboardingWelcomeSubtitle": {
@@ -2148,7 +2148,7 @@
     "description": "Onboarding: schedule title"
   },
   "onboardingScheduleSubtitle": {
-    "message": "Choose when ShortShield should protect your focus",
+    "message": "Choose when adalab shield should protect your focus",
     "description": "Onboarding: schedule subtitle"
   },
   "onboardingScheduleWorkHours": {
@@ -2176,7 +2176,7 @@
     "description": "Onboarding: complete title"
   },
   "onboardingCompleteSubtitle": {
-    "message": "ShortShield is now protecting your focus",
+    "message": "adalab shield is now protecting your focus",
     "description": "Onboarding: complete subtitle"
   },
   "onboardingCompletePlatforms": {
@@ -2248,7 +2248,7 @@
     "description": "Label for language selector"
   },
   "languageDescription": {
-    "message": "Choose the language for the ShortShield interface",
+    "message": "Choose the language for the adalab shield interface",
     "description": "Description for language settings"
   },
   "languageDetected": {
@@ -2346,5 +2346,117 @@
   "popupAdalabComplete": {
     "message": "Complete task",
     "description": "Button to mark an adalab study task as done"
+  },
+  "notifFocusStartedTitle": {
+    "message": "Focus Mode Started",
+    "description": "Auto-added: notifFocusStartedTitle"
+  },
+  "notifFocusStartedMessage": {
+    "message": "Stay focused for $1 minutes. You can do it!",
+    "description": "Auto-added: notifFocusStartedMessage"
+  },
+  "notifFocusCompletedTitle": {
+    "message": "Focus Session Complete!",
+    "description": "Auto-added: notifFocusCompletedTitle"
+  },
+  "notifFocusCompletedMessage": {
+    "message": "Great job! You completed your focus session.",
+    "description": "Auto-added: notifFocusCompletedMessage"
+  },
+  "notifFocusCancelledTitle": {
+    "message": "Focus Mode Cancelled",
+    "description": "Auto-added: notifFocusCancelledTitle"
+  },
+  "notifFocusCancelledMessage": {
+    "message": "Focus mode has been cancelled.",
+    "description": "Auto-added: notifFocusCancelledMessage"
+  },
+  "pomodoroModeWork": {
+    "message": "Work",
+    "description": "Auto-added: pomodoroModeWork"
+  },
+  "pomodoroModeBreak": {
+    "message": "Break",
+    "description": "Auto-added: pomodoroModeBreak"
+  },
+  "pomodoroModeLongBreak": {
+    "message": "Long Break",
+    "description": "Auto-added: pomodoroModeLongBreak"
+  },
+  "notifPomodoroStartedTitle": {
+    "message": "$1 Started",
+    "description": "Auto-added: notifPomodoroStartedTitle"
+  },
+  "notifPomodoroCompletedTitle": {
+    "message": "$1 Complete!",
+    "description": "Auto-added: notifPomodoroCompletedTitle"
+  },
+  "notifPomodoroWorkStartedMessage": {
+    "message": "Time to focus!",
+    "description": "Auto-added: notifPomodoroWorkStartedMessage"
+  },
+  "notifPomodoroBreakStartedMessage": {
+    "message": "Take a break, you earned it!",
+    "description": "Auto-added: notifPomodoroBreakStartedMessage"
+  },
+  "notifPomodoroWorkCompletedMessage": {
+    "message": "Great work! Time for a break.",
+    "description": "Auto-added: notifPomodoroWorkCompletedMessage"
+  },
+  "notifPomodoroBreakCompletedMessage": {
+    "message": "Break over! Ready to focus?",
+    "description": "Auto-added: notifPomodoroBreakCompletedMessage"
+  },
+  "notifStreakMilestoneTitle": {
+    "message": "Streak Milestone!",
+    "description": "Auto-added: notifStreakMilestoneTitle"
+  },
+  "notifStreakMilestoneMessage": {
+    "message": "Amazing! You've reached a $1-day streak!",
+    "description": "Auto-added: notifStreakMilestoneMessage"
+  },
+  "notifStreakBrokenTitle": {
+    "message": "Streak Broken",
+    "description": "Auto-added: notifStreakBrokenTitle"
+  },
+  "notifStreakBrokenMessage": {
+    "message": "Your streak has been reset. Start fresh today!",
+    "description": "Auto-added: notifStreakBrokenMessage"
+  },
+  "blockedPageMessageSuffix": {
+    "message": "is blocked to help you stay focused.",
+    "description": "Auto-added: blockedPageMessageSuffix"
+  },
+  "blockPageSettingsHint": {
+    "message": "You can change this in adalab shield settings.",
+    "description": "Auto-added: blockPageSettingsHint"
+  },
+  "blockPageFocusRemaining": {
+    "message": "Focus — time remaining",
+    "description": "Auto-added: blockPageFocusRemaining"
+  },
+  "blockPageWorkingOn": {
+    "message": "Working on",
+    "description": "Auto-added: blockPageWorkingOn"
+  },
+  "optionsTabAdalab": {
+    "message": "adalab study",
+    "description": "Auto-added: optionsTabAdalab"
+  },
+  "adalabSyncTitle": {
+    "message": "adalab study integration",
+    "description": "Auto-added: adalabSyncTitle"
+  },
+  "adalabSyncDescription": {
+    "message": "Sync the adalab study pomodoro with blocking: sites are blocked during focus and unblocked during breaks.",
+    "description": "Auto-added: adalabSyncDescription"
+  },
+  "adalabSyncToggleLabel": {
+    "message": "Enable adalab study sync",
+    "description": "Auto-added: adalabSyncToggleLabel"
+  },
+  "adalabSyncToggleDescription": {
+    "message": "Follow the adalab study timer and control it from the popup.",
+    "description": "Auto-added: adalabSyncToggleDescription"
   }
 }

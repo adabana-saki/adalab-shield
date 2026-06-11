@@ -17,7 +17,7 @@ module.exports = {
     'plugin:security/recommended-legacy',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', '*.config.js'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', '*.config.js', 'e2e', 'playwright.config.ts', 'public'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -92,3 +92,4 @@ module.exports = {
     },
   ],
 };
+

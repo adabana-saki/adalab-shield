@@ -15,6 +15,7 @@
 カスタムドメイン機能を使うと、YouTube、TikTok、Instagramなどの標準対応サイト以外にも、**任意のウェブサイト全体**をブロックできます。
 
 ### 使用例
+
 - 仕事中にニュースサイトをブロックしたい
 - SNS全般をブロックしたい
 - ゲームサイトへのアクセスを制限したい
@@ -26,7 +27,7 @@
 
 ### ステップ1: 設定画面を開く
 
-1. ブラウザのツールバーにあるShortShieldアイコンをクリック
+1. ブラウザのツールバーにあるadalab shieldアイコンをクリック
 2. 「設定」または「Options」を選択
 
 ### ステップ2: カスタムドメインセクションへ移動
@@ -48,7 +49,7 @@
 
 ## パターンの書き方
 
-ShortShieldは複数のパターン形式をサポートしています。
+adalab shieldは複数のパターン形式をサポートしています。
 
 ### 1. **完全一致** (推奨)
 
@@ -57,11 +58,13 @@ twitter.com
 ```
 
 **マッチするURL:**
+
 - `https://twitter.com`
 - `https://www.twitter.com`
 - `https://mobile.twitter.com` (サブドメインも含む)
 
 **マッチしないURL:**
+
 - `https://mytwitter.com`
 
 ---
@@ -73,6 +76,7 @@ twitter.com
 ```
 
 **マッチするURL:**
+
 - `https://youtube.com`
 - `https://m.youtube.com`
 - `https://myyoutube.com`
@@ -90,11 +94,13 @@ reddit*
 ```
 
 **マッチするURL:**
+
 - `https://reddit.com`
 - `https://reddit-stream.com`
 - `https://reddit.example.com`
 
 **マッチしないURL:**
+
 - `https://myreddit.com`
 
 ---
@@ -106,11 +112,13 @@ reddit*
 ```
 
 **マッチするURL:**
+
 - `https://reddit`
 - `https://myreddit`
 - `https://old.reddit`
 
 **マッチしないURL:**
+
 - `https://reddit.com`
 
 ---
@@ -122,11 +130,13 @@ reddit*
 ```
 
 **マッチするURL:**
+
 - `https://m.youtube.com`
 - `https://music.youtube.com`
 - `https://studio.youtube.com`
 
 **マッチしないURL:**
+
 - `https://youtube.com` (メインドメインは除外)
 
 ---
@@ -182,8 +192,8 @@ old.reddit.com
 **確認事項:**
 
 1. **拡張機能が有効**になっていますか？
-   - ツールバーのShortShieldアイコンをクリック
-   - 「ShortShield有効」になっているか確認
+   - ツールバーのadalab shieldアイコンをクリック
+   - 「adalab shield有効」になっているか確認
 
 2. **パターンが正しい**ですか？
    - ドメイン名のみを入力（`https://` や `/` は不要）
@@ -205,11 +215,13 @@ old.reddit.com
 ### Q3: 一時的にブロックを解除できますか？
 
 **方法1: 個別ドメインを無効化**
+
 1. 設定画面 → カスタムドメイン
 2. 該当ドメインの横にある「削除」ボタンをクリック
 
 **方法2: 拡張機能全体を無効化**
-1. ShortShieldアイコンをクリック
+
+1. adalab shieldアイコンをクリック
 2. トグルスイッチをOFFにする
 
 ### Q4: いくつまでドメインを追加できますか？
@@ -282,8 +294,8 @@ m.youtube.com
 
 問題が解決しない場合は、GitHubで報告してください:
 
-[https://github.com/anthropics/shortshield/issues](https://github.com/anthropics/shortshield/issues)
+[https://github.com/anthropics/adalab shield/issues](https://github.com/anthropics/adalab shield/issues)
 
 ---
 
-**ShortShieldで快適な集中環境を！** 🛡️✨
+**adalab shieldで快適な集中環境を！** 🛡️✨

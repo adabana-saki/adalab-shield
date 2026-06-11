@@ -102,8 +102,9 @@ export class FullSiteBlocker extends BasePlatformDetector {
    * Block the entire page content
    */
   private blockEntirePage(): void {
-    // Only log the block once per page load
-    if (this.hasBlocked) {
+    // Overlay already present: nothing to do. Checking the DOM (not a flag)
+    // lets blocking re-engage after a Pomodoro break removed the overlay.
+    if (document.getElementById('shortshield-fullsite-overlay')) {
       return;
     }
 
@@ -120,9 +121,11 @@ export class FullSiteBlocker extends BasePlatformDetector {
       'shortshield-fullsite-overlay'
     );
 
-    // Log the block only once
-    this.hasBlocked = true;
-    void this.logBlock(document.body, 'hide');
+    // Log the block only once per page load
+    if (!this.hasBlocked) {
+      this.hasBlocked = true;
+      void this.logBlock(document.body, 'hide');
+    }
   }
 }
 

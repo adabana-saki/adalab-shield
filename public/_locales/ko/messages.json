@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "ShortShield",
+    "message": "adalab shield",
     "description": "Name of the extension"
   },
   "extensionDescription": {
@@ -8,7 +8,7 @@
     "description": "Description shown in browser extension store"
   },
   "popupTitle": {
-    "message": "ShortShield",
+    "message": "adalab shield",
     "description": "Title shown in the popup header"
   },
   "popupStatusEnabled": {
@@ -128,7 +128,7 @@
     "description": "Button text to open options page"
   },
   "optionsTitle": {
-    "message": "ShortShield 설정",
+    "message": "adalab shield 설정",
     "description": "Title of the options page"
   },
   "optionsPlatformsTitle": {
@@ -556,8 +556,8 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "차단 페이지 외관",
-    "description": "Section title for block page customization"
+    "message": "콘텐츠 차단됨",
+    "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
     "message": "콘텐츠가 차단될 때 표시되는 오버레이의 모양을 사용자 정의합니다.",
@@ -652,7 +652,7 @@
     "description": "Default block page title"
   },
   "blockPageDefaultMessage": {
-    "message": "ShortShield가 당신의 집중력을 보호하고 있습니다.",
+    "message": "adalab shield가 당신의 집중력을 보호하고 있습니다.",
     "description": "Default block page message"
   },
   "blockPageDefaultQuote": {
@@ -1506,7 +1506,7 @@
     "description": "Starts with wildcard example description"
   },
   "customDomainsHelpTip": {
-    "message": "Tip: URLs are automatically cleaned - you can paste full URLs and ShortShield will extract the domain.",
+    "message": "Tip: URLs are automatically cleaned - you can paste full URLs and adalab shield will extract the domain.",
     "description": "Help tip about URL handling"
   },
   "platformDiscord": {
@@ -1934,7 +1934,7 @@
     "description": "Go back button text"
   },
   "customDomainBlockTitle": {
-    "message": "ShortShield Active",
+    "message": "adalab shield Active",
     "description": "Title shown on custom domain block overlay"
   },
   "customDomainBlockMessage": {
@@ -1948,7 +1948,7 @@
     }
   },
   "customDomainBlockHint": {
-    "message": "You can remove this domain from your block list in ShortShield settings.",
+    "message": "You can remove this domain from your block list in adalab shield settings.",
     "description": "Hint shown on custom domain block overlay"
   },
   "dashboardTitle": {
@@ -2072,7 +2072,7 @@
     "description": "Sidebar submenu: Backup"
   },
   "dashboardStatusOn": {
-    "message": "ShortShield is protecting your focus",
+    "message": "adalab shield is protecting your focus",
     "description": "Dashboard status when enabled"
   },
   "dashboardStatusOff": {
@@ -2100,7 +2100,7 @@
     "description": "Retry button text"
   },
   "onboardingWelcomeTitle": {
-    "message": "Welcome to ShortShield",
+    "message": "Welcome to adalab shield",
     "description": "Onboarding: welcome title"
   },
   "onboardingWelcomeSubtitle": {
@@ -2148,7 +2148,7 @@
     "description": "Onboarding: schedule title"
   },
   "onboardingScheduleSubtitle": {
-    "message": "Choose when ShortShield should protect your focus",
+    "message": "Choose when adalab shield should protect your focus",
     "description": "Onboarding: schedule subtitle"
   },
   "onboardingScheduleWorkHours": {
@@ -2176,7 +2176,7 @@
     "description": "Onboarding: complete title"
   },
   "onboardingCompleteSubtitle": {
-    "message": "ShortShield is now protecting your focus",
+    "message": "adalab shield is now protecting your focus",
     "description": "Onboarding: complete subtitle"
   },
   "onboardingCompletePlatforms": {
@@ -2248,7 +2248,7 @@
     "description": "Label for language selector"
   },
   "languageDescription": {
-    "message": "Choose the language for the ShortShield interface",
+    "message": "Choose the language for the adalab shield interface",
     "description": "Description for language settings"
   },
   "languageDetected": {
@@ -2346,5 +2346,117 @@
   "popupAdalabComplete": {
     "message": "작업 완료",
     "description": "Button to mark an adalab study task as done"
+  },
+  "notifFocusStartedTitle": {
+    "message": "집중 모드 시작",
+    "description": "Auto-added: notifFocusStartedTitle"
+  },
+  "notifFocusStartedMessage": {
+    "message": "$1분 동안 집중하세요. 할 수 있어요!",
+    "description": "Auto-added: notifFocusStartedMessage"
+  },
+  "notifFocusCompletedTitle": {
+    "message": "집중 세션 완료!",
+    "description": "Auto-added: notifFocusCompletedTitle"
+  },
+  "notifFocusCompletedMessage": {
+    "message": "수고했어요! 집중 세션을 완료했습니다.",
+    "description": "Auto-added: notifFocusCompletedMessage"
+  },
+  "notifFocusCancelledTitle": {
+    "message": "집중 모드 취소됨",
+    "description": "Auto-added: notifFocusCancelledTitle"
+  },
+  "notifFocusCancelledMessage": {
+    "message": "집중 모드가 취소되었습니다.",
+    "description": "Auto-added: notifFocusCancelledMessage"
+  },
+  "pomodoroModeWork": {
+    "message": "작업",
+    "description": "Auto-added: pomodoroModeWork"
+  },
+  "pomodoroModeBreak": {
+    "message": "휴식",
+    "description": "Auto-added: pomodoroModeBreak"
+  },
+  "pomodoroModeLongBreak": {
+    "message": "긴 휴식",
+    "description": "Auto-added: pomodoroModeLongBreak"
+  },
+  "notifPomodoroStartedTitle": {
+    "message": "$1 시작",
+    "description": "Auto-added: notifPomodoroStartedTitle"
+  },
+  "notifPomodoroCompletedTitle": {
+    "message": "$1 완료!",
+    "description": "Auto-added: notifPomodoroCompletedTitle"
+  },
+  "notifPomodoroWorkStartedMessage": {
+    "message": "집중할 시간이에요!",
+    "description": "Auto-added: notifPomodoroWorkStartedMessage"
+  },
+  "notifPomodoroBreakStartedMessage": {
+    "message": "휴식을 취하세요. 충분히 자격 있어요!",
+    "description": "Auto-added: notifPomodoroBreakStartedMessage"
+  },
+  "notifPomodoroWorkCompletedMessage": {
+    "message": "수고했어요! 휴식 시간입니다.",
+    "description": "Auto-added: notifPomodoroWorkCompletedMessage"
+  },
+  "notifPomodoroBreakCompletedMessage": {
+    "message": "휴식 끝! 다시 집중할 준비 되셨나요?",
+    "description": "Auto-added: notifPomodoroBreakCompletedMessage"
+  },
+  "notifStreakMilestoneTitle": {
+    "message": "연속 기록 달성!",
+    "description": "Auto-added: notifStreakMilestoneTitle"
+  },
+  "notifStreakMilestoneMessage": {
+    "message": "대단해요! $1일 연속 기록을 달성했어요!",
+    "description": "Auto-added: notifStreakMilestoneMessage"
+  },
+  "notifStreakBrokenTitle": {
+    "message": "연속 기록 중단",
+    "description": "Auto-added: notifStreakBrokenTitle"
+  },
+  "notifStreakBrokenMessage": {
+    "message": "연속 기록이 초기화되었습니다. 오늘부터 다시 시작하세요!",
+    "description": "Auto-added: notifStreakBrokenMessage"
+  },
+  "blockedPageMessageSuffix": {
+    "message": "은(는) 집중을 위해 차단되었습니다.",
+    "description": "Auto-added: blockedPageMessageSuffix"
+  },
+  "blockPageSettingsHint": {
+    "message": "adalab shield 설정에서 변경할 수 있습니다.",
+    "description": "Auto-added: blockPageSettingsHint"
+  },
+  "blockPageFocusRemaining": {
+    "message": "집중 — 남은 시간",
+    "description": "Auto-added: blockPageFocusRemaining"
+  },
+  "blockPageWorkingOn": {
+    "message": "진행 중",
+    "description": "Auto-added: blockPageWorkingOn"
+  },
+  "optionsTabAdalab": {
+    "message": "adalab study",
+    "description": "Auto-added: optionsTabAdalab"
+  },
+  "adalabSyncTitle": {
+    "message": "adalab study 연동",
+    "description": "Auto-added: adalabSyncTitle"
+  },
+  "adalabSyncDescription": {
+    "message": "adalab study 뽀모도로와 차단을 동기화합니다. 집중 중에는 차단되고 휴식 중에는 해제됩니다.",
+    "description": "Auto-added: adalabSyncDescription"
+  },
+  "adalabSyncToggleLabel": {
+    "message": "adalab study 동기화 사용",
+    "description": "Auto-added: adalabSyncToggleLabel"
+  },
+  "adalabSyncToggleDescription": {
+    "message": "adalab study 타이머를 따라가며 팝업에서 제어할 수 있습니다.",
+    "description": "Auto-added: adalabSyncToggleDescription"
   }
 }

@@ -135,8 +135,9 @@ export class CustomDomainDetector extends BasePlatformDetector {
    * Block the entire page content
    */
   private blockEntirePage(domain: CustomBlockedDomain): void {
-    // Only log the block once per page load
-    if (this.hasBlocked) {
+    // Overlay already present: nothing to do. Checking the DOM (not a flag)
+    // lets blocking re-engage after a Pomodoro break removed the overlay.
+    if (document.getElementById('shortshield-custom-overlay')) {
       return;
     }
 
@@ -158,9 +159,11 @@ export class CustomDomainDetector extends BasePlatformDetector {
       'shortshield-custom-overlay'
     );
 
-    // Log the block only once (using youtube as placeholder platform)
-    this.hasBlocked = true;
-    void this.logBlock(document.body, 'hide');
+    // Log the block only once per page load (using youtube as placeholder platform)
+    if (!this.hasBlocked) {
+      this.hasBlocked = true;
+      void this.logBlock(document.body, 'hide');
+    }
   }
 }
 

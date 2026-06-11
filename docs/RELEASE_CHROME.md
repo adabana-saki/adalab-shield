@@ -21,14 +21,14 @@
 
 ```bash
 cd dist/chrome
-zip -r ../../shortshield-chrome-v0.1.0.zip .
+zip -r ../../adalab shield-chrome-v0.1.0.zip .
 cd ../..
 ```
 
 またはWindows PowerShellで：
 
 ```powershell
-Compress-Archive -Path dist\chrome\* -DestinationPath shortshield-chrome-v0.1.0.zip
+Compress-Archive -Path dist\chrome\* -DestinationPath adalab shield-chrome-v0.1.0.zip
 ```
 
 ### 3. 新しいアイテムを作成
@@ -41,7 +41,7 @@ Compress-Archive -Path dist\chrome\* -DestinationPath shortshield-chrome-v0.1.0.
 
 #### 基本情報
 
-- **名前**: ShortShield
+- **名前**: adalab shield
 - **概要** (132文字以内):
   ```
   Block short-form videos and reclaim your focus. Comprehensive productivity toolkit with Focus Mode, Pomodoro Timer, Time Limits, and more.
@@ -50,7 +50,7 @@ Compress-Archive -Path dist\chrome\* -DestinationPath shortshield-chrome-v0.1.0.
 #### 詳細な説明
 
 ```markdown
-ShortShield blocks short-form videos across YouTube Shorts, TikTok, and Instagram Reels to help you reclaim your time and focus.
+adalab shield blocks short-form videos across YouTube Shorts, TikTok, and Instagram Reels to help you reclaim your time and focus.
 
 🛡️ CORE FEATURES
 • Multi-platform blocking (YouTube Shorts, TikTok, Instagram Reels)
@@ -76,7 +76,7 @@ ShortShield blocks short-form videos across YouTube Shorts, TikTok, and Instagra
 
 Perfect for students, professionals, and anyone looking to reduce screen time and improve focus.
 
-Open source: https://github.com/adabana-saki/ShortShield
+Open source: https://github.com/adabana-saki/adalab-shield
 ```
 
 #### カテゴリ
@@ -132,7 +132,7 @@ Open source: https://github.com/adabana-saki/ShortShield
 #### プライバシーポリシーURL
 
 ```
-https://github.com/adabana-saki/ShortShield/blob/main/docs/PRIVACY_POLICY.md
+https://github.com/adabana-saki/adalab-shield/blob/main/docs/PRIVACY_POLICY.md
 ```
 
 #### 権限の説明

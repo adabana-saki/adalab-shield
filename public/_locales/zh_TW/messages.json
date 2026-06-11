@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "ShortShield",
+    "message": "adalab shield",
     "description": "Name of the extension"
   },
   "extensionDescription": {
@@ -8,7 +8,7 @@
     "description": "Description shown in browser extension store"
   },
   "popupTitle": {
-    "message": "ShortShield",
+    "message": "adalab shield",
     "description": "Title shown in the popup header"
   },
   "popupStatusEnabled": {
@@ -128,7 +128,7 @@
     "description": "Button text to open options page"
   },
   "optionsTitle": {
-    "message": "ShortShield 設定",
+    "message": "adalab shield 設定",
     "description": "Title of the options page"
   },
   "optionsPlatformsTitle": {
@@ -556,8 +556,8 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "封鎖頁面外觀",
-    "description": "Section title for block page customization"
+    "message": "內容已封鎖",
+    "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
     "message": "自訂內容被封鎖時顯示的遮罩外觀。",
@@ -652,7 +652,7 @@
     "description": "Default block page title"
   },
   "blockPageDefaultMessage": {
-    "message": "ShortShield 正在保護您的專注力。",
+    "message": "adalab shield 正在保護您的專注力。",
     "description": "Default block page message"
   },
   "blockPageDefaultQuote": {
@@ -1506,7 +1506,7 @@
     "description": "Starts with wildcard example description"
   },
   "customDomainsHelpTip": {
-    "message": "Tip: URLs are automatically cleaned - you can paste full URLs and ShortShield will extract the domain.",
+    "message": "Tip: URLs are automatically cleaned - you can paste full URLs and adalab shield will extract the domain.",
     "description": "Help tip about URL handling"
   },
   "platformDiscord": {
@@ -1934,7 +1934,7 @@
     "description": "Go back button text"
   },
   "customDomainBlockTitle": {
-    "message": "ShortShield Active",
+    "message": "adalab shield Active",
     "description": "Title shown on custom domain block overlay"
   },
   "customDomainBlockMessage": {
@@ -1948,7 +1948,7 @@
     }
   },
   "customDomainBlockHint": {
-    "message": "You can remove this domain from your block list in ShortShield settings.",
+    "message": "You can remove this domain from your block list in adalab shield settings.",
     "description": "Hint shown on custom domain block overlay"
   },
   "dashboardTitle": {
@@ -2072,7 +2072,7 @@
     "description": "Sidebar submenu: Backup"
   },
   "dashboardStatusOn": {
-    "message": "ShortShield is protecting your focus",
+    "message": "adalab shield is protecting your focus",
     "description": "Dashboard status when enabled"
   },
   "dashboardStatusOff": {
@@ -2100,7 +2100,7 @@
     "description": "Retry button text"
   },
   "onboardingWelcomeTitle": {
-    "message": "Welcome to ShortShield",
+    "message": "Welcome to adalab shield",
     "description": "Onboarding: welcome title"
   },
   "onboardingWelcomeSubtitle": {
@@ -2148,7 +2148,7 @@
     "description": "Onboarding: schedule title"
   },
   "onboardingScheduleSubtitle": {
-    "message": "Choose when ShortShield should protect your focus",
+    "message": "Choose when adalab shield should protect your focus",
     "description": "Onboarding: schedule subtitle"
   },
   "onboardingScheduleWorkHours": {
@@ -2176,7 +2176,7 @@
     "description": "Onboarding: complete title"
   },
   "onboardingCompleteSubtitle": {
-    "message": "ShortShield is now protecting your focus",
+    "message": "adalab shield is now protecting your focus",
     "description": "Onboarding: complete subtitle"
   },
   "onboardingCompletePlatforms": {
@@ -2248,7 +2248,7 @@
     "description": "Label for language selector"
   },
   "languageDescription": {
-    "message": "Choose the language for the ShortShield interface",
+    "message": "Choose the language for the adalab shield interface",
     "description": "Description for language settings"
   },
   "languageDetected": {
@@ -2346,5 +2346,117 @@
   "popupAdalabComplete": {
     "message": "完成任務",
     "description": "Button to mark an adalab study task as done"
+  },
+  "notifFocusStartedTitle": {
+    "message": "專注模式已開始",
+    "description": "Auto-added: notifFocusStartedTitle"
+  },
+  "notifFocusStartedMessage": {
+    "message": "保持專注 $1 分鐘。你可以的!",
+    "description": "Auto-added: notifFocusStartedMessage"
+  },
+  "notifFocusCompletedTitle": {
+    "message": "專注時段完成!",
+    "description": "Auto-added: notifFocusCompletedTitle"
+  },
+  "notifFocusCompletedMessage": {
+    "message": "做得好!你完成了專注時段。",
+    "description": "Auto-added: notifFocusCompletedMessage"
+  },
+  "notifFocusCancelledTitle": {
+    "message": "專注模式已取消",
+    "description": "Auto-added: notifFocusCancelledTitle"
+  },
+  "notifFocusCancelledMessage": {
+    "message": "專注模式已被取消。",
+    "description": "Auto-added: notifFocusCancelledMessage"
+  },
+  "pomodoroModeWork": {
+    "message": "工作",
+    "description": "Auto-added: pomodoroModeWork"
+  },
+  "pomodoroModeBreak": {
+    "message": "休息",
+    "description": "Auto-added: pomodoroModeBreak"
+  },
+  "pomodoroModeLongBreak": {
+    "message": "長休息",
+    "description": "Auto-added: pomodoroModeLongBreak"
+  },
+  "notifPomodoroStartedTitle": {
+    "message": "$1開始",
+    "description": "Auto-added: notifPomodoroStartedTitle"
+  },
+  "notifPomodoroCompletedTitle": {
+    "message": "$1完成!",
+    "description": "Auto-added: notifPomodoroCompletedTitle"
+  },
+  "notifPomodoroWorkStartedMessage": {
+    "message": "該專注了!",
+    "description": "Auto-added: notifPomodoroWorkStartedMessage"
+  },
+  "notifPomodoroBreakStartedMessage": {
+    "message": "休息一下,這是你應得的!",
+    "description": "Auto-added: notifPomodoroBreakStartedMessage"
+  },
+  "notifPomodoroWorkCompletedMessage": {
+    "message": "做得好!該休息了。",
+    "description": "Auto-added: notifPomodoroWorkCompletedMessage"
+  },
+  "notifPomodoroBreakCompletedMessage": {
+    "message": "休息結束!準備好專注了嗎?",
+    "description": "Auto-added: notifPomodoroBreakCompletedMessage"
+  },
+  "notifStreakMilestoneTitle": {
+    "message": "連續紀錄里程碑!",
+    "description": "Auto-added: notifStreakMilestoneTitle"
+  },
+  "notifStreakMilestoneMessage": {
+    "message": "太棒了!你已連續堅持 $1 天!",
+    "description": "Auto-added: notifStreakMilestoneMessage"
+  },
+  "notifStreakBrokenTitle": {
+    "message": "連續紀錄中斷",
+    "description": "Auto-added: notifStreakBrokenTitle"
+  },
+  "notifStreakBrokenMessage": {
+    "message": "你的連續紀錄已重設。今天重新開始吧!",
+    "description": "Auto-added: notifStreakBrokenMessage"
+  },
+  "blockedPageMessageSuffix": {
+    "message": "已被封鎖,協助你保持專注。",
+    "description": "Auto-added: blockedPageMessageSuffix"
+  },
+  "blockPageSettingsHint": {
+    "message": "你可以在 adalab shield 設定中變更。",
+    "description": "Auto-added: blockPageSettingsHint"
+  },
+  "blockPageFocusRemaining": {
+    "message": "專注 — 剩餘時間",
+    "description": "Auto-added: blockPageFocusRemaining"
+  },
+  "blockPageWorkingOn": {
+    "message": "進行中",
+    "description": "Auto-added: blockPageWorkingOn"
+  },
+  "optionsTabAdalab": {
+    "message": "adalab study",
+    "description": "Auto-added: optionsTabAdalab"
+  },
+  "adalabSyncTitle": {
+    "message": "adalab study 整合",
+    "description": "Auto-added: adalabSyncTitle"
+  },
+  "adalabSyncDescription": {
+    "message": "將 adalab study 番茄鐘與封鎖同步:專注時封鎖,休息時解除。",
+    "description": "Auto-added: adalabSyncDescription"
+  },
+  "adalabSyncToggleLabel": {
+    "message": "啟用 adalab study 同步",
+    "description": "Auto-added: adalabSyncToggleLabel"
+  },
+  "adalabSyncToggleDescription": {
+    "message": "跟隨 adalab study 計時器,並可從彈出視窗控制。",
+    "description": "Auto-added: adalabSyncToggleDescription"
   }
 }

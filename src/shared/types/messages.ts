@@ -507,6 +507,8 @@ export interface AdalabSyncMessage extends BaseMessage<'ADALAB_SYNC'> {
     readonly running: boolean;
     /** Unix epoch ms when the current phase ends (null when idle) */
     readonly endTime: number | null;
+    /** Title of the task linked to the timer (shown on the block page) */
+    readonly taskTitle?: string | null;
   };
 }
 

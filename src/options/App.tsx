@@ -200,7 +200,8 @@ export function App() {
                 | 'commitmentLock'
                 | 'appearance'
                 | 'language'
-                | 'backup') ?? 'challenge'
+                | 'backup'
+                | 'adalabSync') ?? 'challenge'
             }
           />
         );

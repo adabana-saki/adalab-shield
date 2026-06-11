@@ -1,10 +1,11 @@
-# ShortShield Architecture
+# adalab shield Architecture
 
-This document describes the technical architecture of ShortShield.
+This document describes the technical architecture of adalab shield.
 
 ## Overview
 
-ShortShield is a browser extension built with:
+adalab shield is a browser extension built with:
+
 - **Manifest V3** (Chrome) / **Manifest V2** (Firefox)
 - **TypeScript** for type safety
 - **React** for UI components
@@ -55,6 +56,7 @@ ShortShield is a browser extension built with:
 Located in `src/background/`
 
 **Responsibilities:**
+
 - Manage extension state and settings
 - Handle cross-component communication
 - Track blocking statistics
@@ -62,6 +64,7 @@ Located in `src/background/`
 - Store and retrieve logs
 
 **Key Files:**
+
 - `index.ts` - Entry point, message handlers
 - `storage.ts` - Storage layer abstraction
 
@@ -70,12 +73,14 @@ Located in `src/background/`
 Located in `src/content/`
 
 **Responsibilities:**
+
 - Detect short-form video elements
 - Apply blocking actions
 - Monitor DOM changes
 - Communicate with Service Worker
 
 **Key Files:**
+
 - `index.ts` - Entry point, orchestrator
 - `platforms/` - Platform-specific detectors
   - `youtube.ts` - YouTube Shorts detection
@@ -90,12 +95,14 @@ Located in `src/content/`
 Located in `src/popup/`
 
 **Responsibilities:**
+
 - Quick toggle for blocking
 - Per-platform toggles
 - Display blocking statistics
 - Link to options page
 
 **Key Files:**
+
 - `index.tsx` - React entry point
 - `Popup.tsx` - Main popup component
 
@@ -104,6 +111,7 @@ Located in `src/popup/`
 Located in `src/options/`
 
 **Responsibilities:**
+
 - Detailed settings management
 - Whitelist management
 - Custom CSS rules
@@ -111,6 +119,7 @@ Located in `src/options/`
 - Import/Export settings
 
 **Key Files:**
+
 - `index.tsx` - React entry point
 - `Options.tsx` - Main options component
 - `components/` - Reusable components
@@ -124,12 +133,14 @@ Located in `src/options/`
 Located in `src/shared/`
 
 **Responsibilities:**
+
 - Type definitions
 - Constants
 - Utility functions
 - React hooks
 
 **Key Files:**
+
 - `types/` - TypeScript types
 - `constants/` - App constants
 - `utils/` - Utility functions
@@ -201,11 +212,13 @@ Located in `src/shared/`
 ## Browser Compatibility
 
 ### Chrome (Manifest V3)
+
 - Service Worker for background
 - `action` API for popup
 - Separate `host_permissions`
 
 ### Firefox (Manifest V2)
+
 - Event page for background
 - `browser_action` API
 - Combined permissions
@@ -214,16 +227,19 @@ Located in `src/shared/`
 ## Testing Strategy
 
 ### Unit Tests
+
 - Pure functions in utils
 - Platform detectors
 - Validation logic
 
 ### Integration Tests
+
 - Component interactions
 - Storage operations
 - Message passing
 
 ### E2E Tests
+
 - Full blocking flow
 - UI interactions
 - Cross-browser testing

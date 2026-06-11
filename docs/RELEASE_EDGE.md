@@ -22,14 +22,14 @@
 
 ```bash
 cd dist/edge
-zip -r ../../shortshield-edge-v0.1.0.zip .
+zip -r ../../adalab shield-edge-v0.1.0.zip .
 cd ../..
 ```
 
 またはWindows PowerShellで：
 
 ```powershell
-Compress-Archive -Path dist\edge\* -DestinationPath shortshield-edge-v0.1.0.zip
+Compress-Archive -Path dist\edge\* -DestinationPath adalab shield-edge-v0.1.0.zip
 ```
 
 ### 3. 新しい拡張機能を作成
@@ -43,7 +43,7 @@ Compress-Archive -Path dist\edge\* -DestinationPath shortshield-edge-v0.1.0.zip
 #### 表示名
 
 ```
-ShortShield
+adalab shield
 ```
 
 #### カテゴリ
@@ -53,7 +53,7 @@ ShortShield
 #### プライバシーポリシーURL
 
 ```
-https://github.com/adabana-saki/ShortShield/blob/main/docs/PRIVACY_POLICY.md
+https://github.com/adabana-saki/adalab-shield/blob/main/docs/PRIVACY_POLICY.md
 ```
 
 ### 5. ストア掲載情報
@@ -67,7 +67,7 @@ Block short-form videos and reclaim your focus. Comprehensive productivity toolk
 #### 詳細な説明
 
 ```markdown
-ShortShield helps you reclaim your time by blocking short-form videos across YouTube Shorts, TikTok, and Instagram Reels.
+adalab shield helps you reclaim your time by blocking short-form videos across YouTube Shorts, TikTok, and Instagram Reels.
 
 🛡️ CORE BLOCKING FEATURES
 • Multi-platform blocking (YouTube Shorts, TikTok, Instagram Reels)
@@ -101,7 +101,7 @@ ShortShield helps you reclaim your time by blocking short-form videos across You
 Perfect for students, professionals, and anyone looking to reduce screen time, improve focus, and build better digital habits.
 
 🌟 OPEN SOURCE
-GitHub: https://github.com/adabana-saki/ShortShield
+GitHub: https://github.com/adabana-saki/adalab-shield
 License: MIT
 ```
 
