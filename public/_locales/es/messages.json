@@ -2322,5 +2322,29 @@
   "cancelSubscription": {
     "message": "Cancel Subscription",
     "description": "Button to cancel subscription"
+  },
+  "popupAdalabTitle": {
+    "message": "adalab study",
+    "description": "Title of the adalab study remote control widget"
+  },
+  "popupAdalabStart": {
+    "message": "Iniciar enfoque",
+    "description": "Button to start the adalab study pomodoro"
+  },
+  "popupAdalabStop": {
+    "message": "Detener y registrar",
+    "description": "Button to stop the adalab study pomodoro and log the session"
+  },
+  "popupAdalabTasksTitle": {
+    "message": "Tareas de hoy",
+    "description": "Heading of the adalab study task list"
+  },
+  "popupAdalabNoTasks": {
+    "message": "Sin tareas pendientes",
+    "description": "Shown when the adalab study task list is empty"
+  },
+  "popupAdalabComplete": {
+    "message": "Completar tarea",
+    "description": "Button to mark an adalab study task as done"
   }
 }

@@ -2322,5 +2322,29 @@
   "cancelSubscription": {
     "message": "Cancel Subscription",
     "description": "Button to cancel subscription"
+  },
+  "popupAdalabTitle": {
+    "message": "adalab study",
+    "description": "Title of the adalab study remote control widget"
+  },
+  "popupAdalabStart": {
+    "message": "開始專注",
+    "description": "Button to start the adalab study pomodoro"
+  },
+  "popupAdalabStop": {
+    "message": "停止並記錄",
+    "description": "Button to stop the adalab study pomodoro and log the session"
+  },
+  "popupAdalabTasksTitle": {
+    "message": "今日任務",
+    "description": "Heading of the adalab study task list"
+  },
+  "popupAdalabNoTasks": {
+    "message": "沒有未完成的任務",
+    "description": "Shown when the adalab study task list is empty"
+  },
+  "popupAdalabComplete": {
+    "message": "完成任務",
+    "description": "Button to mark an adalab study task as done"
   }
 }

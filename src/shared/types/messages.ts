@@ -721,6 +721,48 @@ export type PremiumCheckFeatureResponse =
 export type AdalabSyncResponse = MessageResponse<PomodoroState>;
 
 /**
+ * Open task reported by the adalab study web app
+ */
+export interface AdalabTaskInfo {
+  readonly id: string;
+  readonly title: string;
+}
+
+/**
+ * Snapshot of the adalab study app state (returned by remote commands)
+ */
+export interface AdalabAppState {
+  readonly timer: {
+    readonly phase: AdalabPhase;
+    readonly running: boolean;
+    readonly endTime: number | null;
+  };
+  readonly tasks: readonly AdalabTaskInfo[];
+}
+
+/**
+ * Remote-control actions for the adalab study web app
+ */
+export type AdalabCommandAction =
+  | 'get-state'
+  | 'timer-start'
+  | 'timer-stop'
+  | 'task-complete';
+
+/**
+ * Popup → content script command for the adalab study tab.
+ * Not part of the background Message union: it is sent directly to the
+ * adalab tab via tabs.sendMessage and relayed into the page.
+ */
+export interface AdalabCommandRequest {
+  readonly type: 'ADALAB_COMMAND';
+  readonly action: AdalabCommandAction;
+  readonly taskId?: string;
+}
+
+export type AdalabCommandResponse = MessageResponse<AdalabAppState>;
+
+/**
  * Type guard for Message validation
  */
 export function isValidMessage(value: unknown): value is Message {
