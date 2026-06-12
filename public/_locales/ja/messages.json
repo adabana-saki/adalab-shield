@@ -796,7 +796,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "集中力を高めるための時間ブロックを有効にします。",
+    "message": "時間を決めて集中するモード。フォーカス中は選択中のプラットフォームが、スケジュール外の時間でも必ずブロックされます。",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -820,7 +820,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "無効にすると、終了前に集中セッションをキャンセルできなくなります",
+    "message": "集中セッションの途中終了を許可します。オフにすると途中でやめられなくなります (本気モード)。",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "多",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "セッション",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "すべての設定をファイルに書き出し、バックアップから復元できます。",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "設定でフォーカスモードまたはポモドーロを有効にすると、ここからセッションを開始できます。",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "ロックダウン中です。変更するには 設定 → ロック で PIN を入力して解除してください。",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "コミットメントロック中です。設定 → ロック で解除フローを完了すると変更できます。",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "解除フローを開始",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "フローを完了すると、5 分間だけブロックの無効化などの変更ができるようになります。",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "解除済み — いまから 5 分間は設定を変更できます。",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "コミットメントロックの解除",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "深呼吸しましょう。解除まであと…",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "なぜ解除しますか?",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "理由を自分の言葉で書いてください (自分のための記録です)。",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "こたえ",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "こたえを入力してください。",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "解除する",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "最後の確認",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "解除すると 5 分間だけブロック設定を変更できるようになります。続けますか?",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "不正解です。もう一度。",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "不正解 — 連続正解がリセットされ、最初からやり直しです。",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "ロック状態の読み込みに失敗しました。",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "解除可能か確認できませんでした。",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "解除フローを開始できませんでした。",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "送信に失敗しました。もう一度お試しください。",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "理由が短すぎます。もう少し詳しく書いてください。",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "チャレンジの取得に失敗しました。",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "解除を完了できませんでした。",
+    "description": "Confirm unlock error"
   }
 }

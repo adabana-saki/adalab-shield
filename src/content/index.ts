@@ -15,7 +15,7 @@ import { initAdalabBridge } from './adalabBridge';
 import { createLogger } from '@/shared/utils/logger';
 import { createMessage } from '@/shared/types';
 import { STORAGE_KEYS } from '@/shared/constants';
-import type { Settings, PomodoroState } from '@/shared/types';
+import type { Settings, PomodoroState, FocusModeState } from '@/shared/types';
 import type { BasePlatformDetector } from './platforms/base';
 
 const logger = createLogger('content');
@@ -88,6 +88,22 @@ async function getPomodoroStateSafely(): Promise<PomodoroState | null> {
 }
 
 /**
+ * Get Focus Mode state from storage
+ */
+async function getFocusStateSafely(): Promise<FocusModeState | null> {
+  try {
+    const result = await browser.storage.local.get(STORAGE_KEYS.FOCUS_STATE);
+    const state = result[STORAGE_KEYS.FOCUS_STATE] as
+      | FocusModeState
+      | undefined;
+    return state ?? null;
+  } catch (error) {
+    logger.warn('Failed to get Focus state', { error: String(error) });
+    return null;
+  }
+}
+
+/**
  * Apply settings to every detector
  */
 function applySettingsToAll(settings: Settings): void {
@@ -106,6 +122,16 @@ function applyPomodoroToAll(pomodoroState: PomodoroState | null): void {
   getCustomDomainDetector().setPomodoroState(pomodoroState);
   for (const d of getAllDetectors()) {
     d.setPomodoroState(pomodoroState);
+  }
+}
+
+/**
+ * Apply Focus Mode state to every detector
+ */
+function applyFocusToAll(focusState: FocusModeState | null): void {
+  getCustomDomainDetector().setFocusState(focusState);
+  for (const d of getAllDetectors()) {
+    d.setFocusState(focusState);
   }
 }
 
@@ -155,6 +181,7 @@ async function initialize(): Promise<void> {
     logger.warn('Could not load settings, using defaults');
   }
   applyPomodoroToAll(await getPomodoroStateSafely());
+  applyFocusToAll(await getFocusStateSafely());
 
   // Active detector management (re-evaluated when settings change)
   let activeDetector: BasePlatformDetector | null = null;
@@ -228,15 +255,31 @@ async function initialize(): Promise<void> {
       });
 
       if (
-        newPomodoroState?.isRunning === true &&
-        (newPomodoroState.mode === 'break' ||
-          newPomodoroState.mode === 'longBreak')
+        newPomodoroState?.mode === 'break' ||
+        newPomodoroState?.mode === 'longBreak'
       ) {
-        // Break started: lift full-page blocks immediately (no reload needed)
+        // Break (running or paused): lift full-page blocks immediately
         removeBlockOverlays();
       } else {
         // Work started or timer stopped: re-apply blocks
         evaluateDetector();
+      }
+    }
+
+    // Handle Focus Mode state changes (focus forces blocking on)
+    const focusChange = changes[STORAGE_KEYS.FOCUS_STATE];
+    if (focusChange !== undefined) {
+      const newFocusState = focusChange.newValue as FocusModeState | undefined;
+      applyFocusToAll(newFocusState ?? null);
+
+      logger.debug('Focus state updated', {
+        isActive: newFocusState?.isActive,
+      });
+
+      evaluateDetector();
+      // Focus ended outside scheduled hours: lift any remaining overlay
+      if (activeDetector === null || !activeDetector.isEnabled()) {
+        removeBlockOverlays();
       }
     }
   });

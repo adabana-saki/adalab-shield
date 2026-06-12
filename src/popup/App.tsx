@@ -19,6 +19,7 @@ import {
   DEFAULT_POMODORO_STATE,
   DEFAULT_STREAK_DATA,
   DEFAULT_TIME_LIMITS_STATE,
+  STORAGE_KEYS,
 } from '@/shared/constants';
 import { ActiveTimerWidget } from './components/ActiveTimerWidget';
 import { AdalabWidget } from './components/AdalabWidget';
@@ -109,15 +110,37 @@ export function App() {
     void fetchPomodoroState();
     void fetchStreakData();
     void fetchTimeUsage();
-
-    const interval = setInterval(() => {
-      void fetchFocusState();
-      void fetchPomodoroState();
-      void fetchTimeUsage();
-    }, 1000);
     /* eslint-enable react-hooks/set-state-in-effect */
 
-    return () => clearInterval(interval);
+    // Subscribe to storage instead of polling the service worker every
+    // second (polling kept the SW permanently awake). Countdown display
+    // is derived locally from endTime + the 1s clock tick.
+    const onStorageChange = (
+      changes: Record<string, browser.Storage.StorageChange>,
+      areaName: string
+    ): void => {
+      if (areaName !== 'local') {
+        return;
+      }
+      const focus = changes[STORAGE_KEYS.FOCUS_STATE];
+      if (focus?.newValue !== undefined) {
+        setFocusState(focus.newValue as FocusModeState);
+      }
+      const pomodoro = changes[STORAGE_KEYS.POMODORO_STATE];
+      if (pomodoro?.newValue !== undefined) {
+        setPomodoroState(pomodoro.newValue as PomodoroState);
+      }
+      const streak = changes[STORAGE_KEYS.STREAK_DATA];
+      if (streak?.newValue !== undefined) {
+        setStreakData(streak.newValue as StreakData);
+      }
+      const timeLimits = changes[STORAGE_KEYS.TIME_LIMITS_STATE];
+      if (timeLimits?.newValue !== undefined) {
+        setTimeLimitsState(timeLimits.newValue as TimeLimitsState);
+      }
+    };
+    browser.storage.onChanged.addListener(onStorageChange);
+    return () => browser.storage.onChanged.removeListener(onStorageChange);
   }, [fetchFocusState, fetchPomodoroState, fetchStreakData, fetchTimeUsage]);
 
   const handleToggleEnabled = () => {
@@ -188,7 +211,7 @@ export function App() {
     Boolean
   ).length;
 
-  // Find the most recently active platform (active within last 60 seconds)
+  // Local 1s clock tick (drives countdown display without polling the SW)
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const interval = setInterval(() => {
@@ -196,6 +219,20 @@ export function App() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  // Storage only updates on state transitions, so derive the live
+  // countdown locally from endTime + the clock tick
+  const displayPomodoroState = useMemo<PomodoroState>(() => {
+    if (pomodoroState.isRunning && pomodoroState.endTime !== null) {
+      return {
+        ...pomodoroState,
+        timeRemainingMs: Math.max(0, pomodoroState.endTime - now),
+      };
+    }
+    return pomodoroState;
+  }, [pomodoroState, now]);
+
+  // Find the most recently active platform (active within last 60 seconds)
   const activeUsage = useMemo(
     () =>
       timeLimitsState.usage
@@ -218,8 +255,16 @@ export function App() {
     );
   }
 
-  // Error state
-  if (error !== null && error !== '') {
+  // Lock rejections are shown inline (not as a fatal error screen)
+  const lockError =
+    error === 'SETTINGS_LOCKED_LOCKDOWN'
+      ? t('settingsLockedLockdown')
+      : error === 'SETTINGS_LOCKED_COMMITMENT'
+        ? t('settingsLockedCommitment')
+        : null;
+
+  // Error state (excluding lock rejections)
+  if (error !== null && error !== '' && lockError === null) {
     return (
       <div className="popup-container">
         <div className="popup-error">
@@ -260,11 +305,27 @@ export function App() {
 
       {/* Scrollable content */}
       <div className="popup-scroll-content">
+        {/* Lock feedback: a weakening change was rejected */}
+        {lockError !== null && (
+          <div className="lock-banner">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>{lockError}</span>
+          </div>
+        )}
+
         {/* 1. Current state: running timer, or a clear protection status */}
         {hasActiveTimer ? (
           <ActiveTimerWidget
             focusState={focusState}
-            pomodoroState={pomodoroState}
+            pomodoroState={displayPomodoroState}
             pomodoroSettings={settings.pomodoro}
             onCancelFocus={() => void handleCancelFocus()}
             onPomodoroAction={(action) => void handlePomodoroAction(action)}

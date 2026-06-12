@@ -796,7 +796,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "Enable distraction-free time blocks to boost your productivity.",
+    "message": "Start a timed session during which all selected platforms are blocked — even outside scheduled hours.",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -820,7 +820,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "When disabled, you cannot cancel focus sessions before they end",
+    "message": "Allow ending a focus session early. Turn this off to commit fully — the session cannot be cancelled.",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "More",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "Session",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "Export all settings to a file, or restore them from a backup.",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "Enable Focus Mode or Pomodoro in Settings to start sessions here.",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "Lockdown is active. Unlock with your PIN in Settings → Lock to change this.",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "Commitment Lock is active. Complete the unlock flow in Settings → Lock to change this.",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "Start unlock flow",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "Completing the flow allows weakening changes (like disabling blocking) for 5 minutes.",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "Unlocked — you can change settings for the next 5 minutes.",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "Unlock Commitment Lock",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "Take a breath. The unlock continues in…",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "Why are you unlocking?",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "Write your reason in your own words (this is just for you).",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "Your answer",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "Please enter an answer.",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "Unlock now",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "Last step",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "Unlocking opens a 5-minute window where blocking can be changed. Continue?",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "Wrong answer. Try again.",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "Wrong answer — the consecutive challenge streak starts over.",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "Failed to load the lock state.",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "Could not check whether unlocking is allowed.",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "Failed to start the unlock flow.",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "Failed to submit. Please try again.",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "Your intention statement is too short.",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "Failed to load the challenge.",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "Failed to complete the unlock.",
+    "description": "Confirm unlock error"
   }
 }

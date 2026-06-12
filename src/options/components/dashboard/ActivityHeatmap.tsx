@@ -4,6 +4,7 @@
 
 import { useI18n } from '@/shared/hooks/useI18n';
 import type { DailyTimeRecord } from '@/shared/types';
+import { getLocalDateString } from '@/shared/utils/date';
 
 interface ActivityHeatmapProps {
   history: readonly DailyTimeRecord[];
@@ -19,7 +20,7 @@ function getLastNDays(n: number): string[] {
   for (let i = n - 1; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(date.getDate() - i);
-    dates.push(date.toISOString().split('T')[0] ?? '');
+    dates.push(getLocalDateString(date));
   }
 
   return dates;

@@ -684,7 +684,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "Aktivieren Sie ablenkungsfreie Zeitblöcke für mehr Produktivität.",
+    "message": "Starte eine zeitlich begrenzte Sitzung, in der alle ausgewählten Plattformen blockiert werden — auch außerhalb der geplanten Zeiten.",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -708,7 +708,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "Bei Deaktivierung können Fokussitzungen nicht vorzeitig beendet werden",
+    "message": "Erlaube das vorzeitige Beenden einer Sitzung. Deaktiviert = die Sitzung kann nicht abgebrochen werden.",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "Viel",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "Sitzung",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "Alle Einstellungen in eine Datei exportieren oder aus einem Backup wiederherstellen.",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "Aktiviere Fokusmodus oder Pomodoro in den Einstellungen, um hier Sitzungen zu starten.",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "Sperrmodus ist aktiv. Entsperre mit deiner PIN unter Einstellungen → Sperre.",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "Commitment-Sperre ist aktiv. Schließe den Entsperrvorgang unter Einstellungen → Sperre ab.",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "Entsperrvorgang starten",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "Nach Abschluss sind schwächende Änderungen (z. B. Blockierung deaktivieren) 5 Minuten lang möglich.",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "Entsperrt — du kannst die Einstellungen jetzt 5 Minuten lang ändern.",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "Commitment-Sperre entsperren",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "Atme durch. Weiter geht es in…",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "Warum entsperrst du?",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "Schreibe deinen Grund in eigenen Worten (nur für dich).",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "Deine Antwort",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "Bitte gib eine Antwort ein.",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "Jetzt entsperren",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "Letzter Schritt",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "Nach dem Entsperren kannst du die Blockierung 5 Minuten lang ändern. Fortfahren?",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "Falsche Antwort. Versuche es erneut.",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "Falsche Antwort — die Serie beginnt von vorn.",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "Sperrstatus konnte nicht geladen werden.",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "Konnte nicht prüfen, ob Entsperren möglich ist.",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "Entsperrvorgang konnte nicht gestartet werden.",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "Senden fehlgeschlagen. Bitte erneut versuchen.",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "Deine Begründung ist zu kurz.",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "Aufgabe konnte nicht geladen werden.",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "Entsperren konnte nicht abgeschlossen werden.",
+    "description": "Confirm unlock error"
   }
 }

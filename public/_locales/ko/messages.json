@@ -684,7 +684,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "방해 없는 시간 블록을 활성화하여 생산성을 높이세요.",
+    "message": "시간을 정해 집중하는 모드. 집중 중에는 선택한 플랫폼이 예약 시간 외에도 항상 차단됩니다.",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -708,7 +708,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "비활성화하면 세션이 끝나기 전에 취소할 수 없습니다",
+    "message": "집중 세션의 조기 종료를 허용합니다. 끄면 도중에 취소할 수 없습니다.",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "많음",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "세션",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "모든 설정을 파일로 내보내거나 백업에서 복원합니다.",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "설정에서 집중 모드 또는 뽀모도로를 활성화하면 여기서 세션을 시작할 수 있습니다.",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "잠금 모드가 활성화되어 있습니다. 설정 → 잠금에서 PIN으로 해제하세요.",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "약속 잠금이 활성화되어 있습니다. 설정 → 잠금에서 해제 절차를 완료하세요.",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "해제 절차 시작",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "절차를 완료하면 5분 동안 차단 해제 등의 변경이 가능합니다.",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "해제됨 — 지금부터 5분 동안 설정을 변경할 수 있습니다.",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "약속 잠금 해제",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "잠시 심호흡하세요. 해제까지…",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "왜 해제하나요?",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "이유를 직접 적어 보세요 (자신을 위한 기록입니다).",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "답",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "답을 입력하세요.",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "지금 해제",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "마지막 확인",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "해제하면 5분 동안 차단 설정을 변경할 수 있습니다. 계속할까요?",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "오답입니다. 다시 시도하세요.",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "오답 — 연속 정답이 초기화되어 처음부터 다시 시작합니다.",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "잠금 상태를 불러오지 못했습니다.",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "해제 가능 여부를 확인하지 못했습니다.",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "해제 절차를 시작하지 못했습니다.",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "제출에 실패했습니다. 다시 시도하세요.",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "이유가 너무 짧습니다.",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "챌린지를 불러오지 못했습니다.",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "해제를 완료하지 못했습니다.",
+    "description": "Confirm unlock error"
   }
 }

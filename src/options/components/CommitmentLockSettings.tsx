@@ -11,8 +11,10 @@ import type { CommitmentLockState, CommitmentLockLevel } from '@/shared/types';
 import {
   COMMITMENT_LOCK_LIMITS,
   COMMITMENT_LOCK_COOLDOWN_ESCALATION,
+  COMMITMENT_UNLOCK_WINDOW_MS,
   DEFAULT_COMMITMENT_LOCK,
 } from '@/shared/constants/defaults';
+import { UnlockDialog } from './UnlockDialog';
 
 export function CommitmentLockSettings() {
   const { settings, updateSettings } = useSettings();
@@ -27,6 +29,13 @@ export function CommitmentLockSettings() {
     useState<CommitmentLockState | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showUnlockDialog, setShowUnlockDialog] = useState(false);
+
+  // After a successful unlock flow, weakening changes are allowed briefly
+  const inUnlockWindow =
+    commitmentLockState !== null &&
+    commitmentLockState.lastUnlockAt !== null &&
+    Date.now() - commitmentLockState.lastUnlockAt < COMMITMENT_UNLOCK_WINDOW_MS;
 
   const loadStates = useCallback(async () => {
     setIsLoading(true);
@@ -55,6 +64,12 @@ export function CommitmentLockSettings() {
   }, [loadStates]);
 
   const handleToggleEnabled = useCallback(async () => {
+    // Disabling requires completing the unlock flow first (that is the
+    // whole point of Commitment Lock)
+    if (commitmentLockSettings.enabled && !inUnlockWindow) {
+      setShowUnlockDialog(true);
+      return;
+    }
     try {
       await updateSettings({
         commitmentLock: {
@@ -65,7 +80,7 @@ export function CommitmentLockSettings() {
       console.error('Failed to toggle Commitment Lock:', err);
       setError(t('commitmentLockErrorUpdate'));
     }
-  }, [commitmentLockSettings.enabled, updateSettings, t]);
+  }, [commitmentLockSettings.enabled, inUnlockWindow, updateSettings, t]);
 
   const handleLevelChange = useCallback(
     async (level: CommitmentLockLevel) => {
@@ -330,9 +345,6 @@ export function CommitmentLockSettings() {
 
   return (
     <div className="commitment-lock-settings">
-      <h2 className="section-title">{t('commitmentLockTitle')}</h2>
-      <p className="section-description">{t('commitmentLockDescription')}</p>
-
       {error && (
         <div className="error-banner">
           <p className="error-message">{error}</p>
@@ -363,6 +375,28 @@ export function CommitmentLockSettings() {
 
       {commitmentLockSettings.enabled && (
         <>
+          {/* Unlock flow entry point */}
+          <div className="setting-row">
+            {inUnlockWindow ? (
+              <p className="setting-description unlock-window-note">
+                {t('commitmentLockUnlockWindowActive')}
+              </p>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-small"
+                  onClick={() => setShowUnlockDialog(true)}
+                >
+                  {t('commitmentLockUnlockButton')}
+                </button>
+                <p className="setting-description">
+                  {t('commitmentLockUnlockButtonDescription')}
+                </p>
+              </>
+            )}
+          </div>
+
           {/* Current state display */}
           {commitmentLockState && (
             <div className="state-info-banner">
@@ -790,6 +824,16 @@ export function CommitmentLockSettings() {
           </div>
         </>
       )}
+
+      {/* Unlock flow dialog (wait → intention → challenges → confirm) */}
+      <UnlockDialog
+        isOpen={showUnlockDialog}
+        onClose={() => setShowUnlockDialog(false)}
+        onUnlockSuccess={() => {
+          setShowUnlockDialog(false);
+          void loadStates();
+        }}
+      />
     </div>
   );
 }

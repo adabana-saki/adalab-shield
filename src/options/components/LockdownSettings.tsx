@@ -276,9 +276,6 @@ export function LockdownSettings() {
 
   return (
     <div className="lockdown-settings">
-      <h2 className="section-title">{t('lockdownTitle')}</h2>
-      <p className="section-description">{t('lockdownDescription')}</p>
-
       {/* Enable toggle */}
       <div className="setting-row">
         <label className="toggle-label">

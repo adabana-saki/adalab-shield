@@ -72,3 +72,5 @@ export {
 
 // Crypto utilities
 export { hashPin, verifyPin, isValidPinFormat } from './crypto';
+
+export { getLocalDateString } from './date';

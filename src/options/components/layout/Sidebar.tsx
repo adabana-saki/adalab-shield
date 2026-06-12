@@ -119,6 +119,12 @@ export function Sidebar({
               active: activeSubSection === 'customDomains',
               onClick: () => onSectionChange('blocking', 'customDomains'),
             },
+            {
+              id: 'timeLimits',
+              label: t('timeLimitsTitle'),
+              active: activeSubSection === 'timeLimits',
+              onClick: () => onSectionChange('blocking', 'timeLimits'),
+            },
           ]}
           expanded={activeSection === 'blocking'}
         />
@@ -139,22 +145,6 @@ export function Sidebar({
           label={t('sidebarSchedule')}
           active={activeSection === 'schedule'}
           onClick={() => onSectionChange('schedule', 'scheduleConfig')}
-          hasSubmenu
-          subItems={[
-            {
-              id: 'scheduleConfig',
-              label: t('optionsTabSchedule'),
-              active: activeSubSection === 'scheduleConfig',
-              onClick: () => onSectionChange('schedule', 'scheduleConfig'),
-            },
-            {
-              id: 'timeLimits',
-              label: t('timeLimitsTitle'),
-              active: activeSubSection === 'timeLimits',
-              onClick: () => onSectionChange('schedule', 'timeLimits'),
-            },
-          ]}
-          expanded={activeSection === 'schedule'}
         />
 
         {/* Productivity */}

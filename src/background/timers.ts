@@ -260,7 +260,8 @@ export async function handleAlarm(alarm: browser.Alarms.Alarm): Promise<void> {
       await handleStreakCheck();
       break;
     default:
-      logger.warn('Unknown alarm', { name: alarm.name });
+      // Other listeners may own this alarm (e.g. the periodic refresh)
+      logger.debug('Alarm not handled here', { name: alarm.name });
   }
 }
 
@@ -862,7 +863,7 @@ export function initializeTimers(): void {
  * Get today's date string in YYYY-MM-DD format
  */
 function getTodayDateString(): string {
-  return new Date().toISOString().split('T')[0] ?? '';
+  return getLocalDateString();
 }
 
 /**
@@ -1229,7 +1230,7 @@ async function saveToTimeTrackingHistory(
   const retentionDays = settings.timeTracking.retentionDays;
   const cutoffDate = new Date();
   cutoffDate.setDate(cutoffDate.getDate() - retentionDays);
-  const cutoffDateString = cutoffDate.toISOString().split('T')[0] ?? '';
+  const cutoffDateString = getLocalDateString(cutoffDate);
 
   newHistory = newHistory.filter((record) => record.date >= cutoffDateString);
 
@@ -1292,7 +1293,7 @@ export async function getTimeTrackingHistory(
   if (days !== undefined && days > 0) {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - days);
-    const cutoffDateString = cutoffDate.toISOString().split('T')[0] ?? '';
+    const cutoffDateString = getLocalDateString(cutoffDate);
 
     historyWithToday = historyWithToday.filter(
       (record) => record.date >= cutoffDateString
@@ -1303,8 +1304,7 @@ export async function getTimeTrackingHistory(
   const retentionDays = settings.timeTracking.retentionDays;
   const retentionCutoff = new Date();
   retentionCutoff.setDate(retentionCutoff.getDate() - retentionDays);
-  const retentionCutoffString =
-    retentionCutoff.toISOString().split('T')[0] ?? '';
+  const retentionCutoffString = getLocalDateString(retentionCutoff);
 
   historyWithToday = historyWithToday.filter(
     (record) => record.date >= retentionCutoffString
@@ -1385,7 +1385,7 @@ async function wasYesterdaySuccessful(): Promise<boolean> {
   // Get yesterday's date
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayString = yesterday.toISOString().split('T')[0] ?? '';
+  const yesterdayString = getLocalDateString(yesterday);
 
   // Check based on goal type
   switch (settings.streak.goalType) {
@@ -1506,7 +1506,7 @@ export async function checkStreakDay(): Promise<StreakData> {
   // New day - check yesterday's status
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayString = yesterday.toISOString().split('T')[0] ?? '';
+  const yesterdayString = getLocalDateString(yesterday);
 
   // Calculate the expected last active date for a continuous streak
   if (streakData.lastActiveDate === yesterdayString) {
@@ -1909,6 +1909,7 @@ export async function getBypassRemainingSeconds(): Promise<number> {
 
 import { hashPin, verifyPin, isValidPinFormat } from '@/shared/utils/crypto';
 import { DEFAULT_LOCKDOWN_STATE } from '@/shared/constants';
+import { getLocalDateString } from '@/shared/utils/date';
 import type {
   LockdownState,
   LockdownVerifyPinResult,

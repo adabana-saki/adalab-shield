@@ -7,7 +7,7 @@
 
 import browser from 'webextension-polyfill';
 import { getSettings } from './storage';
-import { getPomodoroState } from './timers';
+import { getPomodoroState, getFocusState } from './timers';
 import { isScheduleActive } from '@/shared/utils/schedule';
 import {
   YOUTUBE_CONFIG,
@@ -84,12 +84,17 @@ export async function updateDnrRules(): Promise<void> {
   try {
     const settings = await getSettings();
     const pomodoro = await getPomodoroState();
+    const focus = await getFocusState();
 
-    const inBreak =
-      pomodoro.isRunning &&
-      (pomodoro.mode === 'break' || pomodoro.mode === 'longBreak');
+    // A paused break still counts as a break (pausing must not re-block)
+    const inBreak = pomodoro.mode === 'break' || pomodoro.mode === 'longBreak';
+    // Focus Mode forces blocking on, even outside scheduled hours
+    const focusActive =
+      focus.isActive && focus.endTime !== null && focus.endTime > Date.now();
     const blockingActive =
-      settings.enabled && !inBreak && isScheduleActive(settings.schedule);
+      settings.enabled &&
+      !inBreak &&
+      (focusActive || isScheduleActive(settings.schedule));
 
     const desired: browser.DeclarativeNetRequest.Rule[] = [];
 

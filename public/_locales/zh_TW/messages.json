@@ -684,7 +684,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "啟用無干擾的時間區塊來提高您的生產力。",
+    "message": "開始一段限時專注。專注期間，所選平台即使在排程時間之外也會被封鎖。",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -708,7 +708,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "如果停用，您將無法在會話結束前取消",
+    "message": "允許提前結束專注。關閉後將無法中途取消（認真模式）。",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "多",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "回合",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "將所有設定匯出到檔案，或從備份還原。",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "在設定中啟用專注模式或番茄鐘後，即可在此開始工作階段。",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "鎖定模式已啟用。請在 設定 → 鎖定 中輸入 PIN 解鎖後再變更。",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "承諾鎖已啟用。請在 設定 → 鎖定 中完成解鎖流程後再變更。",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "開始解鎖流程",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "完成流程後，5 分鐘內可以進行削弱封鎖的變更（如停用封鎖）。",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "已解鎖 — 接下來 5 分鐘內可以變更設定。",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "解鎖承諾鎖",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "深呼吸一下。解鎖將在…後繼續",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "你為什麼要解鎖？",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "用自己的話寫下原因（只給你自己看）。",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "你的答案",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "請輸入答案。",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "立即解鎖",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "最後一步",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "解鎖後將有 5 分鐘可以變更封鎖設定。繼續嗎？",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "答案錯誤，請重試。",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "答案錯誤 — 連續答題進度已重設。",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "載入鎖定狀態失敗。",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "無法確認是否允許解鎖。",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "無法開始解鎖流程。",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "提交失敗，請重試。",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "理由太短了。",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "載入挑戰失敗。",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "無法完成解鎖。",
+    "description": "Confirm unlock error"
   }
 }

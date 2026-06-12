@@ -8,6 +8,7 @@ import type { Settings, SettingsUpdate } from '@/shared/types';
 import { isValidSettings } from '@/shared/types';
 import { STORAGE_KEYS, DEFAULT_SETTINGS } from '@/shared/constants';
 import { createLogger } from '@/shared/utils/logger';
+import { getLocalDateString } from '@/shared/utils/date';
 
 const logger = createLogger('background-storage');
 
@@ -33,7 +34,7 @@ export async function getSettings(): Promise<Settings> {
     const validSettings = settings;
 
     // Check if daily stats need reset
-    const today = new Date().toISOString().split('T')[0] ?? '';
+    const today = getLocalDateString();
     if (validSettings.stats.lastResetDate !== today) {
       const resetSettings: Settings = {
         ...validSettings,
