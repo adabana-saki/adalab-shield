@@ -7,11 +7,7 @@ import { useState, useEffect, useCallback } from 'react';
 import browser from 'webextension-polyfill';
 import { useSettings } from '@/shared/hooks/useSettings';
 import { useI18n } from '@/shared/hooks/useI18n';
-import type {
-  CommitmentLockState,
-  CommitmentLockLevel,
-  PremiumState,
-} from '@/shared/types';
+import type { CommitmentLockState, CommitmentLockLevel } from '@/shared/types';
 import {
   COMMITMENT_LOCK_LIMITS,
   COMMITMENT_LOCK_COOLDOWN_ESCALATION,
@@ -29,13 +25,8 @@ export function CommitmentLockSettings() {
   // Local state
   const [commitmentLockState, setCommitmentLockState] =
     useState<CommitmentLockState | null>(null);
-  const [premiumState, setPremiumState] = useState<PremiumState | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Check if premium features are available
-  const isPremium = premiumState?.isPremium ?? false;
-  const canUseLevel3 = isPremium;
 
   const loadStates = useCallback(async () => {
     setIsLoading(true);
@@ -49,20 +40,6 @@ export function CommitmentLockSettings() {
 
       if (lockResponse.success === true && lockResponse.data !== undefined) {
         setCommitmentLockState(lockResponse.data);
-      }
-
-      // Load Premium state
-      const premiumResponse: { success: boolean; data?: PremiumState } =
-        await browser.runtime.sendMessage({
-          type: 'PREMIUM_GET_STATE',
-          timestamp: Date.now(),
-        });
-
-      if (
-        premiumResponse.success === true &&
-        premiumResponse.data !== undefined
-      ) {
-        setPremiumState(premiumResponse.data);
       }
     } catch (err) {
       console.error('Failed to load Commitment Lock state:', err);
@@ -92,12 +69,6 @@ export function CommitmentLockSettings() {
 
   const handleLevelChange = useCallback(
     async (level: CommitmentLockLevel) => {
-      // Check if Level 3 requires premium
-      if (level === 3 && !canUseLevel3) {
-        setError(t('commitmentLockPremiumRequired'));
-        return;
-      }
-
       try {
         await updateSettings({
           commitmentLock: {
@@ -109,7 +80,7 @@ export function CommitmentLockSettings() {
         setError(t('commitmentLockErrorUpdate'));
       }
     },
-    [canUseLevel3, updateSettings, t]
+    [updateSettings, t]
   );
 
   const handleWaitSecondsChange = useCallback(
@@ -239,10 +210,6 @@ export function CommitmentLockSettings() {
   }, [commitmentLockSettings.escalatingCooldown, updateSettings]);
 
   const handleTimeLockToggle = useCallback(async () => {
-    if (!canUseLevel3) {
-      setError(t('commitmentLockPremiumRequired'));
-      return;
-    }
     try {
       await updateSettings({
         commitmentLock: {
@@ -252,7 +219,7 @@ export function CommitmentLockSettings() {
     } catch (err) {
       console.error('Failed to toggle time lock:', err);
     }
-  }, [canUseLevel3, commitmentLockSettings.timeLockEnabled, updateSettings, t]);
+  }, [commitmentLockSettings.timeLockEnabled, updateSettings]);
 
   const handleTimeLockHoursChange = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -299,10 +266,6 @@ export function CommitmentLockSettings() {
   );
 
   const handleScheduleRestrictionToggle = useCallback(async () => {
-    if (!canUseLevel3) {
-      setError(t('commitmentLockPremiumRequired'));
-      return;
-    }
     try {
       await updateSettings({
         commitmentLock: {
@@ -312,12 +275,7 @@ export function CommitmentLockSettings() {
     } catch (err) {
       console.error('Failed to toggle schedule restriction:', err);
     }
-  }, [
-    canUseLevel3,
-    commitmentLockSettings.scheduleRestriction,
-    updateSettings,
-    t,
-  ]);
+  }, [commitmentLockSettings.scheduleRestriction, updateSettings]);
 
   const handleAllowedHoursChange = useCallback(
     async (start: number, end: number) => {
@@ -335,11 +293,6 @@ export function CommitmentLockSettings() {
   );
 
   const handleNuclearModeToggle = useCallback(async () => {
-    if (!canUseLevel3) {
-      setError(t('commitmentLockPremiumRequired'));
-      return;
-    }
-
     // Show confirmation dialog for nuclear mode
     if (!commitmentLockSettings.nuclearModeEnabled) {
       const confirmed = window.confirm(t('commitmentLockNuclearConfirm'));
@@ -357,12 +310,7 @@ export function CommitmentLockSettings() {
     } catch (err) {
       console.error('Failed to toggle nuclear mode:', err);
     }
-  }, [
-    canUseLevel3,
-    commitmentLockSettings.nuclearModeEnabled,
-    updateSettings,
-    t,
-  ]);
+  }, [commitmentLockSettings.nuclearModeEnabled, updateSettings, t]);
 
   // Format cooldown escalation display
   const formatEscalation = (): string => {
@@ -488,23 +436,19 @@ export function CommitmentLockSettings() {
                 </div>
               </label>
 
-              {/* Level 3 (Premium) */}
+              {/* Level 3 */}
               <label
-                className={`level-option ${commitmentLockSettings.level === 3 ? 'selected' : ''} ${!canUseLevel3 ? 'disabled premium-required' : ''}`}
+                className={`level-option ${commitmentLockSettings.level === 3 ? 'selected' : ''}`}
               >
                 <input
                   type="radio"
                   name="commitment-level"
                   checked={commitmentLockSettings.level === 3}
                   onChange={() => void handleLevelChange(3)}
-                  disabled={!canUseLevel3}
                 />
                 <div className="level-content">
                   <span className="level-badge level-3">
                     {t('commitmentLockLevel3')}
-                    {!canUseLevel3 && (
-                      <span className="premium-badge">PRO</span>
-                    )}
                   </span>
                   <span className="level-name">
                     {t('commitmentLockLevel3Name')}
@@ -512,11 +456,6 @@ export function CommitmentLockSettings() {
                   <p className="level-description">
                     {t('commitmentLockLevel3Description')}
                   </p>
-                  {!canUseLevel3 && (
-                    <button type="button" className="btn btn-premium btn-small">
-                      {t('upgradeToPremium')}
-                    </button>
-                  )}
                 </div>
               </label>
             </div>
@@ -679,12 +618,11 @@ export function CommitmentLockSettings() {
             </div>
           )}
 
-          {/* Level 3 Settings (Premium) */}
-          {commitmentLockSettings.level === 3 && canUseLevel3 && (
-            <div className="setting-section premium-section">
+          {/* Level 3 Settings */}
+          {commitmentLockSettings.level === 3 && (
+            <div className="setting-section">
               <h3 className="subsection-title">
                 {t('commitmentLockPremiumSettings')}
-                <span className="premium-badge">PRO</span>
               </h3>
 
               {/* Time lock */}

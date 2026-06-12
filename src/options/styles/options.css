@@ -3,125 +3,47 @@
 @tailwind utilities;
 
 /* ===================================
-   CSS Variables & Dark Mode Support
+   ADALAB Neon Dark Theme (dark only)
    =================================== */
 
 :root {
-  /* Light mode colors */
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f9fafb;
-  --color-bg-tertiary: #f3f4f6;
-  --color-bg-hover: #e5e7eb;
-  --color-bg-active: #dbeafe;
+  --color-bg-primary: #12121f;
+  --color-bg-secondary: #0a0a12;
+  --color-bg-tertiary: #1a1a2e;
+  --color-bg-hover: #232338;
+  --color-bg-active: rgba(6, 182, 212, 0.15);
 
-  --color-text-primary: #111827;
-  --color-text-secondary: #4b5563;
-  --color-text-tertiary: #6b7280;
-  --color-text-muted: #9ca3af;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-text-muted: #64748b;
 
-  --color-border-primary: #e5e7eb;
-  --color-border-secondary: #d1d5db;
-  --color-border-focus: #3b82f6;
+  --color-border-primary: rgba(148, 163, 184, 0.15);
+  --color-border-secondary: rgba(148, 163, 184, 0.28);
+  --color-border-focus: #06b6d4;
 
-  --color-accent: #3b82f6;
-  --color-accent-hover: #2563eb;
-  --color-accent-light: #dbeafe;
-  --color-accent-text: #1d4ed8;
+  --color-accent: #06b6d4;
+  --color-accent-hover: #22d3ee;
+  --color-accent-light: rgba(6, 182, 212, 0.15);
+  --color-accent-text: #67e8f9;
 
   --color-success: #10b981;
-  --color-success-light: #d1fae5;
-  --color-success-text: #065f46;
-
-  --color-warning: #f59e0b;
-  --color-warning-light: #fef3c7;
-  --color-warning-text: #92400e;
-
-  --color-danger: #ef4444;
-  --color-danger-light: #fee2e2;
-  --color-danger-text: #991b1b;
-
-  --color-shadow: rgba(0, 0, 0, 0.1);
-  --color-shadow-lg: rgba(0, 0, 0, 0.15);
-}
-
-/* Dark mode */
-.dark {
-  --color-bg-primary: #1f2937;
-  --color-bg-secondary: #111827;
-  --color-bg-tertiary: #374151;
-  --color-bg-hover: #4b5563;
-  --color-bg-active: #1e3a5f;
-
-  --color-text-primary: #f9fafb;
-  --color-text-secondary: #d1d5db;
-  --color-text-tertiary: #9ca3af;
-  --color-text-muted: #6b7280;
-
-  --color-border-primary: #374151;
-  --color-border-secondary: #4b5563;
-  --color-border-focus: #60a5fa;
-
-  --color-accent: #60a5fa;
-  --color-accent-hover: #3b82f6;
-  --color-accent-light: #1e3a5f;
-  --color-accent-text: #93c5fd;
-
-  --color-success: #34d399;
-  --color-success-light: #064e3b;
+  --color-success-light: rgba(16, 185, 129, 0.15);
   --color-success-text: #6ee7b7;
 
-  --color-warning: #fbbf24;
-  --color-warning-light: #78350f;
+  --color-warning: #f59e0b;
+  --color-warning-light: rgba(245, 158, 11, 0.15);
   --color-warning-text: #fcd34d;
 
-  --color-danger: #f87171;
-  --color-danger-light: #7f1d1d;
-  --color-danger-text: #fca5a5;
+  --color-danger: #f43f5e;
+  --color-danger-light: rgba(244, 63, 94, 0.15);
+  --color-danger-text: #fda4af;
 
-  --color-shadow: rgba(0, 0, 0, 0.3);
-  --color-shadow-lg: rgba(0, 0, 0, 0.4);
+  --color-shadow: rgba(0, 0, 0, 0.45);
+  --color-shadow-lg: rgba(0, 0, 0, 0.6);
+
+  color-scheme: dark;
 }
-
-/* Auto dark mode based on system preference */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --color-bg-primary: #1f2937;
-    --color-bg-secondary: #111827;
-    --color-bg-tertiary: #374151;
-    --color-bg-hover: #4b5563;
-    --color-bg-active: #1e3a5f;
-
-    --color-text-primary: #f9fafb;
-    --color-text-secondary: #d1d5db;
-    --color-text-tertiary: #9ca3af;
-    --color-text-muted: #6b7280;
-
-    --color-border-primary: #374151;
-    --color-border-secondary: #4b5563;
-    --color-border-focus: #60a5fa;
-
-    --color-accent: #60a5fa;
-    --color-accent-hover: #3b82f6;
-    --color-accent-light: #1e3a5f;
-    --color-accent-text: #93c5fd;
-
-    --color-success: #34d399;
-    --color-success-light: #064e3b;
-    --color-success-text: #6ee7b7;
-
-    --color-warning: #fbbf24;
-    --color-warning-light: #78350f;
-    --color-warning-text: #fcd34d;
-
-    --color-danger: #f87171;
-    --color-danger-light: #7f1d1d;
-    --color-danger-text: #fca5a5;
-
-    --color-shadow: rgba(0, 0, 0, 0.3);
-    --color-shadow-lg: rgba(0, 0, 0, 0.4);
-  }
-}
-
 /* Options page container */
 .options-container {
   @apply max-w-3xl mx-auto p-6 font-sans;

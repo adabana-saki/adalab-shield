@@ -48,16 +48,12 @@ export function PrivacyPolicy() {
                     ? 'ブロック統計（ブロック数、対象プラットフォーム）'
                     : item === 'usage_patterns'
                       ? '使用パターン（機能の使用状況、サービス改善のため）'
-                      : item === 'subscription_status'
-                        ? 'サブスクリプション状態（プレミアム会員かどうか）'
-                        : '設定情報（お客様の設定内容）'
+                      : '設定情報（お客様の設定内容）'
                   : item === 'blocking_statistics'
                     ? 'Blocking statistics (number of blocks, platforms blocked)'
                     : item === 'usage_patterns'
                       ? 'Usage patterns (feature usage for service improvement)'
-                      : item === 'subscription_status'
-                        ? 'Subscription status (whether you are a Premium member)'
-                        : 'Settings and preferences'}
+                      : 'Settings and preferences'}
               </li>
             ))}
           </ul>
@@ -130,19 +126,11 @@ export function PrivacyPolicy() {
         {/* Third Party Sharing */}
         <section className="legal-section">
           <h2>{isJapanese ? '5. 第三者への提供' : '5. Third Party Sharing'}</h2>
-          {DATA_COLLECTION.thirdParties.map((party) => (
-            <div key={party.name} className="third-party-item">
-              <h3>{party.name}</h3>
-              <p>
-                {isJapanese ? '目的: ' : 'Purpose: '}
-                {isJapanese ? 'Chrome Web Store経由の決済処理' : party.purpose}
-              </p>
-              <p>
-                {isJapanese ? '共有するデータ: ' : 'Data shared: '}
-                {party.dataShared.join(', ')}
-              </p>
-            </div>
-          ))}
+          <p>
+            {isJapanese
+              ? 'お客様のデータを第三者に提供することはありません。すべてのデータはお客様のブラウザ内に保存されます。'
+              : 'We do not share your data with any third parties. All data stays in your browser.'}
+          </p>
         </section>
 
         {/* Your Rights (GDPR) */}

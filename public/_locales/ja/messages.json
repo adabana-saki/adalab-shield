@@ -2458,5 +2458,29 @@
   "adalabSyncToggleDescription": {
     "message": "adalab study のタイマーに追従し、ポップアップから操作できます。",
     "description": "Auto-added: adalabSyncToggleDescription"
+  },
+  "sidebarLock": {
+    "message": "ロック",
+    "description": "Sidebar: Lock (anti-bypass) settings group"
+  },
+  "popupSectionPlatforms": {
+    "message": "ブロック対象",
+    "description": "Popup: blocked platforms section title"
+  },
+  "onboardingSkip": {
+    "message": "スキップ",
+    "description": "Onboarding: skip button"
+  },
+  "viewDetails": {
+    "message": "詳細を見る",
+    "description": "Dashboard: view details link"
+  },
+  "heatmapLegendLow": {
+    "message": "少",
+    "description": "Dashboard heatmap legend: low"
+  },
+  "heatmapLegendHigh": {
+    "message": "多",
+    "description": "Dashboard heatmap legend: high"
   }
 }

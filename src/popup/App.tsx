@@ -183,6 +183,11 @@ export function App() {
   const hasActiveTimer =
     focusState.isActive || pomodoroState.isRunning || isPaused;
 
+  // Number of platforms currently selected for blocking (for the status hero)
+  const activePlatformCount = Object.values(settings.platforms).filter(
+    Boolean
+  ).length;
+
   // Find the most recently active platform (active within last 60 seconds)
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
@@ -255,8 +260,8 @@ export function App() {
 
       {/* Scrollable content */}
       <div className="popup-scroll-content">
-        {/* Active Timer Widget */}
-        {hasActiveTimer && (
+        {/* 1. Current state: running timer, or a clear protection status */}
+        {hasActiveTimer ? (
           <ActiveTimerWidget
             focusState={focusState}
             pomodoroState={pomodoroState}
@@ -264,42 +269,37 @@ export function App() {
             onCancelFocus={() => void handleCancelFocus()}
             onPomodoroAction={(action) => void handlePomodoroAction(action)}
           />
+        ) : (
+          <div className={`status-hero ${settings.enabled ? 'on' : ''}`}>
+            <svg
+              className="status-hero-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              {settings.enabled && <path d="M9 12l2 2 4-4" />}
+            </svg>
+            <div className="status-hero-body">
+              <div className="status-hero-title">
+                {settings.enabled
+                  ? t('popupStatusEnabled')
+                  : t('popupStatusDisabled')}
+              </div>
+              <div className="status-hero-sub">
+                {t('popupSectionPlatforms')}: {activePlatformCount} /{' '}
+                {t('optionsTabCustomDomains')}: {settings.customDomains.length}
+              </div>
+            </div>
+          </div>
         )}
 
-        {/* Active Watching Widget - shows when actively viewing a platform */}
+        {/* Watching indicator + adalab study remote (contextual) */}
         <ActiveWatchingWidget activeUsage={activeUsage} />
-
-        {/* adalab study remote control - shows when an adalab tab is open */}
         <AdalabWidget />
 
-        {/* Stats Row */}
-        <CompactStats
-          stats={settings.stats}
-          streakData={streakData}
-          streakEnabled={settings.streak.enabled}
-          todayUsageMs={timeLimitsState.usage.reduce(
-            (sum, u) => sum + u.usedTodayMs,
-            0
-          )}
-        />
-
-        {/* Platform Grid */}
-        <PlatformGrid
-          platforms={settings.platforms}
-          enabled={settings.enabled}
-          onTogglePlatform={handleTogglePlatform}
-        />
-
-        {/* Schedule Badge */}
-        <ScheduleBadge schedule={settings.schedule} />
-
-        {/* Block Current Site */}
-        <BlockSiteButton
-          customDomains={settings.customDomains}
-          onDomainsChange={handleCustomDomainsChange}
-        />
-
-        {/* Focus Launcher */}
+        {/* 2. Primary action: start a focus session */}
         {!hasActiveTimer && (
           <FocusLauncher
             focusEnabled={settings.focusMode.enabled}
@@ -310,6 +310,33 @@ export function App() {
             onPomodoroStateChange={setPomodoroState}
           />
         )}
+
+        {/* 3. Contextual: block the site you are on */}
+        <BlockSiteButton
+          customDomains={settings.customDomains}
+          onDomainsChange={handleCustomDomainsChange}
+        />
+
+        {/* 4. What is being blocked (collapsed by default) */}
+        <PlatformGrid
+          platforms={settings.platforms}
+          enabled={settings.enabled}
+          onTogglePlatform={handleTogglePlatform}
+        />
+
+        {/* Schedule status (only meaningful when configured) */}
+        <ScheduleBadge schedule={settings.schedule} />
+
+        {/* 5. Today's numbers */}
+        <CompactStats
+          stats={settings.stats}
+          streakData={streakData}
+          streakEnabled={settings.streak.enabled}
+          todayUsageMs={timeLimitsState.usage.reduce(
+            (sum, u) => sum + u.usedTodayMs,
+            0
+          )}
+        />
       </div>
 
       {/* Footer */}

@@ -1,5 +1,5 @@
 /**
- * Productivity settings section - Focus Mode, Pomodoro, Streak
+ * Productivity settings section - Focus Mode, Pomodoro, Streak, adalab sync
  */
 
 import { useI18n } from '@/shared/hooks/useI18n';
@@ -7,8 +7,13 @@ import { SectionHeader } from '../common/SectionHeader';
 import { FocusModeSettings } from '../FocusModeSettings';
 import { PomodoroSettings } from '../PomodoroSettings';
 import { StreakSettings } from '../StreakSettings';
+import { AdalabSettings } from '../AdalabSettings';
 
-type ProductivitySubSection = 'focusMode' | 'pomodoro' | 'streak';
+type ProductivitySubSection =
+  | 'focusMode'
+  | 'pomodoro'
+  | 'streak'
+  | 'adalabSync';
 
 interface ProductivitySectionProps {
   subSection: ProductivitySubSection;
@@ -58,6 +63,29 @@ export function ProductivitySection({ subSection }: ProductivitySectionProps) {
           }
         />
         <StreakSettings />
+      </div>
+    );
+  }
+
+  if (subSection === 'adalabSync') {
+    return (
+      <div className="settings-section">
+        <SectionHeader
+          title={t('adalabSyncTitle')}
+          description={t('adalabSyncDescription')}
+          icon={
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          }
+        />
+        <AdalabSettings />
       </div>
     );
   }

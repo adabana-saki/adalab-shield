@@ -2458,5 +2458,29 @@
   "adalabSyncToggleDescription": {
     "message": "Suit le minuteur adalab study, contrôlable depuis le popup.",
     "description": "Auto-added: adalabSyncToggleDescription"
+  },
+  "sidebarLock": {
+    "message": "Verrouillage",
+    "description": "Sidebar: Lock (anti-bypass) settings group"
+  },
+  "popupSectionPlatforms": {
+    "message": "Plateformes bloquées",
+    "description": "Popup: blocked platforms section title"
+  },
+  "onboardingSkip": {
+    "message": "Passer",
+    "description": "Onboarding: skip button"
+  },
+  "viewDetails": {
+    "message": "Voir les détails",
+    "description": "Dashboard: view details link"
+  },
+  "heatmapLegendLow": {
+    "message": "Moins",
+    "description": "Dashboard heatmap legend: low"
+  },
+  "heatmapLegendHigh": {
+    "message": "Plus",
+    "description": "Dashboard heatmap legend: high"
   }
 }

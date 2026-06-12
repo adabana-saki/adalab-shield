@@ -2458,5 +2458,29 @@
   "adalabSyncToggleDescription": {
     "message": "adalab study 타이머를 따라가며 팝업에서 제어할 수 있습니다.",
     "description": "Auto-added: adalabSyncToggleDescription"
+  },
+  "sidebarLock": {
+    "message": "잠금",
+    "description": "Sidebar: Lock (anti-bypass) settings group"
+  },
+  "popupSectionPlatforms": {
+    "message": "차단 대상",
+    "description": "Popup: blocked platforms section title"
+  },
+  "onboardingSkip": {
+    "message": "건너뛰기",
+    "description": "Onboarding: skip button"
+  },
+  "viewDetails": {
+    "message": "자세히 보기",
+    "description": "Dashboard: view details link"
+  },
+  "heatmapLegendLow": {
+    "message": "적음",
+    "description": "Dashboard heatmap legend: low"
+  },
+  "heatmapLegendHigh": {
+    "message": "많음",
+    "description": "Dashboard heatmap legend: high"
   }
 }

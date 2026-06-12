@@ -1,25 +1,14 @@
 /**
- * Advanced settings section - Challenge, Lockdown, Appearance, Language, Backup
+ * Advanced settings section - Block page, Language, Backup
  */
 
 import { useI18n } from '@/shared/hooks/useI18n';
 import { SectionHeader } from '../common/SectionHeader';
-import { ChallengeSettings } from '../ChallengeSettings';
-import { LockdownSettings } from '../LockdownSettings';
-import { CommitmentLockSettings } from '../CommitmentLockSettings';
 import { BlockPageCustomizer } from '../BlockPageCustomizer';
 import { LanguageSettings } from '../LanguageSettings';
 import { ExportImport } from '../ExportImport';
-import { AdalabSettings } from '../AdalabSettings';
 
-type AdvancedSubSection =
-  | 'challenge'
-  | 'lockdown'
-  | 'commitmentLock'
-  | 'appearance'
-  | 'language'
-  | 'backup'
-  | 'adalabSync';
+type AdvancedSubSection = 'appearance' | 'language' | 'backup';
 
 interface AdvancedSectionProps {
   subSection: AdvancedSubSection;
@@ -27,83 +16,6 @@ interface AdvancedSectionProps {
 
 export function AdvancedSection({ subSection }: AdvancedSectionProps) {
   const { t } = useI18n();
-
-  if (subSection === 'lockdown') {
-    return (
-      <div className="settings-section">
-        <SectionHeader
-          title={t('lockdownTitle')}
-          description={t('lockdownDescription')}
-          icon={
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-          }
-        />
-        <LockdownSettings />
-      </div>
-    );
-  }
-
-  if (subSection === 'commitmentLock') {
-    return (
-      <div className="settings-section">
-        <SectionHeader
-          title={t('commitmentLockTitle')}
-          description={t('commitmentLockDescription')}
-          icon={
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              <rect x="9" y="9" width="6" height="8" rx="1" />
-              <path d="M10 9V6a2 2 0 0 1 4 0v3" />
-            </svg>
-          }
-        />
-        <CommitmentLockSettings />
-      </div>
-    );
-  }
-
-  if (subSection === 'appearance') {
-    return (
-      <div className="settings-section">
-        <SectionHeader
-          title={t('optionsTabAppearance')}
-          description={t('appearanceDescription')}
-          icon={
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-            </svg>
-          }
-        />
-        <BlockPageCustomizer />
-      </div>
-    );
-  }
 
   if (subSection === 'language') {
     return (
@@ -153,35 +65,12 @@ export function AdvancedSection({ subSection }: AdvancedSectionProps) {
     );
   }
 
-  if (subSection === 'adalabSync') {
-    return (
-      <div className="settings-section">
-        <SectionHeader
-          title={t('adalabSyncTitle')}
-          description={t('adalabSyncDescription')}
-          icon={
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-          }
-        />
-        <AdalabSettings />
-      </div>
-    );
-  }
-
-  // Default: challenge
+  // Default: appearance (block page customization)
   return (
     <div className="settings-section">
       <SectionHeader
-        title={t('challengeTitle')}
-        description={t('challengeDescription')}
+        title={t('blockPageTitle')}
+        description={t('blockPageDescription')}
         icon={
           <svg
             viewBox="0 0 24 24"
@@ -189,12 +78,13 @@ export function AdvancedSection({ subSection }: AdvancedSectionProps) {
             stroke="currentColor"
             strokeWidth="2"
           >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            <path d="M9 12l2 2 4-4" />
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
           </svg>
         }
       />
-      <ChallengeSettings />
+      <BlockPageCustomizer />
     </div>
   );
 }

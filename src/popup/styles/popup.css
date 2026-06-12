@@ -2,1111 +2,902 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Popup container */
+/* ============================================
+   adalab shield popup — ADALAB Neon Dark theme
+   ============================================ */
+
+:root {
+  --bg: #0a0a12;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-strong: rgba(255, 255, 255, 0.07);
+  --border: rgba(148, 163, 184, 0.16);
+  --border-strong: rgba(148, 163, 184, 0.3);
+  --text: #f1f5f9;
+  --text-sub: #94a3b8;
+  --text-muted: #64748b;
+  --cyan: #06b6d4;
+  --cyan-soft: rgba(6, 182, 212, 0.15);
+  --cyan-glow: rgba(6, 182, 212, 0.35);
+  --emerald: #10b981;
+  --emerald-soft: rgba(16, 185, 129, 0.15);
+  --purple: #8b5cf6;
+  --purple-soft: rgba(139, 92, 246, 0.15);
+  --amber: #f59e0b;
+  --rose: #f43f5e;
+  --rose-soft: rgba(244, 63, 94, 0.15);
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Hiragino Sans', system-ui, sans-serif;
+  font-size: 14px;
+}
+
+/* ---------- Container ---------- */
+
 .popup-container {
-  @apply w-popup min-h-[300px] max-h-[500px] bg-white text-gray-900 flex flex-col;
-}
-
-/* Scrollable content area */
-.popup-content {
-  @apply flex-1 overflow-y-auto;
-}
-
-/* Header */
-.popup-header {
-  @apply flex items-center justify-between px-4 py-3 bg-primary-600 text-white;
-}
-
-.popup-title {
-  @apply text-lg font-semibold;
-}
-
-/* Status indicator */
-.status-badge {
-  @apply inline-flex items-center px-2 py-1 text-xs font-medium rounded-full;
-}
-
-.status-badge-enabled {
-  @apply bg-success text-white;
-}
-
-.status-badge-disabled {
-  @apply bg-gray-400 text-white;
-}
-
-/* Toggle switch */
-.toggle-container {
-  @apply px-4 py-4 border-b border-gray-200;
-}
-
-.toggle-wrapper {
-  @apply flex items-center justify-between;
-}
-
-.toggle-label {
-  @apply text-sm font-medium text-gray-700;
-}
-
-.toggle-switch {
-  @apply relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-}
-
-.toggle-switch-enabled {
-  @apply bg-primary-600;
-}
-
-.toggle-switch-disabled {
-  @apply bg-gray-200;
-}
-
-.toggle-knob {
-  @apply pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out;
-}
-
-.toggle-knob-enabled {
-  @apply translate-x-5;
-}
-
-.toggle-knob-disabled {
-  @apply translate-x-0;
-}
-
-/* Stats section */
-.stats-container {
-  @apply px-4 py-3 bg-gray-50;
-}
-
-.stats-grid {
-  @apply grid grid-cols-2 gap-4;
-}
-
-.stat-item {
-  @apply text-center;
-}
-
-.stat-value {
-  @apply text-2xl font-bold text-primary-600;
-}
-
-.stat-label {
-  @apply text-xs text-gray-500 mt-1;
-}
-
-/* Platform toggles */
-.platforms-container {
-  @apply px-4 py-3;
-}
-
-.platforms-title {
-  @apply text-sm font-medium text-gray-700 mb-3;
-}
-
-.platform-item {
-  @apply flex items-center justify-between py-2;
-}
-
-.platform-name {
-  @apply flex items-center text-sm text-gray-600;
-}
-
-.platform-icon {
-  @apply w-5 h-5 mr-2;
-}
-
-.platform-toggle {
-  @apply relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out;
-}
-
-.platform-toggle-enabled {
-  @apply bg-primary-500;
-}
-
-.platform-toggle-disabled {
-  @apply bg-gray-200;
-}
-
-.platform-toggle-knob {
-  @apply pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-200 ease-in-out;
-}
-
-.platform-toggle-knob-enabled {
-  @apply translate-x-4;
-}
-
-.platform-toggle-knob-disabled {
-  @apply translate-x-0;
-}
-
-/* Footer */
-.popup-footer {
-  @apply px-4 py-3 border-t border-gray-200 bg-gray-50;
-}
-
-.settings-link {
-  @apply flex items-center justify-center w-full py-2 text-sm font-medium text-primary-600 hover:text-primary-700 hover:bg-gray-100 rounded-md transition-colors;
-}
-
-.settings-icon {
-  @apply w-4 h-4 mr-2;
-}
-
-/* Loading state */
-.loading-container {
-  @apply flex items-center justify-center min-h-[200px];
-}
-
-.loading-spinner {
-  @apply w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin;
-}
-
-/* Error state */
-.error-container {
-  @apply px-4 py-6 text-center;
-}
-
-.error-message {
-  @apply text-sm text-danger;
-}
-
-.retry-button {
-  @apply mt-3 px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors;
-}
-
-/* Popup tabs */
-.popup-tabs {
-  @apply flex border-b border-gray-200 px-2;
-}
-
-.popup-tab {
-  @apply flex-1 py-2 px-2 text-xs font-medium text-gray-500 border-b-2 border-transparent transition-colors;
-}
-
-.popup-tab:hover {
-  @apply text-gray-700;
-}
-
-.popup-tab.active {
-  @apply text-primary-600 border-primary-600;
-}
-
-/* Schedule widget */
-.schedule-widget {
-  @apply px-4 py-3;
-}
-
-.schedule-widget-header {
-  @apply flex items-center justify-between mb-3;
-}
-
-.schedule-widget-status {
-  @apply flex items-center gap-2;
-}
-
-.schedule-widget-label {
-  @apply text-sm font-medium text-gray-700;
-}
-
-.schedule-widget-badge {
-  @apply px-2 py-0.5 text-xs font-medium rounded-full;
-}
-
-.schedule-widget-badge.active {
-  @apply bg-green-100 text-green-700;
-}
-
-.schedule-widget-badge.inactive {
-  @apply bg-gray-100 text-gray-500;
-}
-
-.schedule-toggle-button {
-  @apply relative w-10 h-5 bg-gray-200 rounded-full transition-colors;
-}
-
-.schedule-toggle-button.enabled {
-  @apply bg-primary-600;
-}
-
-.schedule-toggle-button .schedule-toggle-knob {
-  @apply absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform;
-}
-
-.schedule-toggle-button.enabled .schedule-toggle-knob {
-  @apply translate-x-5;
-}
-
-.schedule-widget-time {
-  @apply text-center text-lg font-semibold text-gray-800 mb-3 py-2 bg-gray-50 rounded-md;
-}
-
-.schedule-widget-days {
-  @apply flex justify-between gap-1;
-}
-
-.schedule-day-button {
-  @apply flex-1 py-1.5 text-xs font-medium text-gray-500 bg-gray-100 rounded transition-colors;
-}
-
-.schedule-day-button:hover {
-  @apply bg-gray-200;
-}
-
-.schedule-day-button.selected {
-  @apply bg-primary-600 text-white;
-}
-
-/* Focus mode view */
-.focus-view {
-  @apply px-4 py-4;
-}
-
-/* Focus button container */
-.focus-button-container {
-  @apply flex flex-col items-center gap-4;
-}
-
-.focus-button-container.focus-active {
-  @apply gap-3;
-}
-
-/* Duration selector */
-.focus-duration-selector {
-  @apply flex gap-2;
-}
-
-.focus-duration-option {
-  @apply px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg transition-colors;
-}
-
-.focus-duration-option:hover {
-  @apply bg-gray-200;
-}
-
-.focus-duration-option.selected {
-  @apply bg-primary-600 text-white;
-}
-
-.focus-duration-option:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-/* Start focus button */
-.focus-start-button {
-  @apply w-full flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-primary-600 rounded-xl hover:bg-primary-700 transition-colors;
-}
-
-.focus-start-button:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.focus-icon {
-  @apply w-5 h-5;
-}
-
-.focus-button-loading {
-  @apply animate-pulse;
-}
-
-/* Focus active state */
-.focus-active-indicator {
-  @apply flex items-center gap-2 text-sm font-medium text-primary-600;
-}
-
-.focus-pulse {
-  @apply w-2 h-2 bg-primary-600 rounded-full animate-pulse;
-}
-
-.focus-active-text {
-  @apply text-primary-700;
-}
-
-.focus-cancel-button {
-  @apply w-full py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors;
-}
-
-.focus-cancel-button:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.focus-error {
-  @apply text-xs text-danger text-center;
-}
-
-/* Focus countdown */
-.focus-countdown {
-  @apply flex flex-col items-center gap-4 mb-4;
-}
-
-.focus-countdown-circle {
-  @apply relative w-32 h-32;
-}
-
-.focus-countdown-svg {
-  @apply w-full h-full;
-}
-
-.focus-progress-ring {
-  @apply transition-all duration-1000 ease-linear;
-}
-
-.focus-countdown-time {
-  @apply absolute inset-0 flex flex-col items-center justify-center;
-}
-
-.focus-time-value {
-  @apply text-2xl font-bold text-gray-800;
-}
-
-.focus-time-label {
-  @apply text-xs text-gray-500;
-}
-
-/* Focus extend options */
-.focus-extend-options {
-  @apply flex flex-col items-center gap-2;
-}
-
-.focus-extend-label {
-  @apply text-xs text-gray-500;
-}
-
-.focus-extend-buttons {
-  @apply flex gap-2;
-}
-
-.focus-extend-button {
-  @apply px-3 py-1 text-xs font-medium text-primary-600 bg-primary-50 rounded-md hover:bg-primary-100 transition-colors;
-}
-
-.focus-extend-button:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-/* Focus and Pomodoro sections */
-.focus-section,
-.pomodoro-section {
-  @apply mb-6 pb-6 border-b border-gray-200;
-}
-
-.focus-section:last-child,
-.pomodoro-section:last-child {
-  @apply mb-0 pb-0 border-b-0;
-}
-
-.focus-section-title,
-.pomodoro-section-title {
-  @apply text-sm font-semibold text-gray-800 mb-3 text-center;
-}
-
-/* Pomodoro timer */
-.pomodoro-timer {
-  @apply flex flex-col items-center gap-3 mb-4;
-}
-
-.pomodoro-timer-circle {
-  @apply relative w-28 h-28;
-}
-
-.pomodoro-timer-svg {
-  @apply w-full h-full;
-}
-
-.pomodoro-progress-ring {
-  @apply transition-all duration-1000 ease-linear;
-}
-
-.pomodoro-timer-content {
-  @apply absolute inset-0 flex flex-col items-center justify-center;
-}
-
-.pomodoro-time-value {
-  @apply text-xl font-bold text-gray-800;
-}
-
-.pomodoro-mode-label {
-  @apply text-xs font-medium mt-0.5;
-}
-
-/* Pomodoro session counter */
-.pomodoro-session-counter {
-  @apply flex items-center gap-2 text-sm text-gray-600;
-}
-
-.pomodoro-session-label {
-  @apply text-xs text-gray-500;
-}
-
-.pomodoro-session-value {
-  @apply font-semibold text-primary-600;
-}
-
-/* Pomodoro controls */
-.pomodoro-controls {
-  @apply flex flex-col items-center gap-3;
-}
-
-/* Mode selection buttons */
-.pomodoro-mode-selection {
-  @apply flex gap-2 w-full;
-}
-
-.pomodoro-mode-button {
-  @apply flex-1 py-2.5 px-4 text-sm font-medium rounded-lg transition-colors;
-}
-
-.pomodoro-mode-work {
-  @apply bg-primary-600 text-white hover:bg-primary-700;
-}
-
-.pomodoro-mode-break {
-  @apply bg-green-100 text-green-700 hover:bg-green-200;
-}
-
-.pomodoro-mode-button:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-/* Action buttons */
-.pomodoro-action-buttons {
-  @apply flex items-center justify-center gap-3;
-}
-
-.pomodoro-action-button {
-  @apply flex items-center justify-center w-12 h-12 rounded-full transition-colors;
-}
-
-.pomodoro-play,
-.pomodoro-pause {
-  @apply bg-primary-600 text-white hover:bg-primary-700;
-}
-
-.pomodoro-skip {
-  @apply bg-gray-200 text-gray-600 hover:bg-gray-300;
-}
-
-.pomodoro-stop {
-  @apply bg-red-100 text-red-600 hover:bg-red-200;
-}
-
-.pomodoro-action-button:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.pomodoro-action-button svg {
-  @apply w-5 h-5;
-}
-
-/* Time Usage Section */
-.time-usage-section {
-  @apply mt-4 pt-4 border-t border-gray-200;
-}
-
-.time-usage-title {
-  @apply text-sm font-semibold text-gray-700 mb-3;
-}
-
-.time-usage-list {
-  @apply flex flex-col gap-3;
-}
-
-.time-usage-item {
-  @apply flex flex-col gap-1;
-}
-
-.time-usage-header {
-  @apply flex items-center justify-between;
-}
-
-.time-usage-header .platform-name {
-  @apply text-sm font-medium text-gray-700;
-}
-
-.time-usage-header .usage-time {
-  @apply text-sm text-gray-600;
-}
-
-.time-usage-header .usage-limit {
-  @apply text-gray-400;
-}
-
-.usage-progress-bar {
-  @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
-}
-
-.usage-progress-fill {
-  @apply h-full rounded-full transition-all duration-300;
-}
-
-/* ===================================
-   NEW UI: Single Scroll Popup Design
-   =================================== */
+  width: 360px;
+  min-height: 320px;
+  max-height: 580px;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 85% 0%, rgba(6, 182, 212, 0.12), transparent 55%),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(139, 92, 246, 0.08),
+      transparent 50%
+    ),
+    var(--bg);
+}
+
+.popup-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-scroll-content::-webkit-scrollbar {
+  width: 6px;
+}
+.popup-scroll-content::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+/* ---------- Header ---------- */
 
-/* New Header */
 .popup-header-new {
-  @apply flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10, 10, 18, 0.8);
 }
 
 .popup-header-left {
-  @apply flex items-center gap-2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .popup-logo {
-  @apply w-6 h-6 text-primary-600;
+  width: 20px;
+  height: 20px;
+  color: var(--cyan);
+  filter: drop-shadow(0 0 6px var(--cyan-glow));
 }
 
 .popup-title-new {
-  @apply text-base font-bold text-gray-900;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 15px;
 }
 
-/* Popup Toggle */
+/* Main on/off toggle */
 .popup-toggle {
-  @apply relative inline-block w-12 h-7 cursor-pointer;
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+  cursor: pointer;
 }
-
 .popup-toggle input {
-  @apply opacity-0 w-0 h-0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
-
 .popup-toggle-slider {
-  @apply absolute inset-0 bg-gray-300 rounded-full transition-colors duration-200;
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.35);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
 }
-
 .popup-toggle-slider::before {
-  @apply absolute content-[''] h-5 w-5 left-1 bottom-1 bg-white rounded-full shadow transition-transform duration-200;
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  transition: all 0.2s;
 }
-
 .popup-toggle input:checked + .popup-toggle-slider {
-  @apply bg-primary-600;
+  background: var(--cyan-soft);
+  border-color: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan-glow);
 }
-
 .popup-toggle input:checked + .popup-toggle-slider::before {
-  @apply translate-x-5;
+  transform: translateX(22px);
+  background: var(--cyan);
 }
 
-/* Scrollable Content */
-.popup-scroll-content {
-  @apply flex-1 overflow-y-auto px-4 py-3 space-y-3;
+/* ---------- Status hero (idle) ---------- */
+
+.status-hero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.status-hero.on {
+  border-color: rgba(6, 182, 212, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.12),
+    rgba(139, 92, 246, 0.07)
+  );
+  box-shadow: 0 0 18px rgba(6, 182, 212, 0.12);
+}
+.status-hero-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.status-hero.on .status-hero-icon {
+  color: var(--cyan);
+  filter: drop-shadow(0 0 8px var(--cyan-glow));
+}
+.status-hero-body {
+  min-width: 0;
+}
+.status-hero-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+.status-hero.on .status-hero-title {
+  color: #a5f3fc;
+}
+.status-hero-sub {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-top: 2px;
 }
 
-/* New Footer */
-.popup-footer-new {
-  @apply px-4 py-2 border-t border-gray-100 bg-gray-50;
+/* ---------- Cards (shared) ---------- */
+
+.timer-widget,
+.adalab-widget,
+.active-watching-widget,
+.platform-grid-container,
+.focus-launcher,
+.block-site-section {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  padding: 12px;
 }
 
-.popup-settings-btn {
-  @apply w-full flex items-center justify-center gap-2 py-2 text-sm font-medium text-gray-600 hover:text-primary-600 hover:bg-gray-100 rounded-lg transition-colors;
-}
-
-.popup-settings-btn svg {
-  @apply w-4 h-4;
-}
-
-/* Loading & Error */
-.popup-loading {
-  @apply flex items-center justify-center py-16;
-}
-
-.popup-error {
-  @apply text-center py-8;
-}
-
-.popup-error p {
-  @apply text-sm text-red-600 mb-3;
-}
-
-.popup-error button {
-  @apply px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700;
-}
-
-/* ===================================
-   Timer Widget
-   =================================== */
+/* ---------- Active timer widget ---------- */
 
 .timer-widget {
-  @apply bg-gray-50 rounded-xl p-4;
+  border-color: rgba(6, 182, 212, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.1),
+    rgba(139, 92, 246, 0.06)
+  );
+  box-shadow: 0 0 18px rgba(6, 182, 212, 0.12);
 }
 
 .timer-header {
-  @apply flex items-center justify-between mb-3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
-
 .timer-label {
-  @apply text-sm text-gray-600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-sub);
 }
-
 .timer-mode-badge {
-  @apply px-2 py-1 text-xs font-medium rounded-full;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
 }
-
-.timer-mode-badge.focus {
-  @apply bg-primary-100 text-primary-700;
-}
-
+.timer-mode-badge.focus,
 .timer-mode-badge.work {
-  @apply bg-primary-100 text-primary-700;
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+  border: 1px solid rgba(6, 182, 212, 0.4);
 }
-
 .timer-mode-badge.break {
-  @apply bg-green-100 text-green-700;
+  background: var(--emerald-soft);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
 }
-
 .timer-mode-badge.long-break {
-  @apply bg-blue-100 text-blue-700;
+  background: var(--purple-soft);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.4);
 }
 
 .timer-display {
-  @apply relative w-24 h-24 mx-auto mb-3;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
 }
-
 .timer-circle {
-  @apply w-full h-full -rotate-90;
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
 }
-
 .timer-circle-bg {
-  @apply stroke-gray-200;
+  stroke: rgba(148, 163, 184, 0.15);
 }
-
 .timer-circle-progress {
-  @apply transition-all duration-1000 ease-linear;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.5s linear;
 }
-
-.timer-circle-progress.focus {
-  @apply stroke-primary-500;
-}
-
+.timer-circle-progress.focus,
 .timer-circle-progress.work {
-  @apply stroke-primary-500;
+  stroke: var(--cyan);
+  filter: drop-shadow(0 0 4px var(--cyan-glow));
 }
-
 .timer-circle-progress.break {
-  @apply stroke-green-500;
+  stroke: var(--emerald);
 }
-
 .timer-circle-progress.long-break {
-  @apply stroke-blue-500;
+  stroke: var(--purple);
 }
-
 .timer-time {
-  @apply absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-800;
-}
-
-.timer-action-btn {
-  @apply w-full py-2 text-sm font-medium rounded-lg transition-colors;
-}
-
-.timer-action-btn.danger {
-  @apply text-red-600 hover:bg-red-50;
+  flex: 1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.02em;
 }
 
 .timer-controls {
-  @apply flex items-center justify-center gap-3;
-}
-
-.timer-control-btn {
-  @apply w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors;
-}
-
-.timer-control-btn.danger {
-  @apply text-red-600 hover:bg-red-50;
-}
-
-.timer-control-btn svg {
-  @apply w-5 h-5;
-}
-
-/* ===================================
-   Compact Stats
-   =================================== */
-
-.compact-stats {
-  @apply flex items-center justify-around py-2 bg-gray-50 rounded-lg;
-}
-
-.compact-stat {
-  @apply flex flex-col items-center;
-}
-
-.compact-stat.streak {
-  @apply flex-row gap-1;
-}
-
-.compact-stat-icon {
-  @apply w-4 h-4 text-yellow-500;
-}
-
-.compact-stat-icon svg {
-  @apply w-full h-full;
-}
-
-.compact-stat-value {
-  @apply text-lg font-bold text-gray-800;
-}
-
-.compact-stat-label {
-  @apply text-xs text-gray-500;
-}
-
-.compact-stat.streak .compact-stat-value {
-  @apply text-yellow-600;
-}
-
-/* ===================================
-   Platform Grid
-   =================================== */
-
-.platform-grid-container {
-  @apply bg-white rounded-lg border border-gray-200;
-}
-
-.platform-grid-header {
-  @apply w-full flex items-center justify-between px-3 py-2;
-}
-
-.platform-grid-title {
-  @apply text-sm font-medium text-gray-700 flex items-center gap-2;
-}
-
-.platform-grid-count {
-  @apply px-1.5 py-0.5 text-xs font-medium bg-primary-100 text-primary-700 rounded-full;
-}
-
-.platform-grid-chevron {
-  @apply w-4 h-4 text-gray-400 transition-transform duration-200;
-}
-
-.platform-grid-chevron.expanded {
-  @apply rotate-180;
-}
-
-.platform-grid-chevron svg {
-  @apply w-full h-full;
-}
-
-.platform-grid-content {
-  @apply px-3 pb-3 space-y-3;
-}
-
-.platform-grid-section {
-  @apply space-y-2;
-}
-
-.platform-grid-section-title {
-  @apply text-xs font-medium text-gray-500 uppercase;
-}
-
-.platform-grid {
-  @apply grid grid-cols-2 gap-2;
-}
-
-.platform-grid-item {
-  @apply flex items-center gap-2 px-2 py-1.5 bg-gray-50 rounded-md cursor-pointer hover:bg-gray-100 transition-colors;
-}
-
-.platform-grid-item.disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.platform-grid-item input[type='checkbox'] {
-  @apply w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500;
-}
-
-.platform-grid-name {
-  @apply text-xs text-gray-700;
-}
-
-.platform-grid-summary {
-  @apply flex flex-wrap gap-1.5 px-3 pb-3;
-}
-
-.platform-chip {
-  @apply px-2 py-1 text-xs rounded-full;
-}
-
-.platform-chip.active {
-  @apply bg-primary-100 text-primary-700;
-}
-
-.platform-chip.more {
-  @apply bg-gray-100 text-gray-600;
-}
-
-/* ===================================
-   Schedule Badge
-   =================================== */
-
-.schedule-badge {
-  @apply flex items-center gap-2 px-3 py-2 rounded-lg;
-}
-
-.schedule-badge.active {
-  @apply bg-green-50;
-}
-
-.schedule-badge.inactive {
-  @apply bg-gray-50;
-}
-
-.schedule-badge-icon {
-  @apply w-4 h-4;
-}
-
-.schedule-badge.active .schedule-badge-icon {
-  @apply text-green-600;
-}
-
-.schedule-badge.inactive .schedule-badge-icon {
-  @apply text-gray-400;
-}
-
-.schedule-badge-icon svg {
-  @apply w-full h-full;
-}
-
-.schedule-badge-text {
-  @apply text-xs font-medium;
-}
-
-.schedule-badge.active .schedule-badge-text {
-  @apply text-green-700;
-}
-
-.schedule-badge.inactive .schedule-badge-text {
-  @apply text-gray-500;
-}
-
-/* ===================================
-   Focus Launcher
-   =================================== */
-
-.focus-launcher {
-  @apply bg-white rounded-lg border border-gray-200 p-3;
-}
-
-.focus-launcher-tabs {
-  @apply flex gap-2 mb-3;
-}
-
-.focus-launcher-tab {
-  @apply flex-1 py-2 text-xs font-medium text-gray-500 bg-gray-100 rounded-lg transition-colors;
-}
-
-.focus-launcher-tab:hover:not(:disabled) {
-  @apply bg-gray-200;
-}
-
-.focus-launcher-tab.active {
-  @apply bg-primary-100 text-primary-700;
-}
-
-.focus-launcher-tab:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.focus-launcher-content {
-  @apply flex flex-col items-center gap-3;
-}
-
-.focus-duration-selector {
-  @apply flex gap-2;
-}
-
-.focus-duration-btn {
-  @apply px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg transition-colors;
-}
-
-.focus-duration-btn:hover:not(:disabled) {
-  @apply bg-gray-200;
-}
-
-.focus-duration-btn.active {
-  @apply bg-primary-100 text-primary-700;
-}
-
-.focus-duration-btn:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.focus-start-btn {
-  @apply w-full flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors;
-}
-
-.focus-start-btn:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.focus-start-btn svg {
-  @apply w-4 h-4;
-}
-
-.pomodoro-info {
-  @apply text-xs text-gray-500 text-center;
-}
-
-.focus-launcher-hint {
-  @apply text-xs text-gray-400 text-center;
-}
-
-/* Block Site Button */
-.block-site-section {
-  @apply px-4 py-3 border-t border-gray-100 flex items-center gap-3;
-}
-
-.block-site-btn {
-  @apply flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-colors;
-  @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
-}
-
-.block-site-btn.blocked {
-  @apply bg-red-50 text-red-600 hover:bg-red-100;
-}
-
-.block-site-btn:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.block-site-btn svg {
-  @apply w-4 h-4;
-}
-
-.block-site-domain {
-  @apply text-xs text-gray-500 truncate flex-1;
-}
-
-/* ===================================== */
-/* Active Watching Widget                */
-/* ===================================== */
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.timer-control-btn,
+.timer-action-btn {
+  border: 1px solid var(--border-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.timer-control-btn:hover,
+.timer-action-btn:hover {
+  border-color: var(--cyan);
+  background: var(--cyan-soft);
+}
+.timer-control-btn.danger,
+.timer-action-btn.danger {
+  border-color: rgba(244, 63, 94, 0.45);
+  color: #fda4af;
+}
+.timer-control-btn.danger:hover,
+.timer-action-btn.danger:hover {
+  background: var(--rose-soft);
+  border-color: var(--rose);
+}
+
+/* ---------- adalab study remote widget ---------- */
+
+.adalab-widget {
+  border-color: rgba(139, 92, 246, 0.4);
+}
+.adalab-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.adalab-widget-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+}
+.adalab-widget-phase {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--panel-strong);
+  color: var(--text-sub);
+  border: 1px solid var(--border);
+}
+.adalab-widget-phase.is-running {
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+  border-color: rgba(6, 182, 212, 0.4);
+}
+.adalab-widget-timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.adalab-widget-time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 22px;
+}
+.adalab-widget-btn {
+  border: 1px solid var(--border-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.adalab-widget-btn.is-start {
+  border-color: rgba(6, 182, 212, 0.5);
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+}
+.adalab-widget-btn.is-start:hover {
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+.adalab-widget-btn.is-stop {
+  border-color: rgba(244, 63, 94, 0.45);
+  color: #fda4af;
+}
+.adalab-widget-btn.is-stop:hover {
+  background: var(--rose-soft);
+}
+.adalab-widget-tasks-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin: 10px 0 6px;
+}
+.adalab-widget-no-tasks {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.adalab-widget-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.adalab-widget-task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: var(--panel-strong);
+}
+.adalab-widget-task-check {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--cyan);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.adalab-widget-task-check:hover {
+  border-color: var(--cyan);
+  background: var(--cyan-soft);
+}
+.adalab-widget-task-title {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Active watching widget ---------- */
 
 .active-watching-widget {
-  @apply bg-blue-50 rounded-lg p-3 mb-3 border border-blue-200;
+  border-color: rgba(245, 158, 11, 0.4);
 }
-
-.dark .active-watching-widget {
-  @apply bg-blue-900/30 border-blue-700;
-}
-
 .active-watching-header {
-  @apply flex items-center gap-2 mb-2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
 }
-
 .pulse-dot {
-  @apply w-2 h-2 bg-green-500 rounded-full;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  animation: pulse-dot 1.5s ease-in-out infinite;
 }
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
+@keyframes pulse-dot {
   50% {
-    opacity: 0.5;
+    opacity: 0.35;
   }
 }
-
 .active-watching-label {
-  @apply text-xs font-medium text-blue-600;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fcd34d;
 }
-
-.dark .active-watching-label {
-  @apply text-blue-400;
-}
-
 .active-watching-content {
-  @apply flex items-center justify-between;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
-
 .active-watching-platform {
-  @apply text-sm font-medium text-gray-700;
+  font-weight: 700;
+  font-size: 13px;
 }
-
-.dark .active-watching-platform {
-  @apply text-gray-200;
-}
-
 .active-watching-time {
-  @apply text-lg font-bold text-blue-600 tabular-nums;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-sub);
+  font-size: 12px;
 }
 
-.dark .active-watching-time {
-  @apply text-blue-400;
+/* ---------- Compact stats ---------- */
+
+.compact-stats {
+  display: flex;
+  gap: 8px;
 }
-
-/* ===================================== */
-/* Compact Stats - Time Usage            */
-/* ===================================== */
-
-.compact-stat.time-usage {
-  @apply relative;
+.compact-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 8px 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
 }
-
+.compact-stat-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--amber);
+}
 .compact-stat-icon.clock {
-  @apply text-blue-500;
+  color: var(--text-sub);
+}
+.compact-stat-value {
+  font-weight: 700;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: #a5f3fc;
+}
+.compact-stat.streak .compact-stat-value {
+  color: #fcd34d;
+}
+.compact-stat-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
-.compact-stat-icon.clock svg {
-  @apply w-4 h-4;
+/* ---------- Platform grid ---------- */
+
+.platform-grid-container {
+  padding: 0;
+  overflow: hidden;
+}
+.platform-grid-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 12px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.platform-grid-header:hover {
+  background: var(--panel-strong);
+}
+.platform-grid-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.platform-grid-count {
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+}
+.platform-grid-chevron {
+  width: 16px;
+  height: 16px;
+  color: var(--text-sub);
+  transition: transform 0.2s;
+}
+.platform-grid-chevron.expanded {
+  transform: rotate(180deg);
+}
+.platform-grid-content {
+  padding: 0 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.platform-grid-section-title {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.platform-grid-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel-strong);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.platform-grid-item:has(input:checked) {
+  border-color: rgba(6, 182, 212, 0.5);
+  background: var(--cyan-soft);
+}
+.platform-grid-item.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.platform-grid-item input {
+  accent-color: var(--cyan);
+  margin: 0;
+}
+.platform-grid-name {
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.platform-grid-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0 12px 10px;
+}
+.platform-chip {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+}
+.platform-chip.active {
+  border-color: rgba(6, 182, 212, 0.4);
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+}
+.platform-chip.more {
+  color: var(--text-muted);
 }
 
-/* adalab study remote control widget */
-.adalab-widget {
-  @apply mx-3 mt-2 rounded-lg border border-gray-200 bg-gray-50 p-3;
+/* ---------- Schedule badge ---------- */
+
+.schedule-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  font-size: 12px;
+}
+.schedule-badge.active {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: var(--emerald-soft);
+}
+.schedule-badge-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--text-sub);
+  flex-shrink: 0;
+}
+.schedule-badge.active .schedule-badge-icon {
+  color: var(--emerald);
+}
+.schedule-badge-text {
+  color: var(--text-sub);
+}
+.schedule-badge.active .schedule-badge-text {
+  color: #6ee7b7;
 }
 
-.adalab-widget-header {
-  @apply flex items-center justify-between mb-1.5;
+/* ---------- Block current site ---------- */
+
+.block-site-section {
+  padding: 0;
+}
+.block-site-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: all 0.15s;
+}
+.block-site-btn:hover:not(:disabled) {
+  background: var(--rose-soft);
+  color: #fda4af;
+}
+.block-site-btn.blocked {
+  color: #fda4af;
+}
+.block-site-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.block-site-domain {
+  font-weight: 700;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.adalab-widget-title {
-  @apply text-xs font-semibold text-gray-700;
+/* ---------- Focus launcher (primary action) ---------- */
+
+.focus-launcher {
+  border-color: rgba(6, 182, 212, 0.3);
+}
+.focus-launcher-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+  background: var(--panel-strong);
+  border-radius: 10px;
+  padding: 3px;
+}
+.focus-launcher-tab {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.focus-launcher-tab:hover:not(:disabled) {
+  color: var(--text);
+}
+.focus-launcher-tab.active {
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+  box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.4);
+}
+.focus-launcher-tab:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.focus-launcher-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.focus-duration-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.focus-duration-btn {
+  border: 1px solid var(--border-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 7px 0;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.focus-duration-btn:hover:not(:disabled) {
+  border-color: var(--cyan);
+}
+.focus-duration-btn.active {
+  border-color: var(--cyan);
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+}
+.focus-duration-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.focus-start-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px;
+  border: none;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.25);
+}
+.focus-start-btn:hover:not(:disabled) {
+  filter: brightness(1.15);
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.4);
+}
+.focus-start-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.focus-start-btn svg {
+  width: 14px;
+  height: 14px;
+}
+.pomodoro-info {
+  font-size: 11px;
+  color: var(--text-sub);
+  text-align: center;
+}
+.focus-launcher-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: center;
 }
 
-.adalab-widget-phase {
-  @apply text-[10px] font-medium tracking-wider text-gray-400;
+/* ---------- Footer ---------- */
+
+.popup-footer-new {
+  border-top: 1px solid var(--border);
+  padding: 8px 12px;
+  background: rgba(10, 10, 18, 0.8);
+}
+.popup-settings-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.popup-settings-btn:hover {
+  background: var(--panel-strong);
+  color: var(--text);
+}
+.popup-settings-btn svg {
+  width: 14px;
+  height: 14px;
 }
 
-.adalab-widget-phase.is-running {
-  @apply text-primary-600;
-}
+/* ---------- Loading / Error ---------- */
 
-.adalab-widget-timer {
-  @apply flex items-center justify-between mb-2;
+.popup-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
 }
-
-.adalab-widget-time {
-  @apply text-xl font-bold tabular-nums text-gray-900;
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border-strong);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
-
-.adalab-widget-btn {
-  @apply px-3 py-1 text-xs font-medium rounded-md text-white transition-colors;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-.adalab-widget-btn.is-start {
-  @apply bg-primary-600 hover:bg-primary-700;
+.popup-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 16px;
+  color: var(--text-sub);
+  font-size: 13px;
 }
-
-.adalab-widget-btn.is-stop {
-  @apply bg-red-500 hover:bg-red-600;
-}
-
-.adalab-widget-tasks-title {
-  @apply text-[10px] uppercase tracking-wider text-gray-400 mb-1;
-}
-
-.adalab-widget-no-tasks {
-  @apply text-xs text-gray-400;
-}
-
-.adalab-widget-task-list {
-  @apply space-y-1;
-}
-
-.adalab-widget-task {
-  @apply flex items-center gap-2;
-}
-
-.adalab-widget-task-check {
-  @apply h-4 w-4 flex items-center justify-center rounded border border-gray-300 text-[10px] text-transparent hover:text-white hover:bg-success hover:border-success flex-shrink-0;
-}
-
-.adalab-widget-task-title {
-  @apply text-xs text-gray-700 truncate;
+.popup-error button {
+  border: 1px solid var(--cyan);
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+  border-radius: 9px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
 }
