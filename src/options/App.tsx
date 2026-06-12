@@ -21,15 +21,11 @@ import {
   ScheduleSection,
   ProductivitySection,
   ReportsSection,
+  LockSection,
   AdvancedSection,
 } from './components/sections';
 import { OnboardingWizard } from './components/onboarding';
-import {
-  TermsOfService,
-  PrivacyPolicy,
-  CommercialTransaction,
-} from './components/legal';
-import { SubscriptionManager } from './components/premium';
+import { TermsOfService, PrivacyPolicy } from './components/legal';
 
 export function App() {
   const { t, isReady: i18nReady } = useI18n();
@@ -181,8 +177,11 @@ export function App() {
         return (
           <ProductivitySection
             subSection={
-              (activeSubSection as 'focusMode' | 'pomodoro' | 'streak') ??
-              'focusMode'
+              (activeSubSection as
+                | 'focusMode'
+                | 'pomodoro'
+                | 'streak'
+                | 'adalabSync') ?? 'focusMode'
             }
           />
         );
@@ -190,31 +189,32 @@ export function App() {
       case 'reports':
         return <ReportsSection />;
 
-      case 'advanced':
+      case 'lock':
         return (
-          <AdvancedSection
+          <LockSection
             subSection={
               (activeSubSection as
                 | 'challenge'
                 | 'lockdown'
-                | 'commitmentLock'
-                | 'appearance'
-                | 'language'
-                | 'backup'
-                | 'adalabSync') ?? 'challenge'
+                | 'commitmentLock') ?? 'challenge'
             }
           />
         );
 
-      case 'premium':
-        return <SubscriptionManager />;
+      case 'advanced':
+        return (
+          <AdvancedSection
+            subSection={
+              (activeSubSection as 'appearance' | 'language' | 'backup') ??
+              'appearance'
+            }
+          />
+        );
 
       case 'legal':
         switch (activeSubSection) {
           case 'privacyPolicy':
             return <PrivacyPolicy />;
-          case 'commercialTransaction':
-            return <CommercialTransaction />;
           case 'termsOfService':
           default:
             return <TermsOfService />;

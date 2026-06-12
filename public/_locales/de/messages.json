@@ -2458,5 +2458,29 @@
   "adalabSyncToggleDescription": {
     "message": "Folgt dem adalab study Timer und ist über das Popup steuerbar.",
     "description": "Auto-added: adalabSyncToggleDescription"
+  },
+  "sidebarLock": {
+    "message": "Sperre",
+    "description": "Sidebar: Lock (anti-bypass) settings group"
+  },
+  "popupSectionPlatforms": {
+    "message": "Blockierte Plattformen",
+    "description": "Popup: blocked platforms section title"
+  },
+  "onboardingSkip": {
+    "message": "Überspringen",
+    "description": "Onboarding: skip button"
+  },
+  "viewDetails": {
+    "message": "Details anzeigen",
+    "description": "Dashboard: view details link"
+  },
+  "heatmapLegendLow": {
+    "message": "Wenig",
+    "description": "Dashboard heatmap legend: low"
+  },
+  "heatmapLegendHigh": {
+    "message": "Viel",
+    "description": "Dashboard heatmap legend: high"
   }
 }

@@ -2458,5 +2458,29 @@
   "adalabSyncToggleDescription": {
     "message": "跟随 adalab study 计时器,并可从弹出窗口控制。",
     "description": "Auto-added: adalabSyncToggleDescription"
+  },
+  "sidebarLock": {
+    "message": "锁定",
+    "description": "Sidebar: Lock (anti-bypass) settings group"
+  },
+  "popupSectionPlatforms": {
+    "message": "屏蔽平台",
+    "description": "Popup: blocked platforms section title"
+  },
+  "onboardingSkip": {
+    "message": "跳过",
+    "description": "Onboarding: skip button"
+  },
+  "viewDetails": {
+    "message": "查看详情",
+    "description": "Dashboard: view details link"
+  },
+  "heatmapLegendLow": {
+    "message": "少",
+    "description": "Dashboard heatmap legend: low"
+  },
+  "heatmapLegendHigh": {
+    "message": "多",
+    "description": "Dashboard heatmap legend: high"
   }
 }

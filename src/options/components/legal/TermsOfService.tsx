@@ -4,12 +4,7 @@
  */
 
 import { useI18n } from '@/shared/hooks/useI18n';
-import {
-  SELLER_INFO,
-  PRICING,
-  REFUND_POLICY,
-  LEGAL_URLS,
-} from '@/shared/constants/legal';
+import { SELLER_INFO, LEGAL_URLS } from '@/shared/constants/legal';
 
 export function TermsOfService() {
   const { t, locale } = useI18n();
@@ -77,52 +72,14 @@ export function TermsOfService() {
           </ul>
         </section>
 
-        {/* Premium Subscription */}
+        {/* Free of Charge */}
         <section className="legal-section">
-          <h2>
-            {isJapanese
-              ? '第4条（プレミアムサービス）'
-              : '4. Premium Subscription'}
-          </h2>
+          <h2>{isJapanese ? '第4条（利用料金）' : '4. Fees'}</h2>
           <p>
             {isJapanese
-              ? '本サービスには、追加機能を提供する有料のプレミアムプランがあります。'
-              : 'The Service offers a paid Premium plan with additional features.'}
+              ? '本サービスのすべての機能は無料で提供されます。'
+              : 'All features of the Service are provided free of charge.'}
           </p>
-
-          <h3>{isJapanese ? '4.1 料金' : '4.1 Pricing'}</h3>
-          <ul>
-            <li>
-              {isJapanese
-                ? `月額プラン: ¥${PRICING.monthly.amount}（税込）`
-                : `Monthly Plan: ¥${PRICING.monthly.amount} (including tax)`}
-            </li>
-            <li>
-              {isJapanese
-                ? `年額プラン: ¥${PRICING.yearly.amount}（税込）- ${PRICING.yearly.savings}円お得`
-                : `Yearly Plan: ¥${PRICING.yearly.amount} (including tax) - Save ¥${PRICING.yearly.savings}`}
-            </li>
-          </ul>
-
-          <h3>{isJapanese ? '4.2 自動更新' : '4.2 Auto-Renewal'}</h3>
-          <p className="legal-warning">
-            {isJapanese
-              ? '⚠️ サブスクリプションは自動的に更新されます。更新日の7日前にお知らせします。キャンセルは設定画面からいつでも可能です。'
-              : '⚠️ Subscriptions automatically renew. We will notify you 7 days before renewal. You can cancel anytime from the settings page.'}
-          </p>
-
-          <h3>{isJapanese ? '4.3 返金ポリシー' : '4.3 Refund Policy'}</h3>
-          <p>
-            {isJapanese
-              ? `購入後${REFUND_POLICY.refundWindowHours}時間以内であれば、Chrome Web Storeのポリシーに基づき返金を受けることができます。`
-              : `You may request a refund within ${REFUND_POLICY.refundWindowHours} hours of purchase in accordance with Chrome Web Store policies.`}
-          </p>
-          {isJapanese && (
-            <p>
-              EU在住のお客様は、{REFUND_POLICY.euCoolingOffDays}
-              日間のクーリングオフ権を有します。
-            </p>
-          )}
         </section>
 
         {/* User Responsibilities */}
@@ -243,13 +200,6 @@ export function TermsOfService() {
             <li>
               <a href={LEGAL_URLS.privacyPolicy}>{t('privacyPolicyTitle')}</a>
             </li>
-            {isJapanese && (
-              <li>
-                <a href={LEGAL_URLS.commercialTransaction}>
-                  {t('commercialTransactionTitle')}
-                </a>
-              </li>
-            )}
           </ul>
         </section>
       </div>
