@@ -17,6 +17,45 @@ interface LockSectionProps {
   subSection: LockSubSection;
 }
 
+/**
+ * Comparison strip so users can tell the three lock features apart at a
+ * glance (they protect different things)
+ */
+function LockOverview({ active }: { active: LockSubSection }) {
+  const { t } = useI18n();
+  const items: { id: LockSubSection; title: string; desc: string }[] = [
+    {
+      id: 'challenge',
+      title: t('challengeTitle'),
+      desc: t('challengeDescription'),
+    },
+    {
+      id: 'lockdown',
+      title: t('lockdownTitle'),
+      desc: t('lockdownDescription'),
+    },
+    {
+      id: 'commitmentLock',
+      title: t('commitmentLockTitle'),
+      desc: t('commitmentLockDescription'),
+    },
+  ];
+
+  return (
+    <div className="lock-overview">
+      {items.map((item) => (
+        <div
+          key={item.id}
+          className={`lock-overview-card ${active === item.id ? 'active' : ''}`}
+        >
+          <span className="lock-overview-title">{item.title}</span>
+          <span className="lock-overview-desc">{item.desc}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function LockSection({ subSection }: LockSectionProps) {
   const { t } = useI18n();
 
@@ -38,7 +77,7 @@ export function LockSection({ subSection }: LockSectionProps) {
             </svg>
           }
         />
-        <LockdownSettings />
+        <LockOverview active="lockdown" /> <LockdownSettings />
       </div>
     );
   }
@@ -62,7 +101,7 @@ export function LockSection({ subSection }: LockSectionProps) {
             </svg>
           }
         />
-        <CommitmentLockSettings />
+        <LockOverview active="commitmentLock" /> <CommitmentLockSettings />
       </div>
     );
   }
@@ -85,7 +124,7 @@ export function LockSection({ subSection }: LockSectionProps) {
           </svg>
         }
       />
-      <ChallengeSettings />
+      <LockOverview active="challenge" /> <ChallengeSettings />
     </div>
   );
 }

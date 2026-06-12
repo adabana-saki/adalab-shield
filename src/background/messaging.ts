@@ -106,6 +106,8 @@ import {
   getPremiumState,
   checkPremiumFeature,
 } from './commitmentLock';
+import { checkSettingsGuard, GUARD_ERRORS } from './settingsGuard';
+import { getLocalDateString } from '@/shared/utils/date';
 
 const logger = createLogger('messaging');
 
@@ -146,6 +148,12 @@ async function handleUpdateSettings(
   message: Extract<Message, { type: 'UPDATE_SETTINGS' }>
 ): Promise<UpdateSettingsResponse> {
   try {
+    // Lockdown / Commitment Lock: reject changes that weaken blocking
+    const guard = await checkSettingsGuard(message.payload);
+    if (!guard.allowed) {
+      return { success: false, error: GUARD_ERRORS[guard.reason] };
+    }
+
     const settings = await updateSettings(message.payload);
     return { success: true, data: settings };
   } catch (error) {
@@ -176,7 +184,7 @@ async function handleLogBlock(
   try {
     // Update stats
     const settings = await getSettings();
-    const today = new Date().toISOString().split('T')[0] ?? '';
+    const today = getLocalDateString();
 
     const isNewDay = settings.stats.lastResetDate !== today;
 

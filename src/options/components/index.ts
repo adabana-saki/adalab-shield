@@ -4,7 +4,6 @@
 
 // Existing components
 export { ExportImport } from './ExportImport';
-export { CustomRules } from './CustomRules';
 export { CustomDomains } from './CustomDomains';
 export { Schedule } from './Schedule';
 export { BlockPageCustomizer } from './BlockPageCustomizer';

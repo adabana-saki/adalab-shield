@@ -30,6 +30,7 @@ import type {
   UnlockHistory,
   PremiumState,
 } from '@/shared/types/commitmentLock';
+import { getLocalDateString } from '@/shared/utils/date';
 
 /**
  * Current settings schema version
@@ -68,7 +69,7 @@ export const DEFAULT_PLATFORM_SETTINGS: PlatformSettings = {
 export const DEFAULT_STATS: BlockingStats = {
   blockedToday: 0,
   blockedTotal: 0,
-  lastResetDate: new Date().toISOString().split('T')[0] ?? '',
+  lastResetDate: getLocalDateString(),
   byPlatform: {
     youtube: 0,
     tiktok: 0,
@@ -198,7 +199,7 @@ export const DEFAULT_TIME_LIMITS: TimeLimitsSettings = {
  */
 export const DEFAULT_TIME_LIMITS_STATE: TimeLimitsState = {
   usage: [],
-  lastResetDate: new Date().toISOString().split('T')[0] ?? '',
+  lastResetDate: getLocalDateString(),
 } as const;
 
 /**
@@ -334,8 +335,8 @@ export const DEFAULT_COMMITMENT_LOCK_STATE: CommitmentLockState = {
   currentCooldownEndsAt: null,
   timeLockEndsAt: null,
   consecutiveFailures: 0,
-  lastDailyResetDate: new Date().toISOString().split('T')[0] ?? '',
-  lastWeeklyResetDate: getMonday(new Date()).toISOString().split('T')[0] ?? '',
+  lastDailyResetDate: getLocalDateString(),
+  lastWeeklyResetDate: getLocalDateString(getMonday(new Date())),
   inProgressChallenge: null,
 } as const;
 
@@ -344,7 +345,7 @@ export const DEFAULT_COMMITMENT_LOCK_STATE: CommitmentLockState = {
  */
 export const DEFAULT_UNLOCK_HISTORY: UnlockHistory = {
   attempts: [],
-  lastCleanupDate: new Date().toISOString().split('T')[0] ?? '',
+  lastCleanupDate: getLocalDateString(),
   maxAttempts: 1000, // Keep last 1000 attempts
 } as const;
 
@@ -357,6 +358,12 @@ export const DEFAULT_PREMIUM_STATE: PremiumState = {
   expiresAt: null,
   features: [],
 } as const;
+
+/**
+ * After completing the Commitment Lock unlock flow, weakening settings
+ * changes are allowed for this long (the "unlock window").
+ */
+export const COMMITMENT_UNLOCK_WINDOW_MS = 5 * 60 * 1000;
 
 /**
  * Escalating cooldown multipliers for failed unlock attempts

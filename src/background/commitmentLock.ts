@@ -27,6 +27,7 @@ import {
   verifyChallengeAnswer,
 } from '@/shared/utils/challenges';
 import { createLogger } from '@/shared/utils/logger';
+import { getLocalDateString } from '@/shared/utils/date';
 
 const logger = createLogger('commitmentLock');
 
@@ -149,8 +150,8 @@ function getMonday(date: Date): Date {
 async function checkAndResetCounters(
   state: CommitmentLockState
 ): Promise<CommitmentLockState> {
-  const today = new Date().toISOString().split('T')[0] ?? '';
-  const monday = getMonday(new Date()).toISOString().split('T')[0] ?? '';
+  const today = getLocalDateString();
+  const monday = getLocalDateString(getMonday(new Date()));
 
   let updatedState = { ...state };
 
@@ -708,8 +709,8 @@ export async function getUnlockStats(): Promise<CommitmentLockStats> {
  */
 export async function resetCommitmentLockState(): Promise<CommitmentLockState> {
   const settings = await getSettings();
-  const monday = getMonday(new Date()).toISOString().split('T')[0] ?? '';
-  const today = new Date().toISOString().split('T')[0] ?? '';
+  const monday = getLocalDateString(getMonday(new Date()));
+  const today = getLocalDateString();
 
   const newState: CommitmentLockState = {
     ...DEFAULT_COMMITMENT_LOCK_STATE,

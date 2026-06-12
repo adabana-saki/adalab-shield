@@ -684,7 +684,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "Activez des plages de temps sans distraction pour améliorer votre productivité.",
+    "message": "Démarrez une session chronométrée pendant laquelle toutes les plateformes sélectionnées sont bloquées, même hors des heures planifiées.",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -708,7 +708,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "Si désactivé, vous ne pourrez pas annuler les sessions avant leur fin",
+    "message": "Autorise l’arrêt anticipé d’une session. Désactivez pour vous engager : la session ne pourra pas être annulée.",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "Plus",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "Session",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "Exportez tous les réglages dans un fichier ou restaurez-les depuis une sauvegarde.",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "Activez le mode Concentration ou Pomodoro dans les réglages pour démarrer des sessions ici.",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "Le verrouillage est actif. Déverrouillez avec votre PIN dans Réglages → Verrouillage.",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "Le verrou d’engagement est actif. Terminez le déverrouillage dans Réglages → Verrouillage.",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "Démarrer le déverrouillage",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "Une fois terminé, les changements affaiblissants (p. ex. désactiver le blocage) sont possibles pendant 5 minutes.",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "Déverrouillé — vous pouvez modifier les réglages pendant 5 minutes.",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "Déverrouiller le verrou d’engagement",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "Respirez. Le déverrouillage continue dans…",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "Pourquoi déverrouillez-vous ?",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "Écrivez votre raison avec vos mots (pour vous seul).",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "Votre réponse",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "Veuillez saisir une réponse.",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "Déverrouiller maintenant",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "Dernière étape",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "Le déverrouillage ouvre une fenêtre de 5 minutes pour modifier le blocage. Continuer ?",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "Mauvaise réponse. Réessayez.",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "Mauvaise réponse — la série consécutive recommence.",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "Échec du chargement de l’état du verrou.",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "Impossible de vérifier si le déverrouillage est autorisé.",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "Échec du démarrage du déverrouillage.",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "Échec de l’envoi. Veuillez réessayer.",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "Votre déclaration est trop courte.",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "Échec du chargement du défi.",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "Échec de la finalisation du déverrouillage.",
+    "description": "Confirm unlock error"
   }
 }

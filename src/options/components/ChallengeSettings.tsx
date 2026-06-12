@@ -11,10 +11,16 @@ export function ChallengeSettings() {
   const { t } = useI18n();
 
   const handleToggleEnabled = async () => {
+    const enabling = !settings.challenge.enabled;
     await updateSettings({
       challenge: {
-        enabled: !settings.challenge.enabled,
+        enabled: enabling,
       },
+      // Challenge only matters if the block page actually shows a bypass
+      // button - enable it together so the feature works out of the box
+      ...(enabling && !settings.blockPage.showBypassButton
+        ? { blockPage: { showBypassButton: true } }
+        : {}),
     });
   };
 
@@ -66,9 +72,6 @@ export function ChallengeSettings() {
 
   return (
     <div className="challenge-settings">
-      <h2 className="section-title">{t('challengeTitle')}</h2>
-      <p className="section-description">{t('challengeDescription')}</p>
-
       {/* Enable toggle */}
       <div className="setting-row">
         <label className="toggle-label">

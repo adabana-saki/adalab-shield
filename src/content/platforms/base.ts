@@ -11,6 +11,7 @@ import type {
   LogBlockMessage,
   BlockPageSettings,
   PomodoroState,
+  FocusModeState,
 } from '@/shared/types';
 import { createMessage } from '@/shared/types';
 import { createLogger } from '@/shared/utils/logger';
@@ -41,6 +42,9 @@ export abstract class BasePlatformDetector {
   /** Current Pomodoro state */
   protected pomodoroState: PomodoroState | null = null;
 
+  /** Current Focus Mode state */
+  protected focusState: FocusModeState | null = null;
+
   /**
    * Check if this detector supports the given hostname
    */
@@ -66,22 +70,38 @@ export abstract class BasePlatformDetector {
   }
 
   /**
-   * Check if currently in a Pomodoro break (content should be unblocked)
+   * Update Focus Mode state
+   */
+  setFocusState(state: FocusModeState | null): void {
+    this.focusState = state;
+  }
+
+  /**
+   * Check if currently in a Pomodoro break (content should be unblocked).
+   * A paused break still counts as a break — pausing must not re-block.
    */
   protected isInPomodoroBreak(): boolean {
     if (this.pomodoroState === null) {
       return false;
     }
 
-    // If Pomodoro is running and in break mode, unblock content
-    if (this.pomodoroState.isRunning) {
-      return (
-        this.pomodoroState.mode === 'break' ||
-        this.pomodoroState.mode === 'longBreak'
-      );
-    }
+    return (
+      this.pomodoroState.mode === 'break' ||
+      this.pomodoroState.mode === 'longBreak'
+    );
+  }
 
-    return false;
+  /**
+   * Check if a Focus Mode session is currently active.
+   * During focus, blocking applies even outside scheduled hours.
+   */
+  protected isFocusActive(): boolean {
+    return (
+      this.focusState !== null &&
+      this.focusState.isActive &&
+      this.focusState.endTime !== null &&
+      this.focusState.endTime > Date.now()
+    );
   }
 
   /**
@@ -112,6 +132,12 @@ export abstract class BasePlatformDetector {
         platformEnabled: this.settings.platforms[this.platform],
       });
       return false;
+    }
+
+    // Focus Mode overrides the schedule: while a focus session runs,
+    // blocking is always on (that is what "focus" means)
+    if (this.isFocusActive()) {
+      return true;
     }
 
     // Check schedule - if schedule is enabled, only block during scheduled times

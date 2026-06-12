@@ -684,7 +684,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "Activa bloques de tiempo sin distracciones para aumentar tu productividad.",
+    "message": "Inicia una sesión cronometrada durante la cual se bloquean todas las plataformas seleccionadas, incluso fuera del horario programado.",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -708,7 +708,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "Si está desactivado, no podrás cancelar las sesiones antes de que terminen",
+    "message": "Permite terminar la sesión antes de tiempo. Desactívalo para comprometerte: la sesión no podrá cancelarse.",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "Más",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "Sesión",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "Exporta todos los ajustes a un archivo o restáuralos desde una copia de seguridad.",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "Activa el Modo Enfoque o Pomodoro en Ajustes para iniciar sesiones aquí.",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "El modo bloqueo está activo. Desbloquea con tu PIN en Ajustes → Bloqueo.",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "El Bloqueo de Compromiso está activo. Completa el desbloqueo en Ajustes → Bloqueo.",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "Iniciar desbloqueo",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "Al completarlo podrás hacer cambios que debiliten el bloqueo durante 5 minutos.",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "Desbloqueado: puedes cambiar los ajustes durante 5 minutos.",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "Desbloquear Bloqueo de Compromiso",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "Respira. El desbloqueo continúa en…",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "¿Por qué desbloqueas?",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "Escribe tu motivo con tus propias palabras (solo para ti).",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "Tu respuesta",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "Introduce una respuesta.",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "Desbloquear ahora",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "Último paso",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "Al desbloquear podrás cambiar el bloqueo durante 5 minutos. ¿Continuar?",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "Respuesta incorrecta. Inténtalo de nuevo.",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "Respuesta incorrecta: la racha consecutiva empieza de nuevo.",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "No se pudo cargar el estado del bloqueo.",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "No se pudo comprobar si el desbloqueo está permitido.",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "No se pudo iniciar el desbloqueo.",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "Error al enviar. Inténtalo de nuevo.",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "Tu declaración es demasiado corta.",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "No se pudo cargar el desafío.",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "No se pudo completar el desbloqueo.",
+    "description": "Confirm unlock error"
   }
 }

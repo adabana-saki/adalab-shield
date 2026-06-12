@@ -7,8 +7,9 @@ import type { Settings, Platform } from '@/shared/types';
 import { SectionHeader } from '../common/SectionHeader';
 import { ToggleRow } from '../common/ToggleRow';
 import { CustomDomains } from '../CustomDomains';
+import { TimeLimitsConfig } from '../TimeLimitsConfig';
 
-type BlockingSubSection = 'platforms' | 'customDomains';
+type BlockingSubSection = 'platforms' | 'customDomains' | 'timeLimits';
 
 interface BlockingSectionProps {
   settings: Settings;
@@ -43,6 +44,29 @@ export function BlockingSection({
           }
         />
         <CustomDomains />
+      </div>
+    );
+  }
+
+  if (subSection === 'timeLimits') {
+    return (
+      <div className="settings-section">
+        <SectionHeader
+          title={t('timeLimitsTitle')}
+          description={t('timeLimitsDescription')}
+          icon={
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12,6 12,12 16,14" />
+            </svg>
+          }
+        />
+        <TimeLimitsConfig />
       </div>
     );
   }

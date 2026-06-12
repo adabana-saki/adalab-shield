@@ -57,10 +57,9 @@
       const pomo = r[POMODORO_KEY];
       const meta = r[META_KEY];
       const box = document.getElementById('adalab');
+      // A paused break still counts as a break (pausing must not re-block)
       const inBreak =
-        pomo &&
-        pomo.isRunning &&
-        (pomo.mode === 'break' || pomo.mode === 'longBreak');
+        pomo && (pomo.mode === 'break' || pomo.mode === 'longBreak');
 
       if (inBreak && originalUrl && /^https?:\/\//.test(originalUrl)) {
         // Blocking lifted for the break: go back to where the user wanted

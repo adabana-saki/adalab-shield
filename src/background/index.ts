@@ -9,9 +9,13 @@ import { initializeTimers } from './timers';
 import { updateDnrRules } from './dnr';
 import { createLogger } from '@/shared/utils/logger';
 import { getSettings, updateSettings } from '@/shared/utils/storage';
-import { PERFORMANCE, STORAGE_KEYS } from '@/shared/constants';
+import { STORAGE_KEYS } from '@/shared/constants';
+import { getLocalDateString } from '@/shared/utils/date';
 
 const logger = createLogger('background');
+
+/** Periodic refresh alarm (daily reset + schedule-boundary DNR recompute) */
+const PERIODIC_REFRESH_ALARM = 'shortshield_periodic_refresh';
 
 /**
  * Check and reset daily stats if needed
@@ -19,7 +23,7 @@ const logger = createLogger('background');
 async function checkDailyReset(): Promise<void> {
   try {
     const settings = await getSettings();
-    const today = new Date().toISOString().split('T')[0] ?? '';
+    const today = getLocalDateString();
 
     if (settings.stats.lastResetDate !== today) {
       logger.info('Resetting daily stats', {
@@ -56,8 +60,8 @@ async function initialize(): Promise<void> {
     // Check for daily stats reset
     await checkDailyReset();
 
-    // Network-layer blocking rules (recomputed whenever settings or the
-    // pomodoro state change)
+    // Network-layer blocking rules (recomputed whenever settings, the
+    // pomodoro state or the focus state change)
     await updateDnrRules();
     browser.storage.onChanged.addListener((changes, areaName) => {
       if (areaName !== 'local') {
@@ -65,17 +69,25 @@ async function initialize(): Promise<void> {
       }
       if (
         changes[STORAGE_KEYS.SETTINGS] !== undefined ||
-        changes[STORAGE_KEYS.POMODORO_STATE] !== undefined
+        changes[STORAGE_KEYS.POMODORO_STATE] !== undefined ||
+        changes[STORAGE_KEYS.FOCUS_STATE] !== undefined
       ) {
         void updateDnrRules();
       }
     });
 
-    // Set up periodic stats check (also refreshes schedule-based DNR rules)
-    setInterval(() => {
-      void checkDailyReset();
-      void updateDnrRules();
-    }, PERFORMANCE.STATS_CHECK_INTERVAL_MS);
+    // Periodic refresh via alarms (NOT setInterval: the MV3 service worker
+    // is killed after ~30s idle, so an interval silently stops and
+    // schedule-based blocking would never switch at its boundaries)
+    await browser.alarms.create(PERIODIC_REFRESH_ALARM, {
+      periodInMinutes: 1,
+    });
+    browser.alarms.onAlarm.addListener((alarm) => {
+      if (alarm.name === PERIODIC_REFRESH_ALARM) {
+        void checkDailyReset();
+        void updateDnrRules();
+      }
+    });
 
     logger.info('ShortShield initialized successfully');
   } catch (error) {

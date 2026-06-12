@@ -145,6 +145,26 @@ body {
   background: var(--cyan);
 }
 
+/* ---------- Lock banner (weakening change rejected) ---------- */
+
+.lock-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.12);
+  color: #fcd34d;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.lock-banner svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* ---------- Status hero (idle) ---------- */
 
 .status-hero {

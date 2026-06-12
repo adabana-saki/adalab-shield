@@ -684,7 +684,7 @@
     "description": "Focus mode section title"
   },
   "focusModeDescription": {
-    "message": "启用无干扰的时间块来提高您的生产力。",
+    "message": "开始一段限时专注。专注期间，所选平台即使在计划时间之外也会被屏蔽。",
     "description": "Focus mode section description"
   },
   "focusModeEnabled": {
@@ -708,7 +708,7 @@
     "description": "Soft lock toggle label"
   },
   "focusModeSoftLockDescription": {
-    "message": "如果禁用，您将无法在会话结束前取消",
+    "message": "允许提前结束专注。关闭后将无法中途取消（认真模式）。",
     "description": "Description for soft lock setting"
   },
   "focusModeNotifications": {
@@ -2482,5 +2482,109 @@
   "heatmapLegendHigh": {
     "message": "多",
     "description": "Dashboard heatmap legend: high"
+  },
+  "pomodoroSession": {
+    "message": "回合",
+    "description": "Popup timer widget: session counter label"
+  },
+  "backupDescription": {
+    "message": "将所有设置导出到文件，或从备份恢复。",
+    "description": "Backup section description"
+  },
+  "popupEnableTimersHint": {
+    "message": "在设置中启用专注模式或番茄钟后，即可在此开始会话。",
+    "description": "Popup hint when both focus mode and pomodoro are disabled"
+  },
+  "settingsLockedLockdown": {
+    "message": "锁定模式已启用。请在 设置 → 锁定 中输入 PIN 解锁后再更改。",
+    "description": "Popup banner: change rejected because lockdown is active"
+  },
+  "settingsLockedCommitment": {
+    "message": "承诺锁已启用。请在 设置 → 锁定 中完成解锁流程后再更改。",
+    "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "commitmentLockUnlockButton": {
+    "message": "开始解锁流程",
+    "description": "Button to start the unlock flow"
+  },
+  "commitmentLockUnlockButtonDescription": {
+    "message": "完成流程后，5 分钟内可以进行削弱屏蔽的更改（如停用屏蔽）。",
+    "description": "Explains what completing the unlock flow allows"
+  },
+  "commitmentLockUnlockWindowActive": {
+    "message": "已解锁 — 接下来 5 分钟内可以更改设置。",
+    "description": "Note shown while the unlock window is active"
+  },
+  "commitmentLockUnlockTitle": {
+    "message": "解锁承诺锁",
+    "description": "Unlock dialog title"
+  },
+  "commitmentLockWaiting": {
+    "message": "深呼吸一下。解锁将在…后继续",
+    "description": "Unlock dialog: waiting period label"
+  },
+  "commitmentLockIntentionTitle": {
+    "message": "你为什么要解锁？",
+    "description": "Unlock dialog: intention step title"
+  },
+  "commitmentLockIntentionPrompt": {
+    "message": "用自己的话写下原因（只给你自己看）。",
+    "description": "Unlock dialog: intention textarea placeholder/prompt"
+  },
+  "commitmentLockAnswerPlaceholder": {
+    "message": "你的答案",
+    "description": "Unlock dialog: challenge answer input placeholder"
+  },
+  "commitmentLockAnswerRequired": {
+    "message": "请输入答案。",
+    "description": "Unlock dialog: answer required validation"
+  },
+  "commitmentLockConfirmUnlock": {
+    "message": "立即解锁",
+    "description": "Unlock dialog: final confirm button"
+  },
+  "commitmentLockFinalConfirmTitle": {
+    "message": "最后一步",
+    "description": "Unlock dialog: final confirmation title"
+  },
+  "commitmentLockFinalConfirmMessage": {
+    "message": "解锁后将有 5 分钟可以更改屏蔽设置。继续吗？",
+    "description": "Unlock dialog: final confirmation message"
+  },
+  "commitmentLockWrongAnswer": {
+    "message": "答案错误，请重试。",
+    "description": "Unlock dialog: wrong challenge answer"
+  },
+  "commitmentLockWrongAnswerReset": {
+    "message": "答案错误 — 连续答题进度已重置。",
+    "description": "Unlock dialog: wrong answer resets consecutive progress"
+  },
+  "commitmentLockErrorLoad": {
+    "message": "加载锁定状态失败。",
+    "description": "Generic load error"
+  },
+  "commitmentLockErrorCheck": {
+    "message": "无法确认是否允许解锁。",
+    "description": "Generic check error"
+  },
+  "commitmentLockErrorStart": {
+    "message": "无法开始解锁流程。",
+    "description": "Generic start error"
+  },
+  "commitmentLockErrorSubmit": {
+    "message": "提交失败，请重试。",
+    "description": "Generic submit error"
+  },
+  "commitmentLockErrorIntention": {
+    "message": "理由太短了。",
+    "description": "Intention too short error"
+  },
+  "commitmentLockErrorChallenge": {
+    "message": "加载挑战失败。",
+    "description": "Challenge request error"
+  },
+  "commitmentLockErrorConfirm": {
+    "message": "无法完成解锁。",
+    "description": "Confirm unlock error"
   }
 }
