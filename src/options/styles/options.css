@@ -865,7 +865,7 @@
 }
 
 .sidebar-logo-icon {
-  @apply w-8 h-8 text-primary-600;
+  @apply w-8 h-8 rounded-lg object-cover;
 }
 
 .sidebar-logo-text {

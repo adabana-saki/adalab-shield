@@ -2116,7 +2116,7 @@
     "description": "Onboarding: feature 2"
   },
   "onboardingFeature3": {
-    "message": "ストリークとフォーカスセッションで進捗を追跡",
+    "message": "フォーカスセッションとブロック数を記録",
     "description": "Onboarding: feature 3"
   },
   "onboardingPlatformTitle": {

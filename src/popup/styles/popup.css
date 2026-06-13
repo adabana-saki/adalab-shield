@@ -91,9 +91,10 @@ body {
 }
 
 .popup-logo {
-  width: 20px;
-  height: 20px;
-  color: var(--cyan);
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: cover;
   filter: drop-shadow(0 0 6px var(--cyan-glow));
 }
 

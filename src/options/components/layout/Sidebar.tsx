@@ -2,6 +2,7 @@
  * Sidebar navigation component for options page
  */
 
+import browser from 'webextension-polyfill';
 import { useI18n } from '@/shared/hooks/useI18n';
 import { SidebarItem } from './SidebarItem';
 import { CollapsibleSection } from './CollapsibleSection';
@@ -54,15 +55,11 @@ export function Sidebar({
     <nav className="sidebar">
       <div className="sidebar-header">
         <div className="sidebar-logo">
-          <svg
+          <img
             className="sidebar-logo-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
+            src={browser.runtime.getURL('icons/icon-48.png')}
+            alt=""
+          />
           <span className="sidebar-logo-text">adalab shield</span>
         </div>
       </div>
