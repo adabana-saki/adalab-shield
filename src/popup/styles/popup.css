@@ -91,9 +91,10 @@ body {
 }
 
 .popup-logo {
-  width: 20px;
-  height: 20px;
-  color: var(--cyan);
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: cover;
   filter: drop-shadow(0 0 6px var(--cyan-glow));
 }
 
@@ -320,6 +321,10 @@ body {
 }
 .timer-control-btn,
 .timer-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   border: 1px solid var(--border-strong);
   background: var(--panel-strong);
   color: var(--text);
@@ -329,6 +334,16 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
+}
+/* アイコンにサイズ指定が無く、ボタンが潰れて見えない不具合の修正 */
+.timer-control-btn svg,
+.timer-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+.timer-control-btn {
+  flex: 1;
+  min-width: 40px;
 }
 .timer-control-btn:hover,
 .timer-action-btn:hover {
@@ -344,6 +359,18 @@ body {
 .timer-action-btn.danger:hover {
   background: var(--rose-soft);
   border-color: var(--rose);
+}
+/* adalab study 連動中: 拡張側の操作は効かないので、操作場所を案内する */
+.timer-external-note {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--purple-soft);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c4b5fd;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
 }
 
 /* ---------- adalab study remote widget ---------- */
@@ -363,6 +390,56 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #c4b5fd;
+}
+/* study を開く/フォーカスするリンク (ヘッダーのタイトル兼ボタン) */
+.adalab-widget-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+  transition: color 0.15s;
+}
+.adalab-widget-open:hover {
+  color: #ddd6fe;
+}
+/* study タブが無いときの控えめなランチャー */
+.adalab-open-launcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  background: var(--purple-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.adalab-open-launcher:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.2);
+}
+.adalab-open-launcher-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+}
+.adalab-open-launcher-cta {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ddd6fe;
 }
 .adalab-widget-phase {
   font-size: 10px;
@@ -447,23 +524,63 @@ body {
   border: 1px solid var(--border-strong);
   border-radius: 5px;
   background: transparent;
-  color: var(--cyan);
+  /* 既定では空のチェックボックスに見せる (✓ を出すと「完了済み」と
+     誤解されるため、ホバー時だけ ✓ を表示して「押すと完了」を示す) */
+  color: transparent;
   cursor: pointer;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.15s;
 }
 .adalab-widget-task-check:hover {
   border-color: var(--cyan);
   background: var(--cyan-soft);
+  color: var(--cyan);
 }
 .adalab-widget-task-title {
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* 誤って完了したタスクをすぐ戻すための取り消しバー */
+.adalab-widget-undo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: var(--emerald-soft);
+}
+.adalab-widget-undo-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+  color: #6ee7b7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.adalab-widget-undo-btn {
+  flex-shrink: 0;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  background: transparent;
+  color: #6ee7b7;
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.adalab-widget-undo-btn:hover {
+  background: rgba(16, 185, 129, 0.2);
 }
 
 /* ---------- Active watching widget ---------- */
@@ -540,9 +657,6 @@ body {
   font-size: 15px;
   font-variant-numeric: tabular-nums;
   color: #a5f3fc;
-}
-.compact-stat.streak .compact-stat-value {
-  color: #fcd34d;
 }
 .compact-stat-label {
   font-size: 9px;
@@ -700,29 +814,38 @@ body {
 /* ---------- Block current site ---------- */
 
 .block-site-section {
-  padding: 0;
-}
-.block-site-btn {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 12px;
-  border: none;
+  flex-wrap: wrap;
+}
+/* 補助的な操作なので、メインの集中ボタンより控えめな小型ピルにする */
+.block-site-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text);
-  font-size: 13px;
+  color: var(--text-sub);
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 14px;
+  border-radius: 999px;
   transition: all 0.15s;
 }
+.block-site-btn svg {
+  width: 13px;
+  height: 13px;
+}
 .block-site-btn:hover:not(:disabled) {
+  border-color: var(--rose);
   background: var(--rose-soft);
   color: #fda4af;
 }
 .block-site-btn.blocked {
+  border-color: var(--rose);
   color: #fda4af;
 }
 .block-site-btn:disabled {
@@ -730,7 +853,9 @@ body {
   cursor: not-allowed;
 }
 .block-site-domain {
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
   max-width: 140px;
   white-space: nowrap;
   overflow: hidden;
@@ -778,6 +903,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.focus-launcher-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-sub);
 }
 .focus-duration-selector {
   display: grid;

@@ -28,9 +28,6 @@ import type {
   TimeCheckLimitResponse,
   TimeGetHistoryResponse,
   TimeClearHistoryResponse,
-  StreakGetDataResponse,
-  StreakResetResponse,
-  StreakCheckDayResponse,
   ChallengeRequestResponse,
   ChallengeSubmitResponse,
   ChallengeGetStateResponse,
@@ -77,9 +74,6 @@ import {
   checkTimeLimit,
   getTimeTrackingHistory,
   clearTimeTrackingHistory,
-  getStreakData,
-  resetStreakData,
-  checkStreakDay,
   getChallengeState,
   requestChallenge,
   submitChallengeAnswer,
@@ -451,45 +445,6 @@ async function handleTimeClearHistory(): Promise<TimeClearHistoryResponse> {
     return { success: true, data: state };
   } catch (error) {
     logger.error('Failed to clear time history', { error: String(error) });
-    return { success: false, error: String(error) };
-  }
-}
-
-/**
- * Handle STREAK_GET_DATA message
- */
-async function handleStreakGetData(): Promise<StreakGetDataResponse> {
-  try {
-    const data = await getStreakData();
-    return { success: true, data };
-  } catch (error) {
-    logger.error('Failed to get streak data', { error: String(error) });
-    return { success: false, error: String(error) };
-  }
-}
-
-/**
- * Handle STREAK_RESET message
- */
-async function handleStreakReset(): Promise<StreakResetResponse> {
-  try {
-    const data = await resetStreakData();
-    return { success: true, data };
-  } catch (error) {
-    logger.error('Failed to reset streak', { error: String(error) });
-    return { success: false, error: String(error) };
-  }
-}
-
-/**
- * Handle STREAK_CHECK_DAY message
- */
-async function handleStreakCheckDay(): Promise<StreakCheckDayResponse> {
-  try {
-    const data = await checkStreakDay();
-    return { success: true, data };
-  } catch (error) {
-    logger.error('Failed to check streak day', { error: String(error) });
     return { success: false, error: String(error) };
   }
 }
@@ -961,15 +916,6 @@ async function handleMessage(
 
     case 'TIME_CLEAR_HISTORY':
       return handleTimeClearHistory();
-
-    case 'STREAK_GET_DATA':
-      return handleStreakGetData();
-
-    case 'STREAK_RESET':
-      return handleStreakReset();
-
-    case 'STREAK_CHECK_DAY':
-      return handleStreakCheckDay();
 
     case 'CHALLENGE_REQUEST':
       return handleChallengeRequest();

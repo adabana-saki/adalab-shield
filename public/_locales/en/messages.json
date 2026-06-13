@@ -1163,124 +1163,6 @@
     "message": "Are you sure you want to clear all tracking history? This cannot be undone.",
     "description": "Confirmation message for clearing history"
   },
-  "optionsTabStreak": {
-    "message": "Streak",
-    "description": "Tab name for streak tracking settings"
-  },
-  "streakTitle": {
-    "message": "Streak Tracking",
-    "description": "Streak section title"
-  },
-  "streakDescription": {
-    "message": "Build a streak by staying focused every day. Track your progress and earn milestone badges.",
-    "description": "Streak section description"
-  },
-  "streakEnabled": {
-    "message": "Enable Streak Tracking",
-    "description": "Toggle to enable streak tracking"
-  },
-  "streakDays": {
-    "message": "day streak",
-    "description": "Streak days label"
-  },
-  "streakCurrent": {
-    "message": "Current Streak",
-    "description": "Current streak label"
-  },
-  "streakLongest": {
-    "message": "Best Streak",
-    "description": "Longest streak label"
-  },
-  "streakTotalDays": {
-    "message": "Total Focus Days",
-    "description": "Total focus days label"
-  },
-  "streakNextMilestone": {
-    "message": "Next Milestone",
-    "description": "Next milestone label"
-  },
-  "streakToMilestone": {
-    "message": "to milestone",
-    "description": "Progress towards milestone"
-  },
-  "streakMilestones": {
-    "message": "Achieved Milestones",
-    "description": "Achieved milestones section title"
-  },
-  "streakGoalType": {
-    "message": "Daily Goal",
-    "description": "Goal type setting label"
-  },
-  "streakGoalTypeDescription": {
-    "message": "How to determine if you've achieved your daily focus goal",
-    "description": "Description for goal type setting"
-  },
-  "streakGoalFocusTime": {
-    "message": "Focus Time",
-    "description": "Goal type: minimum focus session time"
-  },
-  "streakGoalBlocks": {
-    "message": "Block Count",
-    "description": "Goal type: minimum number of blocks"
-  },
-  "streakGoalNoAccess": {
-    "message": "No Access",
-    "description": "Goal type: no platform access"
-  },
-  "streakMinFocusMinutes": {
-    "message": "Minimum Focus Minutes",
-    "description": "Minimum focus minutes setting"
-  },
-  "streakMinFocusMinutesDescription": {
-    "message": "Complete at least this many minutes of focus sessions per day",
-    "description": "Description for minimum focus minutes"
-  },
-  "streakMinBlocks": {
-    "message": "Minimum Block Count",
-    "description": "Minimum blocks setting"
-  },
-  "streakMinBlocksDescription": {
-    "message": "Block at least this many distractions per day",
-    "description": "Description for minimum blocks"
-  },
-  "streakNotifications": {
-    "message": "Streak Notifications",
-    "description": "Notifications toggle label"
-  },
-  "streakNotificationsDescription": {
-    "message": "Get notified when you reach milestones or lose your streak",
-    "description": "Description for notifications setting"
-  },
-  "streakReset": {
-    "message": "Reset Streak",
-    "description": "Reset streak button"
-  },
-  "streakResetConfirm": {
-    "message": "Are you sure you want to reset your streak? This will clear all progress and cannot be undone.",
-    "description": "Confirmation for streak reset"
-  },
-  "streakMilestoneReached": {
-    "message": "Milestone Reached!",
-    "description": "Milestone notification title"
-  },
-  "streakMilestoneMessage": {
-    "message": "Congratulations! You've reached a $DAYS$ day streak!",
-    "description": "Milestone notification message",
-    "placeholders": {
-      "days": {
-        "content": "$1",
-        "example": "7"
-      }
-    }
-  },
-  "streakBrokenTitle": {
-    "message": "Streak Broken",
-    "description": "Streak broken notification title"
-  },
-  "streakBrokenMessage": {
-    "message": "Your streak has been reset. Start a new streak today!",
-    "description": "Streak broken notification message"
-  },
   "challengeTitle": {
     "message": "Challenge Mode",
     "description": "Challenge mode section title"
@@ -1890,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "Disabling blocking requires a short wait and confirming your intention",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "It gives you a moment to reconsider before acting on impulse",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "After unlocking, blocking re-locks for a while to prevent instant disabling",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {
@@ -1987,10 +1869,6 @@
     "message": "Enable Focus Mode in settings to use quick focus",
     "description": "Dashboard focus disabled hint"
   },
-  "streakBest": {
-    "message": "Best",
-    "description": "Best streak label"
-  },
   "scheduleActive": {
     "message": "Active",
     "description": "Schedule is currently active"
@@ -2051,10 +1929,6 @@
     "message": "Pomodoro",
     "description": "Sidebar submenu: Pomodoro"
   },
-  "sidebarStreak": {
-    "message": "Streak",
-    "description": "Sidebar submenu: Streak"
-  },
   "sidebarChallenge": {
     "message": "Challenge",
     "description": "Sidebar submenu: Challenge Mode"
@@ -2087,10 +1961,6 @@
     "message": "Total Blocked",
     "description": "Dashboard stat: total blocked"
   },
-  "dashboardStreak": {
-    "message": "Streak",
-    "description": "Dashboard stat: streak"
-  },
   "dashboardManagePlatforms": {
     "message": "Manage Platforms",
     "description": "Dashboard: manage platforms link"
@@ -2116,7 +1986,7 @@
     "description": "Onboarding: feature 2"
   },
   "onboardingFeature3": {
-    "message": "Track your progress with streaks and focus sessions",
+    "message": "Track your focus sessions and blocked distractions",
     "description": "Onboarding: feature 3"
   },
   "onboardingPlatformTitle": {
@@ -2235,10 +2105,6 @@
     "message": "Pomodoro Active",
     "description": "Popup: pomodoro active"
   },
-  "popupStreakLabel": {
-    "message": "day streak",
-    "description": "Popup: streak label"
-  },
   "optionsTabLanguage": {
     "message": "Language",
     "description": "Tab name for language settings"
@@ -2347,6 +2213,22 @@
     "message": "Complete task",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabCompleted": {
+    "message": "Completed",
+    "description": "Label shown in the undo bar after completing an adalab study task"
+  },
+  "popupAdalabUndo": {
+    "message": "Undo",
+    "description": "Button to undo completing an adalab study task"
+  },
+  "popupAdalabOpen": {
+    "message": "Open adalab study",
+    "description": "Button to open the adalab study web app in a new tab"
+  },
+  "pomodoroExternalNote": {
+    "message": "Controlled by adalab study — manage the timer there",
+    "description": "Shown in the popup timer when the pomodoro mirrors the adalab study timer"
+  },
   "notifFocusStartedTitle": {
     "message": "Focus Mode Started",
     "description": "Auto-added: notifFocusStartedTitle"
@@ -2406,22 +2288,6 @@
   "notifPomodoroBreakCompletedMessage": {
     "message": "Break over! Ready to focus?",
     "description": "Auto-added: notifPomodoroBreakCompletedMessage"
-  },
-  "notifStreakMilestoneTitle": {
-    "message": "Streak Milestone!",
-    "description": "Auto-added: notifStreakMilestoneTitle"
-  },
-  "notifStreakMilestoneMessage": {
-    "message": "Amazing! You've reached a $1-day streak!",
-    "description": "Auto-added: notifStreakMilestoneMessage"
-  },
-  "notifStreakBrokenTitle": {
-    "message": "Streak Broken",
-    "description": "Auto-added: notifStreakBrokenTitle"
-  },
-  "notifStreakBrokenMessage": {
-    "message": "Your streak has been reset. Start fresh today!",
-    "description": "Auto-added: notifStreakBrokenMessage"
   },
   "blockedPageMessageSuffix": {
     "message": "is blocked to help you stay focused.",
@@ -2502,6 +2368,10 @@
   "settingsLockedCommitment": {
     "message": "Commitment Lock is active. Complete the unlock flow in Settings → Lock to change this.",
     "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "settingsLockedManage": {
+    "message": "Manage lock",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
   },
   "commitmentLockUnlockButton": {
     "message": "Start unlock flow",

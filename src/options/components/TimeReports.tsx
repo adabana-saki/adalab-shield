@@ -201,9 +201,6 @@ export function TimeReports() {
 
   return (
     <div className="time-reports">
-      <h2 className="section-title">{t('reportsTitle')}</h2>
-      <p className="section-description">{t('reportsDescription')}</p>
-
       {/* Enable toggle */}
       <div className="setting-row">
         <label className="toggle-label">

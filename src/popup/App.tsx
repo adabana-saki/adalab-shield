@@ -11,13 +11,11 @@ import type {
   Platform,
   FocusModeState,
   PomodoroState,
-  StreakData,
   TimeLimitsState,
 } from '@/shared/types';
 import {
   DEFAULT_FOCUS_STATE,
   DEFAULT_POMODORO_STATE,
-  DEFAULT_STREAK_DATA,
   DEFAULT_TIME_LIMITS_STATE,
   STORAGE_KEYS,
 } from '@/shared/constants';
@@ -47,10 +45,13 @@ export function App() {
   const [pomodoroState, setPomodoroState] = useState<PomodoroState>(
     DEFAULT_POMODORO_STATE
   );
-  const [streakData, setStreakData] = useState<StreakData>(DEFAULT_STREAK_DATA);
   const [timeLimitsState, setTimeLimitsState] = useState<TimeLimitsState>(
     DEFAULT_TIME_LIMITS_STATE
   );
+  // True when the running pomodoro mirrors the adalab study timer. In that
+  // case the study app owns the timer, so the extension must not show its
+  // own (ineffective) pause/skip/stop controls.
+  const [pomodoroExternal, setPomodoroExternal] = useState(false);
 
   const fetchFocusState = useCallback(async () => {
     try {
@@ -78,19 +79,6 @@ export function App() {
     }
   }, []);
 
-  const fetchStreakData = useCallback(async () => {
-    try {
-      const message = createMessage({ type: 'STREAK_GET_DATA' as const });
-      const response: { success: boolean; data?: StreakData } =
-        await browser.runtime.sendMessage(message);
-      if (response?.success === true && response.data !== undefined) {
-        setStreakData(response.data);
-      }
-    } catch {
-      // Ignore errors
-    }
-  }, []);
-
   const fetchTimeUsage = useCallback(async () => {
     try {
       const message = createMessage({ type: 'TIME_GET_USAGE' as const });
@@ -108,8 +96,17 @@ export function App() {
     /* eslint-disable react-hooks/set-state-in-effect -- async data fetching: setState is called after await in callbacks, not synchronously */
     void fetchFocusState();
     void fetchPomodoroState();
-    void fetchStreakData();
     void fetchTimeUsage();
+    // Read whether the running pomodoro mirrors the adalab study timer
+    void browser.storage.local
+      .get(STORAGE_KEYS.ADALAB_META)
+      .then((r) => {
+        const meta = r[STORAGE_KEYS.ADALAB_META] as
+          | { external?: boolean }
+          | undefined;
+        setPomodoroExternal(meta?.external === true);
+      })
+      .catch(() => {});
     /* eslint-enable react-hooks/set-state-in-effect */
 
     // Subscribe to storage instead of polling the service worker every
@@ -130,18 +127,20 @@ export function App() {
       if (pomodoro?.newValue !== undefined) {
         setPomodoroState(pomodoro.newValue as PomodoroState);
       }
-      const streak = changes[STORAGE_KEYS.STREAK_DATA];
-      if (streak?.newValue !== undefined) {
-        setStreakData(streak.newValue as StreakData);
-      }
       const timeLimits = changes[STORAGE_KEYS.TIME_LIMITS_STATE];
       if (timeLimits?.newValue !== undefined) {
         setTimeLimitsState(timeLimits.newValue as TimeLimitsState);
       }
+      const meta = changes[STORAGE_KEYS.ADALAB_META];
+      if (meta?.newValue !== undefined) {
+        setPomodoroExternal(
+          (meta.newValue as { external?: boolean }).external === true
+        );
+      }
     };
     browser.storage.onChanged.addListener(onStorageChange);
     return () => browser.storage.onChanged.removeListener(onStorageChange);
-  }, [fetchFocusState, fetchPomodoroState, fetchStreakData, fetchTimeUsage]);
+  }, [fetchFocusState, fetchPomodoroState, fetchTimeUsage]);
 
   const handleToggleEnabled = () => {
     void toggleEnabled();
@@ -282,15 +281,11 @@ export function App() {
       {/* Header */}
       <header className="popup-header-new">
         <div className="popup-header-left">
-          <svg
+          <img
             className="popup-logo"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
+            src={browser.runtime.getURL('icons/icon-32.png')}
+            alt=""
+          />
           <span className="popup-title-new">{t('popupTitle')}</span>
         </div>
         <label className="popup-toggle">
@@ -327,6 +322,7 @@ export function App() {
             focusState={focusState}
             pomodoroState={displayPomodoroState}
             pomodoroSettings={settings.pomodoro}
+            pomodoroExternal={pomodoroExternal}
             onCancelFocus={() => void handleCancelFocus()}
             onPomodoroAction={(action) => void handlePomodoroAction(action)}
           />
@@ -364,11 +360,9 @@ export function App() {
         {!hasActiveTimer && (
           <FocusLauncher
             focusEnabled={settings.focusMode.enabled}
-            pomodoroEnabled={settings.pomodoro.enabled}
             focusState={focusState}
             pomodoroState={pomodoroState}
             onFocusStateChange={setFocusState}
-            onPomodoroStateChange={setPomodoroState}
           />
         )}
 
@@ -391,8 +385,6 @@ export function App() {
         {/* 5. Today's numbers */}
         <CompactStats
           stats={settings.stats}
-          streakData={streakData}
-          streakEnabled={settings.streak.enabled}
           todayUsageMs={timeLimitsState.usage.reduce(
             (sum, u) => sum + u.usedTodayMs,
             0

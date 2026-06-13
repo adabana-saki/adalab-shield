@@ -14,6 +14,8 @@ interface ActiveTimerWidgetProps {
   focusState: FocusModeState;
   pomodoroState: PomodoroState;
   pomodoroSettings?: PomodoroSettings;
+  /** True when the pomodoro mirrors the adalab study timer (study owns it) */
+  pomodoroExternal?: boolean;
   onCancelFocus: () => void;
   onPomodoroAction: (action: 'pause' | 'resume' | 'skip' | 'stop') => void;
 }
@@ -22,6 +24,7 @@ export function ActiveTimerWidget({
   focusState,
   pomodoroState,
   pomodoroSettings,
+  pomodoroExternal = false,
   onCancelFocus,
   onPomodoroAction,
 }: ActiveTimerWidgetProps) {
@@ -169,53 +172,57 @@ export function ActiveTimerWidget({
           </svg>
           <div className="timer-time">{formatTime(remaining)}</div>
         </div>
-        <div className="timer-controls">
-          {isPaused ? (
+        {pomodoroExternal ? (
+          <p className="timer-external-note">{t('pomodoroExternalNote')}</p>
+        ) : (
+          <div className="timer-controls">
+            {isPaused ? (
+              <button
+                type="button"
+                className="timer-control-btn"
+                onClick={() => onPomodoroAction('resume')}
+                title={t('pomodoroResume')}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5,3 19,12 5,21" />
+                </svg>
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="timer-control-btn"
+                onClick={() => onPomodoroAction('pause')}
+                title={t('pomodoroPause')}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="6" y="4" width="4" height="16" />
+                  <rect x="14" y="4" width="4" height="16" />
+                </svg>
+              </button>
+            )}
             <button
               type="button"
               className="timer-control-btn"
-              onClick={() => onPomodoroAction('resume')}
-              title={t('pomodoroResume')}
+              onClick={() => onPomodoroAction('skip')}
+              title={t('pomodoroSkip')}
             >
               <svg viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="5,3 19,12 5,21" />
+                <polygon points="5,4 15,12 5,20" />
+                <rect x="15" y="4" width="4" height="16" />
               </svg>
             </button>
-          ) : (
             <button
               type="button"
-              className="timer-control-btn"
-              onClick={() => onPomodoroAction('pause')}
-              title={t('pomodoroPause')}
+              className="timer-control-btn danger"
+              onClick={() => onPomodoroAction('stop')}
+              title={t('pomodoroStop')}
             >
               <svg viewBox="0 0 24 24" fill="currentColor">
-                <rect x="6" y="4" width="4" height="16" />
-                <rect x="14" y="4" width="4" height="16" />
+                <rect x="4" y="4" width="16" height="16" rx="2" />
               </svg>
             </button>
-          )}
-          <button
-            type="button"
-            className="timer-control-btn"
-            onClick={() => onPomodoroAction('skip')}
-            title={t('pomodoroSkip')}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5,4 15,12 5,20" />
-              <rect x="15" y="4" width="4" height="16" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            className="timer-control-btn danger"
-            onClick={() => onPomodoroAction('stop')}
-            title={t('pomodoroStop')}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <rect x="4" y="4" width="16" height="16" rx="2" />
-            </svg>
-          </button>
-        </div>
+          </div>
+        )}
       </div>
     );
   }

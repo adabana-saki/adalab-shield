@@ -1027,124 +1027,6 @@
     "message": "¿Estás seguro de que quieres borrar todo el historial? Esto no se puede deshacer.",
     "description": "Confirmation message for clearing history"
   },
-  "optionsTabStreak": {
-    "message": "Racha",
-    "description": "Tab name for streak tracking settings"
-  },
-  "streakTitle": {
-    "message": "Seguimiento de Racha",
-    "description": "Streak section title"
-  },
-  "streakDescription": {
-    "message": "Construye una racha manteniéndote enfocado cada día. Sigue tu progreso y gana insignias de hitos.",
-    "description": "Streak section description"
-  },
-  "streakEnabled": {
-    "message": "Habilitar Seguimiento de Racha",
-    "description": "Toggle to enable streak tracking"
-  },
-  "streakDays": {
-    "message": "días de racha",
-    "description": "Streak days label"
-  },
-  "streakCurrent": {
-    "message": "Racha Actual",
-    "description": "Current streak label"
-  },
-  "streakLongest": {
-    "message": "Mejor Racha",
-    "description": "Longest streak label"
-  },
-  "streakTotalDays": {
-    "message": "Días Totales de Enfoque",
-    "description": "Total focus days label"
-  },
-  "streakNextMilestone": {
-    "message": "Próximo Hito",
-    "description": "Next milestone label"
-  },
-  "streakToMilestone": {
-    "message": "para el hito",
-    "description": "Progress towards milestone"
-  },
-  "streakMilestones": {
-    "message": "Hitos Alcanzados",
-    "description": "Achieved milestones section title"
-  },
-  "streakGoalType": {
-    "message": "Meta Diaria",
-    "description": "Goal type setting label"
-  },
-  "streakGoalTypeDescription": {
-    "message": "Cómo determinar si has alcanzado tu meta diaria de enfoque",
-    "description": "Description for goal type setting"
-  },
-  "streakGoalFocusTime": {
-    "message": "Tiempo de Enfoque",
-    "description": "Goal type: minimum focus session time"
-  },
-  "streakGoalBlocks": {
-    "message": "Cantidad de Bloqueos",
-    "description": "Goal type: minimum number of blocks"
-  },
-  "streakGoalNoAccess": {
-    "message": "Sin Acceso",
-    "description": "Goal type: no platform access"
-  },
-  "streakMinFocusMinutes": {
-    "message": "Minutos Mínimos de Enfoque",
-    "description": "Minimum focus minutes setting"
-  },
-  "streakMinFocusMinutesDescription": {
-    "message": "Completar al menos estos minutos de sesiones de enfoque por día",
-    "description": "Description for minimum focus minutes"
-  },
-  "streakMinBlocks": {
-    "message": "Cantidad Mínima de Bloqueos",
-    "description": "Minimum blocks setting"
-  },
-  "streakMinBlocksDescription": {
-    "message": "Bloquear al menos estas distracciones por día",
-    "description": "Description for minimum blocks"
-  },
-  "streakNotifications": {
-    "message": "Notificaciones de Racha",
-    "description": "Notifications toggle label"
-  },
-  "streakNotificationsDescription": {
-    "message": "Recibir notificaciones cuando alcances hitos o pierdas tu racha",
-    "description": "Description for notifications setting"
-  },
-  "streakReset": {
-    "message": "Reiniciar Racha",
-    "description": "Reset streak button"
-  },
-  "streakResetConfirm": {
-    "message": "¿Estás seguro de que quieres reiniciar tu racha? Esto borrará todo el progreso y no se puede deshacer.",
-    "description": "Confirmation for streak reset"
-  },
-  "streakMilestoneReached": {
-    "message": "¡Hito Alcanzado!",
-    "description": "Milestone notification title"
-  },
-  "streakMilestoneMessage": {
-    "message": "¡Felicidades! ¡Has alcanzado una racha de $DAYS$ días!",
-    "description": "Milestone notification message",
-    "placeholders": {
-      "days": {
-        "content": "$1",
-        "example": "7"
-      }
-    }
-  },
-  "streakBrokenTitle": {
-    "message": "Racha Perdida",
-    "description": "Streak broken notification title"
-  },
-  "streakBrokenMessage": {
-    "message": "Tu racha se ha reiniciado. ¡Comienza una nueva racha hoy!",
-    "description": "Streak broken notification message"
-  },
   "challengeTitle": {
     "message": "Modo Desafío",
     "description": "Challenge mode section title"
@@ -1890,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "Desactivar el bloqueo requiere una breve espera y confirmar tu intención",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "Te da un momento para reconsiderarlo antes de actuar por impulso",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "Tras desbloquear, el bloqueo se reactiva un tiempo para evitar desactivarlo al instante",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {
@@ -1987,10 +1869,6 @@
     "message": "Enable Focus Mode in settings to use quick focus",
     "description": "Dashboard focus disabled hint"
   },
-  "streakBest": {
-    "message": "Best",
-    "description": "Best streak label"
-  },
   "scheduleActive": {
     "message": "Active",
     "description": "Schedule is currently active"
@@ -2051,10 +1929,6 @@
     "message": "Pomodoro",
     "description": "Sidebar submenu: Pomodoro"
   },
-  "sidebarStreak": {
-    "message": "Streak",
-    "description": "Sidebar submenu: Streak"
-  },
   "sidebarChallenge": {
     "message": "Challenge",
     "description": "Sidebar submenu: Challenge Mode"
@@ -2087,10 +1961,6 @@
     "message": "Total Blocked",
     "description": "Dashboard stat: total blocked"
   },
-  "dashboardStreak": {
-    "message": "Streak",
-    "description": "Dashboard stat: streak"
-  },
   "dashboardManagePlatforms": {
     "message": "Manage Platforms",
     "description": "Dashboard: manage platforms link"
@@ -2116,7 +1986,7 @@
     "description": "Onboarding: feature 2"
   },
   "onboardingFeature3": {
-    "message": "Track your progress with streaks and focus sessions",
+    "message": "Registra tus sesiones de concentración y las distracciones bloqueadas",
     "description": "Onboarding: feature 3"
   },
   "onboardingPlatformTitle": {
@@ -2235,10 +2105,6 @@
     "message": "Pomodoro Active",
     "description": "Popup: pomodoro active"
   },
-  "popupStreakLabel": {
-    "message": "day streak",
-    "description": "Popup: streak label"
-  },
   "optionsTabLanguage": {
     "message": "Language",
     "description": "Tab name for language settings"
@@ -2347,6 +2213,22 @@
     "message": "Completar tarea",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabCompleted": {
+    "message": "Completada",
+    "description": "Label shown in the undo bar after completing an adalab study task"
+  },
+  "popupAdalabUndo": {
+    "message": "Deshacer",
+    "description": "Button to undo completing an adalab study task"
+  },
+  "popupAdalabOpen": {
+    "message": "Abrir adalab study",
+    "description": "Button to open the adalab study web app in a new tab"
+  },
+  "pomodoroExternalNote": {
+    "message": "Controlado por adalab study: gestiona el temporizador allí",
+    "description": "Shown in the popup timer when the pomodoro mirrors the adalab study timer"
+  },
   "notifFocusStartedTitle": {
     "message": "Modo de enfoque iniciado",
     "description": "Auto-added: notifFocusStartedTitle"
@@ -2406,22 +2288,6 @@
   "notifPomodoroBreakCompletedMessage": {
     "message": "¡Descanso terminado! ¿Listo para concentrarte?",
     "description": "Auto-added: notifPomodoroBreakCompletedMessage"
-  },
-  "notifStreakMilestoneTitle": {
-    "message": "¡Hito de racha!",
-    "description": "Auto-added: notifStreakMilestoneTitle"
-  },
-  "notifStreakMilestoneMessage": {
-    "message": "¡Increíble! ¡Has alcanzado una racha de $1 días!",
-    "description": "Auto-added: notifStreakMilestoneMessage"
-  },
-  "notifStreakBrokenTitle": {
-    "message": "Racha interrumpida",
-    "description": "Auto-added: notifStreakBrokenTitle"
-  },
-  "notifStreakBrokenMessage": {
-    "message": "Tu racha se ha reiniciado. ¡Empieza de nuevo hoy!",
-    "description": "Auto-added: notifStreakBrokenMessage"
   },
   "blockedPageMessageSuffix": {
     "message": "está bloqueado para ayudarte a mantener el enfoque.",
@@ -2502,6 +2368,10 @@
   "settingsLockedCommitment": {
     "message": "El Bloqueo de Compromiso está activo. Completa el desbloqueo en Ajustes → Bloqueo.",
     "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "settingsLockedManage": {
+    "message": "Gestionar bloqueo",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
   },
   "commitmentLockUnlockButton": {
     "message": "Iniciar desbloqueo",

@@ -1027,124 +1027,6 @@
     "message": "모든 추적 기록을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
     "description": "Confirmation message for clearing history"
   },
-  "optionsTabStreak": {
-    "message": "스트릭",
-    "description": "Tab name for streak tracking settings"
-  },
-  "streakTitle": {
-    "message": "스트릭 추적",
-    "description": "Streak section title"
-  },
-  "streakDescription": {
-    "message": "매일 집중하여 스트릭을 쌓으세요. 진행 상황을 추적하고 마일스톤 배지를 획득하세요.",
-    "description": "Streak section description"
-  },
-  "streakEnabled": {
-    "message": "스트릭 추적 활성화",
-    "description": "Toggle to enable streak tracking"
-  },
-  "streakDays": {
-    "message": "일 연속",
-    "description": "Streak days label"
-  },
-  "streakCurrent": {
-    "message": "현재 스트릭",
-    "description": "Current streak label"
-  },
-  "streakLongest": {
-    "message": "최장 스트릭",
-    "description": "Longest streak label"
-  },
-  "streakTotalDays": {
-    "message": "총 집중 일수",
-    "description": "Total focus days label"
-  },
-  "streakNextMilestone": {
-    "message": "다음 마일스톤",
-    "description": "Next milestone label"
-  },
-  "streakToMilestone": {
-    "message": "마일스톤까지",
-    "description": "Progress towards milestone"
-  },
-  "streakMilestones": {
-    "message": "달성한 마일스톤",
-    "description": "Achieved milestones section title"
-  },
-  "streakGoalType": {
-    "message": "일일 목표",
-    "description": "Goal type setting label"
-  },
-  "streakGoalTypeDescription": {
-    "message": "일일 집중 목표 달성 여부를 결정하는 방법",
-    "description": "Description for goal type setting"
-  },
-  "streakGoalFocusTime": {
-    "message": "집중 시간",
-    "description": "Goal type: minimum focus session time"
-  },
-  "streakGoalBlocks": {
-    "message": "차단 횟수",
-    "description": "Goal type: minimum number of blocks"
-  },
-  "streakGoalNoAccess": {
-    "message": "접속 없음",
-    "description": "Goal type: no platform access"
-  },
-  "streakMinFocusMinutes": {
-    "message": "최소 집중 시간(분)",
-    "description": "Minimum focus minutes setting"
-  },
-  "streakMinFocusMinutesDescription": {
-    "message": "하루에 최소 이 시간만큼 집중 세션을 완료하세요",
-    "description": "Description for minimum focus minutes"
-  },
-  "streakMinBlocks": {
-    "message": "최소 차단 횟수",
-    "description": "Minimum blocks setting"
-  },
-  "streakMinBlocksDescription": {
-    "message": "하루에 최소 이 횟수만큼 방해 요소를 차단하세요",
-    "description": "Description for minimum blocks"
-  },
-  "streakNotifications": {
-    "message": "스트릭 알림",
-    "description": "Notifications toggle label"
-  },
-  "streakNotificationsDescription": {
-    "message": "마일스톤 달성 또는 스트릭 종료 시 알림 받기",
-    "description": "Description for notifications setting"
-  },
-  "streakReset": {
-    "message": "스트릭 초기화",
-    "description": "Reset streak button"
-  },
-  "streakResetConfirm": {
-    "message": "스트릭을 초기화하시겠습니까? 모든 진행 상황이 삭제되며 되돌릴 수 없습니다.",
-    "description": "Confirmation for streak reset"
-  },
-  "streakMilestoneReached": {
-    "message": "마일스톤 달성!",
-    "description": "Milestone notification title"
-  },
-  "streakMilestoneMessage": {
-    "message": "축하합니다! $DAYS$일 연속 스트릭을 달성했습니다!",
-    "description": "Milestone notification message",
-    "placeholders": {
-      "days": {
-        "content": "$1",
-        "example": "7"
-      }
-    }
-  },
-  "streakBrokenTitle": {
-    "message": "스트릭 종료",
-    "description": "Streak broken notification title"
-  },
-  "streakBrokenMessage": {
-    "message": "스트릭이 초기화되었습니다. 오늘부터 새로운 스트릭을 시작하세요!",
-    "description": "Streak broken notification message"
-  },
   "challengeTitle": {
     "message": "챌린지 모드",
     "description": "Challenge mode section title"
@@ -1890,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "차단을 끄려면 잠시 기다린 뒤 의도를 확인하는 단계가 필요합니다",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "충동적으로 그만두고 싶어도 한 번 더 생각할 여유를 줍니다",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "해제 후에는 잠시 다시 잠겨 즉시 비활성화를 막습니다",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {
@@ -1987,10 +1869,6 @@
     "message": "Enable Focus Mode in settings to use quick focus",
     "description": "Dashboard focus disabled hint"
   },
-  "streakBest": {
-    "message": "Best",
-    "description": "Best streak label"
-  },
   "scheduleActive": {
     "message": "Active",
     "description": "Schedule is currently active"
@@ -2051,10 +1929,6 @@
     "message": "Pomodoro",
     "description": "Sidebar submenu: Pomodoro"
   },
-  "sidebarStreak": {
-    "message": "Streak",
-    "description": "Sidebar submenu: Streak"
-  },
   "sidebarChallenge": {
     "message": "Challenge",
     "description": "Sidebar submenu: Challenge Mode"
@@ -2087,10 +1961,6 @@
     "message": "Total Blocked",
     "description": "Dashboard stat: total blocked"
   },
-  "dashboardStreak": {
-    "message": "Streak",
-    "description": "Dashboard stat: streak"
-  },
   "dashboardManagePlatforms": {
     "message": "Manage Platforms",
     "description": "Dashboard: manage platforms link"
@@ -2116,7 +1986,7 @@
     "description": "Onboarding: feature 2"
   },
   "onboardingFeature3": {
-    "message": "Track your progress with streaks and focus sessions",
+    "message": "집중 세션과 차단한 방해 요소를 기록",
     "description": "Onboarding: feature 3"
   },
   "onboardingPlatformTitle": {
@@ -2235,10 +2105,6 @@
     "message": "Pomodoro Active",
     "description": "Popup: pomodoro active"
   },
-  "popupStreakLabel": {
-    "message": "day streak",
-    "description": "Popup: streak label"
-  },
   "optionsTabLanguage": {
     "message": "Language",
     "description": "Tab name for language settings"
@@ -2347,6 +2213,22 @@
     "message": "작업 완료",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabCompleted": {
+    "message": "완료됨",
+    "description": "Label shown in the undo bar after completing an adalab study task"
+  },
+  "popupAdalabUndo": {
+    "message": "실행 취소",
+    "description": "Button to undo completing an adalab study task"
+  },
+  "popupAdalabOpen": {
+    "message": "adalab study 열기",
+    "description": "Button to open the adalab study web app in a new tab"
+  },
+  "pomodoroExternalNote": {
+    "message": "adalab study와 연동 중 — 타이머는 study에서 조작하세요",
+    "description": "Shown in the popup timer when the pomodoro mirrors the adalab study timer"
+  },
   "notifFocusStartedTitle": {
     "message": "집중 모드 시작",
     "description": "Auto-added: notifFocusStartedTitle"
@@ -2406,22 +2288,6 @@
   "notifPomodoroBreakCompletedMessage": {
     "message": "휴식 끝! 다시 집중할 준비 되셨나요?",
     "description": "Auto-added: notifPomodoroBreakCompletedMessage"
-  },
-  "notifStreakMilestoneTitle": {
-    "message": "연속 기록 달성!",
-    "description": "Auto-added: notifStreakMilestoneTitle"
-  },
-  "notifStreakMilestoneMessage": {
-    "message": "대단해요! $1일 연속 기록을 달성했어요!",
-    "description": "Auto-added: notifStreakMilestoneMessage"
-  },
-  "notifStreakBrokenTitle": {
-    "message": "연속 기록 중단",
-    "description": "Auto-added: notifStreakBrokenTitle"
-  },
-  "notifStreakBrokenMessage": {
-    "message": "연속 기록이 초기화되었습니다. 오늘부터 다시 시작하세요!",
-    "description": "Auto-added: notifStreakBrokenMessage"
   },
   "blockedPageMessageSuffix": {
     "message": "은(는) 집중을 위해 차단되었습니다.",
@@ -2502,6 +2368,10 @@
   "settingsLockedCommitment": {
     "message": "약속 잠금이 활성화되어 있습니다. 설정 → 잠금에서 해제 절차를 완료하세요.",
     "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "settingsLockedManage": {
+    "message": "잠금 관리",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
   },
   "commitmentLockUnlockButton": {
     "message": "해제 절차 시작",

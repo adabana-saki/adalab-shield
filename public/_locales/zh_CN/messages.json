@@ -1027,124 +1027,6 @@
     "message": "确定要清除所有追踪历史吗？此操作无法撤销。",
     "description": "Confirmation message for clearing history"
   },
-  "optionsTabStreak": {
-    "message": "连续记录",
-    "description": "Tab name for streak tracking settings"
-  },
-  "streakTitle": {
-    "message": "连续记录追踪",
-    "description": "Streak section title"
-  },
-  "streakDescription": {
-    "message": "每天保持专注来建立连续记录。追踪您的进度并获得里程碑徽章。",
-    "description": "Streak section description"
-  },
-  "streakEnabled": {
-    "message": "启用连续记录追踪",
-    "description": "Toggle to enable streak tracking"
-  },
-  "streakDays": {
-    "message": "天连续",
-    "description": "Streak days label"
-  },
-  "streakCurrent": {
-    "message": "当前连续",
-    "description": "Current streak label"
-  },
-  "streakLongest": {
-    "message": "最长连续",
-    "description": "Longest streak label"
-  },
-  "streakTotalDays": {
-    "message": "总专注天数",
-    "description": "Total focus days label"
-  },
-  "streakNextMilestone": {
-    "message": "下一个里程碑",
-    "description": "Next milestone label"
-  },
-  "streakToMilestone": {
-    "message": "距里程碑",
-    "description": "Progress towards milestone"
-  },
-  "streakMilestones": {
-    "message": "已达成里程碑",
-    "description": "Achieved milestones section title"
-  },
-  "streakGoalType": {
-    "message": "每日目标",
-    "description": "Goal type setting label"
-  },
-  "streakGoalTypeDescription": {
-    "message": "如何确定您是否达成了每日专注目标",
-    "description": "Description for goal type setting"
-  },
-  "streakGoalFocusTime": {
-    "message": "专注时间",
-    "description": "Goal type: minimum focus session time"
-  },
-  "streakGoalBlocks": {
-    "message": "拦截次数",
-    "description": "Goal type: minimum number of blocks"
-  },
-  "streakGoalNoAccess": {
-    "message": "无访问",
-    "description": "Goal type: no platform access"
-  },
-  "streakMinFocusMinutes": {
-    "message": "最低专注分钟数",
-    "description": "Minimum focus minutes setting"
-  },
-  "streakMinFocusMinutesDescription": {
-    "message": "每天至少完成这么多分钟的专注时间",
-    "description": "Description for minimum focus minutes"
-  },
-  "streakMinBlocks": {
-    "message": "最低拦截次数",
-    "description": "Minimum blocks setting"
-  },
-  "streakMinBlocksDescription": {
-    "message": "每天至少拦截这么多次干扰",
-    "description": "Description for minimum blocks"
-  },
-  "streakNotifications": {
-    "message": "连续记录通知",
-    "description": "Notifications toggle label"
-  },
-  "streakNotificationsDescription": {
-    "message": "达到里程碑或连续中断时接收通知",
-    "description": "Description for notifications setting"
-  },
-  "streakReset": {
-    "message": "重置连续记录",
-    "description": "Reset streak button"
-  },
-  "streakResetConfirm": {
-    "message": "确定要重置连续记录吗？这将清除所有进度且无法撤销。",
-    "description": "Confirmation for streak reset"
-  },
-  "streakMilestoneReached": {
-    "message": "达成里程碑！",
-    "description": "Milestone notification title"
-  },
-  "streakMilestoneMessage": {
-    "message": "恭喜！您已达成 $DAYS$ 天连续记录！",
-    "description": "Milestone notification message",
-    "placeholders": {
-      "days": {
-        "content": "$1",
-        "example": "7"
-      }
-    }
-  },
-  "streakBrokenTitle": {
-    "message": "连续中断",
-    "description": "Streak broken notification title"
-  },
-  "streakBrokenMessage": {
-    "message": "您的连续记录已重置。从今天开始新的连续吧！",
-    "description": "Streak broken notification message"
-  },
   "challengeTitle": {
     "message": "挑战模式",
     "description": "Challenge mode section title"
@@ -1890,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "关闭拦截需要短暂等待并确认你的意图",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "在冲动行事前给你一个重新考虑的机会",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "解除后会重新锁定一段时间，防止立刻关闭",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {
@@ -1987,10 +1869,6 @@
     "message": "Enable Focus Mode in settings to use quick focus",
     "description": "Dashboard focus disabled hint"
   },
-  "streakBest": {
-    "message": "Best",
-    "description": "Best streak label"
-  },
   "scheduleActive": {
     "message": "Active",
     "description": "Schedule is currently active"
@@ -2051,10 +1929,6 @@
     "message": "Pomodoro",
     "description": "Sidebar submenu: Pomodoro"
   },
-  "sidebarStreak": {
-    "message": "Streak",
-    "description": "Sidebar submenu: Streak"
-  },
   "sidebarChallenge": {
     "message": "Challenge",
     "description": "Sidebar submenu: Challenge Mode"
@@ -2087,10 +1961,6 @@
     "message": "Total Blocked",
     "description": "Dashboard stat: total blocked"
   },
-  "dashboardStreak": {
-    "message": "Streak",
-    "description": "Dashboard stat: streak"
-  },
   "dashboardManagePlatforms": {
     "message": "Manage Platforms",
     "description": "Dashboard: manage platforms link"
@@ -2116,7 +1986,7 @@
     "description": "Onboarding: feature 2"
   },
   "onboardingFeature3": {
-    "message": "Track your progress with streaks and focus sessions",
+    "message": "记录你的专注时段和已拦截的干扰",
     "description": "Onboarding: feature 3"
   },
   "onboardingPlatformTitle": {
@@ -2235,10 +2105,6 @@
     "message": "Pomodoro Active",
     "description": "Popup: pomodoro active"
   },
-  "popupStreakLabel": {
-    "message": "day streak",
-    "description": "Popup: streak label"
-  },
   "optionsTabLanguage": {
     "message": "Language",
     "description": "Tab name for language settings"
@@ -2347,6 +2213,22 @@
     "message": "完成任务",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabCompleted": {
+    "message": "已完成",
+    "description": "Label shown in the undo bar after completing an adalab study task"
+  },
+  "popupAdalabUndo": {
+    "message": "撤销",
+    "description": "Button to undo completing an adalab study task"
+  },
+  "popupAdalabOpen": {
+    "message": "打开 adalab study",
+    "description": "Button to open the adalab study web app in a new tab"
+  },
+  "pomodoroExternalNote": {
+    "message": "由 adalab study 控制 — 请在 study 中管理计时器",
+    "description": "Shown in the popup timer when the pomodoro mirrors the adalab study timer"
+  },
   "notifFocusStartedTitle": {
     "message": "专注模式已开始",
     "description": "Auto-added: notifFocusStartedTitle"
@@ -2406,22 +2288,6 @@
   "notifPomodoroBreakCompletedMessage": {
     "message": "休息结束!准备好专注了吗?",
     "description": "Auto-added: notifPomodoroBreakCompletedMessage"
-  },
-  "notifStreakMilestoneTitle": {
-    "message": "连续记录里程碑!",
-    "description": "Auto-added: notifStreakMilestoneTitle"
-  },
-  "notifStreakMilestoneMessage": {
-    "message": "太棒了!你已连续坚持 $1 天!",
-    "description": "Auto-added: notifStreakMilestoneMessage"
-  },
-  "notifStreakBrokenTitle": {
-    "message": "连续记录中断",
-    "description": "Auto-added: notifStreakBrokenTitle"
-  },
-  "notifStreakBrokenMessage": {
-    "message": "你的连续记录已重置。今天重新开始吧!",
-    "description": "Auto-added: notifStreakBrokenMessage"
   },
   "blockedPageMessageSuffix": {
     "message": "已被屏蔽,帮助你保持专注。",
@@ -2502,6 +2368,10 @@
   "settingsLockedCommitment": {
     "message": "承诺锁已启用。请在 设置 → 锁定 中完成解锁流程后再更改。",
     "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "settingsLockedManage": {
+    "message": "管理锁定",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
   },
   "commitmentLockUnlockButton": {
     "message": "开始解锁流程",

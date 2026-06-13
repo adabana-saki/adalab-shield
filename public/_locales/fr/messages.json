@@ -1027,124 +1027,6 @@
     "message": "Êtes-vous sûr de vouloir effacer tout l'historique? Cette action est irréversible.",
     "description": "Confirmation message for clearing history"
   },
-  "optionsTabStreak": {
-    "message": "Série",
-    "description": "Tab name for streak tracking settings"
-  },
-  "streakTitle": {
-    "message": "Suivi de Série",
-    "description": "Streak section title"
-  },
-  "streakDescription": {
-    "message": "Construisez une série en restant concentré chaque jour. Suivez vos progrès et gagnez des badges de jalons.",
-    "description": "Streak section description"
-  },
-  "streakEnabled": {
-    "message": "Activer le Suivi de Série",
-    "description": "Toggle to enable streak tracking"
-  },
-  "streakDays": {
-    "message": "jours de série",
-    "description": "Streak days label"
-  },
-  "streakCurrent": {
-    "message": "Série Actuelle",
-    "description": "Current streak label"
-  },
-  "streakLongest": {
-    "message": "Meilleure Série",
-    "description": "Longest streak label"
-  },
-  "streakTotalDays": {
-    "message": "Jours de Concentration Totaux",
-    "description": "Total focus days label"
-  },
-  "streakNextMilestone": {
-    "message": "Prochain Jalon",
-    "description": "Next milestone label"
-  },
-  "streakToMilestone": {
-    "message": "vers le jalon",
-    "description": "Progress towards milestone"
-  },
-  "streakMilestones": {
-    "message": "Jalons Atteints",
-    "description": "Achieved milestones section title"
-  },
-  "streakGoalType": {
-    "message": "Objectif Quotidien",
-    "description": "Goal type setting label"
-  },
-  "streakGoalTypeDescription": {
-    "message": "Comment déterminer si vous avez atteint votre objectif de concentration quotidien",
-    "description": "Description for goal type setting"
-  },
-  "streakGoalFocusTime": {
-    "message": "Temps de Concentration",
-    "description": "Goal type: minimum focus session time"
-  },
-  "streakGoalBlocks": {
-    "message": "Nombre de Blocages",
-    "description": "Goal type: minimum number of blocks"
-  },
-  "streakGoalNoAccess": {
-    "message": "Sans Accès",
-    "description": "Goal type: no platform access"
-  },
-  "streakMinFocusMinutes": {
-    "message": "Minutes de Concentration Minimum",
-    "description": "Minimum focus minutes setting"
-  },
-  "streakMinFocusMinutesDescription": {
-    "message": "Compléter au moins ce nombre de minutes de sessions de concentration par jour",
-    "description": "Description for minimum focus minutes"
-  },
-  "streakMinBlocks": {
-    "message": "Nombre Minimum de Blocages",
-    "description": "Minimum blocks setting"
-  },
-  "streakMinBlocksDescription": {
-    "message": "Bloquer au moins ce nombre de distractions par jour",
-    "description": "Description for minimum blocks"
-  },
-  "streakNotifications": {
-    "message": "Notifications de Série",
-    "description": "Notifications toggle label"
-  },
-  "streakNotificationsDescription": {
-    "message": "Recevoir des notifications lorsque vous atteignez des jalons ou perdez votre série",
-    "description": "Description for notifications setting"
-  },
-  "streakReset": {
-    "message": "Réinitialiser la Série",
-    "description": "Reset streak button"
-  },
-  "streakResetConfirm": {
-    "message": "Êtes-vous sûr de vouloir réinitialiser votre série? Cela effacera toute progression et ne peut pas être annulé.",
-    "description": "Confirmation for streak reset"
-  },
-  "streakMilestoneReached": {
-    "message": "Jalon Atteint!",
-    "description": "Milestone notification title"
-  },
-  "streakMilestoneMessage": {
-    "message": "Félicitations! Vous avez atteint une série de $DAYS$ jours!",
-    "description": "Milestone notification message",
-    "placeholders": {
-      "days": {
-        "content": "$1",
-        "example": "7"
-      }
-    }
-  },
-  "streakBrokenTitle": {
-    "message": "Série Interrompue",
-    "description": "Streak broken notification title"
-  },
-  "streakBrokenMessage": {
-    "message": "Votre série a été réinitialisée. Commencez une nouvelle série aujourd'hui!",
-    "description": "Streak broken notification message"
-  },
   "challengeTitle": {
     "message": "Mode Défi",
     "description": "Challenge mode section title"
@@ -1890,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "Désactiver le blocage nécessite une courte attente et une confirmation",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "Cela vous laisse un instant pour reconsidérer avant d’agir sur un coup de tête",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "Après déverrouillage, le blocage se réactive un moment pour éviter une désactivation immédiate",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {
@@ -1987,10 +1869,6 @@
     "message": "Enable Focus Mode in settings to use quick focus",
     "description": "Dashboard focus disabled hint"
   },
-  "streakBest": {
-    "message": "Best",
-    "description": "Best streak label"
-  },
   "scheduleActive": {
     "message": "Active",
     "description": "Schedule is currently active"
@@ -2051,10 +1929,6 @@
     "message": "Pomodoro",
     "description": "Sidebar submenu: Pomodoro"
   },
-  "sidebarStreak": {
-    "message": "Streak",
-    "description": "Sidebar submenu: Streak"
-  },
   "sidebarChallenge": {
     "message": "Challenge",
     "description": "Sidebar submenu: Challenge Mode"
@@ -2087,10 +1961,6 @@
     "message": "Total Blocked",
     "description": "Dashboard stat: total blocked"
   },
-  "dashboardStreak": {
-    "message": "Streak",
-    "description": "Dashboard stat: streak"
-  },
   "dashboardManagePlatforms": {
     "message": "Manage Platforms",
     "description": "Dashboard: manage platforms link"
@@ -2116,7 +1986,7 @@
     "description": "Onboarding: feature 2"
   },
   "onboardingFeature3": {
-    "message": "Track your progress with streaks and focus sessions",
+    "message": "Suivez vos sessions de concentration et les distractions bloquées",
     "description": "Onboarding: feature 3"
   },
   "onboardingPlatformTitle": {
@@ -2235,10 +2105,6 @@
     "message": "Pomodoro Active",
     "description": "Popup: pomodoro active"
   },
-  "popupStreakLabel": {
-    "message": "day streak",
-    "description": "Popup: streak label"
-  },
   "optionsTabLanguage": {
     "message": "Language",
     "description": "Tab name for language settings"
@@ -2347,6 +2213,22 @@
     "message": "Terminer la tâche",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabCompleted": {
+    "message": "Terminée",
+    "description": "Label shown in the undo bar after completing an adalab study task"
+  },
+  "popupAdalabUndo": {
+    "message": "Annuler",
+    "description": "Button to undo completing an adalab study task"
+  },
+  "popupAdalabOpen": {
+    "message": "Ouvrir adalab study",
+    "description": "Button to open the adalab study web app in a new tab"
+  },
+  "pomodoroExternalNote": {
+    "message": "Contrôlé par adalab study — gérez le minuteur là-bas",
+    "description": "Shown in the popup timer when the pomodoro mirrors the adalab study timer"
+  },
   "notifFocusStartedTitle": {
     "message": "Mode concentration démarré",
     "description": "Auto-added: notifFocusStartedTitle"
@@ -2406,22 +2288,6 @@
   "notifPomodoroBreakCompletedMessage": {
     "message": "Pause terminée ! Prêt à vous concentrer ?",
     "description": "Auto-added: notifPomodoroBreakCompletedMessage"
-  },
-  "notifStreakMilestoneTitle": {
-    "message": "Palier de série atteint !",
-    "description": "Auto-added: notifStreakMilestoneTitle"
-  },
-  "notifStreakMilestoneMessage": {
-    "message": "Incroyable ! Vous avez atteint une série de $1 jours !",
-    "description": "Auto-added: notifStreakMilestoneMessage"
-  },
-  "notifStreakBrokenTitle": {
-    "message": "Série interrompue",
-    "description": "Auto-added: notifStreakBrokenTitle"
-  },
-  "notifStreakBrokenMessage": {
-    "message": "Votre série a été réinitialisée. Recommencez aujourd’hui !",
-    "description": "Auto-added: notifStreakBrokenMessage"
   },
   "blockedPageMessageSuffix": {
     "message": "est bloqué pour vous aider à rester concentré.",
@@ -2502,6 +2368,10 @@
   "settingsLockedCommitment": {
     "message": "Le verrou d’engagement est actif. Terminez le déverrouillage dans Réglages → Verrouillage.",
     "description": "Popup banner: change rejected because commitment lock is active"
+  },
+  "settingsLockedManage": {
+    "message": "Gérer le verrou",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
   },
   "commitmentLockUnlockButton": {
     "message": "Démarrer le déverrouillage",

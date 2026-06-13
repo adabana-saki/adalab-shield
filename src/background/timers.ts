@@ -15,7 +15,6 @@ import type {
   TimeCheckLimitResult,
   TimeTrackingState,
   DailyTimeRecord,
-  StreakData,
   ChallengeState,
   ChallengeData,
   ChallengeSubmitResult,
@@ -26,8 +25,6 @@ import {
   DEFAULT_POMODORO_STATE,
   DEFAULT_TIME_LIMITS_STATE,
   DEFAULT_TIME_TRACKING_STATE,
-  DEFAULT_STREAK_DATA,
-  STREAK_MILESTONES,
   DEFAULT_CHALLENGE_STATE,
   CHALLENGE_BYPASS_DURATION_SECONDS,
 } from '@/shared/constants';
@@ -87,7 +84,6 @@ export const ALARM_NAMES = {
   POMODORO_TICK: 'shortshield_pomodoro_tick',
   POMODORO_END: 'shortshield_pomodoro_end',
   TIME_LIMITS_RESET: 'shortshield_time_limits_reset',
-  STREAK_CHECK: 'shortshield_streak_check',
 } as const;
 
 /**
@@ -255,9 +251,6 @@ export async function handleAlarm(alarm: browser.Alarms.Alarm): Promise<void> {
       break;
     case ALARM_NAMES.TIME_LIMITS_RESET:
       await handleTimeLimitsReset();
-      break;
-    case ALARM_NAMES.STREAK_CHECK:
-      await handleStreakCheck();
       break;
     default:
       // Other listeners may own this alarm (e.g. the periodic refresh)
@@ -849,10 +842,6 @@ export function initializeTimers(): void {
   void setupTimeLimitsResetAlarm();
   // Check if time limits need reset on startup
   void checkTimeLimitsReset();
-
-  // Set up streak check alarm and check on startup
-  void setupStreakCheckAlarm();
-  void checkStreakDay();
 }
 
 // =============================================================================
@@ -1332,366 +1321,6 @@ export async function clearTimeTrackingHistory(): Promise<TimeTrackingState> {
   logger.info('Time tracking history cleared');
 
   return newState;
-}
-
-// =============================================================================
-// STREAK TRACKING
-// =============================================================================
-
-/**
- * Get streak data from storage
- */
-export async function getStreakData(): Promise<StreakData> {
-  try {
-    const result = await browser.storage.local.get(STORAGE_KEYS.STREAK_DATA);
-    const data = result[STORAGE_KEYS.STREAK_DATA] as StreakData | undefined;
-
-    if (!data) {
-      return DEFAULT_STREAK_DATA;
-    }
-
-    return data;
-  } catch (error) {
-    logger.error('Failed to get streak data', { error });
-    return DEFAULT_STREAK_DATA;
-  }
-}
-
-/**
- * Save streak data to storage
- */
-export async function saveStreakData(data: StreakData): Promise<void> {
-  try {
-    await browser.storage.local.set({
-      [STORAGE_KEYS.STREAK_DATA]: data,
-    });
-    logger.debug('Streak data saved', { currentStreak: data.currentStreak });
-  } catch (error) {
-    logger.error('Failed to save streak data', { error });
-    throw error;
-  }
-}
-
-/**
- * Check if yesterday was a successful day for streak goals
- */
-async function wasYesterdaySuccessful(): Promise<boolean> {
-  const settings = await getSettings();
-
-  if (!settings.streak.enabled) {
-    return false;
-  }
-
-  // Get yesterday's date
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayString = getLocalDateString(yesterday);
-
-  // Check based on goal type
-  switch (settings.streak.goalType) {
-    case 'focus_time': {
-      // Check if there was enough focus time yesterday
-      const history = await getTimeTrackingHistory(1);
-      const yesterdayRecord = history.history.find(
-        (r) => r.date === yesterdayString
-      );
-
-      if (!yesterdayRecord) {
-        return false;
-      }
-
-      const focusMinutes = yesterdayRecord.totalMs / 1000 / 60;
-      return focusMinutes >= settings.streak.minFocusMinutes;
-    }
-
-    case 'blocks': {
-      // Since we can't access yesterday's blocks directly (they reset daily),
-      // we check if there was any tracked usage as a proxy for activity
-      const history = await getTimeTrackingHistory(1);
-      const yesterdayRecord = history.history.find(
-        (r) => r.date === yesterdayString
-      );
-
-      // If there was any tracking activity, consider it a day with blocks
-      return yesterdayRecord !== undefined && yesterdayRecord.totalMs > 0;
-    }
-
-    case 'no_access': {
-      // Check if there was NO access to blocked platforms yesterday
-      const history = await getTimeTrackingHistory(1);
-      const yesterdayRecord = history.history.find(
-        (r) => r.date === yesterdayString
-      );
-
-      // Success if no usage was tracked
-      return !yesterdayRecord || yesterdayRecord.totalMs === 0;
-    }
-
-    default:
-      return false;
-  }
-}
-
-/**
- * Check if today qualifies as a successful day (for checking current streak)
- */
-async function isTodaySuccessful(): Promise<boolean> {
-  const settings = await getSettings();
-
-  if (!settings.streak.enabled) {
-    return false;
-  }
-
-  const timeLimitsState = await getTimeLimitsState();
-
-  switch (settings.streak.goalType) {
-    case 'focus_time': {
-      // Calculate today's total time
-      let totalMs = 0;
-      for (const usage of timeLimitsState.usage) {
-        totalMs += usage.usedTodayMs;
-      }
-      const focusMinutes = totalMs / 1000 / 60;
-      return focusMinutes >= settings.streak.minFocusMinutes;
-    }
-
-    case 'blocks': {
-      // Check blocks today from stats
-      const settingsData = await getSettings();
-      return settingsData.stats.blockedToday >= settings.streak.minBlocks;
-    }
-
-    case 'no_access': {
-      // Success if no usage today
-      let totalMs = 0;
-      for (const usage of timeLimitsState.usage) {
-        totalMs += usage.usedTodayMs;
-      }
-      return totalMs === 0;
-    }
-
-    default:
-      return false;
-  }
-}
-
-/**
- * Check and update streak for the current day
- */
-export async function checkStreakDay(): Promise<StreakData> {
-  const settings = await getSettings();
-
-  if (!settings.streak.enabled) {
-    return await getStreakData();
-  }
-
-  const streakData = await getStreakData();
-  const today = getTodayDateString();
-
-  // If we already checked today, just verify current day's status
-  if (streakData.lastActiveDate === today) {
-    // Check if today is still successful
-    const todaySuccess = await isTodaySuccessful();
-
-    if (todaySuccess && streakData.currentStreak === 0) {
-      // Today became successful, increment streak
-      const newStreak = streakData.currentStreak + 1;
-      const newData = await updateStreakData(newStreak, today, streakData);
-      return newData;
-    }
-
-    return streakData;
-  }
-
-  // New day - check yesterday's status
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayString = getLocalDateString(yesterday);
-
-  // Calculate the expected last active date for a continuous streak
-  if (streakData.lastActiveDate === yesterdayString) {
-    // Yesterday was the last active date, check if it was successful
-    const yesterdaySuccess = await wasYesterdaySuccessful();
-
-    if (yesterdaySuccess) {
-      // Yesterday was successful, check if today is successful too
-      const todaySuccess = await isTodaySuccessful();
-
-      if (todaySuccess) {
-        // Continue the streak
-        const newStreak = streakData.currentStreak + 1;
-        const newData = await updateStreakData(newStreak, today, streakData);
-        return newData;
-      }
-
-      // Today not yet successful, just update last checked date but keep streak
-      const newData: StreakData = {
-        ...streakData,
-        lastActiveDate: today,
-      };
-      await saveStreakData(newData);
-      return newData;
-    }
-
-    // Yesterday was not successful, break the streak
-    const newData: StreakData = {
-      ...streakData,
-      currentStreak: 0,
-      lastActiveDate: today,
-    };
-    await saveStreakData(newData);
-
-    logger.info('Streak broken', { previousStreak: streakData.currentStreak });
-    return newData;
-  }
-
-  // More than one day has passed, streak is broken
-  if (streakData.currentStreak > 0) {
-    logger.info('Streak broken due to gap', {
-      lastActive: streakData.lastActiveDate,
-      previousStreak: streakData.currentStreak,
-    });
-  }
-
-  const todaySuccess = await isTodaySuccessful();
-  const newStreak = todaySuccess ? 1 : 0;
-
-  const newData: StreakData = {
-    ...streakData,
-    currentStreak: newStreak,
-    lastActiveDate: today,
-    totalFocusDays: todaySuccess
-      ? streakData.totalFocusDays + 1
-      : streakData.totalFocusDays,
-  };
-
-  await saveStreakData(newData);
-  return newData;
-}
-
-/**
- * Update streak data with new streak value and check milestones
- */
-async function updateStreakData(
-  newStreak: number,
-  today: string,
-  currentData: StreakData
-): Promise<StreakData> {
-  const settings = await getSettings();
-
-  // Check for new milestones
-  const newMilestones = [...currentData.achievedMilestones];
-  let newMilestoneAchieved = false;
-
-  for (const milestone of STREAK_MILESTONES) {
-    if (newStreak >= milestone && !newMilestones.includes(milestone)) {
-      newMilestones.push(milestone);
-      newMilestoneAchieved = true;
-      logger.info('Milestone achieved', { milestone, streak: newStreak });
-    }
-  }
-
-  const newData: StreakData = {
-    currentStreak: newStreak,
-    longestStreak: Math.max(newStreak, currentData.longestStreak),
-    lastActiveDate: today,
-    totalFocusDays: currentData.totalFocusDays + 1,
-    achievedMilestones: newMilestones,
-  };
-
-  await saveStreakData(newData);
-
-  // Show notification for new milestone
-  if (newMilestoneAchieved && settings.streak.showNotifications) {
-    await showStreakNotification('milestone', newStreak);
-  }
-
-  return newData;
-}
-
-/**
- * Reset streak data
- */
-export async function resetStreakData(): Promise<StreakData> {
-  await saveStreakData(DEFAULT_STREAK_DATA);
-  logger.info('Streak data reset');
-  return DEFAULT_STREAK_DATA;
-}
-
-/**
- * Handle streak check alarm (called daily)
- */
-async function handleStreakCheck(): Promise<void> {
-  logger.info('Daily streak check triggered');
-  await checkStreakDay();
-
-  // Reschedule for next day
-  await setupStreakCheckAlarm();
-}
-
-/**
- * Set up alarm for daily streak check (end of day)
- */
-async function setupStreakCheckAlarm(): Promise<void> {
-  // Clear any existing alarm
-  await browser.alarms.clear(ALARM_NAMES.STREAK_CHECK);
-
-  // Calculate time until end of day (11:59 PM)
-  const now = new Date();
-  const endOfDay = new Date(now);
-  endOfDay.setHours(23, 59, 0, 0);
-
-  // If it's past 11:59 PM, schedule for tomorrow
-  if (now >= endOfDay) {
-    endOfDay.setDate(endOfDay.getDate() + 1);
-  }
-
-  const msUntilEndOfDay = endOfDay.getTime() - now.getTime();
-
-  // Create alarm
-  await browser.alarms.create(ALARM_NAMES.STREAK_CHECK, {
-    delayInMinutes: msUntilEndOfDay / 1000 / 60,
-  });
-
-  logger.debug('Streak check alarm scheduled', {
-    minutesUntilCheck: Math.round(msUntilEndOfDay / 1000 / 60),
-  });
-}
-
-/**
- * Show streak notification
- */
-async function showStreakNotification(
-  type: 'milestone' | 'broken',
-  streak: number
-): Promise<void> {
-  try {
-    const titles: Record<typeof type, string> = {
-      milestone: nMsg('notifStreakMilestoneTitle', 'Streak Milestone!'),
-      broken: nMsg('notifStreakBrokenTitle', 'Streak Broken'),
-    };
-
-    const messages: Record<typeof type, string> = {
-      milestone: nMsg(
-        'notifStreakMilestoneMessage',
-        `Amazing! You've reached a ${streak}-day streak!`,
-        [String(streak)]
-      ),
-      broken: nMsg(
-        'notifStreakBrokenMessage',
-        'Your streak has been reset. Start fresh today!'
-      ),
-    };
-
-    await browser.notifications.create({
-      type: 'basic',
-      iconUrl: browser.runtime.getURL('icons/icon-128.png'),
-      title: titles[type],
-      message: messages[type],
-    });
-  } catch (error) {
-    logger.debug('Could not show streak notification', { error });
-  }
 }
 
 // ============================================================================

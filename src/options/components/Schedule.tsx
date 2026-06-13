@@ -153,18 +153,15 @@ export function Schedule() {
 
   return (
     <div className="schedule-section">
-      <h2>{t('scheduleTitle')}</h2>
-      <p className="section-description">{t('scheduleDescription')}</p>
-
       {/* Enable toggle */}
       <div className="schedule-toggle">
-        <label className="platform-toggle">
+        <label className="toggle-label">
           <input
             type="checkbox"
             checked={schedule.enabled}
             onChange={() => void handleToggleEnabled()}
           />
-          <span>{t('scheduleEnabled')}</span>
+          <span className="toggle-text">{t('scheduleEnabled')}</span>
         </label>
       </div>
 

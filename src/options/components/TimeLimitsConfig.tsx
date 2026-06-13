@@ -130,9 +130,6 @@ export function TimeLimitsConfig() {
 
   return (
     <div className="time-limits-config">
-      <h2 className="section-title">{t('timeLimitsTitle')}</h2>
-      <p className="section-description">{t('timeLimitsDescription')}</p>
-
       {/* Main enable toggle */}
       <div className="setting-row">
         <label className="toggle-label">

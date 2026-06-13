@@ -120,9 +120,6 @@ export async function updateSettings(
     timeTracking: update.timeTracking
       ? { ...current.timeTracking, ...update.timeTracking }
       : current.timeTracking,
-    streak: update.streak
-      ? { ...current.streak, ...update.streak }
-      : current.streak,
     challenge: update.challenge
       ? { ...current.challenge, ...update.challenge }
       : current.challenge,
