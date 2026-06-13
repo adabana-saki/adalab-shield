@@ -2369,6 +2369,10 @@
     "message": "Commitment Lock is active. Complete the unlock flow in Settings → Lock to change this.",
     "description": "Popup banner: change rejected because commitment lock is active"
   },
+  "settingsLockedManage": {
+    "message": "Manage lock",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
+  },
   "commitmentLockUnlockButton": {
     "message": "Start unlock flow",
     "description": "Button to start the unlock flow"

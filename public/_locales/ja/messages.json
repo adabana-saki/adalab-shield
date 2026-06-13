@@ -2369,6 +2369,10 @@
     "message": "コミットメントロック中です。設定 → ロック で解除フローを完了すると変更できます。",
     "description": "Popup banner: change rejected because commitment lock is active"
   },
+  "settingsLockedManage": {
+    "message": "ロックを管理",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
+  },
   "commitmentLockUnlockButton": {
     "message": "解除フローを開始",
     "description": "Button to start the unlock flow"

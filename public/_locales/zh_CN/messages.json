@@ -2369,6 +2369,10 @@
     "message": "承诺锁已启用。请在 设置 → 锁定 中完成解锁流程后再更改。",
     "description": "Popup banner: change rejected because commitment lock is active"
   },
+  "settingsLockedManage": {
+    "message": "管理锁定",
+    "description": "Button on the options lock banner that opens the lock settings to unlock"
+  },
   "commitmentLockUnlockButton": {
     "message": "开始解锁流程",
     "description": "Button to start the unlock flow"

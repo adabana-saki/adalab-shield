@@ -109,7 +109,23 @@ export function App() {
     );
   }
 
-  if (error !== null && error !== '') {
+  // Lock rejections (commitment lock / lockdown) are NOT fatal errors:
+  // show a dismissible banner with a path to unlock, instead of replacing
+  // the whole page with a cryptic error code.
+  const lockError =
+    error === 'SETTINGS_LOCKED_COMMITMENT'
+      ? {
+          message: t('settingsLockedCommitment'),
+          subSection: 'commitmentLock' as SubSectionId,
+        }
+      : error === 'SETTINGS_LOCKED_LOCKDOWN'
+        ? {
+            message: t('settingsLockedLockdown'),
+            subSection: 'lockdown' as SubSectionId,
+          }
+        : null;
+
+  if (error !== null && error !== '' && lockError === null) {
     return (
       <div className="options-error">
         <div className="error-icon">
@@ -239,6 +255,38 @@ export function App() {
       advancedExpanded={advancedExpanded}
       onAdvancedToggle={() => setAdvancedExpanded(!advancedExpanded)}
     >
+      {lockError !== null && (
+        <div className="options-lock-banner">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <span className="options-lock-banner-text">{lockError.message}</span>
+          <button
+            type="button"
+            className="options-lock-banner-btn"
+            onClick={() => {
+              handleSectionChange('lock', lockError.subSection);
+              void refreshSettings();
+            }}
+          >
+            {t('settingsLockedManage')}
+          </button>
+          <button
+            type="button"
+            className="options-lock-banner-dismiss"
+            aria-label={t('dismiss')}
+            onClick={() => void refreshSettings()}
+          >
+            ✕
+          </button>
+        </div>
+      )}
       {renderContent()}
     </SettingsLayout>
   );

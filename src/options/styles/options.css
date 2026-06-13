@@ -1517,6 +1517,41 @@
   @apply flex flex-col items-center justify-center min-h-screen bg-gray-50;
 }
 
+/* 変更がロックで拒否されたときの案内バナー (致命的エラー画面の代わり) */
+.options-lock-banner {
+  @apply flex items-center gap-3 mb-4 px-4 py-3 rounded-xl;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+.dark .options-lock-banner {
+  color: #fcd34d;
+}
+.options-lock-banner > svg {
+  @apply w-5 h-5 shrink-0;
+}
+.options-lock-banner-text {
+  @apply flex-1 text-sm leading-snug;
+}
+.options-lock-banner-btn {
+  @apply shrink-0 px-3 py-1.5 text-xs font-semibold rounded-lg cursor-pointer;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.15);
+  color: inherit;
+}
+.options-lock-banner-btn:hover {
+  background: rgba(245, 158, 11, 0.25);
+}
+.options-lock-banner-dismiss {
+  @apply shrink-0 w-6 h-6 flex items-center justify-center rounded-md cursor-pointer text-sm;
+  background: transparent;
+  color: inherit;
+  opacity: 0.7;
+}
+.options-lock-banner-dismiss:hover {
+  opacity: 1;
+}
+
 .options-error .error-icon {
   @apply w-16 h-16 text-red-400 mb-4;
 }
