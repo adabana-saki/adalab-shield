@@ -23,7 +23,6 @@ export type SubSectionId =
   | 'scheduleConfig'
   | 'timeLimits'
   | 'focusMode'
-  | 'pomodoro'
   | 'challenge'
   | 'lockdown'
   | 'commitmentLock'
@@ -166,12 +165,6 @@ export function Sidebar({
               label: t('focusModeTitle'),
               active: activeSubSection === 'focusMode',
               onClick: () => onSectionChange('productivity', 'focusMode'),
-            },
-            {
-              id: 'pomodoro',
-              label: t('pomodoroTitle'),
-              active: activeSubSection === 'pomodoro',
-              onClick: () => onSectionChange('productivity', 'pomodoro'),
             },
             {
               id: 'adalabSync',

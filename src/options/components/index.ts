@@ -8,7 +8,6 @@ export { CustomDomains } from './CustomDomains';
 export { Schedule } from './Schedule';
 export { BlockPageCustomizer } from './BlockPageCustomizer';
 export { FocusModeSettings } from './FocusModeSettings';
-export { PomodoroSettings } from './PomodoroSettings';
 export { TimeLimitsConfig } from './TimeLimitsConfig';
 export { TimeReports } from './TimeReports';
 export { ChallengeSettings } from './ChallengeSettings';

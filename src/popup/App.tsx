@@ -360,11 +360,9 @@ export function App() {
         {!hasActiveTimer && (
           <FocusLauncher
             focusEnabled={settings.focusMode.enabled}
-            pomodoroEnabled={settings.pomodoro.enabled}
             focusState={focusState}
             pomodoroState={pomodoroState}
             onFocusStateChange={setFocusState}
-            onPomodoroStateChange={setPomodoroState}
           />
         )}
 

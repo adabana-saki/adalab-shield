@@ -5,10 +5,9 @@
 import { useI18n } from '@/shared/hooks/useI18n';
 import { SectionHeader } from '../common/SectionHeader';
 import { FocusModeSettings } from '../FocusModeSettings';
-import { PomodoroSettings } from '../PomodoroSettings';
 import { AdalabSettings } from '../AdalabSettings';
 
-type ProductivitySubSection = 'focusMode' | 'pomodoro' | 'adalabSync';
+type ProductivitySubSection = 'focusMode' | 'adalabSync';
 
 interface ProductivitySectionProps {
   subSection: ProductivitySubSection;
@@ -16,29 +15,6 @@ interface ProductivitySectionProps {
 
 export function ProductivitySection({ subSection }: ProductivitySectionProps) {
   const { t } = useI18n();
-
-  if (subSection === 'pomodoro') {
-    return (
-      <div className="settings-section">
-        <SectionHeader
-          title={t('pomodoroTitle')}
-          description={t('pomodoroDescription')}
-          icon={
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12,6 12,12 16,14" />
-            </svg>
-          }
-        />
-        <PomodoroSettings />
-      </div>
-    );
-  }
 
   if (subSection === 'adalabSync') {
     return (

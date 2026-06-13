@@ -868,6 +868,13 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+.focus-launcher-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-sub);
+}
 .focus-duration-selector {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
