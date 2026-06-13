@@ -766,6 +766,61 @@
   @apply px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 transition-colors;
 }
 
+/* 共通ボタン。未定義でネイティブの暗いボタンになり「見えない」問題を解消する。
+   ダークテーマ前提のはっきりした配色にする。 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-small {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+.btn-primary {
+  background: var(--color-accent);
+  color: #04141b;
+  border-color: var(--color-accent);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+.btn-secondary {
+  background: var(--color-bg-hover);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-secondary);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-bg-active);
+  border-color: var(--color-accent);
+}
+/* btn 単体 (variant 指定なし: 解除フロー開始ボタンなど) も視認できるように */
+.btn:not(.btn-primary):not(.btn-secondary):not(.btn-danger) {
+  background: var(--color-bg-hover);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-secondary);
+}
+.btn:not(.btn-primary):not(.btn-secondary):not(.btn-danger):hover:not(
+    :disabled
+  ) {
+  border-color: var(--color-accent);
+}
+
 /* No data state */
 .no-data {
   @apply text-center py-8 text-gray-500;
