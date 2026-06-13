@@ -2213,6 +2213,14 @@
     "message": "작업 완료",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabCompleted": {
+    "message": "완료됨",
+    "description": "Label shown in the undo bar after completing an adalab study task"
+  },
+  "popupAdalabUndo": {
+    "message": "실행 취소",
+    "description": "Button to undo completing an adalab study task"
+  },
   "popupAdalabOpen": {
     "message": "adalab study 열기",
     "description": "Button to open the adalab study web app in a new tab"

@@ -34,6 +34,7 @@ const VALID_COMMAND_ACTIONS: ReadonlySet<string> = new Set([
   'timer-start',
   'timer-stop',
   'task-complete',
+  'task-uncomplete',
 ]);
 
 const COMMAND_TIMEOUT_MS = 3000;

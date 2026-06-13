@@ -37,6 +37,12 @@ export function AdalabWidget() {
   const [tabId, setTabId] = useState<number | null>(null);
   const [state, setState] = useState<AdalabAppState | null>(null);
   const [now, setNow] = useState(() => Date.now());
+  // Last task completed from the popup, kept briefly so an accidental
+  // completion can be undone with one click.
+  const [lastCompleted, setLastCompleted] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
 
   const sendCommand = useCallback(
     async (
@@ -110,6 +116,31 @@ export function AdalabWidget() {
     }, 1000);
     return () => clearInterval(interval);
   }, [state?.timer.running]);
+
+  // The undo affordance auto-dismisses after a short window
+  useEffect(() => {
+    if (lastCompleted === null) {
+      return;
+    }
+    const timeout = setTimeout(() => setLastCompleted(null), 8000);
+    return () => clearTimeout(timeout);
+  }, [lastCompleted]);
+
+  const completeTask = (id: string, title: string): void => {
+    if (tabId === null) {
+      return;
+    }
+    setLastCompleted({ id, title });
+    void sendCommand(tabId, 'task-complete', id);
+  };
+
+  const undoComplete = (): void => {
+    if (tabId === null || lastCompleted === null) {
+      return;
+    }
+    void sendCommand(tabId, 'task-uncomplete', lastCompleted.id);
+    setLastCompleted(null);
+  };
 
   // Open adalab study: focus the existing tab if there is one, else open it.
   const openStudy = useCallback(() => {
@@ -218,9 +249,7 @@ export function AdalabWidget() {
                   className="adalab-widget-task-check"
                   title={t('popupAdalabComplete')}
                   aria-label={t('popupAdalabComplete')}
-                  onClick={() =>
-                    void sendCommand(tabId, 'task-complete', task.id)
-                  }
+                  onClick={() => completeTask(task.id, task.title)}
                 >
                   ✓
                 </button>
@@ -228,6 +257,20 @@ export function AdalabWidget() {
               </li>
             ))}
           </ul>
+        )}
+        {lastCompleted !== null && (
+          <div className="adalab-widget-undo">
+            <span className="adalab-widget-undo-text">
+              {t('popupAdalabCompleted')}: {lastCompleted.title}
+            </span>
+            <button
+              type="button"
+              className="adalab-widget-undo-btn"
+              onClick={undoComplete}
+            >
+              {t('popupAdalabUndo')}
+            </button>
+          </div>
         )}
       </div>
     </div>

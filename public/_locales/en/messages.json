@@ -2213,6 +2213,14 @@
     "message": "Complete task",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabCompleted": {
+    "message": "Completed",
+    "description": "Label shown in the undo bar after completing an adalab study task"
+  },
+  "popupAdalabUndo": {
+    "message": "Undo",
+    "description": "Button to undo completing an adalab study task"
+  },
   "popupAdalabOpen": {
     "message": "Open adalab study",
     "description": "Button to open the adalab study web app in a new tab"

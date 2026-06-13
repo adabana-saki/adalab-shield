@@ -717,7 +717,8 @@ export type AdalabCommandAction =
   | 'get-state'
   | 'timer-start'
   | 'timer-stop'
-  | 'task-complete';
+  | 'task-complete'
+  | 'task-uncomplete';
 
 /**
  * Popup → content script command for the adalab study tab.
