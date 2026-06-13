@@ -233,9 +233,6 @@ export function BlockPageCustomizer() {
 
   return (
     <div className="block-page-customizer">
-      <h2>{t('blockPageTitle')}</h2>
-      <p className="section-description">{t('blockPageDescription')}</p>
-
       {error !== null && error !== '' && (
         <p className="block-page-error">{error}</p>
       )}

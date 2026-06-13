@@ -162,9 +162,6 @@ export function ExportImport() {
 
   return (
     <div className="export-import-section">
-      <h2>{t('exportImportTitle')}</h2>
-      <p className="section-description">{t('exportImportDescription')}</p>
-
       <div className="export-import-actions">
         {/* Export button */}
         <div className="export-import-action">

@@ -7,10 +7,11 @@ import { useSettings } from '@/shared/hooks/useSettings';
 import { useI18n } from '@/shared/hooks/useI18n';
 import type { FocusDuration } from '@/shared/types';
 
+// 言語中立な表記 (ポップアップの集中ランチャーと揃える)
 const DURATION_OPTIONS: { value: FocusDuration; label: string }[] = [
-  { value: 30, label: '30 minutes' },
-  { value: 60, label: '60 minutes' },
-  { value: 120, label: '2 hours' },
+  { value: 30, label: '30m' },
+  { value: 60, label: '1h' },
+  { value: 120, label: '2h' },
 ];
 
 export function FocusModeSettings() {
@@ -54,11 +55,6 @@ export function FocusModeSettings() {
 
   return (
     <div className="focus-mode-settings">
-      <h2 className="settings-section-title">{t('focusModeTitle')}</h2>
-      <p className="settings-section-description">
-        {t('focusModeDescription')}
-      </p>
-
       {/* Enable/Disable Focus Mode */}
       <div className="settings-item">
         <div className="settings-item-info">

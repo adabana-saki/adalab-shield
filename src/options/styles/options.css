@@ -1216,11 +1216,11 @@
 
 /* Schedule Status (Dashboard) */
 .schedule-status-header {
-  @apply flex items-center justify-between mb-3;
+  @apply flex items-start justify-between gap-2 mb-3;
 }
 
 .schedule-status-info {
-  @apply flex items-center gap-3;
+  @apply flex items-center gap-2 flex-wrap min-w-0;
 }
 
 .schedule-status-title {
@@ -1228,7 +1228,11 @@
 }
 
 .schedule-status-badge {
-  @apply px-2 py-1 text-xs font-medium rounded-full;
+  @apply px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap shrink-0;
+}
+
+.schedule-status-edit {
+  @apply shrink-0;
 }
 
 .schedule-status-badge.active {
