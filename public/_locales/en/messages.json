@@ -1772,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "Disabling blocking requires a short wait and confirming your intention",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "It gives you a moment to reconsider before acting on impulse",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "After unlocking, blocking re-locks for a while to prevent instant disabling",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {

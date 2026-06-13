@@ -1772,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "차단을 끄려면 잠시 기다린 뒤 의도를 확인하는 단계가 필요합니다",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "충동적으로 그만두고 싶어도 한 번 더 생각할 여유를 줍니다",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "해제 후에는 잠시 다시 잠겨 즉시 비활성화를 막습니다",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {

@@ -1772,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "關閉攔截需要短暫等待並確認你的意圖",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "在衝動行事前給你一個重新考慮的機會",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "解除後會重新鎖定一段時間，防止立刻關閉",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {

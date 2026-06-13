@@ -1772,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "高いレベルほど衝動的な解除を防ぐ摩擦が増加します",
+    "message": "ブロックを無効化するには、少し待って意思を確認する手順が必要です",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "段階的クールダウンで繰り返しの試行がより困難になります",
+    "message": "衝動的にやめたくなっても、ひと呼吸おいて考え直せます",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "レベル3プレミアム機能で最大限の自己制御を実現",
+    "message": "解除後はしばらく再ロックされ、すぐの無効化を防ぎます",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {

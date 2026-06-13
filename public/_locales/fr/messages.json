@@ -1772,15 +1772,15 @@
     "description": "Title for info section"
   },
   "commitmentLockInfo1": {
-    "message": "Higher levels add more friction to prevent impulsive unlocking",
+    "message": "Désactiver le blocage nécessite une courte attente et une confirmation",
     "description": "Info item 1"
   },
   "commitmentLockInfo2": {
-    "message": "Escalating cooldowns make repeated attempts progressively harder",
+    "message": "Cela vous laisse un instant pour reconsidérer avant d’agir sur un coup de tête",
     "description": "Info item 2"
   },
   "commitmentLockInfo3": {
-    "message": "Level 3 Premium features provide maximum self-control",
+    "message": "Après déverrouillage, le blocage se réactive un moment pour éviter une désactivation immédiate",
     "description": "Info item 3"
   },
   "commitmentLockError_outside_allowed_hours": {
