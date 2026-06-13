@@ -1163,124 +1163,6 @@
     "message": "すべての追跡履歴を削除してもよろしいですか？この操作は元に戻せません。",
     "description": "Confirmation message for clearing history"
   },
-  "optionsTabStreak": {
-    "message": "ストリーク",
-    "description": "Tab name for streak tracking settings"
-  },
-  "streakTitle": {
-    "message": "ストリーク追跡",
-    "description": "Streak section title"
-  },
-  "streakDescription": {
-    "message": "毎日集中してストリークを積み上げましょう。進捗を追跡してマイルストーンバッジを獲得できます。",
-    "description": "Streak section description"
-  },
-  "streakEnabled": {
-    "message": "ストリーク追跡を有効にする",
-    "description": "Toggle to enable streak tracking"
-  },
-  "streakDays": {
-    "message": "日連続",
-    "description": "Streak days label"
-  },
-  "streakCurrent": {
-    "message": "現在のストリーク",
-    "description": "Current streak label"
-  },
-  "streakLongest": {
-    "message": "最長ストリーク",
-    "description": "Longest streak label"
-  },
-  "streakTotalDays": {
-    "message": "総集中日数",
-    "description": "Total focus days label"
-  },
-  "streakNextMilestone": {
-    "message": "次のマイルストーン",
-    "description": "Next milestone label"
-  },
-  "streakToMilestone": {
-    "message": "マイルストーンまで",
-    "description": "Progress towards milestone"
-  },
-  "streakMilestones": {
-    "message": "達成したマイルストーン",
-    "description": "Achieved milestones section title"
-  },
-  "streakGoalType": {
-    "message": "毎日の目標",
-    "description": "Goal type setting label"
-  },
-  "streakGoalTypeDescription": {
-    "message": "毎日の集中目標の達成方法を選択",
-    "description": "Description for goal type setting"
-  },
-  "streakGoalFocusTime": {
-    "message": "集中時間",
-    "description": "Goal type: minimum focus session time"
-  },
-  "streakGoalBlocks": {
-    "message": "ブロック回数",
-    "description": "Goal type: minimum number of blocks"
-  },
-  "streakGoalNoAccess": {
-    "message": "アクセスなし",
-    "description": "Goal type: no platform access"
-  },
-  "streakMinFocusMinutes": {
-    "message": "最小集中時間（分）",
-    "description": "Minimum focus minutes setting"
-  },
-  "streakMinFocusMinutesDescription": {
-    "message": "1日に最低この時間のフォーカスセッションを完了する",
-    "description": "Description for minimum focus minutes"
-  },
-  "streakMinBlocks": {
-    "message": "最小ブロック回数",
-    "description": "Minimum blocks setting"
-  },
-  "streakMinBlocksDescription": {
-    "message": "1日に最低この回数の気を散らすコンテンツをブロックする",
-    "description": "Description for minimum blocks"
-  },
-  "streakNotifications": {
-    "message": "ストリーク通知",
-    "description": "Notifications toggle label"
-  },
-  "streakNotificationsDescription": {
-    "message": "マイルストーン達成やストリーク終了時に通知を受け取る",
-    "description": "Description for notifications setting"
-  },
-  "streakReset": {
-    "message": "ストリークをリセット",
-    "description": "Reset streak button"
-  },
-  "streakResetConfirm": {
-    "message": "ストリークをリセットしてもよろしいですか？すべての進捗が削除され、元に戻すことはできません。",
-    "description": "Confirmation for streak reset"
-  },
-  "streakMilestoneReached": {
-    "message": "マイルストーン達成！",
-    "description": "Milestone notification title"
-  },
-  "streakMilestoneMessage": {
-    "message": "おめでとうございます！$DAYS$日連続のストリークを達成しました！",
-    "description": "Milestone notification message",
-    "placeholders": {
-      "days": {
-        "content": "$1",
-        "example": "7"
-      }
-    }
-  },
-  "streakBrokenTitle": {
-    "message": "ストリーク終了",
-    "description": "Streak broken notification title"
-  },
-  "streakBrokenMessage": {
-    "message": "ストリークがリセットされました。今日から新しいストリークを始めましょう！",
-    "description": "Streak broken notification message"
-  },
   "challengeTitle": {
     "message": "チャレンジモード",
     "description": "Challenge mode section title"
@@ -1987,10 +1869,6 @@
     "message": "クイックフォーカスを使用するには設定でフォーカスモードを有効にしてください",
     "description": "Dashboard focus disabled hint"
   },
-  "streakBest": {
-    "message": "最高記録",
-    "description": "Best streak label"
-  },
   "scheduleActive": {
     "message": "アクティブ",
     "description": "Schedule is currently active"
@@ -2051,10 +1929,6 @@
     "message": "ポモドーロ",
     "description": "Sidebar submenu: Pomodoro"
   },
-  "sidebarStreak": {
-    "message": "ストリーク",
-    "description": "Sidebar submenu: Streak"
-  },
   "sidebarChallenge": {
     "message": "チャレンジ",
     "description": "Sidebar submenu: Challenge Mode"
@@ -2086,10 +1960,6 @@
   "dashboardBlockedTotal": {
     "message": "合計ブロック",
     "description": "Dashboard stat: total blocked"
-  },
-  "dashboardStreak": {
-    "message": "ストリーク",
-    "description": "Dashboard stat: streak"
   },
   "dashboardManagePlatforms": {
     "message": "プラットフォームを管理",
@@ -2235,10 +2105,6 @@
     "message": "ポモドーロ実行中",
     "description": "Popup: pomodoro active"
   },
-  "popupStreakLabel": {
-    "message": "日連続",
-    "description": "Popup: streak label"
-  },
   "optionsTabLanguage": {
     "message": "言語",
     "description": "Tab name for language settings"
@@ -2351,6 +2217,10 @@
     "message": "adalab study を開く",
     "description": "Button to open the adalab study web app in a new tab"
   },
+  "pomodoroExternalNote": {
+    "message": "adalab study と連動中 — タイマーは study 側で操作してください",
+    "description": "Shown in the popup timer when the pomodoro mirrors the adalab study timer"
+  },
   "notifFocusStartedTitle": {
     "message": "フォーカスモード開始",
     "description": "Auto-added: notifFocusStartedTitle"
@@ -2410,22 +2280,6 @@
   "notifPomodoroBreakCompletedMessage": {
     "message": "休憩終了!集中に戻りましょう。",
     "description": "Auto-added: notifPomodoroBreakCompletedMessage"
-  },
-  "notifStreakMilestoneTitle": {
-    "message": "ストリーク達成!",
-    "description": "Auto-added: notifStreakMilestoneTitle"
-  },
-  "notifStreakMilestoneMessage": {
-    "message": "すごい!$1 日連続を達成しました!",
-    "description": "Auto-added: notifStreakMilestoneMessage"
-  },
-  "notifStreakBrokenTitle": {
-    "message": "ストリークが途切れました",
-    "description": "Auto-added: notifStreakBrokenTitle"
-  },
-  "notifStreakBrokenMessage": {
-    "message": "連続記録がリセットされました。今日からまた始めましょう!",
-    "description": "Auto-added: notifStreakBrokenMessage"
   },
   "blockedPageMessageSuffix": {
     "message": "は集中を守るためにブロックされています。",

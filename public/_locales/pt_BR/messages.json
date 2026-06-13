@@ -1027,124 +1027,6 @@
     "message": "Tem certeza que deseja limpar todo o histórico? Isso não pode ser desfeito.",
     "description": "Confirmation message for clearing history"
   },
-  "optionsTabStreak": {
-    "message": "Sequência",
-    "description": "Tab name for streak tracking settings"
-  },
-  "streakTitle": {
-    "message": "Rastreamento de Sequência",
-    "description": "Streak section title"
-  },
-  "streakDescription": {
-    "message": "Construa uma sequência mantendo-se focado todos os dias. Acompanhe seu progresso e ganhe medalhas de marcos.",
-    "description": "Streak section description"
-  },
-  "streakEnabled": {
-    "message": "Ativar Rastreamento de Sequência",
-    "description": "Toggle to enable streak tracking"
-  },
-  "streakDays": {
-    "message": "dias de sequência",
-    "description": "Streak days label"
-  },
-  "streakCurrent": {
-    "message": "Sequência Atual",
-    "description": "Current streak label"
-  },
-  "streakLongest": {
-    "message": "Melhor Sequência",
-    "description": "Longest streak label"
-  },
-  "streakTotalDays": {
-    "message": "Total de Dias de Foco",
-    "description": "Total focus days label"
-  },
-  "streakNextMilestone": {
-    "message": "Próximo Marco",
-    "description": "Next milestone label"
-  },
-  "streakToMilestone": {
-    "message": "para o marco",
-    "description": "Progress towards milestone"
-  },
-  "streakMilestones": {
-    "message": "Marcos Alcançados",
-    "description": "Achieved milestones section title"
-  },
-  "streakGoalType": {
-    "message": "Meta Diária",
-    "description": "Goal type setting label"
-  },
-  "streakGoalTypeDescription": {
-    "message": "Como determinar se você atingiu sua meta diária de foco",
-    "description": "Description for goal type setting"
-  },
-  "streakGoalFocusTime": {
-    "message": "Tempo de Foco",
-    "description": "Goal type: minimum focus session time"
-  },
-  "streakGoalBlocks": {
-    "message": "Quantidade de Bloqueios",
-    "description": "Goal type: minimum number of blocks"
-  },
-  "streakGoalNoAccess": {
-    "message": "Sem Acesso",
-    "description": "Goal type: no platform access"
-  },
-  "streakMinFocusMinutes": {
-    "message": "Minutos Mínimos de Foco",
-    "description": "Minimum focus minutes setting"
-  },
-  "streakMinFocusMinutesDescription": {
-    "message": "Completar pelo menos esses minutos de sessões de foco por dia",
-    "description": "Description for minimum focus minutes"
-  },
-  "streakMinBlocks": {
-    "message": "Quantidade Mínima de Bloqueios",
-    "description": "Minimum blocks setting"
-  },
-  "streakMinBlocksDescription": {
-    "message": "Bloquear pelo menos essa quantidade de distrações por dia",
-    "description": "Description for minimum blocks"
-  },
-  "streakNotifications": {
-    "message": "Notificações de Sequência",
-    "description": "Notifications toggle label"
-  },
-  "streakNotificationsDescription": {
-    "message": "Receber notificações quando atingir marcos ou perder sua sequência",
-    "description": "Description for notifications setting"
-  },
-  "streakReset": {
-    "message": "Reiniciar Sequência",
-    "description": "Reset streak button"
-  },
-  "streakResetConfirm": {
-    "message": "Tem certeza que deseja reiniciar sua sequência? Isso apagará todo o progresso e não pode ser desfeito.",
-    "description": "Confirmation for streak reset"
-  },
-  "streakMilestoneReached": {
-    "message": "Marco Alcançado!",
-    "description": "Milestone notification title"
-  },
-  "streakMilestoneMessage": {
-    "message": "Parabéns! Você alcançou uma sequência de $DAYS$ dias!",
-    "description": "Milestone notification message",
-    "placeholders": {
-      "days": {
-        "content": "$1",
-        "example": "7"
-      }
-    }
-  },
-  "streakBrokenTitle": {
-    "message": "Sequência Interrompida",
-    "description": "Streak broken notification title"
-  },
-  "streakBrokenMessage": {
-    "message": "Sua sequência foi reiniciada. Comece uma nova sequência hoje!",
-    "description": "Streak broken notification message"
-  },
   "challengeTitle": {
     "message": "Modo Desafio",
     "description": "Challenge mode section title"
@@ -1987,10 +1869,6 @@
     "message": "Enable Focus Mode in settings to use quick focus",
     "description": "Dashboard focus disabled hint"
   },
-  "streakBest": {
-    "message": "Best",
-    "description": "Best streak label"
-  },
   "scheduleActive": {
     "message": "Active",
     "description": "Schedule is currently active"
@@ -2051,10 +1929,6 @@
     "message": "Pomodoro",
     "description": "Sidebar submenu: Pomodoro"
   },
-  "sidebarStreak": {
-    "message": "Streak",
-    "description": "Sidebar submenu: Streak"
-  },
   "sidebarChallenge": {
     "message": "Challenge",
     "description": "Sidebar submenu: Challenge Mode"
@@ -2086,10 +1960,6 @@
   "dashboardBlockedTotal": {
     "message": "Total Blocked",
     "description": "Dashboard stat: total blocked"
-  },
-  "dashboardStreak": {
-    "message": "Streak",
-    "description": "Dashboard stat: streak"
   },
   "dashboardManagePlatforms": {
     "message": "Manage Platforms",
@@ -2235,10 +2105,6 @@
     "message": "Pomodoro Active",
     "description": "Popup: pomodoro active"
   },
-  "popupStreakLabel": {
-    "message": "day streak",
-    "description": "Popup: streak label"
-  },
   "optionsTabLanguage": {
     "message": "Language",
     "description": "Tab name for language settings"
@@ -2351,6 +2217,10 @@
     "message": "Abrir o adalab study",
     "description": "Button to open the adalab study web app in a new tab"
   },
+  "pomodoroExternalNote": {
+    "message": "Controlado pelo adalab study — gerencie o timer por lá",
+    "description": "Shown in the popup timer when the pomodoro mirrors the adalab study timer"
+  },
   "notifFocusStartedTitle": {
     "message": "Modo de foco iniciado",
     "description": "Auto-added: notifFocusStartedTitle"
@@ -2410,22 +2280,6 @@
   "notifPomodoroBreakCompletedMessage": {
     "message": "Pausa encerrada! Pronto para focar?",
     "description": "Auto-added: notifPomodoroBreakCompletedMessage"
-  },
-  "notifStreakMilestoneTitle": {
-    "message": "Marco de sequência!",
-    "description": "Auto-added: notifStreakMilestoneTitle"
-  },
-  "notifStreakMilestoneMessage": {
-    "message": "Incrível! Você alcançou uma sequência de $1 dias!",
-    "description": "Auto-added: notifStreakMilestoneMessage"
-  },
-  "notifStreakBrokenTitle": {
-    "message": "Sequência interrompida",
-    "description": "Auto-added: notifStreakBrokenTitle"
-  },
-  "notifStreakBrokenMessage": {
-    "message": "Sua sequência foi reiniciada. Comece de novo hoje!",
-    "description": "Auto-added: notifStreakBrokenMessage"
   },
   "blockedPageMessageSuffix": {
     "message": "está bloqueado para ajudar você a manter o foco.",

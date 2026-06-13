@@ -48,6 +48,10 @@ export function App() {
   const [timeLimitsState, setTimeLimitsState] = useState<TimeLimitsState>(
     DEFAULT_TIME_LIMITS_STATE
   );
+  // True when the running pomodoro mirrors the adalab study timer. In that
+  // case the study app owns the timer, so the extension must not show its
+  // own (ineffective) pause/skip/stop controls.
+  const [pomodoroExternal, setPomodoroExternal] = useState(false);
 
   const fetchFocusState = useCallback(async () => {
     try {
@@ -93,6 +97,16 @@ export function App() {
     void fetchFocusState();
     void fetchPomodoroState();
     void fetchTimeUsage();
+    // Read whether the running pomodoro mirrors the adalab study timer
+    void browser.storage.local
+      .get(STORAGE_KEYS.ADALAB_META)
+      .then((r) => {
+        const meta = r[STORAGE_KEYS.ADALAB_META] as
+          | { external?: boolean }
+          | undefined;
+        setPomodoroExternal(meta?.external === true);
+      })
+      .catch(() => {});
     /* eslint-enable react-hooks/set-state-in-effect */
 
     // Subscribe to storage instead of polling the service worker every
@@ -116,6 +130,12 @@ export function App() {
       const timeLimits = changes[STORAGE_KEYS.TIME_LIMITS_STATE];
       if (timeLimits?.newValue !== undefined) {
         setTimeLimitsState(timeLimits.newValue as TimeLimitsState);
+      }
+      const meta = changes[STORAGE_KEYS.ADALAB_META];
+      if (meta?.newValue !== undefined) {
+        setPomodoroExternal(
+          (meta.newValue as { external?: boolean }).external === true
+        );
       }
     };
     browser.storage.onChanged.addListener(onStorageChange);
@@ -302,6 +322,7 @@ export function App() {
             focusState={focusState}
             pomodoroState={displayPomodoroState}
             pomodoroSettings={settings.pomodoro}
+            pomodoroExternal={pomodoroExternal}
             onCancelFocus={() => void handleCancelFocus()}
             onPomodoroAction={(action) => void handlePomodoroAction(action)}
           />

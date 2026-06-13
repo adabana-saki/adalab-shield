@@ -321,6 +321,10 @@ body {
 }
 .timer-control-btn,
 .timer-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   border: 1px solid var(--border-strong);
   background: var(--panel-strong);
   color: var(--text);
@@ -330,6 +334,16 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
+}
+/* アイコンにサイズ指定が無く、ボタンが潰れて見えない不具合の修正 */
+.timer-control-btn svg,
+.timer-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+.timer-control-btn {
+  flex: 1;
+  min-width: 40px;
 }
 .timer-control-btn:hover,
 .timer-action-btn:hover {
@@ -345,6 +359,18 @@ body {
 .timer-action-btn.danger:hover {
   background: var(--rose-soft);
   border-color: var(--rose);
+}
+/* adalab study 連動中: 拡張側の操作は効かないので、操作場所を案内する */
+.timer-external-note {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: var(--purple-soft);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c4b5fd;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
 }
 
 /* ---------- adalab study remote widget ---------- */
@@ -591,9 +617,6 @@ body {
   font-size: 15px;
   font-variant-numeric: tabular-nums;
   color: #a5f3fc;
-}
-.compact-stat.streak .compact-stat-value {
-  color: #fcd34d;
 }
 .compact-stat-label {
   font-size: 9px;

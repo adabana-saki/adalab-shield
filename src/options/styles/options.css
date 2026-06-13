@@ -1808,26 +1808,6 @@
 .onboarding-btn.skip {
   @apply text-gray-500 hover:text-gray-700 hover:bg-gray-100;
 }
-
-/* ===================================
-   Productivity Settings Items
-   =================================== */
-
-.focus-mode-settings,
-.pomodoro-settings,
-.streak-settings {
-  @apply space-y-1;
-}
-
-.focus-mode-settings .settings-section-title,
-.pomodoro-settings .settings-section-title,
-.streak-settings .settings-section-title,
-.focus-mode-settings .settings-section-description,
-.pomodoro-settings .settings-section-description,
-.streak-settings .settings-section-description {
-  @apply hidden;
-}
-
 .settings-item {
   @apply flex items-center justify-between py-4 border-b border-gray-100 last:border-0;
 }
@@ -1873,68 +1853,6 @@
 .duration-option:disabled {
   @apply opacity-50 cursor-not-allowed hover:border-gray-200 hover:text-gray-600;
 }
-
-/* ===================================
-   Streak Settings
-   =================================== */
-
-.streak-settings {
-  @apply space-y-4;
-}
-
-.streak-settings .section-title,
-.streak-settings .section-description {
-  @apply hidden;
-}
-
-.streak-overview {
-  @apply grid grid-cols-3 gap-4 my-6;
-}
-
-.streak-card {
-  @apply bg-gray-50 rounded-xl p-4 text-center border border-gray-100;
-}
-
-.streak-card-current {
-  @apply bg-primary-50 border-primary-200;
-}
-
-.streak-card-value {
-  @apply block text-3xl font-bold text-gray-900;
-}
-
-.streak-card-current .streak-card-value {
-  @apply text-primary-600;
-}
-
-.streak-card-label {
-  @apply block text-sm text-gray-500 mt-1;
-}
-
-.streak-progress-section {
-  @apply my-6 p-4 bg-gray-50 rounded-xl;
-}
-
-.streak-progress-header {
-  @apply flex justify-between text-sm text-gray-600 mb-2;
-}
-
-.streak-progress-bar-large {
-  @apply h-3 bg-gray-200 rounded-full overflow-hidden;
-}
-
-.streak-progress-fill-large {
-  @apply h-full bg-primary-500 rounded-full transition-all duration-300;
-}
-
-.streak-milestone-list {
-  @apply flex flex-wrap gap-2 mt-2;
-}
-
-.streak-milestone-item {
-  @apply px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full;
-}
-
 .input-label {
   @apply flex items-center gap-3;
 }
@@ -2263,46 +2181,6 @@
 .dark .day-checkbox:hover {
   background-color: var(--color-bg-hover);
 }
-
-/* ===================================
-   Dark Mode - Streak
-   =================================== */
-
-.dark .streak-card {
-  background-color: var(--color-bg-tertiary);
-  border-color: var(--color-border-primary);
-}
-
-.dark .streak-card-current {
-  background-color: var(--color-accent-light);
-  border-color: var(--color-accent);
-}
-
-.dark .streak-card-value {
-  color: var(--color-text-primary);
-}
-
-.dark .streak-card-current .streak-card-value {
-  color: var(--color-accent);
-}
-
-.dark .streak-card-label {
-  color: var(--color-text-tertiary);
-}
-
-.dark .streak-progress-section {
-  background-color: var(--color-bg-tertiary);
-}
-
-.dark .streak-progress-bar-large {
-  background-color: var(--color-bg-hover);
-}
-
-.dark .streak-milestone-item {
-  background-color: var(--color-warning-light);
-  color: var(--color-warning-text);
-}
-
 /* ===================================
    Dark Mode - Reports
    =================================== */
