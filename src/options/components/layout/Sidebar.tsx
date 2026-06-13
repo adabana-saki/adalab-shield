@@ -23,7 +23,6 @@ export type SubSectionId =
   | 'timeLimits'
   | 'focusMode'
   | 'pomodoro'
-  | 'streak'
   | 'challenge'
   | 'lockdown'
   | 'commitmentLock'
@@ -176,12 +175,6 @@ export function Sidebar({
               label: t('pomodoroTitle'),
               active: activeSubSection === 'pomodoro',
               onClick: () => onSectionChange('productivity', 'pomodoro'),
-            },
-            {
-              id: 'streak',
-              label: t('optionsTabStreak'),
-              active: activeSubSection === 'streak',
-              onClick: () => onSectionChange('productivity', 'streak'),
             },
             {
               id: 'adalabSync',

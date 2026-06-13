@@ -21,8 +21,6 @@ export const STORAGE_KEYS = {
   TIME_LIMITS_STATE: 'shortshield_time_limits_state',
   /** Time tracking history state key */
   TIME_TRACKING_STATE: 'shortshield_time_tracking_state',
-  /** Streak tracking data key */
-  STREAK_DATA: 'shortshield_streak_data',
   /** Challenge mode state key */
   CHALLENGE_STATE: 'shortshield_challenge_state',
   /** Lockdown mode state key */

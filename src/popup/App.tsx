@@ -11,13 +11,11 @@ import type {
   Platform,
   FocusModeState,
   PomodoroState,
-  StreakData,
   TimeLimitsState,
 } from '@/shared/types';
 import {
   DEFAULT_FOCUS_STATE,
   DEFAULT_POMODORO_STATE,
-  DEFAULT_STREAK_DATA,
   DEFAULT_TIME_LIMITS_STATE,
   STORAGE_KEYS,
 } from '@/shared/constants';
@@ -47,7 +45,6 @@ export function App() {
   const [pomodoroState, setPomodoroState] = useState<PomodoroState>(
     DEFAULT_POMODORO_STATE
   );
-  const [streakData, setStreakData] = useState<StreakData>(DEFAULT_STREAK_DATA);
   const [timeLimitsState, setTimeLimitsState] = useState<TimeLimitsState>(
     DEFAULT_TIME_LIMITS_STATE
   );
@@ -78,19 +75,6 @@ export function App() {
     }
   }, []);
 
-  const fetchStreakData = useCallback(async () => {
-    try {
-      const message = createMessage({ type: 'STREAK_GET_DATA' as const });
-      const response: { success: boolean; data?: StreakData } =
-        await browser.runtime.sendMessage(message);
-      if (response?.success === true && response.data !== undefined) {
-        setStreakData(response.data);
-      }
-    } catch {
-      // Ignore errors
-    }
-  }, []);
-
   const fetchTimeUsage = useCallback(async () => {
     try {
       const message = createMessage({ type: 'TIME_GET_USAGE' as const });
@@ -108,7 +92,6 @@ export function App() {
     /* eslint-disable react-hooks/set-state-in-effect -- async data fetching: setState is called after await in callbacks, not synchronously */
     void fetchFocusState();
     void fetchPomodoroState();
-    void fetchStreakData();
     void fetchTimeUsage();
     /* eslint-enable react-hooks/set-state-in-effect */
 
@@ -130,10 +113,6 @@ export function App() {
       if (pomodoro?.newValue !== undefined) {
         setPomodoroState(pomodoro.newValue as PomodoroState);
       }
-      const streak = changes[STORAGE_KEYS.STREAK_DATA];
-      if (streak?.newValue !== undefined) {
-        setStreakData(streak.newValue as StreakData);
-      }
       const timeLimits = changes[STORAGE_KEYS.TIME_LIMITS_STATE];
       if (timeLimits?.newValue !== undefined) {
         setTimeLimitsState(timeLimits.newValue as TimeLimitsState);
@@ -141,7 +120,7 @@ export function App() {
     };
     browser.storage.onChanged.addListener(onStorageChange);
     return () => browser.storage.onChanged.removeListener(onStorageChange);
-  }, [fetchFocusState, fetchPomodoroState, fetchStreakData, fetchTimeUsage]);
+  }, [fetchFocusState, fetchPomodoroState, fetchTimeUsage]);
 
   const handleToggleEnabled = () => {
     void toggleEnabled();
@@ -391,8 +370,6 @@ export function App() {
         {/* 5. Today's numbers */}
         <CompactStats
           stats={settings.stats}
-          streakData={streakData}
-          streakEnabled={settings.streak.enabled}
           todayUsageMs={timeLimitsState.usage.reduce(
             (sum, u) => sum + u.usedTodayMs,
             0

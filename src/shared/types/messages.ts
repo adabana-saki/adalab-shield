@@ -12,7 +12,6 @@ import type {
   TimeLimitsState,
   SiteTimeUsage,
   TimeTrackingState,
-  StreakData,
   ChallengeData,
   ChallengeState,
   LockdownState,
@@ -53,10 +52,6 @@ export const MESSAGE_TYPES = [
   // Time tracking history messages
   'TIME_GET_HISTORY',
   'TIME_CLEAR_HISTORY',
-  // Streak tracking messages
-  'STREAK_GET_DATA',
-  'STREAK_RESET',
-  'STREAK_CHECK_DAY',
   // Challenge mode messages
   'CHALLENGE_REQUEST',
   'CHALLENGE_SUBMIT',
@@ -278,27 +273,6 @@ export interface TimeGetHistoryMessage extends BaseMessage<'TIME_GET_HISTORY'> {
  */
 export interface TimeClearHistoryMessage extends BaseMessage<'TIME_CLEAR_HISTORY'> {
   readonly type: 'TIME_CLEAR_HISTORY';
-}
-
-/**
- * STREAK_GET_DATA message to get current streak data
- */
-export interface StreakGetDataMessage extends BaseMessage<'STREAK_GET_DATA'> {
-  readonly type: 'STREAK_GET_DATA';
-}
-
-/**
- * STREAK_RESET message to reset streak data
- */
-export interface StreakResetMessage extends BaseMessage<'STREAK_RESET'> {
-  readonly type: 'STREAK_RESET';
-}
-
-/**
- * STREAK_CHECK_DAY message to check and update today's streak status
- */
-export interface StreakCheckDayMessage extends BaseMessage<'STREAK_CHECK_DAY'> {
-  readonly type: 'STREAK_CHECK_DAY';
 }
 
 /**
@@ -537,9 +511,6 @@ export type Message =
   | TimeCheckLimitMessage
   | TimeGetHistoryMessage
   | TimeClearHistoryMessage
-  | StreakGetDataMessage
-  | StreakResetMessage
-  | StreakCheckDayMessage
   | ChallengeRequestMessage
   | ChallengeSubmitMessage
   | ChallengeGetStateMessage
@@ -611,9 +582,6 @@ export interface TimeCheckLimitResult {
 export type TimeCheckLimitResponse = MessageResponse<TimeCheckLimitResult>;
 export type TimeGetHistoryResponse = MessageResponse<TimeTrackingState>;
 export type TimeClearHistoryResponse = MessageResponse<TimeTrackingState>;
-export type StreakGetDataResponse = MessageResponse<StreakData>;
-export type StreakResetResponse = MessageResponse<StreakData>;
-export type StreakCheckDayResponse = MessageResponse<StreakData>;
 
 /**
  * Challenge submit result

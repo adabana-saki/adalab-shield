@@ -17,8 +17,6 @@ import type {
   TimeLimitsState,
   TimeTrackingSettings,
   TimeTrackingState,
-  StreakSettings,
-  StreakData,
   ChallengeSettings,
   ChallengeState,
   LockdownSettings,
@@ -219,33 +217,6 @@ export const DEFAULT_TIME_TRACKING_STATE: TimeTrackingState = {
 } as const;
 
 /**
- * Default streak settings
- */
-export const DEFAULT_STREAK: StreakSettings = {
-  enabled: true,
-  goalType: 'focus_time', // Count days with focus sessions
-  minFocusMinutes: 30, // At least 30 minutes of focus time
-  minBlocks: 10, // At least 10 blocks for 'blocks' goal type
-  showNotifications: true,
-} as const;
-
-/**
- * Default streak data (no streak)
- */
-export const DEFAULT_STREAK_DATA: StreakData = {
-  currentStreak: 0,
-  longestStreak: 0,
-  lastActiveDate: null,
-  totalFocusDays: 0,
-  achievedMilestones: [],
-} as const;
-
-/**
- * Streak milestones (days)
- */
-export const STREAK_MILESTONES = [7, 14, 30, 60, 90, 180, 365] as const;
-
-/**
  * Default challenge settings
  */
 export const DEFAULT_CHALLENGE: ChallengeSettings = {
@@ -444,7 +415,6 @@ export const DEFAULT_SETTINGS: Settings = {
   pomodoro: DEFAULT_POMODORO,
   timeLimits: DEFAULT_TIME_LIMITS,
   timeTracking: DEFAULT_TIME_TRACKING,
-  streak: DEFAULT_STREAK,
   challenge: DEFAULT_CHALLENGE,
   lockdown: DEFAULT_LOCKDOWN,
   commitmentLock: DEFAULT_COMMITMENT_LOCK,

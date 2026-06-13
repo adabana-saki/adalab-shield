@@ -180,11 +180,8 @@ export function App() {
         return (
           <ProductivitySection
             subSection={
-              (activeSubSection as
-                | 'focusMode'
-                | 'pomodoro'
-                | 'streak'
-                | 'adalabSync') ?? 'focusMode'
+              (activeSubSection as 'focusMode' | 'pomodoro' | 'adalabSync') ??
+              'focusMode'
             }
           />
         );

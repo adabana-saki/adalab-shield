@@ -296,28 +296,6 @@ export interface TimeTrackingState {
 }
 
 /**
- * Streak tracking settings
- */
-export interface StreakSettings {
-  readonly enabled: boolean;
-  readonly goalType: 'focus_time' | 'blocks' | 'no_access'; // What counts as a "good day"
-  readonly minFocusMinutes: number; // For focus_time goal: minimum focus time per day
-  readonly minBlocks: number; // For blocks goal: minimum blocks per day
-  readonly showNotifications: boolean;
-}
-
-/**
- * Streak tracking data
- */
-export interface StreakData {
-  readonly currentStreak: number;
-  readonly longestStreak: number;
-  readonly lastActiveDate: string | null; // ISO date string YYYY-MM-DD
-  readonly totalFocusDays: number;
-  readonly achievedMilestones: readonly number[]; // Milestone days achieved (e.g., 7, 30, 100)
-}
-
-/**
  * Challenge difficulty levels
  */
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
@@ -410,7 +388,6 @@ export interface Settings {
   readonly pomodoro: PomodoroSettings;
   readonly timeLimits: TimeLimitsSettings;
   readonly timeTracking: TimeTrackingSettings;
-  readonly streak: StreakSettings;
   readonly challenge: ChallengeSettings;
   readonly lockdown: LockdownSettings;
   readonly commitmentLock: CommitmentLockSettings;
@@ -442,7 +419,6 @@ export type SettingsUpdate = Partial<{
   pomodoro: Partial<PomodoroSettings>;
   timeLimits: Partial<TimeLimitsSettings>;
   timeTracking: Partial<TimeTrackingSettings>;
-  streak: Partial<StreakSettings>;
   challenge: Partial<ChallengeSettings>;
   lockdown: Partial<LockdownSettings>;
   commitmentLock: Partial<CommitmentLockSettings>;

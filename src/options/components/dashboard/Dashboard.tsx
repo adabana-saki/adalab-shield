@@ -9,7 +9,6 @@ import { createMessage } from '@/shared/types/messages';
 import type {
   Settings,
   FocusModeState,
-  StreakData,
   TimeLimitsState,
   TimeTrackingState,
   TimeGetHistoryMessage,
@@ -17,7 +16,6 @@ import type {
 } from '@/shared/types';
 import {
   DEFAULT_FOCUS_STATE,
-  DEFAULT_STREAK_DATA,
   DEFAULT_TIME_LIMITS_STATE,
   DEFAULT_TIME_TRACKING_STATE,
 } from '@/shared/constants';
@@ -43,7 +41,6 @@ export function Dashboard({
   const { t, formatNumber } = useI18n();
   const [focusState, setFocusState] =
     useState<FocusModeState>(DEFAULT_FOCUS_STATE);
-  const [streakData, setStreakData] = useState<StreakData>(DEFAULT_STREAK_DATA);
   const [timeLimitsState, setTimeLimitsState] = useState<TimeLimitsState>(
     DEFAULT_TIME_LIMITS_STATE
   );
@@ -58,19 +55,6 @@ export function Dashboard({
         await browser.runtime.sendMessage(message);
       if (response.success === true && response.data !== undefined) {
         setFocusState(response.data);
-      }
-    } catch {
-      // Ignore errors
-    }
-  }, []);
-
-  const fetchStreakData = useCallback(async () => {
-    try {
-      const message = createMessage({ type: 'STREAK_GET_DATA' as const });
-      const response: MessageResponse<StreakData> =
-        await browser.runtime.sendMessage(message);
-      if (response.success === true && response.data !== undefined) {
-        setStreakData(response.data);
       }
     } catch {
       // Ignore errors
@@ -110,10 +94,9 @@ export function Dashboard({
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- async data fetching on mount
     void fetchFocusState();
-    void fetchStreakData();
     void fetchTimeUsage();
     void fetchTimeHistory();
-  }, [fetchFocusState, fetchStreakData, fetchTimeUsage, fetchTimeHistory]);
+  }, [fetchFocusState, fetchTimeUsage, fetchTimeHistory]);
 
   // Poll focus state and time usage every second
   useEffect(() => {
@@ -184,22 +167,6 @@ export function Dashboard({
             </svg>
           }
           variant="accent"
-        />
-        <StatusCard
-          title={t('streakCurrent')}
-          value={streakData.currentStreak}
-          subtitle={`${t('streakBest')}: ${streakData.longestStreak}`}
-          icon={
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-            </svg>
-          }
-          variant="success"
         />
       </div>
 
