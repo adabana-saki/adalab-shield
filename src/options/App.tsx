@@ -198,6 +198,7 @@ export function App() {
                 | 'lockdown'
                 | 'commitmentLock') ?? 'challenge'
             }
+            onNavigate={handleSectionChange}
           />
         );
 

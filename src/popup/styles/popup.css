@@ -524,17 +524,21 @@ body {
   border: 1px solid var(--border-strong);
   border-radius: 5px;
   background: transparent;
-  color: var(--cyan);
+  /* 既定では空のチェックボックスに見せる (✓ を出すと「完了済み」と
+     誤解されるため、ホバー時だけ ✓ を表示して「押すと完了」を示す) */
+  color: transparent;
   cursor: pointer;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.15s;
 }
 .adalab-widget-task-check:hover {
   border-color: var(--cyan);
   background: var(--cyan-soft);
+  color: var(--cyan);
 }
 .adalab-widget-task-title {
   font-size: 12px;

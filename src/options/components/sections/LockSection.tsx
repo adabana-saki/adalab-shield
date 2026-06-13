@@ -6,6 +6,7 @@
  */
 
 import { useI18n } from '@/shared/hooks/useI18n';
+import type { SectionId, SubSectionId } from '../layout';
 import { SectionHeader } from '../common/SectionHeader';
 import { ChallengeSettings } from '../ChallengeSettings';
 import { LockdownSettings } from '../LockdownSettings';
@@ -15,13 +16,21 @@ type LockSubSection = 'challenge' | 'lockdown' | 'commitmentLock';
 
 interface LockSectionProps {
   subSection: LockSubSection;
+  onNavigate: (section: SectionId, subSection?: SubSectionId) => void;
 }
 
 /**
  * Comparison strip so users can tell the three lock features apart at a
- * glance (they protect different things)
+ * glance — and switch between them by clicking, without going back to the
+ * sidebar.
  */
-function LockOverview({ active }: { active: LockSubSection }) {
+function LockOverview({
+  active,
+  onNavigate,
+}: {
+  active: LockSubSection;
+  onNavigate: (section: SectionId, subSection?: SubSectionId) => void;
+}) {
   const { t } = useI18n();
   const items: { id: LockSubSection; title: string; desc: string }[] = [
     {
@@ -44,19 +53,22 @@ function LockOverview({ active }: { active: LockSubSection }) {
   return (
     <div className="lock-overview">
       {items.map((item) => (
-        <div
+        <button
           key={item.id}
+          type="button"
           className={`lock-overview-card ${active === item.id ? 'active' : ''}`}
+          onClick={() => onNavigate('lock', item.id)}
+          aria-pressed={active === item.id}
         >
           <span className="lock-overview-title">{item.title}</span>
           <span className="lock-overview-desc">{item.desc}</span>
-        </div>
+        </button>
       ))}
     </div>
   );
 }
 
-export function LockSection({ subSection }: LockSectionProps) {
+export function LockSection({ subSection, onNavigate }: LockSectionProps) {
   const { t } = useI18n();
 
   if (subSection === 'lockdown') {
@@ -77,7 +89,8 @@ export function LockSection({ subSection }: LockSectionProps) {
             </svg>
           }
         />
-        <LockOverview active="lockdown" /> <LockdownSettings />
+        <LockOverview active="lockdown" onNavigate={onNavigate} />{' '}
+        <LockdownSettings />
       </div>
     );
   }
@@ -101,7 +114,8 @@ export function LockSection({ subSection }: LockSectionProps) {
             </svg>
           }
         />
-        <LockOverview active="commitmentLock" /> <CommitmentLockSettings />
+        <LockOverview active="commitmentLock" onNavigate={onNavigate} />{' '}
+        <CommitmentLockSettings />
       </div>
     );
   }
@@ -124,7 +138,8 @@ export function LockSection({ subSection }: LockSectionProps) {
           </svg>
         }
       />
-      <LockOverview active="challenge" /> <ChallengeSettings />
+      <LockOverview active="challenge" onNavigate={onNavigate} />{' '}
+      <ChallengeSettings />
     </div>
   );
 }
