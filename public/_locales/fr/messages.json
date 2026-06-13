@@ -2347,6 +2347,10 @@
     "message": "Terminer la tâche",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabOpen": {
+    "message": "Ouvrir adalab study",
+    "description": "Button to open the adalab study web app in a new tab"
+  },
   "notifFocusStartedTitle": {
     "message": "Mode concentration démarré",
     "description": "Auto-added: notifFocusStartedTitle"

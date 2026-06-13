@@ -364,6 +364,56 @@ body {
   text-transform: uppercase;
   color: #c4b5fd;
 }
+/* study を開く/フォーカスするリンク (ヘッダーのタイトル兼ボタン) */
+.adalab-widget-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+  transition: color 0.15s;
+}
+.adalab-widget-open:hover {
+  color: #ddd6fe;
+}
+/* study タブが無いときの控えめなランチャー */
+.adalab-open-launcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  background: var(--purple-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.adalab-open-launcher:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.2);
+}
+.adalab-open-launcher-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+}
+.adalab-open-launcher-cta {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ddd6fe;
+}
 .adalab-widget-phase {
   font-size: 10px;
   padding: 3px 8px;
@@ -700,29 +750,38 @@ body {
 /* ---------- Block current site ---------- */
 
 .block-site-section {
-  padding: 0;
-}
-.block-site-btn {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 12px;
-  border: none;
+  flex-wrap: wrap;
+}
+/* 補助的な操作なので、メインの集中ボタンより控えめな小型ピルにする */
+.block-site-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text);
-  font-size: 13px;
+  color: var(--text-sub);
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 14px;
+  border-radius: 999px;
   transition: all 0.15s;
 }
+.block-site-btn svg {
+  width: 13px;
+  height: 13px;
+}
 .block-site-btn:hover:not(:disabled) {
+  border-color: var(--rose);
   background: var(--rose-soft);
   color: #fda4af;
 }
 .block-site-btn.blocked {
+  border-color: var(--rose);
   color: #fda4af;
 }
 .block-site-btn:disabled {
@@ -730,7 +789,9 @@ body {
   cursor: not-allowed;
 }
 .block-site-domain {
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
   max-width: 140px;
   white-space: nowrap;
   overflow: hidden;

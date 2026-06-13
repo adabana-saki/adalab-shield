@@ -2347,6 +2347,10 @@
     "message": "작업 완료",
     "description": "Button to mark an adalab study task as done"
   },
+  "popupAdalabOpen": {
+    "message": "adalab study 열기",
+    "description": "Button to open the adalab study web app in a new tab"
+  },
   "notifFocusStartedTitle": {
     "message": "집중 모드 시작",
     "description": "Auto-added: notifFocusStartedTitle"

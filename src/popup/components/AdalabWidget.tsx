@@ -20,6 +20,8 @@ const ADALAB_TAB_PATTERNS = [
   'http://localhost:5173/*',
 ];
 
+const STUDY_URL = 'https://study.adalabtech.com';
+
 function formatRemaining(endTime: number | null, now: number): string {
   if (endTime === null) {
     return '--:--';
@@ -109,8 +111,42 @@ export function AdalabWidget() {
     return () => clearInterval(interval);
   }, [state?.timer.running]);
 
+  // Open adalab study: focus the existing tab if there is one, else open it.
+  const openStudy = useCallback(() => {
+    void (async () => {
+      try {
+        const tabs = await browser.tabs.query({ url: ADALAB_TAB_PATTERNS });
+        const existing = tabs.find((x) => x.id !== undefined);
+        if (existing?.id !== undefined) {
+          await browser.tabs.update(existing.id, { active: true });
+          if (existing.windowId !== undefined) {
+            await browser.windows.update(existing.windowId, { focused: true });
+          }
+        } else {
+          await browser.tabs.create({ url: STUDY_URL });
+        }
+      } catch {
+        await browser.tabs.create({ url: STUDY_URL });
+      }
+    })();
+  }, []);
+
+  // No study tab open yet: show a subtle launcher so the link is discoverable.
   if (tabId === null || state === null) {
-    return null;
+    return (
+      <button
+        type="button"
+        className="adalab-open-launcher"
+        onClick={openStudy}
+      >
+        <span className="adalab-open-launcher-title">
+          {t('popupAdalabTitle')}
+        </span>
+        <span className="adalab-open-launcher-cta">
+          {t('popupAdalabOpen')} ↗
+        </span>
+      </button>
+    );
   }
 
   const { timer, tasks } = state;
@@ -126,7 +162,15 @@ export function AdalabWidget() {
   return (
     <div className="adalab-widget">
       <div className="adalab-widget-header">
-        <span className="adalab-widget-title">{t('popupAdalabTitle')}</span>
+        <button
+          type="button"
+          className="adalab-widget-title adalab-widget-open"
+          onClick={openStudy}
+          title={t('popupAdalabOpen')}
+        >
+          {t('popupAdalabTitle')}
+          <span aria-hidden="true"> ↗</span>
+        </button>
         <span
           className={`adalab-widget-phase ${timer.running ? 'is-running' : ''}`}
         >
