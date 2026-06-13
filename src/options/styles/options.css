@@ -1966,11 +1966,15 @@
   color: var(--color-text-tertiary);
 }
 
-.dark .toggle-switch .toggle-slider {
-  background-color: var(--color-bg-hover);
+/* OFF 状態のトラックが背景(#1a1a2e)とほぼ同色で見えなかったので、
+   はっきり視認できるグレーにする。2種類のスイッチ実装で色も揃える。 */
+.dark .toggle-switch .toggle-slider,
+.dark .toggle-label input[type='checkbox'] {
+  background-color: rgba(148, 163, 184, 0.45);
 }
 
-.dark .toggle-switch input:checked + .toggle-slider {
+.dark .toggle-switch input:checked + .toggle-slider,
+.dark .toggle-label input[type='checkbox']:checked {
   background-color: var(--color-accent);
 }
 
