@@ -87,94 +87,94 @@ export function ChallengeSettings() {
         </p>
       </div>
 
-      {settings.challenge.enabled && (
-        <>
-          {/* Disable bypass entirely */}
-          <div className="setting-row">
-            <label className="toggle-label">
-              <input
-                type="checkbox"
-                checked={settings.challenge.disableBypassEntirely}
-                onChange={() => void handleToggleDisableBypass()}
-              />
-              <span className="toggle-text">{t('challengeDisableBypass')}</span>
-            </label>
-            <p className="setting-description">
-              {t('challengeDisableBypassDescription')}
-            </p>
-          </div>
+      <div
+        className={`settings-detail ${settings.challenge.enabled ? '' : 'is-disabled'}`}
+      >
+        {/* Disable bypass entirely */}
+        <div className="setting-row">
+          <label className="toggle-label">
+            <input
+              type="checkbox"
+              checked={settings.challenge.disableBypassEntirely}
+              onChange={() => void handleToggleDisableBypass()}
+            />
+            <span className="toggle-text">{t('challengeDisableBypass')}</span>
+          </label>
+          <p className="setting-description">
+            {t('challengeDisableBypassDescription')}
+          </p>
+        </div>
 
-          {!settings.challenge.disableBypassEntirely && (
-            <>
-              {/* Challenge type selection */}
-              <div className="setting-row">
-                <label className="select-label">
-                  <span className="label-text">{t('challengeType')}</span>
-                  <select
-                    value={settings.challenge.challengeType}
-                    onChange={(e) => void handleChallengeTypeChange(e)}
-                  >
-                    <option value="math">{t('challengeTypeMath')}</option>
-                    <option value="typing">{t('challengeTypeTyping')}</option>
-                    <option value="pattern">{t('challengeTypePattern')}</option>
-                  </select>
-                </label>
-                <p className="setting-description">
-                  {t('challengeTypeDescription')}
-                </p>
-              </div>
+        {!settings.challenge.disableBypassEntirely && (
+          <>
+            {/* Challenge type selection */}
+            <div className="setting-row">
+              <label className="select-label">
+                <span className="label-text">{t('challengeType')}</span>
+                <select
+                  value={settings.challenge.challengeType}
+                  onChange={(e) => void handleChallengeTypeChange(e)}
+                >
+                  <option value="math">{t('challengeTypeMath')}</option>
+                  <option value="typing">{t('challengeTypeTyping')}</option>
+                  <option value="pattern">{t('challengeTypePattern')}</option>
+                </select>
+              </label>
+              <p className="setting-description">
+                {t('challengeTypeDescription')}
+              </p>
+            </div>
 
-              {/* Difficulty selection */}
-              <div className="setting-row">
-                <label className="select-label">
-                  <span className="label-text">{t('challengeDifficulty')}</span>
-                  <select
-                    value={settings.challenge.difficulty}
-                    onChange={(e) => void handleDifficultyChange(e)}
-                  >
-                    <option value="easy">{t('challengeDifficultyEasy')}</option>
-                    <option value="medium">
-                      {t('challengeDifficultyMedium')}
-                    </option>
-                    <option value="hard">{t('challengeDifficultyHard')}</option>
-                  </select>
-                </label>
-                <p className="setting-description">
-                  {t('challengeDifficultyDescription')}
-                </p>
-              </div>
+            {/* Difficulty selection */}
+            <div className="setting-row">
+              <label className="select-label">
+                <span className="label-text">{t('challengeDifficulty')}</span>
+                <select
+                  value={settings.challenge.difficulty}
+                  onChange={(e) => void handleDifficultyChange(e)}
+                >
+                  <option value="easy">{t('challengeDifficultyEasy')}</option>
+                  <option value="medium">
+                    {t('challengeDifficultyMedium')}
+                  </option>
+                  <option value="hard">{t('challengeDifficultyHard')}</option>
+                </select>
+              </label>
+              <p className="setting-description">
+                {t('challengeDifficultyDescription')}
+              </p>
+            </div>
 
-              {/* Cooldown setting */}
-              <div className="setting-row">
-                <label className="input-label">
-                  <span className="label-text">{t('challengeCooldown')}</span>
-                  <div className="input-with-unit">
-                    <input
-                      type="number"
-                      min="0"
-                      max="60"
-                      value={cooldownMinutes}
-                      onChange={(e) => {
-                        const minutes = parseInt(e.target.value, 10);
-                        if (!isNaN(minutes)) {
-                          const event = {
-                            target: { value: String(minutes * 60) },
-                          } as React.ChangeEvent<HTMLInputElement>;
-                          void handleCooldownChange(event);
-                        }
-                      }}
-                    />
-                    <span className="unit">{t('minutes')}</span>
-                  </div>
-                </label>
-                <p className="setting-description">
-                  {t('challengeCooldownDescription')}
-                </p>
-              </div>
-            </>
-          )}
-        </>
-      )}
+            {/* Cooldown setting */}
+            <div className="setting-row">
+              <label className="input-label">
+                <span className="label-text">{t('challengeCooldown')}</span>
+                <div className="input-with-unit">
+                  <input
+                    type="number"
+                    min="0"
+                    max="60"
+                    value={cooldownMinutes}
+                    onChange={(e) => {
+                      const minutes = parseInt(e.target.value, 10);
+                      if (!isNaN(minutes)) {
+                        const event = {
+                          target: { value: String(minutes * 60) },
+                        } as React.ChangeEvent<HTMLInputElement>;
+                        void handleCooldownChange(event);
+                      }
+                    }}
+                  />
+                  <span className="unit">{t('minutes')}</span>
+                </div>
+              </label>
+              <p className="setting-description">
+                {t('challengeCooldownDescription')}
+              </p>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

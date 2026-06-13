@@ -2,7 +2,7 @@
  * adalab study remote-control widget.
  * Shows the adalab study timer and today's open tasks, and lets the user
  * start/stop the pomodoro or complete tasks without leaving the popup.
- * Hidden unless an adalab study tab is open.
+ * When no adalab study tab is open, shows a subtle launcher to open it.
  */
 
 import { useCallback, useEffect, useState } from 'react';

@@ -780,8 +780,27 @@
   @apply flex items-center gap-3 cursor-pointer;
 }
 
+/* チェックボックスを iOS 風トグルスイッチとして描画して、設定全体で
+   有効化 UI を統一する (FocusMode/Pomodoro の .toggle-switch と揃える) */
 .toggle-label input[type='checkbox'] {
-  @apply w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500;
+  @apply relative w-11 h-6 rounded-full bg-gray-300 cursor-pointer
+         transition-colors duration-200 shrink-0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.toggle-label input[type='checkbox']::before {
+  content: '';
+  @apply absolute h-5 w-5 left-0.5 bottom-0.5 bg-white rounded-full
+         transition-transform duration-200;
+}
+.toggle-label input[type='checkbox']:checked {
+  @apply bg-primary-600;
+}
+.toggle-label input[type='checkbox']:checked::before {
+  @apply translate-x-5;
+}
+.toggle-label input[type='checkbox']:disabled {
+  @apply opacity-50 cursor-not-allowed;
 }
 
 .toggle-text {
@@ -2670,12 +2689,40 @@
   @apply py-4 border-b border-gray-100 last:border-0;
 }
 
+/* 詳細設定: 機能が OFF のときは隠さず、灰色＋操作不可で表示する
+   (ON にすると明るくなって触れるようになる) */
+.settings-detail {
+  @apply transition-opacity duration-200;
+}
+.settings-detail.is-disabled {
+  @apply opacity-40 pointer-events-none select-none;
+}
+
 .toggle-label {
   @apply flex items-center gap-3 cursor-pointer;
 }
 
+/* チェックボックスを iOS 風トグルスイッチとして描画して、設定全体で
+   有効化 UI を統一する (FocusMode/Pomodoro の .toggle-switch と揃える) */
 .toggle-label input[type='checkbox'] {
-  @apply w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500;
+  @apply relative w-11 h-6 rounded-full bg-gray-300 cursor-pointer
+         transition-colors duration-200 shrink-0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.toggle-label input[type='checkbox']::before {
+  content: '';
+  @apply absolute h-5 w-5 left-0.5 bottom-0.5 bg-white rounded-full
+         transition-transform duration-200;
+}
+.toggle-label input[type='checkbox']:checked {
+  @apply bg-primary-600;
+}
+.toggle-label input[type='checkbox']:checked::before {
+  @apply translate-x-5;
+}
+.toggle-label input[type='checkbox']:disabled {
+  @apply opacity-50 cursor-not-allowed;
 }
 
 .toggle-text {
