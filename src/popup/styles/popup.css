@@ -64,6 +64,12 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+/* Cards must keep their natural height and let the column scroll. Without
+   this they default to flex-shrink:1 and get squashed (their overflow:hidden
+   then clips the content — e.g. the expanded platform list disappeared). */
+.popup-scroll-content > * {
+  flex-shrink: 0;
+}
 
 .popup-scroll-content::-webkit-scrollbar {
   width: 6px;
@@ -747,9 +753,40 @@ body {
   opacity: 0.45;
   cursor: not-allowed;
 }
-.platform-grid-item input {
-  accent-color: var(--cyan);
+/* Custom checkbox: the native one renders as a black box under
+   `color-scheme: dark` and is invisible on the dark panel. */
+.platform-grid-item input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
   margin: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  background: rgba(15, 23, 42, 0.6);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+}
+.platform-grid-item input[type='checkbox']:checked {
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+.platform-grid-item input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid #04141b;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.platform-grid-item input[type='checkbox']:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .platform-grid-name {
   font-size: 11px;
