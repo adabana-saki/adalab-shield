@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "内容已屏蔽",
+    "message": "拦截页面",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
@@ -2524,5 +2524,21 @@
   "popupAdalabConnectedNote": {
     "message": "已连接 — 可在此直接操作 study 的番茄钟。",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "当前为关闭。请在下方设置后再开启以生效。",
+    "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "study 标签页已打开但无响应。请重新加载该标签页（扩展更新后会出现）。",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "重新加载 study 标签页",
+    "description": "Popup: reload study tab button"
+  },
+  "customDomainsErrorProtected": {
+    "message": "该网站无法被拦截（adalab study 联动所必需）。",
+    "description": "Error: tried to block a protected host"
   }
 }

@@ -4,6 +4,7 @@
  */
 
 import { useState, useCallback, useEffect, useMemo } from 'react';
+import browser from 'webextension-polyfill';
 import { useSettings } from '@/shared/hooks/useSettings';
 import { useI18n } from '@/shared/hooks/useI18n';
 import type { BlockPageTheme } from '@/shared/types';
@@ -405,12 +406,11 @@ export function BlockPageCustomizer() {
           }
         >
           <div className="preview-content">
-            <div
+            <img
               className="preview-icon"
-              style={{ color: blockPage.primaryColor }}
-            >
-              🛡️
-            </div>
+              src={browser.runtime.getURL('icons/icon-128.png')}
+              alt=""
+            />
             <h4 className="preview-title">
               {localTitle || t('blockPageDefaultTitle')}
             </h4>

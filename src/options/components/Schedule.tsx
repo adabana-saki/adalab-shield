@@ -165,88 +165,85 @@ export function Schedule() {
         </label>
       </div>
 
-      {schedule.enabled && (
-        <>
-          {/* Status indicator */}
-          <div
-            className={`schedule-status ${isActive ? 'active' : 'inactive'}`}
-          >
-            {t('scheduleStatus').replace('$STATUS$', statusText)}
-          </div>
-
-          {/* Active days */}
-          <div className="schedule-days">
-            <h3>{t('scheduleActiveDays')}</h3>
-            <div className="day-checkboxes">
-              {DAYS_OF_WEEK.map((day) => {
-                const dayKey = DAY_KEYS[day];
-                return (
-                  <label key={day} className="day-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={schedule.activeDays.includes(day)}
-                      onChange={() => void handleToggleDay(day)}
-                    />
-                    <span>{t(dayKey)}</span>
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Time ranges */}
-          <div className="schedule-time-ranges">
-            <h3>{t('scheduleTimeRanges')}</h3>
-            <div className="time-ranges-list">
-              {timeRanges.map((range, index) => (
-                <div key={index} className="time-range-item">
-                  <label className="time-input-group">
-                    <span>{t('scheduleFrom')}</span>
-                    <input
-                      type="time"
-                      value={formatTime(range.startHour, range.startMinute)}
-                      onChange={(e) =>
-                        void handleUpdateTimeRange(
-                          index,
-                          'start',
-                          e.target.value
-                        )
-                      }
-                      className="time-input"
-                    />
-                  </label>
-                  <label className="time-input-group">
-                    <span>{t('scheduleTo')}</span>
-                    <input
-                      type="time"
-                      value={formatTime(range.endHour, range.endMinute)}
-                      onChange={(e) =>
-                        void handleUpdateTimeRange(index, 'end', e.target.value)
-                      }
-                      className="time-input"
-                    />
-                  </label>
-                  {timeRanges.length > 1 && (
-                    <button
-                      onClick={() => void handleRemoveTimeRange(index)}
-                      className="remove-time-range-button"
-                      aria-label={t('scheduleRemoveTimeRange')}
-                    >
-                      {t('scheduleRemoveTimeRange')}
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={() => void handleAddTimeRange()}
-              className="add-time-range-button"
-            >
-              {t('scheduleAddTimeRange')}
-            </button>
-          </div>
-        </>
+      {schedule.enabled ? (
+        <div className={`schedule-status ${isActive ? 'active' : 'inactive'}`}>
+          {t('scheduleStatus').replace('$STATUS$', statusText)}
+        </div>
+      ) : (
+        <p className="section-hint">{t('settingsInactiveHint')}</p>
       )}
+
+      {/* Config stays visible and editable even when off, so it can be set up
+          in advance; the toggle above just activates it. */}
+      <>
+        {/* Active days */}
+        <div className="schedule-days">
+          <h3>{t('scheduleActiveDays')}</h3>
+          <div className="day-checkboxes">
+            {DAYS_OF_WEEK.map((day) => {
+              const dayKey = DAY_KEYS[day];
+              return (
+                <label key={day} className="day-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={schedule.activeDays.includes(day)}
+                    onChange={() => void handleToggleDay(day)}
+                  />
+                  <span>{t(dayKey)}</span>
+                </label>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Time ranges */}
+        <div className="schedule-time-ranges">
+          <h3>{t('scheduleTimeRanges')}</h3>
+          <div className="time-ranges-list">
+            {timeRanges.map((range, index) => (
+              <div key={index} className="time-range-item">
+                <label className="time-input-group">
+                  <span>{t('scheduleFrom')}</span>
+                  <input
+                    type="time"
+                    value={formatTime(range.startHour, range.startMinute)}
+                    onChange={(e) =>
+                      void handleUpdateTimeRange(index, 'start', e.target.value)
+                    }
+                    className="time-input"
+                  />
+                </label>
+                <label className="time-input-group">
+                  <span>{t('scheduleTo')}</span>
+                  <input
+                    type="time"
+                    value={formatTime(range.endHour, range.endMinute)}
+                    onChange={(e) =>
+                      void handleUpdateTimeRange(index, 'end', e.target.value)
+                    }
+                    className="time-input"
+                  />
+                </label>
+                {timeRanges.length > 1 && (
+                  <button
+                    onClick={() => void handleRemoveTimeRange(index)}
+                    className="remove-time-range-button"
+                    aria-label={t('scheduleRemoveTimeRange')}
+                  >
+                    {t('scheduleRemoveTimeRange')}
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={() => void handleAddTimeRange()}
+            className="add-time-range-button"
+          >
+            {t('scheduleAddTimeRange')}
+          </button>
+        </div>
+      </>
     </div>
   );
 }

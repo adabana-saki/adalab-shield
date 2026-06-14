@@ -173,6 +173,24 @@ export function AdalabWidget({ onConnectedChange }: AdalabWidgetProps = {}) {
     })();
   }, []);
 
+  // A study tab is open but its content script isn't responding. The usual
+  // cause: the tab was open while the extension was updated/reloaded, leaving
+  // a stale (orphaned) content script. Tell the user exactly how to fix it.
+  if (tabId !== null && state === null) {
+    return (
+      <div className="adalab-stale">
+        <span className="adalab-stale-text">{t('popupAdalabReloadTab')}</span>
+        <button
+          type="button"
+          className="adalab-widget-btn is-start"
+          onClick={() => void browser.tabs.reload(tabId)}
+        >
+          {t('popupAdalabReloadTabBtn')}
+        </button>
+      </div>
+    );
+  }
+
   // No study tab open yet: show a subtle launcher so the link is discoverable.
   if (tabId === null || state === null) {
     return (

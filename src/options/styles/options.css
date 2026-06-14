@@ -519,10 +519,15 @@
 
 .theme-option input[type='radio'] {
   @apply w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500;
+  accent-color: #06b6d4;
 }
 
 .theme-option span {
   @apply text-sm text-gray-700;
+}
+
+.dark .theme-option span {
+  color: var(--color-text-secondary);
 }
 
 /* Color Options */
@@ -636,7 +641,10 @@
 }
 
 .preview-icon {
-  @apply text-4xl mb-3;
+  @apply mb-3 mx-auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
 }
 
 .preview-title {
@@ -1678,11 +1686,16 @@
 
 /* Welcome Step */
 .welcome-step .welcome-icon {
-  @apply w-20 h-20 mx-auto mb-6 text-primary-600;
+  @apply w-16 h-16 mx-auto mb-6 text-primary-600;
 }
 
 .welcome-step .welcome-icon svg {
   @apply w-full h-full;
+}
+
+.welcome-step .welcome-icon img {
+  @apply w-full h-full;
+  border-radius: 16px;
 }
 
 .onboarding-title {

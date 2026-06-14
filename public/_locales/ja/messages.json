@@ -668,7 +668,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "コンテンツをブロックしました",
+    "message": "ブロック画面",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
@@ -2524,5 +2524,21 @@
   "popupAdalabConnectedNote": {
     "message": "連携中 — このポモドーロを拡張から操作できます。",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "現在オフです。下の内容を設定してからオンにすると有効になります。",
+    "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "study タブはありますが応答していません。タブを再読み込みしてください（拡張の更新後に起きます）。",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "study タブを再読み込み",
+    "description": "Popup: reload study tab button"
+  },
+  "customDomainsErrorProtected": {
+    "message": "このサイトはブロックできません（adalab study 連携に必要なため）。",
+    "description": "Error: tried to block a protected host"
   }
 }

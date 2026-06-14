@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>adalab shield</title>
     <style>
-      :root {
-        color-scheme: light dark;
-      }
+      /* Light is the base; JS adds .dark on <body> based on the user's
+         theme setting (system/light/dark) — not just the OS preference. */
       body {
         margin: 0;
         min-height: 100vh;
@@ -25,22 +24,20 @@
         );
         color: #1e293b;
       }
-      @media (prefers-color-scheme: dark) {
-        body {
-          background: linear-gradient(
-            135deg,
-            #1a1a2e 0%,
-            #16213e 50%,
-            #0f3460 100%
-          );
-          color: #ffffff;
-        }
-        .muted {
-          color: rgba(255, 255, 255, 0.6) !important;
-        }
-        .adalab {
-          background: rgba(6, 182, 212, 0.12) !important;
-        }
+      body.dark {
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        color: #ffffff;
+      }
+      body.dark .muted {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
+      body.dark .adalab {
+        background: rgba(6, 182, 212, 0.12) !important;
       }
       .wrap {
         text-align: center;
@@ -48,8 +45,10 @@
         padding: 40px;
       }
       .icon {
-        font-size: 72px;
-        margin-bottom: 24px;
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 24px;
+        border-radius: 18px;
       }
       h1 {
         font-size: 28px;
@@ -95,7 +94,7 @@
   </head>
   <body>
     <div class="wrap">
-      <div class="icon">🛡️</div>
+      <img class="icon" id="icon" alt="" />
       <h1 id="title">Content Blocked</h1>
       <p class="msg" id="message"></p>
       <div class="adalab" id="adalab">

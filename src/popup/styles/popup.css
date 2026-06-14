@@ -431,6 +431,21 @@ body {
   cursor: pointer;
   transition: all 0.15s;
 }
+/* Study tab open but content script not responding (stale after update) */
+.adalab-stale {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.12);
+}
+.adalab-stale-text {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #fcd34d;
+}
 .adalab-open-launcher:hover {
   border-color: rgba(139, 92, 246, 0.5);
   background: rgba(139, 92, 246, 0.2);

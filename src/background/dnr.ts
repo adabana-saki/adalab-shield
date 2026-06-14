@@ -13,6 +13,7 @@ import {
   YOUTUBE_CONFIG,
   INSTAGRAM_CONFIG,
   TIKTOK_CONFIG,
+  isProtectedHost,
 } from '@/shared/constants';
 import type { FullSitePlatform } from '@/shared/types';
 import { createLogger } from '@/shared/utils/logger';
@@ -113,6 +114,10 @@ export async function updateDnrRules(): Promise<void> {
       let customId = RULE_ID_CUSTOM_BASE;
       for (const domain of settings.customDomains.slice(0, MAX_CUSTOM_RULES)) {
         const host = domain.domain.replace(/^www\./, '');
+        // Never block protected hosts (e.g. the adalab study app).
+        if (isProtectedHost(host)) {
+          continue;
+        }
         desired.push(
           buildRule(
             customId++,

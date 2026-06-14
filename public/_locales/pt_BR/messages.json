@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "Conteúdo bloqueado",
+    "message": "Tela de bloqueio",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
@@ -2524,5 +2524,21 @@
   "popupAdalabConnectedNote": {
     "message": "Conectado — controle o pomodoro do study aqui mesmo.",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "Desativado. Configure abaixo e depois ative.",
+    "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "Há uma aba do study aberta, mas sem resposta. Recarregue-a (acontece após a extensão atualizar).",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "Recarregar a aba do study",
+    "description": "Popup: reload study tab button"
+  },
+  "customDomainsErrorProtected": {
+    "message": "Este site não pode ser bloqueado (necessário para a integração com o adalab study).",
+    "description": "Error: tried to block a protected host"
   }
 }
