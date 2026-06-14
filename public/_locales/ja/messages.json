@@ -1168,8 +1168,8 @@
     "description": "Challenge mode section title"
   },
   "challengeDescription": {
-    "message": "ブロックをバイパスする前にチャレンジを解く必要があります。気が散ることへの抵抗力を高めます。",
-    "description": "Challenge mode section description"
+    "message": "ブロック画面を突破する前に、簡単な問題を解かせて「本当に見る?」と一拍おかせます。",
+    "description": "Challenge mode description"
   },
   "challengeEnabled": {
     "message": "チャレンジモードを有効にする",
@@ -1272,8 +1272,8 @@
     "description": "Title for lockdown mode section"
   },
   "lockdownDescription": {
-    "message": "PINコードで設定を保護します。意志が弱いときの衝動的な変更を防ぎます。",
-    "description": "Description for lockdown mode"
+    "message": "PIN（暗証番号）で設定をロック。PINがないと設定変更もブロック解除もできません。",
+    "description": "Lockdown mode description"
   },
   "lockdownEnabled": {
     "message": "ロックダウンモードを有効化",
@@ -1420,8 +1420,8 @@
     "description": "Title for commitment lock feature"
   },
   "commitmentLockDescription": {
-    "message": "衝動的な解除を防ぐための摩擦を追加",
-    "description": "Description for commitment lock feature"
+    "message": "設定を弱める操作（解除・拡張OFF）の前に数秒の待機を挟み、衝動的なワンタップ解除を防ぎます。",
+    "description": "Commitment lock description"
   },
   "commitmentLockEnabled": {
     "message": "コミットメントロックを有効化",
@@ -2480,5 +2480,17 @@
   "popupHelp": {
     "message": "使い方",
     "description": "Popup footer: help link"
+  },
+  "challengeHelp": {
+    "message": "こんなときに: つい開いてしまうのを減らしたい人向け。完全には防ぎませんが、解く手間で勢いを止めます。",
+    "description": "Challenge mode: who it is for"
+  },
+  "lockdownHelp": {
+    "message": "こんなときに: 自分では解除できないよう固く固定したい人向け。PINを他の人に預ける使い方もできます。",
+    "description": "Lockdown mode: who it is for"
+  },
+  "commitmentLockHelp": {
+    "message": "こんなときに: ふだんは自分で管理しつつ、弱った瞬間のワンタップ解除だけ防ぎたい人向け（いちばん手軽）。",
+    "description": "Commitment lock: who it is for"
   }
 }

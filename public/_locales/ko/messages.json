@@ -1032,8 +1032,8 @@
     "description": "Challenge mode section title"
   },
   "challengeDescription": {
-    "message": "차단을 우회하기 전에 챌린지를 풀어야 합니다. 방해 요소에 대한 저항력을 높입니다.",
-    "description": "Challenge mode section description"
+    "message": "차단 페이지를 넘어가기 전에 간단한 문제를 풀게 해 '정말 볼까?' 하고 한 박자 쉬게 합니다.",
+    "description": "Challenge mode description"
   },
   "challengeEnabled": {
     "message": "챌린지 모드 활성화",
@@ -1136,8 +1136,8 @@
     "description": "Title for lockdown mode section"
   },
   "lockdownDescription": {
-    "message": "PIN 코드로 설정을 보호하세요. 의지가 약할 때 충동적인 변경을 방지합니다.",
-    "description": "Description for lockdown mode"
+    "message": "PIN(비밀번호)으로 설정을 잠급니다. PIN이 없으면 설정 변경도 차단 해제도 할 수 없습니다.",
+    "description": "Lockdown mode description"
   },
   "lockdownEnabled": {
     "message": "잠금 모드 활성화",
@@ -1420,8 +1420,8 @@
     "description": "Title for commitment lock feature"
   },
   "commitmentLockDescription": {
-    "message": "Add friction to prevent impulsive unlocking",
-    "description": "Description for commitment lock feature"
+    "message": "보호를 약화하는 동작(해제·끄기) 전에 몇 초의 대기를 두어 충동적인 원탭 해제를 막습니다.",
+    "description": "Commitment lock description"
   },
   "commitmentLockEnabled": {
     "message": "Enable Commitment Lock",
@@ -2480,5 +2480,17 @@
   "popupHelp": {
     "message": "사용법",
     "description": "Popup footer: help link"
+  },
+  "challengeHelp": {
+    "message": "이런 분께: 무심코 사이트를 여는 습관을 줄이고 싶은 분. 완전히 막지는 않지만 푸는 수고가 충동을 끊습니다.",
+    "description": "Challenge mode: who it is for"
+  },
+  "lockdownHelp": {
+    "message": "이런 분께: 스스로 해제하지 못하게 단단히 잠그고 싶은 분. PIN을 다른 사람에게 맡길 수도 있습니다.",
+    "description": "Lockdown mode: who it is for"
+  },
+  "commitmentLockHelp": {
+    "message": "이런 분께: 평소엔 직접 관리하되 약해진 순간의 원탭 해제만 막고 싶은 분(가장 가벼움).",
+    "description": "Commitment lock: who it is for"
   }
 }

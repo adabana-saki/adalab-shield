@@ -1032,8 +1032,8 @@
     "description": "Challenge mode section title"
   },
   "challengeDescription": {
-    "message": "绕过屏蔽前需要完成挑战。增加抵抗干扰的难度。",
-    "description": "Challenge mode section description"
+    "message": "突破拦截页面前，先做一道小题，让你停一下「真的要看吗？」。",
+    "description": "Challenge mode description"
   },
   "challengeEnabled": {
     "message": "启用挑战模式",
@@ -1136,8 +1136,8 @@
     "description": "Title for lockdown mode section"
   },
   "lockdownDescription": {
-    "message": "使用PIN码保护您的设置。防止意志薄弱时的冲动更改。",
-    "description": "Description for lockdown mode"
+    "message": "用 PIN（密码）锁定设置。没有 PIN 就无法更改设置或关闭拦截。",
+    "description": "Lockdown mode description"
   },
   "lockdownEnabled": {
     "message": "启用锁定模式",
@@ -1420,8 +1420,8 @@
     "description": "Title for commitment lock feature"
   },
   "commitmentLockDescription": {
-    "message": "Add friction to prevent impulsive unlocking",
-    "description": "Description for commitment lock feature"
+    "message": "在削弱保护（解除/关闭）前加入几秒等待，防止冲动地一键解除。",
+    "description": "Commitment lock description"
   },
   "commitmentLockEnabled": {
     "message": "Enable Commitment Lock",
@@ -2480,5 +2480,17 @@
   "popupHelp": {
     "message": "使用方法",
     "description": "Popup footer: help link"
+  },
+  "challengeHelp": {
+    "message": "适合：想减少「顺手就打开」的人。不能完全拦住，但解题的麻烦能打断冲动。",
+    "description": "Challenge mode: who it is for"
+  },
+  "lockdownHelp": {
+    "message": "适合：想牢牢锁死设置的人。甚至可以把 PIN 交给别人，让自己无法撤销。",
+    "description": "Lockdown mode: who it is for"
+  },
+  "commitmentLockHelp": {
+    "message": "适合：平时自己管理，只想防止脆弱时刻一键解除的人（最轻量）。",
+    "description": "Commitment lock: who it is for"
   }
 }

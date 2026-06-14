@@ -5149,3 +5149,15 @@
   color: var(--color-success-text);
   font-weight: 600;
 }
+
+/* "Best for…" plain-language callout under each lock mode */
+.lock-help-callout {
+  margin: 14px 0 4px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  background: var(--color-accent-light);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 8px;
+}

@@ -1032,8 +1032,8 @@
     "description": "Challenge mode section title"
   },
   "challengeDescription": {
-    "message": "Requiere resolver un desafío antes de omitir un bloqueo. Dificulta ceder ante las distracciones.",
-    "description": "Challenge mode section description"
+    "message": "Antes de saltarte una página de bloqueo, resuelves un pequeño reto: una pausa para reconsiderar.",
+    "description": "Challenge mode description"
   },
   "challengeEnabled": {
     "message": "Habilitar Modo Desafío",
@@ -1136,8 +1136,8 @@
     "description": "Title for lockdown mode section"
   },
   "lockdownDescription": {
-    "message": "Protege tu configuración con un código PIN. Evita cambios impulsivos cuando la voluntad es baja.",
-    "description": "Description for lockdown mode"
+    "message": "Bloquea tus ajustes con un PIN. Sin él, no se pueden cambiar los ajustes ni desactivar el bloqueo.",
+    "description": "Lockdown mode description"
   },
   "lockdownEnabled": {
     "message": "Habilitar modo bloqueo",
@@ -1420,8 +1420,8 @@
     "description": "Title for commitment lock feature"
   },
   "commitmentLockDescription": {
-    "message": "Add friction to prevent impulsive unlocking",
-    "description": "Description for commitment lock feature"
+    "message": "Añade una breve espera antes de poder debilitar la protección (desbloquear o desactivar), evitando desbloqueos impulsivos.",
+    "description": "Commitment lock description"
   },
   "commitmentLockEnabled": {
     "message": "Enable Commitment Lock",
@@ -2480,5 +2480,17 @@
   "popupHelp": {
     "message": "Ayuda",
     "description": "Popup footer: help link"
+  },
+  "challengeHelp": {
+    "message": "Ideal para: cuando abres sitios por inercia. No bloquea del todo, pero el esfuerzo corta el impulso.",
+    "description": "Challenge mode: who it is for"
+  },
+  "lockdownHelp": {
+    "message": "Ideal para: dejar los ajustes bien bloqueados. Incluso puedes dar el PIN a otra persona para no deshacerlo tú mismo.",
+    "description": "Lockdown mode: who it is for"
+  },
+  "commitmentLockHelp": {
+    "message": "Ideal para: gestionar tus propios ajustes evitando desbloqueos impulsivos de un toque. La opción más ligera.",
+    "description": "Commitment lock: who it is for"
   }
 }

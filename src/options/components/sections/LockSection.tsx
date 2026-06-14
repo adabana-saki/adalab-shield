@@ -89,7 +89,8 @@ export function LockSection({ subSection, onNavigate }: LockSectionProps) {
             </svg>
           }
         />
-        <LockOverview active="lockdown" onNavigate={onNavigate} />{' '}
+        <LockOverview active="lockdown" onNavigate={onNavigate} />
+        <p className="lock-help-callout">{t('lockdownHelp')}</p>
         <LockdownSettings />
       </div>
     );
@@ -114,7 +115,8 @@ export function LockSection({ subSection, onNavigate }: LockSectionProps) {
             </svg>
           }
         />
-        <LockOverview active="commitmentLock" onNavigate={onNavigate} />{' '}
+        <LockOverview active="commitmentLock" onNavigate={onNavigate} />
+        <p className="lock-help-callout">{t('commitmentLockHelp')}</p>
         <CommitmentLockSettings />
       </div>
     );
@@ -138,7 +140,8 @@ export function LockSection({ subSection, onNavigate }: LockSectionProps) {
           </svg>
         }
       />
-      <LockOverview active="challenge" onNavigate={onNavigate} />{' '}
+      <LockOverview active="challenge" onNavigate={onNavigate} />
+      <p className="lock-help-callout">{t('challengeHelp')}</p>
       <ChallengeSettings />
     </div>
   );
