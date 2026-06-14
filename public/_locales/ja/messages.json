@@ -2456,5 +2456,29 @@
   "commitmentLockErrorConfirm": {
     "message": "解除を完了できませんでした。",
     "description": "Confirm unlock error"
+  },
+  "sidebarHelp": {
+    "message": "使い方",
+    "description": "Sidebar: help/usage guide"
+  },
+  "helpTitle": {
+    "message": "使い方ガイド",
+    "description": "Help section title"
+  },
+  "helpIntro": {
+    "message": "adalab shield の主な機能と使い方をまとめています。",
+    "description": "Help section intro"
+  },
+  "helpReplayTour": {
+    "message": "初回ツアーをもう一度見る",
+    "description": "Help: replay intro tour button"
+  },
+  "helpReplayTourDesc": {
+    "message": "セットアップの手順を最初から確認できます。",
+    "description": "Help: replay intro tour description"
+  },
+  "popupHelp": {
+    "message": "使い方",
+    "description": "Popup footer: help link"
   }
 }

@@ -1499,6 +1499,39 @@
   @apply bg-white rounded-xl border border-gray-200 p-6;
 }
 
+/* Help / usage guide */
+.help-features {
+  @apply mt-5 grid gap-3;
+}
+.help-feature {
+  @apply rounded-lg border border-gray-200 bg-gray-50 p-4;
+}
+.help-feature-title {
+  @apply text-sm font-semibold text-gray-900 mb-1;
+}
+.help-feature-desc {
+  @apply text-sm text-gray-600 leading-relaxed;
+}
+.help-replay {
+  @apply mt-5 flex items-center justify-between gap-4 rounded-lg border border-gray-200 p-4;
+}
+.help-replay-text {
+  @apply flex-1;
+}
+.dark .help-feature {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-primary);
+}
+.dark .help-replay {
+  border-color: var(--color-border-primary);
+}
+.dark .help-feature-title {
+  color: var(--color-text-primary);
+}
+.dark .help-feature-desc {
+  color: var(--color-text-tertiary);
+}
+
 /* Settings Group */
 .settings-group {
   @apply mb-6 last:mb-0;

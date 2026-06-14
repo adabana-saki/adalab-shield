@@ -2456,5 +2456,29 @@
   "commitmentLockErrorConfirm": {
     "message": "Échec de la finalisation du déverrouillage.",
     "description": "Confirm unlock error"
+  },
+  "sidebarHelp": {
+    "message": "Aide",
+    "description": "Sidebar: help/usage guide"
+  },
+  "helpTitle": {
+    "message": "Comment utiliser",
+    "description": "Help section title"
+  },
+  "helpIntro": {
+    "message": "Les principales fonctionnalités d'adalab shield et leur utilisation.",
+    "description": "Help section intro"
+  },
+  "helpReplayTour": {
+    "message": "Revoir la visite guidée",
+    "description": "Help: replay intro tour button"
+  },
+  "helpReplayTourDesc": {
+    "message": "Reprenez les étapes de configuration depuis le début.",
+    "description": "Help: replay intro tour description"
+  },
+  "popupHelp": {
+    "message": "Aide",
+    "description": "Popup footer: help link"
   }
 }

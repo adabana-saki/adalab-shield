@@ -1024,8 +1024,11 @@ body {
   border-top: 1px solid var(--border);
   padding: 8px 12px;
   background: rgba(10, 10, 18, 0.8);
+  display: flex;
+  gap: 6px;
 }
 .popup-settings-btn {
+  flex: 1;
   width: 100%;
   display: flex;
   align-items: center;
