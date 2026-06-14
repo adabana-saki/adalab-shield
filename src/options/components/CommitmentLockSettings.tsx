@@ -3,7 +3,7 @@
  * Implements friction levels to prevent easy unlock of blocking rules
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import browser from 'webextension-polyfill';
 import { useSettings } from '@/shared/hooks/useSettings';
 import { useI18n } from '@/shared/hooks/useI18n';
@@ -29,6 +29,10 @@ export function CommitmentLockSettings() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showUnlockDialog, setShowUnlockDialog] = useState(false);
+  // When the user clicks the enabled toggle while locked, we open the unlock
+  // dialog and remember that the real intent was to turn the lock OFF, so we
+  // can do it automatically on success (otherwise it takes two clicks).
+  const pendingDisableRef = useRef(false);
 
   // After a successful unlock flow, weakening changes are allowed briefly
   const inUnlockWindow =
@@ -64,8 +68,10 @@ export function CommitmentLockSettings() {
 
   const handleToggleEnabled = useCallback(async () => {
     // Disabling requires completing the unlock flow first (that is the
-    // whole point of Commitment Lock)
+    // whole point of Commitment Lock). Remember the intent so we can turn it
+    // off automatically once the unlock succeeds (one click, not two).
     if (commitmentLockSettings.enabled && !inUnlockWindow) {
+      pendingDisableRef.current = true;
       setShowUnlockDialog(true);
       return;
     }
@@ -74,10 +80,13 @@ export function CommitmentLockSettings() {
       await updateSettings({
         commitmentLock: enabling
           ? {
-              // 有効化時はシンプルな構成に固定する (待機＋意思入力＋確認)。
-              // 旧バージョンの複雑な設定が残っていても解除を単純な手順に戻す。
+              // 有効化時はシンプルな構成に固定する (短い待機＋確認だけ)。
+              // 旧バージョンの複雑な設定が残っていても、毎回ここで軽量化する。
               enabled: true,
               level: 1,
+              confirmationWaitSeconds: 10,
+              cooldownAfterUnlockMinutes: 0,
+              requireIntentionStatement: false,
               timeLockEnabled: false,
               scheduleRestriction: false,
               nuclearModeEnabled: false,
@@ -108,63 +117,6 @@ export function CommitmentLockSettings() {
           });
         } catch (err) {
           console.error('Failed to update wait seconds:', err);
-        }
-      }
-    },
-    [updateSettings]
-  );
-
-  const handleCooldownChange = useCallback(
-    async (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = parseInt(e.target.value, 10);
-      if (
-        !isNaN(value) &&
-        value >= COMMITMENT_LOCK_LIMITS.MIN_COOLDOWN_MINUTES &&
-        value <= COMMITMENT_LOCK_LIMITS.MAX_COOLDOWN_MINUTES
-      ) {
-        try {
-          await updateSettings({
-            commitmentLock: {
-              cooldownAfterUnlockMinutes: value,
-            },
-          });
-        } catch (err) {
-          console.error('Failed to update cooldown:', err);
-        }
-      }
-    },
-    [updateSettings]
-  );
-
-  const handleIntentionToggle = useCallback(async () => {
-    try {
-      await updateSettings({
-        commitmentLock: {
-          requireIntentionStatement:
-            !commitmentLockSettings.requireIntentionStatement,
-        },
-      });
-    } catch (err) {
-      console.error('Failed to toggle intention requirement:', err);
-    }
-  }, [commitmentLockSettings.requireIntentionStatement, updateSettings]);
-
-  const handleIntentionLengthChange = useCallback(
-    async (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = parseInt(e.target.value, 10);
-      if (
-        !isNaN(value) &&
-        value >= COMMITMENT_LOCK_LIMITS.MIN_INTENTION_LENGTH &&
-        value <= COMMITMENT_LOCK_LIMITS.MAX_INTENTION_LENGTH
-      ) {
-        try {
-          await updateSettings({
-            commitmentLock: {
-              intentionMinLength: value,
-            },
-          });
-        } catch (err) {
-          console.error('Failed to update intention length:', err);
         }
       }
     },
@@ -234,29 +186,8 @@ export function CommitmentLockSettings() {
           )}
         </div>
 
-        {/* Current state display */}
-        {commitmentLockState && (
-          <div className="state-info-banner">
-            <div className="state-row">
-              <span>{t('commitmentLockTodayAttempts')}:</span>
-              <strong>{commitmentLockState.todayAttempts}</strong>
-            </div>
-            {commitmentLockState.currentCooldownEndsAt &&
-              commitmentLockState.currentCooldownEndsAt > Date.now() && (
-                <div className="state-row cooldown-active">
-                  <span>{t('commitmentLockCooldownActive')}</span>
-                </div>
-              )}
-          </div>
-        )}
-
-        {/* Level 1+ Settings */}
+        {/* Wait time — the only knob: how long the speed bump lasts. */}
         <div className="setting-section">
-          <h3 className="subsection-title">
-            {t('commitmentLockBasicSettings')}
-          </h3>
-
-          {/* Wait time */}
           <div className="setting-row">
             <label className="input-label">
               <span className="label-text">{t('commitmentLockWaitTime')}</span>
@@ -275,63 +206,6 @@ export function CommitmentLockSettings() {
               {t('commitmentLockWaitTimeDescription')}
             </p>
           </div>
-
-          {/* Cooldown */}
-          <div className="setting-row">
-            <label className="input-label">
-              <span className="label-text">{t('commitmentLockCooldown')}</span>
-              <div className="input-with-unit">
-                <input
-                  type="number"
-                  min={COMMITMENT_LOCK_LIMITS.MIN_COOLDOWN_MINUTES}
-                  max={COMMITMENT_LOCK_LIMITS.MAX_COOLDOWN_MINUTES}
-                  value={commitmentLockSettings.cooldownAfterUnlockMinutes}
-                  onChange={(e) => void handleCooldownChange(e)}
-                />
-                <span className="unit">{t('minutes')}</span>
-              </div>
-            </label>
-            <p className="setting-description">
-              {t('commitmentLockCooldownDescription')}
-            </p>
-          </div>
-
-          {/* Intention statement */}
-          <div className="setting-row">
-            <label className="toggle-label">
-              <input
-                type="checkbox"
-                checked={commitmentLockSettings.requireIntentionStatement}
-                onChange={() => void handleIntentionToggle()}
-              />
-              <span className="toggle-text">
-                {t('commitmentLockRequireIntention')}
-              </span>
-            </label>
-            <p className="setting-description">
-              {t('commitmentLockRequireIntentionDescription')}
-            </p>
-          </div>
-
-          {commitmentLockSettings.requireIntentionStatement && (
-            <div className="setting-row nested">
-              <label className="input-label">
-                <span className="label-text">
-                  {t('commitmentLockIntentionMinLength')}
-                </span>
-                <div className="input-with-unit">
-                  <input
-                    type="number"
-                    min={COMMITMENT_LOCK_LIMITS.MIN_INTENTION_LENGTH}
-                    max={COMMITMENT_LOCK_LIMITS.MAX_INTENTION_LENGTH}
-                    value={commitmentLockSettings.intentionMinLength}
-                    onChange={(e) => void handleIntentionLengthChange(e)}
-                  />
-                  <span className="unit">{t('characters')}</span>
-                </div>
-              </label>
-            </div>
-          )}
         </div>
 
         {/* Info section */}
@@ -345,15 +219,35 @@ export function CommitmentLockSettings() {
         </div>
       </div>
 
-      {/* Unlock flow dialog (wait → intention → challenges → confirm) */}
-      <UnlockDialog
-        isOpen={showUnlockDialog}
-        onClose={() => setShowUnlockDialog(false)}
-        onUnlockSuccess={() => {
-          setShowUnlockDialog(false);
-          void loadStates();
-        }}
-      />
+      {/* Unlock = a short countdown, then confirm (no multi-step flow).
+          Mounted only while open so each attempt starts fresh. */}
+      {showUnlockDialog && (
+        <UnlockDialog
+          isOpen={showUnlockDialog}
+          onClose={() => {
+            // User backed out: forget the pending disable intent.
+            pendingDisableRef.current = false;
+            setShowUnlockDialog(false);
+          }}
+          onUnlockSuccess={() => {
+            setShowUnlockDialog(false);
+            void (async () => {
+              await loadStates();
+              // If the unlock was triggered by clicking the OFF toggle, finish
+              // the job: the unlock window is now open so the guard allows it.
+              if (pendingDisableRef.current) {
+                pendingDisableRef.current = false;
+                try {
+                  await updateSettings({ commitmentLock: { enabled: false } });
+                } catch (err) {
+                  console.error('Failed to disable Commitment Lock:', err);
+                  setError(t('commitmentLockErrorUpdate'));
+                }
+              }
+            })();
+          }}
+        />
+      )}
     </div>
   );
 }
