@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "Inhalt blockiert",
+    "message": "Sperrseite",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {

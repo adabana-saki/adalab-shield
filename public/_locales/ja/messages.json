@@ -668,7 +668,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "コンテンツをブロックしました",
+    "message": "ブロック画面",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {

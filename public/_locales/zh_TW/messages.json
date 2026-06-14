@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "內容已封鎖",
+    "message": "攔截頁面",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {

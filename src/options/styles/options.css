@@ -519,10 +519,15 @@
 
 .theme-option input[type='radio'] {
   @apply w-4 h-4 text-primary-600 border-gray-300 focus:ring-primary-500;
+  accent-color: #06b6d4;
 }
 
 .theme-option span {
   @apply text-sm text-gray-700;
+}
+
+.dark .theme-option span {
+  color: var(--color-text-secondary);
 }
 
 /* Color Options */

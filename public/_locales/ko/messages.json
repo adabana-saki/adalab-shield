@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "콘텐츠 차단됨",
+    "message": "차단 화면",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
