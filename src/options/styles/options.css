@@ -2436,6 +2436,40 @@
   color: var(--color-accent-text);
 }
 
+/* Onboarding chips/icons that were defined light-only and blended into the
+   dark card (unreadable badges, invisible icon circles). */
+.dark .welcome-feature-icon {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent-text);
+}
+
+.dark .schedule-option-icon {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-tertiary);
+}
+
+.dark .schedule-option.selected .schedule-option-icon {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent-text);
+}
+
+.dark .complete-summary-label {
+  color: var(--color-text-tertiary);
+}
+
+.dark .complete-badge {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent-text);
+}
+
+.dark .complete-empty {
+  color: var(--color-text-tertiary);
+}
+
+.dark .complete-icon {
+  background-color: rgba(34, 197, 94, 0.15);
+}
+
 .dark .onboarding-btn.secondary {
   background-color: var(--color-bg-tertiary);
   color: var(--color-text-primary);
