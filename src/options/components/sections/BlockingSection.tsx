@@ -43,6 +43,7 @@ export function BlockingSection({
             </svg>
           }
         />
+        <p className="section-hint">{t('customDomainsHint')}</p>
         <CustomDomains />
       </div>
     );
@@ -66,6 +67,7 @@ export function BlockingSection({
             </svg>
           }
         />
+        <p className="section-hint">{t('timeLimitsHint')}</p>
         <TimeLimitsConfig />
       </div>
     );
@@ -89,6 +91,7 @@ export function BlockingSection({
           </svg>
         }
       />
+      <p className="section-hint">{t('platformsHint')}</p>
 
       {/* Short Video Platforms */}
       <div className="settings-group">

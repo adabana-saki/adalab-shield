@@ -136,8 +136,8 @@
     "description": "Section title for platform settings"
   },
   "optionsPlatformsDescription": {
-    "message": "Wähle welche Plattformen blockiert werden sollen",
-    "description": "Description for platform settings section"
+    "message": "Wähle, welche Plattformen blockiert werden – Kurzvideo-Feeds, ganze Seiten oder soziale Netzwerke.",
+    "description": "Platforms section description"
   },
   "optionsPreferencesTitle": {
     "message": "Einstellungen",
@@ -1032,8 +1032,8 @@
     "description": "Challenge mode section title"
   },
   "challengeDescription": {
-    "message": "Erfordert das Lösen einer Aufgabe vor dem Umgehen einer Sperre. Erschwert das Nachgeben bei Ablenkungen.",
-    "description": "Challenge mode section description"
+    "message": "Bevor du eine Sperrseite umgehen kannst, löst du eine kleine Aufgabe – ein Moment zum Nachdenken.",
+    "description": "Challenge mode description"
   },
   "challengeEnabled": {
     "message": "Herausforderungsmodus aktivieren",
@@ -1136,8 +1136,8 @@
     "description": "Title for lockdown mode section"
   },
   "lockdownDescription": {
-    "message": "Schützen Sie Ihre Einstellungen mit einem PIN-Code. Verhindert impulsive Änderungen bei schwacher Willenskraft.",
-    "description": "Description for lockdown mode"
+    "message": "Sperre deine Einstellungen mit einer PIN. Ohne sie lassen sich Einstellungen nicht ändern und die Blockierung nicht abschalten.",
+    "description": "Lockdown mode description"
   },
   "lockdownEnabled": {
     "message": "Sperrmodus aktivieren",
@@ -1420,8 +1420,8 @@
     "description": "Title for commitment lock feature"
   },
   "commitmentLockDescription": {
-    "message": "Add friction to prevent impulsive unlocking",
-    "description": "Description for commitment lock feature"
+    "message": "Fügt eine kurze Wartezeit ein, bevor du den Schutz schwächen kannst (Entsperren/Ausschalten), und verhindert impulsives Entsperren.",
+    "description": "Commitment lock description"
   },
   "commitmentLockEnabled": {
     "message": "Enable Commitment Lock",
@@ -2480,5 +2480,45 @@
   "popupHelp": {
     "message": "Hilfe",
     "description": "Popup footer: help link"
+  },
+  "challengeHelp": {
+    "message": "Ideal für: wenn du Seiten aus Gewohnheit öffnest. Es blockiert nicht vollständig, aber der Aufwand bremst den Impuls.",
+    "description": "Challenge mode: who it is for"
+  },
+  "lockdownHelp": {
+    "message": "Ideal für: Einstellungen fest abzuriegeln. Du kannst die PIN sogar jemand anderem geben, damit du es nicht selbst rückgängig machst.",
+    "description": "Lockdown mode: who it is for"
+  },
+  "commitmentLockHelp": {
+    "message": "Ideal für: eigene Einstellungen verwalten und trotzdem impulsives Entsperren verhindern. Die leichteste Option.",
+    "description": "Commitment lock: who it is for"
+  },
+  "platformsHint": {
+    "message": "Tipp: „Kurzvideos“ blockt nur den Shorts/Reels-Feed, „Ganze Seite“ die komplette Website, „Soziale Netzwerke“ den jeweiligen Dienst komplett.",
+    "description": "Platforms: usage hint"
+  },
+  "customDomainsHint": {
+    "message": "Tipp: Füge Seiten hinzu, auf denen du oft landest (z. B. news.example.com). Sie werden sofort beim Öffnen blockiert.",
+    "description": "Custom domains: usage hint"
+  },
+  "timeLimitsHint": {
+    "message": "Tipp: Ist das Tageslimit erreicht, wird die Plattform für den Rest des Tages blockiert – gut, wenn du etwas Nutzung willst, nicht null.",
+    "description": "Time limits: usage hint"
+  },
+  "scheduleHint": {
+    "message": "Tipp: für wiederkehrende Zeiten (z. B. Mo–Fr 9–17 Uhr). Für „jetzt fokussieren“ nutze den Fokusmodus.",
+    "description": "Schedule: usage hint"
+  },
+  "focusModeHint": {
+    "message": "Tipp: ein einmaliger Timer, der jetzt blockt – auch außerhalb des Zeitplans. Für feste Zeiten nutze den Zeitplan.",
+    "description": "Focus mode: usage hint"
+  },
+  "adalabSyncHint": {
+    "message": "Tipp: verbindet sich über diesen Browser mit der adalab-study-App – kein Google-Login nötig. Blockt im Fokus, frei in Pausen.",
+    "description": "adalab sync: usage hint"
+  },
+  "blockPageHint": {
+    "message": "Tipp: ändert nur das Aussehen der Sperrseite – nicht, was blockiert wird.",
+    "description": "Block page: usage hint"
   }
 }

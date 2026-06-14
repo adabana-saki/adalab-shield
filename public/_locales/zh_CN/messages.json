@@ -136,8 +136,8 @@
     "description": "Section title for platform settings"
   },
   "optionsPlatformsDescription": {
-    "message": "选择要拦截的平台",
-    "description": "Description for platform settings section"
+    "message": "选择要拦截的平台——短视频信息流、整站或社交网络。",
+    "description": "Platforms section description"
   },
   "optionsPreferencesTitle": {
     "message": "偏好设置",
@@ -1032,8 +1032,8 @@
     "description": "Challenge mode section title"
   },
   "challengeDescription": {
-    "message": "绕过屏蔽前需要完成挑战。增加抵抗干扰的难度。",
-    "description": "Challenge mode section description"
+    "message": "突破拦截页面前，先做一道小题，让你停一下「真的要看吗？」。",
+    "description": "Challenge mode description"
   },
   "challengeEnabled": {
     "message": "启用挑战模式",
@@ -1136,8 +1136,8 @@
     "description": "Title for lockdown mode section"
   },
   "lockdownDescription": {
-    "message": "使用PIN码保护您的设置。防止意志薄弱时的冲动更改。",
-    "description": "Description for lockdown mode"
+    "message": "用 PIN（密码）锁定设置。没有 PIN 就无法更改设置或关闭拦截。",
+    "description": "Lockdown mode description"
   },
   "lockdownEnabled": {
     "message": "启用锁定模式",
@@ -1420,8 +1420,8 @@
     "description": "Title for commitment lock feature"
   },
   "commitmentLockDescription": {
-    "message": "Add friction to prevent impulsive unlocking",
-    "description": "Description for commitment lock feature"
+    "message": "在削弱保护（解除/关闭）前加入几秒等待，防止冲动地一键解除。",
+    "description": "Commitment lock description"
   },
   "commitmentLockEnabled": {
     "message": "Enable Commitment Lock",
@@ -2480,5 +2480,45 @@
   "popupHelp": {
     "message": "使用方法",
     "description": "Popup footer: help link"
+  },
+  "challengeHelp": {
+    "message": "适合：想减少「顺手就打开」的人。不能完全拦住，但解题的麻烦能打断冲动。",
+    "description": "Challenge mode: who it is for"
+  },
+  "lockdownHelp": {
+    "message": "适合：想牢牢锁死设置的人。甚至可以把 PIN 交给别人，让自己无法撤销。",
+    "description": "Lockdown mode: who it is for"
+  },
+  "commitmentLockHelp": {
+    "message": "适合：平时自己管理，只想防止脆弱时刻一键解除的人（最轻量）。",
+    "description": "Commitment lock: who it is for"
+  },
+  "platformsHint": {
+    "message": "提示：「短视频」只拦截 Shorts/Reels 信息流，「整站」拦截整个网站，「社交网络」拦截各服务全部。",
+    "description": "Platforms: usage hint"
+  },
+  "customDomainsHint": {
+    "message": "提示：把你总会逛进去的网站（如 news.example.com）加进来，一打开就拦截。",
+    "description": "Custom domains: usage hint"
+  },
+  "timeLimitsHint": {
+    "message": "提示：达到每日上限后，当天剩余时间会拦截该平台。适合「适度使用而非完全禁止」。",
+    "description": "Time limits: usage hint"
+  },
+  "scheduleHint": {
+    "message": "提示：用于固定重复的时段（如工作日 9–17 点）。只想现在专注，请用专注模式。",
+    "description": "Schedule: usage hint"
+  },
+  "focusModeHint": {
+    "message": "提示：一次性计时器，现在就拦截，即使在计划之外。固定时间请用日程。",
+    "description": "Focus mode: usage hint"
+  },
+  "adalabSyncHint": {
+    "message": "提示：通过本浏览器与 adalab study 应用联动（无需 Google 登录）。专注时拦截，休息时解除。",
+    "description": "adalab sync: usage hint"
+  },
+  "blockPageHint": {
+    "message": "提示：这里只改变拦截页面的外观，不改变拦截对象。",
+    "description": "Block page: usage hint"
   }
 }

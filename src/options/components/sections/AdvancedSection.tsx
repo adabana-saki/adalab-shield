@@ -84,6 +84,7 @@ export function AdvancedSection({ subSection }: AdvancedSectionProps) {
           </svg>
         }
       />
+      <p className="section-hint">{t('blockPageHint')}</p>
       <BlockPageCustomizer />
     </div>
   );
