@@ -2520,5 +2520,9 @@
   "blockPageHint": {
     "message": "Astuce : change uniquement l'apparence de la page de blocage, pas ce qui est bloqué.",
     "description": "Block page: usage hint"
+  },
+  "popupAdalabConnectedNote": {
+    "message": "Connecté — pilotez le pomodoro study ici même.",
+    "description": "Popup: adalab study connected note"
   }
 }

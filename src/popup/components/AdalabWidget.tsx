@@ -32,7 +32,13 @@ function formatRemaining(endTime: number | null, now: number): string {
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 }
 
-export function AdalabWidget() {
+interface AdalabWidgetProps {
+  /** Notifies the popup whether adalab study is connected (tab open and
+      responding) so it can show study controls instead of normal mode. */
+  onConnectedChange?: (connected: boolean) => void;
+}
+
+export function AdalabWidget({ onConnectedChange }: AdalabWidgetProps = {}) {
   const { t } = useI18n();
   const [tabId, setTabId] = useState<number | null>(null);
   const [state, setState] = useState<AdalabAppState | null>(null);
@@ -105,6 +111,11 @@ export function AdalabWidget() {
       clearInterval(interval);
     };
   }, [sendCommand]);
+
+  // Let the popup know whether study is connected (tab open + responding)
+  useEffect(() => {
+    onConnectedChange?.(tabId !== null && state !== null);
+  }, [tabId, state, onConnectedChange]);
 
   // Tick the countdown display every second while running
   useEffect(() => {
@@ -208,6 +219,8 @@ export function AdalabWidget() {
           {phaseLabel}
         </span>
       </div>
+
+      <div className="adalab-widget-note">{t('popupAdalabConnectedNote')}</div>
 
       <div className="adalab-widget-timer">
         <span className="adalab-widget-time">

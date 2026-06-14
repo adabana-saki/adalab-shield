@@ -2520,5 +2520,9 @@
   "blockPageHint": {
     "message": "Tip: this only changes how the block screen looks — it does not change what gets blocked.",
     "description": "Block page: usage hint"
+  },
+  "popupAdalabConnectedNote": {
+    "message": "Connected — control the study pomodoro right here.",
+    "description": "Popup: adalab study connected note"
   }
 }

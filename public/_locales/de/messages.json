@@ -2520,5 +2520,9 @@
   "blockPageHint": {
     "message": "Tipp: ändert nur das Aussehen der Sperrseite – nicht, was blockiert wird.",
     "description": "Block page: usage hint"
+  },
+  "popupAdalabConnectedNote": {
+    "message": "Verbunden – steuere das Study-Pomodoro direkt hier.",
+    "description": "Popup: adalab study connected note"
   }
 }

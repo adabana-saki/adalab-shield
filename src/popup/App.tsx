@@ -52,6 +52,9 @@ export function App() {
   // case the study app owns the timer, so the extension must not show its
   // own (ineffective) pause/skip/stop controls.
   const [pomodoroExternal, setPomodoroExternal] = useState(false);
+  // True when an adalab study tab is open and responding: the popup then
+  // drives the study pomodoro instead of showing the normal focus launcher.
+  const [adalabConnected, setAdalabConnected] = useState(false);
 
   const fetchFocusState = useCallback(async () => {
     try {
@@ -324,8 +327,10 @@ export function App() {
           </div>
         )}
 
-        {/* 1. Current state: running timer, or a clear protection status */}
-        {hasActiveTimer ? (
+        {/* 1. Current state: running timer, or a clear protection status.
+            When adalab study drives the timer, the AdalabWidget below is the
+            single source of truth, so don't also show the extension timer. */}
+        {hasActiveTimer && !adalabConnected ? (
           <ActiveTimerWidget
             focusState={focusState}
             pomodoroState={displayPomodoroState}
@@ -360,12 +365,15 @@ export function App() {
           </div>
         )}
 
-        {/* Watching indicator + adalab study remote (contextual) */}
+        {/* Watching indicator + adalab study remote (contextual).
+            Connected → shows study pomodoro controls; not connected → a
+            subtle launcher to open/link adalab study. */}
         <ActiveWatchingWidget activeUsage={activeUsage} />
-        <AdalabWidget />
+        <AdalabWidget onConnectedChange={setAdalabConnected} />
 
-        {/* 2. Primary action: start a focus session */}
-        {!hasActiveTimer && (
+        {/* 2. Normal mode: start a focus session. Hidden while adalab study
+            is connected (use the study pomodoro above instead). */}
+        {!hasActiveTimer && !adalabConnected && (
           <FocusLauncher
             focusEnabled={settings.focusMode.enabled}
             focusState={focusState}
