@@ -2456,5 +2456,29 @@
   "commitmentLockErrorConfirm": {
     "message": "Entsperren konnte nicht abgeschlossen werden.",
     "description": "Confirm unlock error"
+  },
+  "sidebarHelp": {
+    "message": "Hilfe",
+    "description": "Sidebar: help/usage guide"
+  },
+  "helpTitle": {
+    "message": "So funktioniert's",
+    "description": "Help section title"
+  },
+  "helpIntro": {
+    "message": "Die wichtigsten Funktionen von adalab shield und ihre Verwendung.",
+    "description": "Help section intro"
+  },
+  "helpReplayTour": {
+    "message": "Einführungstour erneut ansehen",
+    "description": "Help: replay intro tour button"
+  },
+  "helpReplayTourDesc": {
+    "message": "Gehe die Einrichtungsschritte noch einmal durch.",
+    "description": "Help: replay intro tour description"
+  },
+  "popupHelp": {
+    "message": "Hilfe",
+    "description": "Popup footer: help link"
   }
 }

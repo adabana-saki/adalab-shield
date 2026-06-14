@@ -2456,5 +2456,29 @@
   "commitmentLockErrorConfirm": {
     "message": "无法完成解锁。",
     "description": "Confirm unlock error"
+  },
+  "sidebarHelp": {
+    "message": "使用方法",
+    "description": "Sidebar: help/usage guide"
+  },
+  "helpTitle": {
+    "message": "使用指南",
+    "description": "Help section title"
+  },
+  "helpIntro": {
+    "message": "adalab shield 的主要功能及使用方法。",
+    "description": "Help section intro"
+  },
+  "helpReplayTour": {
+    "message": "重新观看新手引导",
+    "description": "Help: replay intro tour button"
+  },
+  "helpReplayTourDesc": {
+    "message": "重新查看设置步骤。",
+    "description": "Help: replay intro tour description"
+  },
+  "popupHelp": {
+    "message": "使用方法",
+    "description": "Popup footer: help link"
   }
 }

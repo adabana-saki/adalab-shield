@@ -23,6 +23,7 @@ import {
   ReportsSection,
   LockSection,
   AdvancedSection,
+  HelpSection,
 } from './components/sections';
 import { OnboardingWizard } from './components/onboarding';
 import { TermsOfService, PrivacyPolicy } from './components/legal';
@@ -39,7 +40,10 @@ export function App() {
     updateSettings,
   } = useSettings();
 
-  const [activeSection, setActiveSection] = useState<SectionId>('dashboard');
+  // Allow deep-linking to the help guide (e.g. from the popup: #help).
+  const [activeSection, setActiveSection] = useState<SectionId>(() =>
+    window.location.hash === '#help' ? 'help' : 'dashboard'
+  );
   const [activeSubSection, setActiveSubSection] = useState<SubSectionId | null>(
     null
   );
@@ -203,6 +207,15 @@ export function App() {
 
       case 'reports':
         return <ReportsSection />;
+
+      case 'help':
+        return (
+          <HelpSection
+            onReplayTour={() => {
+              void updateSettings({ onboardingCompleted: false });
+            }}
+          />
+        );
 
       case 'lock':
         return (
