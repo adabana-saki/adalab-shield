@@ -22,6 +22,25 @@ import { createLogger } from '@/shared/utils/logger';
 
 const logger = createLogger('adalab-bridge');
 
+/**
+ * True while this content script still has a live extension context.
+ * After the extension is reloaded/updated, an already-injected content
+ * script becomes orphaned and `browser.runtime` is torn down — touching
+ * `browser.runtime.sendMessage` then throws "Cannot read properties of
+ * undefined (reading 'sendMessage')". Page events (timer-sync) keep firing,
+ * so every page-triggered runtime call must be guarded.
+ */
+function isExtensionAlive(): boolean {
+  try {
+    return (
+      typeof browser.runtime !== 'undefined' &&
+      browser.runtime?.id !== undefined
+    );
+  } catch {
+    return false;
+  }
+}
+
 const VALID_PHASES: ReadonlySet<string> = new Set([
   'work',
   'short_break',
@@ -230,6 +249,12 @@ export function initAdalabBridge(): void {
         return;
       }
 
+      // The page keeps posting after an extension reload; bail if our
+      // context is gone instead of throwing on browser.runtime.
+      if (!isExtensionAlive()) {
+        return;
+      }
+
       const payload = parsePayload(event.data as BridgeEventData);
       if (payload === null) {
         return;
@@ -240,11 +265,15 @@ export function initAdalabBridge(): void {
         payload,
       });
 
-      browser.runtime.sendMessage(message).catch((error: unknown) => {
-        logger.debug('Failed to forward adalab sync', {
-          error: String(error),
+      try {
+        browser.runtime.sendMessage(message).catch((error: unknown) => {
+          logger.debug('Failed to forward adalab sync', {
+            error: String(error),
+          });
         });
-      });
+      } catch {
+        // Context invalidated between the check and the call — ignore.
+      }
     });
 
     // Keep block stats fresh in the app (stats live inside settings)
