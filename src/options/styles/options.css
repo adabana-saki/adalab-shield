@@ -2949,7 +2949,11 @@
 }
 
 /* Form elements */
-.dark input,
+/* Text-like inputs only. Checkboxes/radios are drawn as custom switches
+   (appearance:none with their own track colors); forcing a background here
+   with !important would override the on/off state and make every toggle look
+   broken. */
+.dark input:not([type='checkbox']):not([type='radio']),
 .dark textarea,
 .dark select {
   color: var(--color-text-primary) !important;
@@ -3585,6 +3589,25 @@
   display: flex;
   gap: 12px;
   justify-content: center;
+}
+
+/* Simple unlock countdown (single-screen dialog) */
+.unlock-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 20px 0;
+}
+.unlock-countdown-num {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-accent);
+}
+.unlock-countdown-label {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
 }
 
 /* Waiting step */

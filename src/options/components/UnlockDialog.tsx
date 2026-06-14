@@ -125,11 +125,11 @@ export function UnlockDialog({
             <p className="unlock-question">{t('commitmentLockAreYouSure')}</p>
 
             {!isReady && error === null && (
-              <div className="countdown-display">
-                <div className="countdown-circle">
-                  <span className="countdown-time">{secondsRemaining}</span>
-                </div>
-                <p className="countdown-label">{t('commitmentLockWaiting')}</p>
+              <div className="unlock-countdown">
+                <span className="unlock-countdown-num">{secondsRemaining}</span>
+                <p className="unlock-countdown-label">
+                  {t('commitmentLockWaiting')}
+                </p>
               </div>
             )}
 
