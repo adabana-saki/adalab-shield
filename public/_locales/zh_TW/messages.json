@@ -136,8 +136,8 @@
     "description": "Section title for platform settings"
   },
   "optionsPlatformsDescription": {
-    "message": "選擇要封鎖的平台",
-    "description": "Description for platform settings section"
+    "message": "選擇要攔截的平台——短影音資訊流、整站或社群網路。",
+    "description": "Platforms section description"
   },
   "optionsPreferencesTitle": {
     "message": "偏好設定",
@@ -2492,5 +2492,33 @@
   "commitmentLockHelp": {
     "message": "適合：平時自己管理，只想防止脆弱時刻一鍵解除的人（最輕量）。",
     "description": "Commitment lock: who it is for"
+  },
+  "platformsHint": {
+    "message": "提示：「短影音」只攔截 Shorts/Reels 資訊流，「整站」攔截整個網站，「社群網路」攔截各服務全部。",
+    "description": "Platforms: usage hint"
+  },
+  "customDomainsHint": {
+    "message": "提示：把你總會逛進去的網站（如 news.example.com）加進來，一打開就攔截。",
+    "description": "Custom domains: usage hint"
+  },
+  "timeLimitsHint": {
+    "message": "提示：達到每日上限後，當天剩餘時間會攔截該平台。適合「適度使用而非完全禁止」。",
+    "description": "Time limits: usage hint"
+  },
+  "scheduleHint": {
+    "message": "提示：用於固定重複的時段（如工作日 9–17 點）。只想現在專注，請用專注模式。",
+    "description": "Schedule: usage hint"
+  },
+  "focusModeHint": {
+    "message": "提示：一次性計時器，現在就攔截，即使在排程之外。固定時間請用排程。",
+    "description": "Focus mode: usage hint"
+  },
+  "adalabSyncHint": {
+    "message": "提示：透過本瀏覽器與 adalab study 應用連動（無需 Google 登入）。專注時攔截，休息時解除。",
+    "description": "adalab sync: usage hint"
+  },
+  "blockPageHint": {
+    "message": "提示：這裡只改變攔截頁面的外觀，不改變攔截對象。",
+    "description": "Block page: usage hint"
   }
 }

@@ -220,8 +220,8 @@
     "description": "プラットフォーム設定のセクションタイトル"
   },
   "optionsPlatformsDescription": {
-    "message": "ブロックするプラットフォームを選択",
-    "description": "プラットフォーム設定セクションの説明"
+    "message": "ブロックするプラットフォームを選びます。短尺動画フィード・サイト全体・SNS から選べます。",
+    "description": "Platforms section description"
   },
   "optionsPreferencesTitle": {
     "message": "環境設定",
@@ -2492,5 +2492,33 @@
   "commitmentLockHelp": {
     "message": "こんなときに: ふだんは自分で管理しつつ、弱った瞬間のワンタップ解除だけ防ぎたい人向け（いちばん手軽）。",
     "description": "Commitment lock: who it is for"
+  },
+  "platformsHint": {
+    "message": "ヒント: 「短尺動画」はショート/リールだけ、「サイト全体」はそのサイトごと、「SNS」は各サービス全体をブロックします。",
+    "description": "Platforms: usage hint"
+  },
+  "customDomainsHint": {
+    "message": "ヒント: つい開いてしまうサイト（例: news.example.com）を追加。開いた瞬間にブロックされます。",
+    "description": "Custom domains: usage hint"
+  },
+  "timeLimitsHint": {
+    "message": "ヒント: 1日の上限に達すると、その日の残りはそのプラットフォームがブロックされます。「ゼロではなく程々に」したいときに。",
+    "description": "Time limits: usage hint"
+  },
+  "scheduleHint": {
+    "message": "ヒント: 平日9〜17時など「毎回決まった時間」に。今だけ集中したいときはフォーカスモードを使います。",
+    "description": "Schedule: usage hint"
+  },
+  "focusModeHint": {
+    "message": "ヒント: 今だけ・スケジュール外でもブロックする単発タイマー。毎回決まった時間ならスケジュールを使います。",
+    "description": "Focus mode: usage hint"
+  },
+  "adalabSyncHint": {
+    "message": "ヒント: このブラウザ経由で adalab study と連携（Googleログイン不要）。フォーカス中はブロック、休憩中は解除します。",
+    "description": "adalab sync: usage hint"
+  },
+  "blockPageHint": {
+    "message": "ヒント: ここはブロック画面の見た目だけ。ブロック対象は変わりません。",
+    "description": "Block page: usage hint"
   }
 }

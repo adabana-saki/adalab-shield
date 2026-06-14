@@ -220,8 +220,8 @@
     "description": "Section title for platform settings"
   },
   "optionsPlatformsDescription": {
-    "message": "Choose which platforms to block",
-    "description": "Description for platform settings section"
+    "message": "Choose which platforms to block — short-form feeds, whole sites, or social networks.",
+    "description": "Platforms section description"
   },
   "optionsPreferencesTitle": {
     "message": "Preferences",
@@ -2492,5 +2492,33 @@
   "commitmentLockHelp": {
     "message": "Best for: managing your own settings while preventing weak-moment one-tap unlocks. The lightest option.",
     "description": "Commitment lock: who it is for"
+  },
+  "platformsHint": {
+    "message": "Tip: 'Short videos' blocks just the Shorts/Reels feed; 'Full site' blocks the whole site; 'Social' blocks each network entirely.",
+    "description": "Platforms: usage hint"
+  },
+  "customDomainsHint": {
+    "message": "Tip: add any site you keep wandering to (e.g. news.example.com). It is blocked the moment you open it.",
+    "description": "Custom domains: usage hint"
+  },
+  "timeLimitsHint": {
+    "message": "Tip: once the daily limit is reached, that platform is blocked for the rest of the day — good when you want some use, not none.",
+    "description": "Time limits: usage hint"
+  },
+  "scheduleHint": {
+    "message": "Tip: use this for recurring times (e.g. weekdays 9–17). For a one-off 'focus now', use Focus Mode instead.",
+    "description": "Schedule: usage hint"
+  },
+  "focusModeHint": {
+    "message": "Tip: a one-off timer that blocks now, even outside your schedule. For recurring times, use Schedule.",
+    "description": "Focus mode: usage hint"
+  },
+  "adalabSyncHint": {
+    "message": "Tip: links with the adalab study app through this browser — no Google login needed. Blocks during focus, frees up on breaks.",
+    "description": "adalab sync: usage hint"
+  },
+  "blockPageHint": {
+    "message": "Tip: this only changes how the block screen looks — it does not change what gets blocked.",
+    "description": "Block page: usage hint"
   }
 }

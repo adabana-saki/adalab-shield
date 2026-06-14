@@ -34,6 +34,7 @@ export function ProductivitySection({ subSection }: ProductivitySectionProps) {
             </svg>
           }
         />
+        <p className="section-hint">{t('adalabSyncHint')}</p>
         <AdalabSettings />
       </div>
     );
@@ -57,6 +58,7 @@ export function ProductivitySection({ subSection }: ProductivitySectionProps) {
           </svg>
         }
       />
+      <p className="section-hint">{t('focusModeHint')}</p>
       <FocusModeSettings />
     </div>
   );

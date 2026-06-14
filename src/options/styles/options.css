@@ -5150,8 +5150,10 @@
   font-weight: 600;
 }
 
-/* "Best for…" plain-language callout under each lock mode */
-.lock-help-callout {
+/* Plain-language "what / when to use" callout under a section header
+   (lock modes and other feature pages share this style). */
+.lock-help-callout,
+.section-hint {
   margin: 14px 0 4px;
   padding: 10px 14px;
   font-size: 13px;

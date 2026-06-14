@@ -136,8 +136,8 @@
     "description": "Section title for platform settings"
   },
   "optionsPlatformsDescription": {
-    "message": "차단할 플랫폼을 선택하세요",
-    "description": "Description for platform settings section"
+    "message": "차단할 플랫폼을 선택하세요 — 짧은 동영상 피드, 사이트 전체, 또는 SNS.",
+    "description": "Platforms section description"
   },
   "optionsPreferencesTitle": {
     "message": "환경설정",
@@ -2492,5 +2492,33 @@
   "commitmentLockHelp": {
     "message": "이런 분께: 평소엔 직접 관리하되 약해진 순간의 원탭 해제만 막고 싶은 분(가장 가벼움).",
     "description": "Commitment lock: who it is for"
+  },
+  "platformsHint": {
+    "message": "팁: '짧은 동영상'은 쇼츠/릴스 피드만, '사이트 전체'는 그 사이트 전체, 'SNS'는 각 서비스 전체를 차단합니다.",
+    "description": "Platforms: usage hint"
+  },
+  "customDomainsHint": {
+    "message": "팁: 자꾸 들어가는 사이트(예: news.example.com)를 추가하세요. 여는 즉시 차단됩니다.",
+    "description": "Custom domains: usage hint"
+  },
+  "timeLimitsHint": {
+    "message": "팁: 하루 한도에 도달하면 그날 남은 시간 동안 해당 플랫폼이 차단됩니다. '아예 금지'가 아니라 '적당히' 쓰고 싶을 때.",
+    "description": "Time limits: usage hint"
+  },
+  "scheduleHint": {
+    "message": "팁: 평일 9~17시처럼 반복되는 시간에. 지금만 집중하려면 포커스 모드를 쓰세요.",
+    "description": "Schedule: usage hint"
+  },
+  "focusModeHint": {
+    "message": "팁: 지금만, 스케줄 밖에서도 차단하는 일회성 타이머. 정해진 시간이면 스케줄을 쓰세요.",
+    "description": "Focus mode: usage hint"
+  },
+  "adalabSyncHint": {
+    "message": "팁: 이 브라우저를 통해 adalab study 앱과 연동(구글 로그인 불필요). 집중 중 차단, 휴식 중 해제.",
+    "description": "adalab sync: usage hint"
+  },
+  "blockPageHint": {
+    "message": "팁: 차단 화면의 모양만 바꿉니다. 차단 대상은 바뀌지 않습니다.",
+    "description": "Block page: usage hint"
   }
 }

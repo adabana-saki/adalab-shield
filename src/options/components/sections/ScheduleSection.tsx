@@ -34,6 +34,7 @@ export function ScheduleSection({ subSection }: ScheduleSectionProps) {
             </svg>
           }
         />
+        <p className="section-hint">{t('timeLimitsHint')}</p>
         <TimeLimitsConfig />
       </div>
     );
@@ -59,6 +60,7 @@ export function ScheduleSection({ subSection }: ScheduleSectionProps) {
           </svg>
         }
       />
+      <p className="section-hint">{t('scheduleHint')}</p>
       <Schedule />
     </div>
   );

@@ -136,8 +136,8 @@
     "description": "Section title for platform settings"
   },
   "optionsPlatformsDescription": {
-    "message": "Elige qué plataformas bloquear",
-    "description": "Description for platform settings section"
+    "message": "Elige qué plataformas bloquear: feeds de vídeos cortos, sitios completos o redes sociales.",
+    "description": "Platforms section description"
   },
   "optionsPreferencesTitle": {
     "message": "Preferencias",
@@ -2492,5 +2492,33 @@
   "commitmentLockHelp": {
     "message": "Ideal para: gestionar tus propios ajustes evitando desbloqueos impulsivos de un toque. La opción más ligera.",
     "description": "Commitment lock: who it is for"
+  },
+  "platformsHint": {
+    "message": "Consejo: «Vídeos cortos» bloquea solo el feed de Shorts/Reels; «Sitio completo», toda la web; «Redes sociales», cada servicio entero.",
+    "description": "Platforms: usage hint"
+  },
+  "customDomainsHint": {
+    "message": "Consejo: añade sitios donde sueles acabar (p. ej., news.example.com). Se bloquean en cuanto los abres.",
+    "description": "Custom domains: usage hint"
+  },
+  "timeLimitsHint": {
+    "message": "Consejo: al alcanzar el límite diario, esa plataforma se bloquea el resto del día. Ideal si quieres algo de uso, no cero.",
+    "description": "Time limits: usage hint"
+  },
+  "scheduleHint": {
+    "message": "Consejo: para horarios recurrentes (p. ej., L–V 9–17). Para «concentrarme ahora», usa el Modo Enfoque.",
+    "description": "Schedule: usage hint"
+  },
+  "focusModeHint": {
+    "message": "Consejo: un temporizador puntual que bloquea ahora, incluso fuera de tu horario. Para horarios fijos, usa Horario.",
+    "description": "Focus mode: usage hint"
+  },
+  "adalabSyncHint": {
+    "message": "Consejo: se conecta con la app adalab study mediante este navegador, sin inicio de sesión de Google. Bloquea en foco, libera en descansos.",
+    "description": "adalab sync: usage hint"
+  },
+  "blockPageHint": {
+    "message": "Consejo: solo cambia el aspecto de la página de bloqueo; no cambia qué se bloquea.",
+    "description": "Block page: usage hint"
   }
 }
