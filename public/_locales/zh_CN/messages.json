@@ -2520,5 +2520,9 @@
   "blockPageHint": {
     "message": "提示：这里只改变拦截页面的外观，不改变拦截对象。",
     "description": "Block page: usage hint"
+  },
+  "popupAdalabConnectedNote": {
+    "message": "已连接 — 可在此直接操作 study 的番茄钟。",
+    "description": "Popup: adalab study connected note"
   }
 }

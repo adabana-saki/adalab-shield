@@ -2520,5 +2520,9 @@
   "blockPageHint": {
     "message": "팁: 차단 화면의 모양만 바꿉니다. 차단 대상은 바뀌지 않습니다.",
     "description": "Block page: usage hint"
+  },
+  "popupAdalabConnectedNote": {
+    "message": "연동 중 — 여기서 study 포모도로를 조작할 수 있습니다.",
+    "description": "Popup: adalab study connected note"
   }
 }

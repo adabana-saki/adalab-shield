@@ -2520,5 +2520,9 @@
   "blockPageHint": {
     "message": "ヒント: ここはブロック画面の見た目だけ。ブロック対象は変わりません。",
     "description": "Block page: usage hint"
+  },
+  "popupAdalabConnectedNote": {
+    "message": "連携中 — このポモドーロを拡張から操作できます。",
+    "description": "Popup: adalab study connected note"
   }
 }
