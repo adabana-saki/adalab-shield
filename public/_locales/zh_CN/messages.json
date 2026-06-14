@@ -2524,5 +2524,9 @@
   "popupAdalabConnectedNote": {
     "message": "已连接 — 可在此直接操作 study 的番茄钟。",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "当前为关闭。请在下方设置后再开启以生效。",
+    "description": "Hint shown when a feature is off but its config is editable"
   }
 }

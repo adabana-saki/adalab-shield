@@ -2524,5 +2524,9 @@
   "popupAdalabConnectedNote": {
     "message": "Connected — control the study pomodoro right here.",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "Currently off. Set it up below, then turn it on to activate.",
+    "description": "Hint shown when a feature is off but its config is editable"
   }
 }

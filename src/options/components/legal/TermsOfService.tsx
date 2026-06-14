@@ -1,6 +1,6 @@
 /**
  * Terms of Service page component
- * Displays the terms and conditions for using ShortShield
+ * Displays the terms and conditions for using adalab shield
  */
 
 import { useI18n } from '@/shared/hooks/useI18n';
@@ -26,8 +26,8 @@ export function TermsOfService() {
           <h2>{isJapanese ? '第1条（はじめに）' : '1. Introduction'}</h2>
           <p>
             {isJapanese
-              ? `本利用規約（以下「本規約」）は、${SELLER_INFO.businessName}（以下「当社」）が提供するブラウザ拡張機能「ShortShield」（以下「本サービス」）の利用条件を定めるものです。本サービスをご利用いただく前に、本規約をよくお読みください。`
-              : `These Terms of Service ("Terms") govern your use of the ShortShield browser extension ("Service") provided by ${SELLER_INFO.businessName} ("we", "us", or "our"). Please read these Terms carefully before using the Service.`}
+              ? `本利用規約（以下「本規約」）は、${SELLER_INFO.businessName}（以下「当社」）が提供するブラウザ拡張機能「adalab shield」（以下「本サービス」）の利用条件を定めるものです。本サービスをご利用いただく前に、本規約をよくお読みください。`
+              : `These Terms of Service ("Terms") govern your use of the adalab shield browser extension ("Service") provided by ${SELLER_INFO.businessName} ("we", "us", or "our"). Please read these Terms carefully before using the Service.`}
           </p>
         </section>
 
@@ -50,8 +50,8 @@ export function TermsOfService() {
           </h2>
           <p>
             {isJapanese
-              ? 'ShortShieldは、ショート動画コンテンツをブロックし、生産性向上を支援するブラウザ拡張機能です。'
-              : 'ShortShield is a browser extension designed to block short-form video content and help users improve their productivity.'}
+              ? 'adalab shieldは、ショート動画コンテンツをブロックし、生産性向上を支援するブラウザ拡張機能です。'
+              : 'adalab shield is a browser extension designed to block short-form video content and help users improve their productivity.'}
           </p>
           <ul>
             <li>

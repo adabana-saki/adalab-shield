@@ -134,7 +134,7 @@ export class TikTokDetector extends BasePlatformDetector {
       id: 'shortshield-tiktok-overlay',
       title: 'TikTok Blocked',
       message:
-        'ShortShield is protecting your focus by blocking TikTok content.',
+        'adalab shield is protecting your focus by blocking TikTok content.',
       platformName: 'TikTok',
       primaryButtonText: 'Close Tab',
       onPrimaryClick: () => {

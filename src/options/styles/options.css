@@ -1683,11 +1683,16 @@
 
 /* Welcome Step */
 .welcome-step .welcome-icon {
-  @apply w-20 h-20 mx-auto mb-6 text-primary-600;
+  @apply w-16 h-16 mx-auto mb-6 text-primary-600;
 }
 
 .welcome-step .welcome-icon svg {
   @apply w-full h-full;
+}
+
+.welcome-step .welcome-icon img {
+  @apply w-full h-full;
+  border-radius: 16px;
 }
 
 .onboarding-title {
