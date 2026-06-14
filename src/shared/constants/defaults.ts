@@ -272,10 +272,10 @@ export const DEFAULT_COMMITMENT_LOCK: CommitmentLockSettings = {
   level: 1, // Start with moderate friction
 
   // Level 1+ settings
-  confirmationWaitSeconds: 30, // 30 seconds wait
-  cooldownAfterUnlockMinutes: 5, // 5 minutes cooldown after unlock
-  requireIntentionStatement: true, // Require intention by default
-  intentionMinLength: 20, // Minimum 20 characters
+  confirmationWaitSeconds: 10, // 10 seconds wait (light friction by default)
+  cooldownAfterUnlockMinutes: 0, // No cooldown by default (avoids lock-out trap)
+  requireIntentionStatement: false, // Opt-in: keep the unlock flow short
+  intentionMinLength: 20, // Minimum 20 characters (only used if enabled)
 
   // Level 2+ settings
   challengeCount: 3, // 3 challenges to solve
@@ -354,11 +354,11 @@ export const COMMITMENT_LOCK_COOLDOWN_ESCALATION = {
  */
 export const COMMITMENT_LOCK_LIMITS = {
   /** Minimum wait time in seconds */
-  MIN_WAIT_SECONDS: 30,
+  MIN_WAIT_SECONDS: 5,
   /** Maximum wait time in seconds */
   MAX_WAIT_SECONDS: 300,
-  /** Minimum cooldown in minutes */
-  MIN_COOLDOWN_MINUTES: 5,
+  /** Minimum cooldown in minutes (0 = no cooldown) */
+  MIN_COOLDOWN_MINUTES: 0,
   /** Maximum cooldown in minutes */
   MAX_COOLDOWN_MINUTES: 60,
   /** Minimum intention length */

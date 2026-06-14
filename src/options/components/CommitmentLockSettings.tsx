@@ -3,7 +3,7 @@
  * Implements friction levels to prevent easy unlock of blocking rules
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import browser from 'webextension-polyfill';
 import { useSettings } from '@/shared/hooks/useSettings';
 import { useI18n } from '@/shared/hooks/useI18n';
@@ -29,6 +29,10 @@ export function CommitmentLockSettings() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showUnlockDialog, setShowUnlockDialog] = useState(false);
+  // When the user clicks the enabled toggle while locked, we open the unlock
+  // dialog and remember that the real intent was to turn the lock OFF, so we
+  // can do it automatically on success (otherwise it takes two clicks).
+  const pendingDisableRef = useRef(false);
 
   // After a successful unlock flow, weakening changes are allowed briefly
   const inUnlockWindow =
@@ -64,8 +68,10 @@ export function CommitmentLockSettings() {
 
   const handleToggleEnabled = useCallback(async () => {
     // Disabling requires completing the unlock flow first (that is the
-    // whole point of Commitment Lock)
+    // whole point of Commitment Lock). Remember the intent so we can turn it
+    // off automatically once the unlock succeeds (one click, not two).
     if (commitmentLockSettings.enabled && !inUnlockWindow) {
+      pendingDisableRef.current = true;
       setShowUnlockDialog(true);
       return;
     }
@@ -74,10 +80,13 @@ export function CommitmentLockSettings() {
       await updateSettings({
         commitmentLock: enabling
           ? {
-              // 有効化時はシンプルな構成に固定する (待機＋意思入力＋確認)。
-              // 旧バージョンの複雑な設定が残っていても解除を単純な手順に戻す。
+              // 有効化時はシンプルな構成に固定する (短い待機＋確認だけ)。
+              // 旧バージョンの複雑な設定が残っていても、毎回ここで軽量化する。
               enabled: true,
               level: 1,
+              confirmationWaitSeconds: 10,
+              cooldownAfterUnlockMinutes: 0,
+              requireIntentionStatement: false,
               timeLockEnabled: false,
               scheduleRestriction: false,
               nuclearModeEnabled: false,
@@ -348,10 +357,27 @@ export function CommitmentLockSettings() {
       {/* Unlock flow dialog (wait → intention → challenges → confirm) */}
       <UnlockDialog
         isOpen={showUnlockDialog}
-        onClose={() => setShowUnlockDialog(false)}
+        onClose={() => {
+          // User backed out: forget the pending disable intent.
+          pendingDisableRef.current = false;
+          setShowUnlockDialog(false);
+        }}
         onUnlockSuccess={() => {
           setShowUnlockDialog(false);
-          void loadStates();
+          void (async () => {
+            await loadStates();
+            // If the unlock was triggered by clicking the OFF toggle, finish
+            // the job: the unlock window is now open so the guard allows it.
+            if (pendingDisableRef.current) {
+              pendingDisableRef.current = false;
+              try {
+                await updateSettings({ commitmentLock: { enabled: false } });
+              } catch (err) {
+                console.error('Failed to disable Commitment Lock:', err);
+                setError(t('commitmentLockErrorUpdate'));
+              }
+            }
+          })();
         }}
       />
     </div>
