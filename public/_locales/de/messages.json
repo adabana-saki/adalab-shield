@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "Inhalt blockiert",
+    "message": "Sperrseite",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
@@ -2524,5 +2524,9 @@
   "popupAdalabConnectedNote": {
     "message": "Verbunden – steuere das Study-Pomodoro direkt hier.",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "Derzeit aus. Richte es unten ein und schalte es dann ein.",
+    "description": "Hint shown when a feature is off but its config is editable"
   }
 }

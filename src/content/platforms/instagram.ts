@@ -103,7 +103,7 @@ export class InstagramDetector extends BasePlatformDetector {
       id: 'shortshield-instagram-overlay',
       title: 'Instagram Reels Blocked',
       message:
-        'ShortShield is protecting your focus by blocking Reels content.',
+        'adalab shield is protecting your focus by blocking Reels content.',
       platformName: 'Instagram',
       primaryButtonText: 'Go to Instagram Home',
       onPrimaryClick: () => {

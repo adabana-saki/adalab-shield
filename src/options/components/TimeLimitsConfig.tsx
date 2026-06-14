@@ -145,101 +145,103 @@ export function TimeLimitsConfig() {
         </p>
       </div>
 
-      {settings.timeLimits.enabled && (
-        <>
-          {/* Warning threshold */}
-          <div className="setting-row">
-            <label className="select-label">
-              <span className="label-text">
-                {t('timeLimitsWarningThreshold')}
-              </span>
-              <select
-                value={settings.timeLimits.warningThresholdPercent}
-                onChange={(e) => void handleWarningThresholdChange(e)}
-              >
-                <option value={50}>50%</option>
-                <option value={60}>60%</option>
-                <option value={70}>70%</option>
-                <option value={80}>80%</option>
-                <option value={90}>90%</option>
-              </select>
-            </label>
-            <p className="setting-description">
-              {t('timeLimitsWarningThresholdDescription')}
-            </p>
-          </div>
-
-          {/* Block when limit reached */}
-          <div className="setting-row">
-            <label className="toggle-label">
-              <input
-                type="checkbox"
-                checked={settings.timeLimits.blockWhenLimitReached}
-                onChange={() => void handleToggleBlockWhenReached()}
-              />
-              <span className="toggle-text">
-                {t('timeLimitsBlockWhenReached')}
-              </span>
-            </label>
-            <p className="setting-description">
-              {t('timeLimitsBlockWhenReachedDescription')}
-            </p>
-          </div>
-
-          {/* Platform limits */}
-          <div className="platform-limits">
-            <h3 className="subsection-title">
-              {t('timeLimitsPlatformLimits')}
-            </h3>
-
-            {PLATFORM_CONFIG.map(({ platform, labelKey }) => {
-              const limit = getLimit(platform);
-              const isEnabled = limit?.enabled ?? false;
-              const minutes = limit?.dailyLimitMinutes ?? 30;
-
-              return (
-                <div key={platform} className="platform-limit-row">
-                  <label className="toggle-label">
-                    <input
-                      type="checkbox"
-                      checked={isEnabled}
-                      onChange={() => void handlePlatformToggle(platform)}
-                    />
-                    <span className="toggle-text platform-name">
-                      {t(labelKey)}
-                    </span>
-                  </label>
-
-                  {isEnabled && (
-                    <select
-                      value={minutes}
-                      onChange={(e) =>
-                        void handleLimitChange(
-                          platform,
-                          parseInt(e.target.value, 10)
-                        )
-                      }
-                      className="limit-select"
-                    >
-                      {TIME_LIMIT_OPTIONS.map((option) => (
-                        <option key={option} value={option}>
-                          {formatDuration(option)}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-
-                  {!isEnabled && (
-                    <span className="limit-disabled">
-                      {t('timeLimitsNoLimit')}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </>
+      {!settings.timeLimits.enabled && (
+        <p className="section-hint">{t('settingsInactiveHint')}</p>
       )}
+
+      {/* Config stays visible and editable even when off, so it can be set up
+          in advance; the toggle above just activates it. */}
+      <>
+        {/* Warning threshold */}
+        <div className="setting-row">
+          <label className="select-label">
+            <span className="label-text">
+              {t('timeLimitsWarningThreshold')}
+            </span>
+            <select
+              value={settings.timeLimits.warningThresholdPercent}
+              onChange={(e) => void handleWarningThresholdChange(e)}
+            >
+              <option value={50}>50%</option>
+              <option value={60}>60%</option>
+              <option value={70}>70%</option>
+              <option value={80}>80%</option>
+              <option value={90}>90%</option>
+            </select>
+          </label>
+          <p className="setting-description">
+            {t('timeLimitsWarningThresholdDescription')}
+          </p>
+        </div>
+
+        {/* Block when limit reached */}
+        <div className="setting-row">
+          <label className="toggle-label">
+            <input
+              type="checkbox"
+              checked={settings.timeLimits.blockWhenLimitReached}
+              onChange={() => void handleToggleBlockWhenReached()}
+            />
+            <span className="toggle-text">
+              {t('timeLimitsBlockWhenReached')}
+            </span>
+          </label>
+          <p className="setting-description">
+            {t('timeLimitsBlockWhenReachedDescription')}
+          </p>
+        </div>
+
+        {/* Platform limits */}
+        <div className="platform-limits">
+          <h3 className="subsection-title">{t('timeLimitsPlatformLimits')}</h3>
+
+          {PLATFORM_CONFIG.map(({ platform, labelKey }) => {
+            const limit = getLimit(platform);
+            const isEnabled = limit?.enabled ?? false;
+            const minutes = limit?.dailyLimitMinutes ?? 30;
+
+            return (
+              <div key={platform} className="platform-limit-row">
+                <label className="toggle-label">
+                  <input
+                    type="checkbox"
+                    checked={isEnabled}
+                    onChange={() => void handlePlatformToggle(platform)}
+                  />
+                  <span className="toggle-text platform-name">
+                    {t(labelKey)}
+                  </span>
+                </label>
+
+                {isEnabled && (
+                  <select
+                    value={minutes}
+                    onChange={(e) =>
+                      void handleLimitChange(
+                        platform,
+                        parseInt(e.target.value, 10)
+                      )
+                    }
+                    className="limit-select"
+                  >
+                    {TIME_LIMIT_OPTIONS.map((option) => (
+                      <option key={option} value={option}>
+                        {formatDuration(option)}
+                      </option>
+                    ))}
+                  </select>
+                )}
+
+                {!isEnabled && (
+                  <span className="limit-disabled">
+                    {t('timeLimitsNoLimit')}
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </>
     </div>
   );
 }

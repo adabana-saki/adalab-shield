@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "콘텐츠 차단됨",
+    "message": "차단 화면",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
@@ -2524,5 +2524,9 @@
   "popupAdalabConnectedNote": {
     "message": "연동 중 — 여기서 study 포모도로를 조작할 수 있습니다.",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "현재 꺼져 있습니다. 아래에서 설정한 뒤 켜면 적용됩니다.",
+    "description": "Hint shown when a feature is off but its config is editable"
   }
 }

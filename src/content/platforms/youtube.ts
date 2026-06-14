@@ -122,7 +122,7 @@ export class YouTubeDetector extends BasePlatformDetector {
       id: 'shortshield-youtube-overlay',
       title: 'YouTube Shorts Blocked',
       message:
-        'ShortShield is protecting your focus by blocking short-form video content.',
+        'adalab shield is protecting your focus by blocking short-form video content.',
       platformName: 'YouTube',
       primaryButtonText: 'Go to YouTube Home',
       onPrimaryClick: () => {
@@ -163,7 +163,7 @@ export class YouTubeDetector extends BasePlatformDetector {
     const overlay = this.createBlockOverlay({
       id: 'shortshield-youtube-full-overlay',
       title: 'YouTube Blocked',
-      message: 'ShortShield is blocking YouTube to help you stay focused.',
+      message: 'adalab shield is blocking YouTube to help you stay focused.',
       platformName: 'YouTube',
       primaryButtonText: 'Close Tab',
       onPrimaryClick: () => {

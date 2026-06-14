@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "Conteúdo bloqueado",
+    "message": "Tela de bloqueio",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
@@ -2524,5 +2524,9 @@
   "popupAdalabConnectedNote": {
     "message": "Conectado — controle o pomodoro do study aqui mesmo.",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "Desativado. Configure abaixo e depois ative.",
+    "description": "Hint shown when a feature is off but its config is editable"
   }
 }

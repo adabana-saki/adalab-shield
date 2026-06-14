@@ -556,7 +556,7 @@
     "description": "Tab name for block page appearance settings"
   },
   "blockPageTitle": {
-    "message": "內容已封鎖",
+    "message": "攔截頁面",
     "description": "Auto-added: blockPageTitle"
   },
   "blockPageDescription": {
@@ -2524,5 +2524,9 @@
   "popupAdalabConnectedNote": {
     "message": "已連線 — 可在此直接操作 study 的番茄鐘。",
     "description": "Popup: adalab study connected note"
+  },
+  "settingsInactiveHint": {
+    "message": "目前為關閉。請在下方設定後再開啟以生效。",
+    "description": "Hint shown when a feature is off but its config is editable"
   }
 }
