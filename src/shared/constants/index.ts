@@ -65,3 +65,6 @@ export {
 // Storage keys
 export type { StorageKey } from './storage-keys';
 export { STORAGE_KEYS, getAllStorageKeys } from './storage-keys';
+
+// Protected (never-blockable) hosts
+export { PROTECTED_HOSTS, isProtectedHost } from './protected-hosts';

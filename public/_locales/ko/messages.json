@@ -2536,5 +2536,9 @@
   "popupAdalabReloadTabBtn": {
     "message": "study 탭 새로고침",
     "description": "Popup: reload study tab button"
+  },
+  "customDomainsErrorProtected": {
+    "message": "이 사이트는 차단할 수 없습니다(adalab study 연동에 필요).",
+    "description": "Error: tried to block a protected host"
   }
 }

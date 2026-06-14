@@ -13,7 +13,7 @@ import {
 export function PrivacyPolicy() {
   const { t, locale } = useI18n();
   const isJapanese = locale === 'ja';
-  const lastUpdated = '2025-01-01';
+  const lastUpdated = '2026-06-14';
 
   return (
     <div className="legal-page">

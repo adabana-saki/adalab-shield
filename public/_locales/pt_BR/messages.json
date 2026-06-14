@@ -2536,5 +2536,9 @@
   "popupAdalabReloadTabBtn": {
     "message": "Recarregar a aba do study",
     "description": "Popup: reload study tab button"
+  },
+  "customDomainsErrorProtected": {
+    "message": "Este site não pode ser bloqueado (necessário para a integração com o adalab study).",
+    "description": "Error: tried to block a protected host"
   }
 }

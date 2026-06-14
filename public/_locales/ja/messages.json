@@ -2536,5 +2536,9 @@
   "popupAdalabReloadTabBtn": {
     "message": "study タブを再読み込み",
     "description": "Popup: reload study tab button"
+  },
+  "customDomainsErrorProtected": {
+    "message": "このサイトはブロックできません（adalab study 連携に必要なため）。",
+    "description": "Error: tried to block a protected host"
   }
 }

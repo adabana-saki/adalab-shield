@@ -5,7 +5,7 @@
 
 import { BasePlatformDetector } from './base';
 import type { Platform, CustomBlockedDomain } from '@/shared/types';
-import { DEFAULT_BLOCK_PAGE } from '@/shared/constants';
+import { DEFAULT_BLOCK_PAGE, isProtectedHost } from '@/shared/constants';
 import { createLogger } from '@/shared/utils/logger';
 import { showBlockPage } from '../blockPage';
 import { isScheduleActive } from '@/shared/utils/schedule';
@@ -63,6 +63,11 @@ export class CustomDomainDetector extends BasePlatformDetector {
    * Check if the current hostname matches any custom blocked domain
    */
   isSupported(hostname: string): boolean {
+    // Never block protected hosts (e.g. the adalab study app), even if the
+    // user added a matching custom domain by mistake.
+    if (isProtectedHost(hostname)) {
+      return false;
+    }
     return this.customDomains.some((entry) =>
       this.matchesDomain(hostname, entry.domain)
     );

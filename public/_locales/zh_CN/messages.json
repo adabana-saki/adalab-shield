@@ -2536,5 +2536,9 @@
   "popupAdalabReloadTabBtn": {
     "message": "重新加载 study 标签页",
     "description": "Popup: reload study tab button"
+  },
+  "customDomainsErrorProtected": {
+    "message": "该网站无法被拦截（adalab study 联动所必需）。",
+    "description": "Error: tried to block a protected host"
   }
 }

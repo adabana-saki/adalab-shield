@@ -173,10 +173,14 @@ export function createBlockPageOverlay(
   contentDiv.style.cssText =
     'text-align: center; max-width: 450px; padding: 40px;';
 
-  // Create icon
+  // Create icon (the real extension icon, not an emoji)
   const iconDiv = document.createElement('div');
-  iconDiv.style.cssText = `font-size: 72px; margin-bottom: 24px; filter: drop-shadow(0 4px 8px ${primaryColor}40);`;
-  iconDiv.textContent = '🛡️';
+  iconDiv.style.cssText = `margin-bottom: 24px; filter: drop-shadow(0 4px 8px ${primaryColor}40);`;
+  const iconImg = document.createElement('img');
+  iconImg.src = browser.runtime.getURL('icons/icon-128.png');
+  iconImg.alt = '';
+  iconImg.style.cssText = 'width: 72px; height: 72px; border-radius: 18px;';
+  iconDiv.appendChild(iconImg);
   contentDiv.appendChild(iconDiv);
 
   // Create title

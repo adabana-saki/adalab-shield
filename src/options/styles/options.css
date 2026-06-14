@@ -641,7 +641,10 @@
 }
 
 .preview-icon {
-  @apply text-4xl mb-3;
+  @apply mb-3 mx-auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
 }
 
 .preview-title {

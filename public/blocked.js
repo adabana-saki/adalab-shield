@@ -20,8 +20,9 @@
     }
   };
 
+  // Default heading/message (the user's custom values override these below).
   document.getElementById('title').textContent = t(
-    'blockPageTitle',
+    'blockPageDefaultTitle',
     'Content Blocked'
   );
   document.getElementById('message').textContent = `${platform} ${t(
@@ -32,6 +33,48 @@
     'blockPageSettingsHint',
     'You can change this in adalab shield settings.'
   );
+
+  // Use the real extension icon instead of an emoji.
+  try {
+    document.getElementById('icon').src =
+      chrome.runtime.getURL('icons/icon-128.png');
+  } catch {
+    // getURL unavailable: leave the icon empty
+  }
+
+  // Apply the user's block-page customization (theme / accent / custom text).
+  const SETTINGS_KEY = 'shortshield_settings';
+  const applyTheme = (theme) => {
+    let dark;
+    if (theme === 'dark') {
+      dark = true;
+    } else if (theme === 'light') {
+      dark = false;
+    } else {
+      dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    document.body.classList.toggle('dark', dark);
+  };
+  applyTheme('system'); // sensible default before settings load
+  void (async () => {
+    try {
+      const r = await chrome.storage.local.get(SETTINGS_KEY);
+      const bp = r[SETTINGS_KEY] && r[SETTINGS_KEY].blockPage;
+      if (!bp) return;
+      applyTheme(bp.theme);
+      if (typeof bp.title === 'string' && bp.title.trim()) {
+        document.getElementById('title').textContent = bp.title;
+      }
+      if (typeof bp.message === 'string' && bp.message.trim()) {
+        document.getElementById('message').textContent = bp.message;
+      }
+      if (typeof bp.primaryColor === 'string') {
+        document.getElementById('adalab').style.borderColor = bp.primaryColor;
+      }
+    } catch {
+      // storage unavailable: keep defaults
+    }
+  })();
   document.getElementById('adalab-label').textContent = t(
     'blockPageFocusRemaining',
     'Focus — time remaining'

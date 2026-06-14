@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useI18n } from '@/shared/hooks/useI18n';
 import { useSettings } from '@/shared/hooks/useSettings';
 import type { CustomBlockedDomain, CustomDomainId } from '@/shared/types';
-import { LIMITS } from '@/shared/constants';
+import { LIMITS, isProtectedHost } from '@/shared/constants';
 
 /**
  * Generate a unique ID for custom domains
@@ -80,6 +80,13 @@ export function CustomDomains() {
 
     if (!isValidDomain(normalizedDomain)) {
       setError(t('customDomainsErrorInvalid'));
+      return;
+    }
+
+    // Some hosts must never be blocked (e.g. the adalab study app the
+    // extension integrates with).
+    if (isProtectedHost(normalizedDomain)) {
+      setError(t('customDomainsErrorProtected'));
       return;
     }
 
