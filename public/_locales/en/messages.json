@@ -2528,5 +2528,13 @@
   "settingsInactiveHint": {
     "message": "Currently off. Set it up below, then turn it on to activate.",
     "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "A study tab is open but not responding. Reload it (this happens after the extension updates).",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "Reload the study tab",
+    "description": "Popup: reload study tab button"
   }
 }

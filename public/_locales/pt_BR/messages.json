@@ -2528,5 +2528,13 @@
   "settingsInactiveHint": {
     "message": "Desativado. Configure abaixo e depois ative.",
     "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "Há uma aba do study aberta, mas sem resposta. Recarregue-a (acontece após a extensão atualizar).",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "Recarregar a aba do study",
+    "description": "Popup: reload study tab button"
   }
 }

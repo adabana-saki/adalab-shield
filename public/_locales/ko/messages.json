@@ -2528,5 +2528,13 @@
   "settingsInactiveHint": {
     "message": "현재 꺼져 있습니다. 아래에서 설정한 뒤 켜면 적용됩니다.",
     "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "study 탭이 열려 있지만 응답하지 않습니다. 탭을 새로고침하세요(확장 업데이트 후 발생).",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "study 탭 새로고침",
+    "description": "Popup: reload study tab button"
   }
 }

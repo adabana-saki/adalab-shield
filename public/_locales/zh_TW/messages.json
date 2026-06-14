@@ -2528,5 +2528,13 @@
   "settingsInactiveHint": {
     "message": "目前為關閉。請在下方設定後再開啟以生效。",
     "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "study 分頁已開啟但無回應。請重新整理該分頁（擴充功能更新後會發生）。",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "重新整理 study 分頁",
+    "description": "Popup: reload study tab button"
   }
 }

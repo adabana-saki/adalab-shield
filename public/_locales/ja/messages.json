@@ -2528,5 +2528,13 @@
   "settingsInactiveHint": {
     "message": "現在オフです。下の内容を設定してからオンにすると有効になります。",
     "description": "Hint shown when a feature is off but its config is editable"
+  },
+  "popupAdalabReloadTab": {
+    "message": "study タブはありますが応答していません。タブを再読み込みしてください（拡張の更新後に起きます）。",
+    "description": "Popup: study tab not responding notice"
+  },
+  "popupAdalabReloadTabBtn": {
+    "message": "study タブを再読み込み",
+    "description": "Popup: reload study tab button"
   }
 }
