@@ -135,7 +135,7 @@ export function ExportImport() {
         }
 
         // Import settings
-        await importSettings(data as Partial<Settings>);
+        await importSettings(data);
 
         logger.info('Settings imported successfully');
         setSuccess(t('importSuccess'));

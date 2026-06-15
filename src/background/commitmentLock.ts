@@ -55,7 +55,7 @@ export async function getCommitmentLockState(): Promise<CommitmentLockState> {
       return {
         ...DEFAULT_COMMITMENT_LOCK_STATE,
         ...stored,
-      } as CommitmentLockState;
+      };
     }
   } catch (error) {
     logger.error('Failed to get Commitment Lock state', { error });
@@ -91,7 +91,7 @@ export async function getUnlockHistory(): Promise<UnlockHistory> {
     const stored = result[STORAGE_KEYS.COMMITMENT_LOCK_HISTORY];
 
     if (stored && typeof stored === 'object') {
-      return { ...DEFAULT_UNLOCK_HISTORY, ...stored } as UnlockHistory;
+      return { ...DEFAULT_UNLOCK_HISTORY, ...stored };
     }
   } catch (error) {
     logger.error('Failed to get unlock history', { error });
@@ -123,7 +123,7 @@ export async function getPremiumState(): Promise<PremiumState> {
     const stored = result[STORAGE_KEYS.PREMIUM_STATE];
 
     if (stored && typeof stored === 'object') {
-      return { ...DEFAULT_PREMIUM_STATE, ...stored } as PremiumState;
+      return { ...DEFAULT_PREMIUM_STATE, ...stored };
     }
   } catch (error) {
     logger.error('Failed to get premium state', { error });

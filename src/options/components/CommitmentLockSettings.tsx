@@ -38,6 +38,7 @@ export function CommitmentLockSettings() {
   const inUnlockWindow =
     commitmentLockState !== null &&
     commitmentLockState.lastUnlockAt !== null &&
+    // eslint-disable-next-line react-hooks/purity -- time-based UI flag; recomputing per render is intended
     Date.now() - commitmentLockState.lastUnlockAt < COMMITMENT_UNLOCK_WINDOW_MS;
 
   const loadStates = useCallback(async () => {
@@ -63,6 +64,7 @@ export function CommitmentLockSettings() {
 
   // Load states on mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async load on mount
     void loadStates();
   }, [loadStates]);
 
