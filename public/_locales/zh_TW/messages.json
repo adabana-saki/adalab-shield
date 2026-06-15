@@ -2844,5 +2844,17 @@
   "commandToggleBlocking": {
     "message": "開啟或關閉封鎖",
     "description": "Keyboard command descriptions"
+  },
+  "snoozeLabel": {
+    "message": "暫停封鎖",
+    "description": "Snooze (temporary allow)"
+  },
+  "snoozeActiveLabel": {
+    "message": "已暫停封鎖",
+    "description": "Snooze (temporary allow)"
+  },
+  "snoozeResume": {
+    "message": "立即恢復",
+    "description": "Snooze (temporary allow)"
   }
 }

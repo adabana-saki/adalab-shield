@@ -27,6 +27,7 @@ import { PlatformGrid } from './components/PlatformGrid';
 import { FocusLauncher } from './components/FocusLauncher';
 import { ScheduleBadge } from './components/ScheduleBadge';
 import { BlockSiteButton } from './components/BlockSiteButton';
+import { SnoozeControl } from './components/SnoozeControl';
 
 export function App() {
   const { t, isReady: i18nReady } = useI18n();
@@ -211,6 +212,14 @@ export function App() {
     void updateSettings({ customDomains: domains });
   };
 
+  const handleSnooze = (minutes: number) => {
+    void updateSettings({ snoozeUntil: Date.now() + minutes * 60_000 });
+  };
+
+  const handleCancelSnooze = () => {
+    void updateSettings({ snoozeUntil: null });
+  };
+
   // Check if pomodoro is paused (not running but not in idle mode)
   const isPaused = !pomodoroState.isRunning && pomodoroState.mode !== 'idle';
   const hasActiveTimer =
@@ -364,6 +373,15 @@ export function App() {
             </div>
           </div>
         )}
+
+        {/* Temporary allow (snooze): pause all blocking for a short window */}
+        <SnoozeControl
+          enabled={settings.enabled}
+          snoozeUntil={settings.snoozeUntil}
+          now={now}
+          onSnooze={handleSnooze}
+          onCancel={handleCancelSnooze}
+        />
 
         {/* Watching indicator + adalab study remote (contextual).
             Connected → shows study pomodoro controls; not connected → a

@@ -2844,5 +2844,17 @@
   "commandToggleBlocking": {
     "message": "차단 켜기/끄기",
     "description": "Keyboard command descriptions"
+  },
+  "snoozeLabel": {
+    "message": "차단 일시중지",
+    "description": "Snooze (temporary allow)"
+  },
+  "snoozeActiveLabel": {
+    "message": "일시 허용 중",
+    "description": "Snooze (temporary allow)"
+  },
+  "snoozeResume": {
+    "message": "지금 재개",
+    "description": "Snooze (temporary allow)"
   }
 }

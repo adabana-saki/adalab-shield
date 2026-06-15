@@ -120,13 +120,28 @@ export async function updateDnrRules(): Promise<void> {
 
     // A paused break still counts as a break (pausing must not re-block)
     const inBreak = pomodoro.mode === 'break' || pomodoro.mode === 'longBreak';
+    // Snooze: all blocking is temporarily paused until snoozeUntil
+    const snoozed =
+      settings.snoozeUntil !== null && settings.snoozeUntil > Date.now();
     // Focus Mode forces blocking on, even outside scheduled hours
     const focusActive =
       focus.isActive && focus.endTime !== null && focus.endTime > Date.now();
     const blockingActive =
       settings.enabled &&
       !inBreak &&
+      !snoozed &&
       (focusActive || isScheduleActive(settings.schedule));
+
+    // When a snooze is active, schedule a one-shot DNR recompute at its expiry
+    // so blocking resumes promptly (the 1-min periodic alarm is the backstop).
+    if (snoozed && settings.snoozeUntil !== null) {
+      const delayMs = settings.snoozeUntil - Date.now();
+      if (delayMs > 0 && delayMs < 6 * 60 * 60 * 1000) {
+        await browser.alarms.create('shortshield_snooze_end', {
+          when: settings.snoozeUntil,
+        });
+      }
+    }
 
     const desired: browser.DeclarativeNetRequest.Rule[] = [];
 
