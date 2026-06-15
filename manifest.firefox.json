@@ -36,6 +36,16 @@
     "scripts": ["src/background/index.ts"],
     "type": "module"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Ctrl+Shift+S" },
+      "description": "__MSG_commandOpenPopup__"
+    },
+    "toggle-blocking": {
+      "suggested_key": { "default": "Ctrl+Shift+Y" },
+      "description": "__MSG_commandToggleBlocking__"
+    }
+  },
   "content_scripts": [
     {
       "matches": [

@@ -2836,5 +2836,13 @@
   "blockPresetClearAll": {
     "message": "すべて解除",
     "description": "Block category presets"
+  },
+  "commandOpenPopup": {
+    "message": "adalab shield のポップアップを開く",
+    "description": "Keyboard command descriptions"
+  },
+  "commandToggleBlocking": {
+    "message": "ブロックのオン/オフを切り替える",
+    "description": "Keyboard command descriptions"
   }
 }

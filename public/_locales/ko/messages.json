@@ -2836,5 +2836,13 @@
   "blockPresetClearAll": {
     "message": "모두 해제",
     "description": "Block category presets"
+  },
+  "commandOpenPopup": {
+    "message": "adalab shield 팝업 열기",
+    "description": "Keyboard command descriptions"
+  },
+  "commandToggleBlocking": {
+    "message": "차단 켜기/끄기",
+    "description": "Keyboard command descriptions"
   }
 }

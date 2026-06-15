@@ -2836,5 +2836,13 @@
   "blockPresetClearAll": {
     "message": "全部清除",
     "description": "Block category presets"
+  },
+  "commandOpenPopup": {
+    "message": "開啟 adalab shield 彈出視窗",
+    "description": "Keyboard command descriptions"
+  },
+  "commandToggleBlocking": {
+    "message": "開啟或關閉封鎖",
+    "description": "Keyboard command descriptions"
   }
 }

@@ -89,6 +89,28 @@ async function initialize(): Promise<void> {
       }
     });
 
+    // Keyboard shortcuts (manifest "commands"). _execute_action opens the
+    // popup automatically; we only handle the custom toggle here.
+    if (browser.commands?.onCommand !== undefined) {
+      browser.commands.onCommand.addListener((command) => {
+        if (command !== 'toggle-blocking') {
+          return;
+        }
+        void (async () => {
+          try {
+            const current = await getSettings();
+            await updateSettings({ enabled: !current.enabled });
+            logger.info('Blocking toggled via shortcut', {
+              enabled: !current.enabled,
+            });
+          } catch (error) {
+            // e.g. blocked by an active commitment lock — leave state as-is.
+            logger.warn('Toggle shortcut ignored', { error: String(error) });
+          }
+        })();
+      });
+    }
+
     logger.info('ShortShield initialized successfully');
   } catch (error) {
     logger.error('Failed to initialize', { error: String(error) });
