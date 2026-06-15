@@ -2780,5 +2780,21 @@
   "cloudSyncUnavailable": {
     "message": "이 브라우저에서는 클라우드 동기화를 사용할 수 없습니다.",
     "description": "Cloud sync (storage.sync)"
+  },
+  "reportsWeeklySummary": {
+    "message": "주간 요약",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsThisWeek": {
+    "message": "이번 주",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsVsLastWeek": {
+    "message": "지난주 대비",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsExportCsv": {
+    "message": "CSV 내보내기",
+    "description": "Reports weekly summary / export"
   }
 }

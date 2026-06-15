@@ -2780,5 +2780,21 @@
   "cloudSyncUnavailable": {
     "message": "A sincronização na nuvem não está disponível neste navegador.",
     "description": "Cloud sync (storage.sync)"
+  },
+  "reportsWeeklySummary": {
+    "message": "Resumo semanal",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsThisWeek": {
+    "message": "Esta semana",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsVsLastWeek": {
+    "message": "vs. semana passada",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsExportCsv": {
+    "message": "Exportar CSV",
+    "description": "Reports weekly summary / export"
   }
 }

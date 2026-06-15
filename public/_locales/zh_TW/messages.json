@@ -2780,5 +2780,21 @@
   "cloudSyncUnavailable": {
     "message": "此瀏覽器不支援雲端同步。",
     "description": "Cloud sync (storage.sync)"
+  },
+  "reportsWeeklySummary": {
+    "message": "每週摘要",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsThisWeek": {
+    "message": "本週",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsVsLastWeek": {
+    "message": "較上週",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsExportCsv": {
+    "message": "匯出 CSV",
+    "description": "Reports weekly summary / export"
   }
 }

@@ -199,6 +199,48 @@ export function TimeReports() {
   const averageMs =
     history.history.length > 0 ? totalMs / history.history.length : 0;
 
+  // This-week vs last-week comparison (rolling 7-day windows).
+  const DAY_MS = 86_400_000;
+  const now = Date.now();
+  const sumWindow = (minAgeDays: number, maxAgeDays: number): number =>
+    history.history.reduce((sum, r) => {
+      const age = now - new Date(r.date).getTime();
+      return age >= minAgeDays * DAY_MS && age < maxAgeDays * DAY_MS
+        ? sum + r.totalMs
+        : sum;
+    }, 0);
+  const thisWeekMs = sumWindow(0, 7);
+  const lastWeekMs = sumWindow(7, 14);
+  const weekChangePct =
+    lastWeekMs > 0
+      ? Math.round(((thisWeekMs - lastWeekMs) / lastWeekMs) * 100)
+      : null;
+
+  /** Build a CSV of the visible history (durations in minutes). */
+  const buildCsv = (): string => {
+    const platforms = PLATFORM_CONFIG.map((p) => p.platform);
+    const header = ['date', 'total_minutes', ...platforms].join(',');
+    const toMin = (ms: number): number => Math.round(ms / 60000);
+    const rows = history.history.map((r) =>
+      [
+        r.date,
+        toMin(r.totalMs),
+        ...platforms.map((p) => toMin(r.byPlatform[p] ?? 0)),
+      ].join(',')
+    );
+    return [header, ...rows].join('\n');
+  };
+
+  const handleExportCsv = (): void => {
+    const blob = new Blob([buildCsv()], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `adalab-shield-usage-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="time-reports">
       {/* Enable toggle */}
@@ -281,6 +323,33 @@ export function TimeReports() {
                 </div>
               </div>
 
+              {/* Weekly summary */}
+              <div className="weekly-summary">
+                <div className="weekly-summary-head">
+                  <span className="weekly-summary-title">
+                    {t('reportsWeeklySummary')}
+                  </span>
+                </div>
+                <div className="weekly-summary-body">
+                  <div className="weekly-summary-main">
+                    <span className="weekly-summary-label">
+                      {t('reportsThisWeek')}
+                    </span>
+                    <span className="weekly-summary-value">
+                      {formatDuration(thisWeekMs)}
+                    </span>
+                  </div>
+                  {weekChangePct !== null && (
+                    <span
+                      className={`weekly-summary-badge ${weekChangePct <= 0 ? 'is-down' : 'is-up'}`}
+                    >
+                      {weekChangePct > 0 ? '▲' : weekChangePct < 0 ? '▼' : '＝'}{' '}
+                      {Math.abs(weekChangePct)}% {t('reportsVsLastWeek')}
+                    </span>
+                  )}
+                </div>
+              </div>
+
               {/* Platform breakdown */}
               <div className="platform-breakdown">
                 <h3 className="subsection-title">{t('reportsByPlatform')}</h3>
@@ -334,8 +403,11 @@ export function TimeReports() {
                 </div>
               </div>
 
-              {/* Clear history button */}
+              {/* Actions */}
               <div className="actions-row">
+                <button className="btn-secondary" onClick={handleExportCsv}>
+                  {t('reportsExportCsv')}
+                </button>
                 <button
                   className="btn-danger"
                   onClick={() => void handleClearHistory()}

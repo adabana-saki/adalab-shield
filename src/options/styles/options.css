@@ -767,11 +767,51 @@
 
 /* Actions row */
 .actions-row {
-  @apply mt-6 pt-4 border-t border-gray-200;
+  @apply mt-6 pt-4 border-t border-gray-200 flex gap-3 flex-wrap;
 }
 
 .btn-danger {
   @apply px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 transition-colors;
+}
+
+/* Weekly summary (Reports) */
+.weekly-summary {
+  @apply mt-6 p-4 rounded-xl bg-gray-50 border border-gray-100;
+}
+.weekly-summary-title {
+  @apply text-sm font-semibold text-gray-900;
+}
+.weekly-summary-body {
+  @apply flex items-center justify-between gap-3 mt-2;
+}
+.weekly-summary-main {
+  @apply flex flex-col;
+}
+.weekly-summary-label {
+  @apply text-xs text-gray-500;
+}
+.weekly-summary-value {
+  @apply text-xl font-bold text-gray-900;
+}
+.weekly-summary-badge {
+  @apply text-xs font-semibold px-2.5 py-1 rounded-full;
+}
+.weekly-summary-badge.is-up {
+  @apply bg-red-100 text-red-700;
+}
+.weekly-summary-badge.is-down {
+  @apply bg-green-100 text-green-700;
+}
+.dark .weekly-summary {
+  background-color: var(--color-bg-hover) !important;
+  border-color: var(--color-border) !important;
+}
+.dark .weekly-summary-title,
+.dark .weekly-summary-value {
+  color: var(--color-text-primary) !important;
+}
+.dark .weekly-summary-label {
+  color: var(--color-text-muted) !important;
 }
 
 /* 共通ボタン。未定義でネイティブの暗いボタンになり「見えない」問題を解消する。
