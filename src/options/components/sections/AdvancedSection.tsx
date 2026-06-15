@@ -7,6 +7,7 @@ import { SectionHeader } from '../common/SectionHeader';
 import { BlockPageCustomizer } from '../BlockPageCustomizer';
 import { LanguageSettings } from '../LanguageSettings';
 import { ExportImport } from '../ExportImport';
+import { CloudSync } from '../CloudSync';
 
 type AdvancedSubSection = 'appearance' | 'language' | 'backup';
 
@@ -61,6 +62,8 @@ export function AdvancedSection({ subSection }: AdvancedSectionProps) {
           }
         />
         <ExportImport />
+        <div className="cloud-sync-divider" />
+        <CloudSync />
       </div>
     );
   }

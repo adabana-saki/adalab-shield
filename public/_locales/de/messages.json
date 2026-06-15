@@ -2720,5 +2720,65 @@
   "adalabSetupStep3": {
     "message": "Aktiviere oben die Synchronisierung, um im Fokus zu blockieren und in Pausen freizugeben.",
     "description": "adalab connection status"
+  },
+  "cloudSyncTitle": {
+    "message": "Cloud-Sync",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncDescription": {
+    "message": "Speichere deine Konfiguration in deinem Browserkonto, um sie auf einem anderen Gerät wiederherzustellen. Statistiken, Verlauf und Sperreinstellungen werden nicht synchronisiert.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSavedAt": {
+    "message": "Zuletzt gespeichert",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncNever": {
+    "message": "Noch nichts in der Cloud gespeichert.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSave": {
+    "message": "In Cloud speichern",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaving": {
+    "message": "Speichern…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveDesc": {
+    "message": "Lade deine aktuelle Konfiguration hoch.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestore": {
+    "message": "Aus Cloud wiederherstellen",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoring": {
+    "message": "Wiederherstellen…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreDesc": {
+    "message": "Wende die in der Cloud gespeicherte Konfiguration an.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveSuccess": {
+    "message": "Konfiguration in der Cloud gespeichert.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreSuccess": {
+    "message": "Konfiguration aus der Cloud wiederhergestellt.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncError": {
+    "message": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncEmpty": {
+    "message": "Es gibt nichts zum Wiederherstellen.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncUnavailable": {
+    "message": "Cloud-Sync ist in diesem Browser nicht verfügbar.",
+    "description": "Cloud sync (storage.sync)"
   }
 }

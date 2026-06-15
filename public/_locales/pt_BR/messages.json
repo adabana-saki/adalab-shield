@@ -2720,5 +2720,65 @@
   "adalabSetupStep3": {
     "message": "Ative a sincronização acima para bloquear no foco e desbloquear nas pausas.",
     "description": "adalab connection status"
+  },
+  "cloudSyncTitle": {
+    "message": "Sincronização na nuvem",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncDescription": {
+    "message": "Salve sua configuração na conta do navegador para restaurá-la em outro dispositivo. Estatísticas, histórico e ajustes de bloqueio não são sincronizados.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSavedAt": {
+    "message": "Último salvamento",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncNever": {
+    "message": "Nada salvo na nuvem ainda.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSave": {
+    "message": "Salvar na nuvem",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaving": {
+    "message": "Salvando…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveDesc": {
+    "message": "Envie sua configuração atual.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestore": {
+    "message": "Restaurar da nuvem",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoring": {
+    "message": "Restaurando…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreDesc": {
+    "message": "Aplique a configuração salva na nuvem.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveSuccess": {
+    "message": "Configuração salva na nuvem.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreSuccess": {
+    "message": "Configuração restaurada da nuvem.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncError": {
+    "message": "Algo deu errado. Tente novamente.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncEmpty": {
+    "message": "Não há nada salvo para restaurar.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncUnavailable": {
+    "message": "A sincronização na nuvem não está disponível neste navegador.",
+    "description": "Cloud sync (storage.sync)"
   }
 }
