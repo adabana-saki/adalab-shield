@@ -8,12 +8,14 @@ import { SectionHeader } from '../common/SectionHeader';
 import { ToggleRow } from '../common/ToggleRow';
 import { CustomDomains } from '../CustomDomains';
 import { Allowlist } from '../Allowlist';
+import { CustomRules } from '../CustomRules';
 import { TimeLimitsConfig } from '../TimeLimitsConfig';
 
 type BlockingSubSection =
   | 'platforms'
   | 'customDomains'
   | 'allowlist'
+  | 'customRules'
   | 'timeLimits';
 
 interface BlockingSectionProps {
@@ -75,6 +77,30 @@ export function BlockingSection({
         />
         <p className="section-hint">{t('allowlistHint')}</p>
         <Allowlist />
+      </div>
+    );
+  }
+
+  if (subSection === 'customRules') {
+    return (
+      <div className="settings-section">
+        <SectionHeader
+          title={t('customRulesTitle')}
+          description={t('customRulesDescription')}
+          icon={
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          }
+        />
+        <p className="section-hint">{t('customRulesHint')}</p>
+        <CustomRules />
       </div>
     );
   }

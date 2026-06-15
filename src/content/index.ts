@@ -12,8 +12,10 @@ import {
 } from './platforms';
 import { createManagedObserver } from './observer';
 import { initAdalabBridge } from './adalabBridge';
+import { CustomRulesEngine } from './customRules';
 import { createLogger } from '@/shared/utils/logger';
 import { isAllowlisted } from '@/shared/utils/allowlist';
+import { isScheduleActive } from '@/shared/utils/schedule';
 import { createMessage } from '@/shared/types';
 import { STORAGE_KEYS } from '@/shared/constants';
 import type { Settings, PomodoroState, FocusModeState } from '@/shared/types';
@@ -26,6 +28,41 @@ const logger = createLogger('content');
  * can consult it synchronously on every re-evaluation.
  */
 let allowlist: readonly string[] = [];
+
+/**
+ * User-defined custom element-hiding rules engine. Its active state tracks the
+ * same "is blocking on right now" condition as the platform detectors.
+ */
+const customRulesEngine = new CustomRulesEngine();
+let latestSettings: Settings | null = null;
+let latestPomodoro: PomodoroState | null = null;
+let latestFocus: FocusModeState | null = null;
+
+/**
+ * Whether blocking is currently in force (global enable + not on a break +
+ * focus session or active schedule). Mirrors BasePlatformDetector.isEnabled
+ * without the per-platform check.
+ */
+function isBlockingActiveNow(): boolean {
+  const settings = latestSettings;
+  if (settings === null || !settings.enabled) {
+    return false;
+  }
+  const mode = latestPomodoro?.mode;
+  if (mode === 'break' || mode === 'longBreak') {
+    return false;
+  }
+  const focusActive =
+    latestFocus !== null &&
+    latestFocus.isActive &&
+    latestFocus.endTime !== null &&
+    latestFocus.endTime > Date.now();
+  return focusActive || isScheduleActive(settings.schedule);
+}
+
+function syncCustomRulesActive(): void {
+  customRulesEngine.setActive(isBlockingActiveNow());
+}
 
 /**
  * Block overlay element ids used by full-site and custom-domain blocking
@@ -115,32 +152,38 @@ async function getFocusStateSafely(): Promise<FocusModeState | null> {
  */
 function applySettingsToAll(settings: Settings): void {
   allowlist = settings.allowlist ?? [];
+  latestSettings = settings;
   const customDetector = getCustomDomainDetector();
   setCustomDomains(settings.customDomains);
   customDetector.setSettings(settings);
   for (const d of getAllDetectors()) {
     d.setSettings(settings);
   }
+  syncCustomRulesActive();
 }
 
 /**
  * Apply Pomodoro state to every detector
  */
 function applyPomodoroToAll(pomodoroState: PomodoroState | null): void {
+  latestPomodoro = pomodoroState;
   getCustomDomainDetector().setPomodoroState(pomodoroState);
   for (const d of getAllDetectors()) {
     d.setPomodoroState(pomodoroState);
   }
+  syncCustomRulesActive();
 }
 
 /**
  * Apply Focus Mode state to every detector
  */
 function applyFocusToAll(focusState: FocusModeState | null): void {
+  latestFocus = focusState;
   getCustomDomainDetector().setFocusState(focusState);
   for (const d of getAllDetectors()) {
     d.setFocusState(focusState);
   }
+  syncCustomRulesActive();
 }
 
 /**
@@ -190,6 +233,10 @@ async function initialize(): Promise<void> {
   }
   applyPomodoroToAll(await getPomodoroStateSafely());
   applyFocusToAll(await getFocusStateSafely());
+
+  // Custom element-hiding rules run alongside the platform detectors.
+  await customRulesEngine.init(hostname);
+  syncCustomRulesActive();
 
   // Active detector management (re-evaluated when settings change)
   let activeDetector: BasePlatformDetector | null = null;

@@ -72,6 +72,11 @@ export interface CustomRule {
   readonly enabled: boolean;
   readonly platform: Platform | 'all';
   readonly rule: BlockingRule;
+  /**
+   * Host patterns this rule applies to (same wildcard syntax as the allowlist).
+   * Empty/undefined means it applies to every site.
+   */
+  readonly hosts?: readonly string[];
   readonly createdAt: number;
   readonly updatedAt: number;
 }

@@ -2575,6 +2575,34 @@
 }
 
 /* ===================================
+   Custom rules (element-hiding) form
+   =================================== */
+
+.custom-rule-form {
+  @apply mb-6 space-y-3;
+}
+
+.custom-rule-form-row {
+  @apply flex gap-3;
+}
+
+.custom-rule-item {
+  @apply gap-3;
+}
+
+.custom-rule-toggle {
+  @apply flex items-center gap-3 flex-1 min-w-0 cursor-pointer;
+}
+
+.custom-rule-info {
+  @apply flex flex-col min-w-0;
+}
+
+.custom-rule-meta {
+  @apply text-xs text-gray-400 truncate;
+}
+
+/* ===================================
    Improved UI - Whitelist
    =================================== */
 

@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "No se pudo guardar. Inténtalo de nuevo.",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "Reglas personalizadas",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "Oculta, difumina o elimina elementos concretos de la página mediante un selector CSS, opcionalmente solo en ciertos sitios.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "Avanzado: apunta a distracciones que un interruptor de plataforma no puede, p. ej. una sección de comentarios.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "¿Cómo funcionan las reglas personalizadas?",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "Cada regla aplica un selector CSS y oculta los elementos coincidentes mientras el bloqueo está activo.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "Deja “Sitios” vacío para aplicar en todas partes, o indica hosts (p. ej. youtube.com) para acotar la regla.",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "un elemento con id=\"comments\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "elementos con la clase \"ad-banner\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "Nombre de la regla (p. ej. Ocultar comentarios)",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "Sitios (opcional, p. ej. youtube.com)",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "Selector CSS (p. ej. #comments)",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "Ocultar",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "Difuminar",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "Eliminar",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "Aún no hay reglas personalizadas.",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "Todos los sitios",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "Escribe un nombre para la regla.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "Ese no es un selector CSS válido.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "No se pudo guardar. Inténtalo de nuevo.",
+    "description": "Custom rules messages"
   }
 }

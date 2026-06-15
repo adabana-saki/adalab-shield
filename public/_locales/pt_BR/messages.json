@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "Não foi possível salvar. Tente novamente.",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "Regras personalizadas",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "Oculte, desfoque ou remova elementos específicos da página por seletor CSS — opcionalmente apenas em certos sites.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "Avançado: mire distrações que um botão de plataforma não alcança, ex.: uma seção de comentários.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "Como funcionam as regras personalizadas?",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "Cada regra aplica um seletor CSS e oculta os elementos correspondentes enquanto o bloqueio está ativo.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "Deixe “Sites” vazio para aplicar em todo lugar, ou liste hosts (ex.: youtube.com) para limitar a regra.",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "um elemento com id=\"comments\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "elementos com a classe \"ad-banner\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "Nome da regra (ex.: Ocultar comentários)",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "Sites (opcional, ex.: youtube.com)",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "Seletor CSS (ex.: #comments)",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "Ocultar",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "Desfocar",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "Remover",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "Nenhuma regra personalizada ainda.",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "Todos os sites",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "Digite um nome para a regra.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "Esse não é um seletor CSS válido.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "Não foi possível salvar. Tente novamente.",
+    "description": "Custom rules messages"
   }
 }

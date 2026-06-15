@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "Enregistrement impossible. Veuillez réessayer.",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "Règles personnalisées",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "Masquez, floutez ou supprimez des éléments précis de la page via un sélecteur CSS, éventuellement seulement sur certains sites.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "Avancé : ciblez des distractions qu’un interrupteur de plateforme ne peut pas, par ex. une section de commentaires.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "Comment fonctionnent les règles personnalisées ?",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "Chaque règle applique un sélecteur CSS et masque les éléments correspondants tant que le blocage est actif.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "Laissez « Sites » vide pour appliquer partout, ou indiquez des hôtes (par ex. youtube.com) pour cibler la règle.",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "un élément avec id=\"comments\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "éléments de classe « ad-banner »",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "Nom de la règle (par ex. Masquer les commentaires)",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "Sites (facultatif, par ex. youtube.com)",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "Sélecteur CSS (par ex. #comments)",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "Masquer",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "Flouter",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "Supprimer",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "Aucune règle personnalisée pour le moment.",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "Tous les sites",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "Saisissez un nom pour la règle.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "Ce n’est pas un sélecteur CSS valide.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "Enregistrement impossible. Veuillez réessayer.",
+    "description": "Custom rules messages"
   }
 }
