@@ -420,6 +420,7 @@ export const DEFAULT_SETTINGS: Settings = {
   lockdown: DEFAULT_LOCKDOWN,
   commitmentLock: DEFAULT_COMMITMENT_LOCK,
   adalabSync: DEFAULT_ADALAB_SYNC,
+  snoozeUntil: null,
   onboardingCompleted: false,
   version: SETTINGS_VERSION,
 } as const;

@@ -183,6 +183,77 @@ body {
   border: 1px solid var(--border);
   background: var(--panel);
 }
+
+/* Snooze (temporary allow) control */
+.snooze-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+}
+.snooze-control.is-active {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.12);
+}
+.snooze-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+.snooze-buttons {
+  display: flex;
+  gap: 6px;
+}
+.snooze-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-strong);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.snooze-btn:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.15);
+}
+.snooze-active-info {
+  display: flex;
+  flex-direction: column;
+}
+.snooze-active-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fcd34d;
+}
+.snooze-active-time {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-main);
+}
+.snooze-cancel-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  background: var(--cyan-soft);
+  color: #a5f3fc;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.snooze-cancel-btn:hover {
+  background: rgba(6, 182, 212, 0.2);
+}
 .status-hero.on {
   border-color: rgba(6, 182, 212, 0.4);
   background: linear-gradient(

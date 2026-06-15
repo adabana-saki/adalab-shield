@@ -2844,5 +2844,17 @@
   "commandToggleBlocking": {
     "message": "Turn blocking on or off",
     "description": "Keyboard command descriptions"
+  },
+  "snoozeLabel": {
+    "message": "Pause blocking",
+    "description": "Snooze (temporary allow)"
+  },
+  "snoozeActiveLabel": {
+    "message": "Blocking paused",
+    "description": "Snooze (temporary allow)"
+  },
+  "snoozeResume": {
+    "message": "Resume now",
+    "description": "Snooze (temporary allow)"
   }
 }

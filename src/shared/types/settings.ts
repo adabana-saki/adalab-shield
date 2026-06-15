@@ -394,6 +394,8 @@ export interface Settings {
   readonly lockdown: LockdownSettings;
   readonly commitmentLock: CommitmentLockSettings;
   readonly adalabSync: AdalabSyncSettings;
+  /** Unix ms until which all blocking is temporarily paused (snooze), or null */
+  readonly snoozeUntil: number | null;
   readonly onboardingCompleted: boolean; // Whether user has completed initial setup
   readonly version: number; // Schema version for migrations
 }
@@ -426,6 +428,7 @@ export type SettingsUpdate = Partial<{
   lockdown: Partial<LockdownSettings>;
   commitmentLock: Partial<CommitmentLockSettings>;
   adalabSync: Partial<AdalabSyncSettings>;
+  snoozeUntil: number | null;
   onboardingCompleted: boolean;
 }>;
 

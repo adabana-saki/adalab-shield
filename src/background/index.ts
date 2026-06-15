@@ -86,6 +86,9 @@ async function initialize(): Promise<void> {
       if (alarm.name === PERIODIC_REFRESH_ALARM) {
         void checkDailyReset();
         void updateDnrRules();
+      } else if (alarm.name === 'shortshield_snooze_end') {
+        // A snooze just expired: re-block immediately.
+        void updateDnrRules();
       }
     });
 

@@ -133,6 +133,10 @@ export async function updateSettings(
     lockdown: update.lockdown
       ? { ...current.lockdown, ...update.lockdown }
       : current.lockdown,
+    snoozeUntil:
+      update.snoozeUntil !== undefined
+        ? update.snoozeUntil
+        : current.snoozeUntil,
     onboardingCompleted:
       update.onboardingCompleted ?? current.onboardingCompleted,
     version: current.version,

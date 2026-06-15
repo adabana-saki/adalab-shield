@@ -134,6 +134,10 @@ export async function updateSettings(
     adalabSync: update.adalabSync
       ? { ...current.adalabSync, ...update.adalabSync }
       : current.adalabSync,
+    snoozeUntil:
+      update.snoozeUntil !== undefined
+        ? update.snoozeUntil
+        : current.snoozeUntil,
     onboardingCompleted:
       update.onboardingCompleted ?? current.onboardingCompleted,
     version: current.version,

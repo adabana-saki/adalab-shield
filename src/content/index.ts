@@ -43,9 +43,20 @@ let latestFocus: FocusModeState | null = null;
  * focus session or active schedule). Mirrors BasePlatformDetector.isEnabled
  * without the per-platform check.
  */
+function isSnoozed(): boolean {
+  return (
+    latestSettings !== null &&
+    latestSettings.snoozeUntil !== null &&
+    latestSettings.snoozeUntil > Date.now()
+  );
+}
+
 function isBlockingActiveNow(): boolean {
   const settings = latestSettings;
   if (settings === null || !settings.enabled) {
+    return false;
+  }
+  if (isSnoozed()) {
     return false;
   }
   const mode = latestPomodoro?.mode;
@@ -62,6 +73,32 @@ function isBlockingActiveNow(): boolean {
 
 function syncCustomRulesActive(): void {
   customRulesEngine.setActive(isBlockingActiveNow());
+}
+
+/** Re-run platform detection; set once the content script has initialized. */
+let reevaluateDetector: (() => void) | null = null;
+let snoozeExpiryTimer: ReturnType<typeof setTimeout> | null = null;
+
+/**
+ * Snooze ends without any storage event, so schedule a one-shot re-evaluation
+ * at its expiry to re-block this page (background DNR resumes separately).
+ */
+function scheduleSnoozeExpiry(): void {
+  if (snoozeExpiryTimer !== null) {
+    clearTimeout(snoozeExpiryTimer);
+    snoozeExpiryTimer = null;
+  }
+  const until = latestSettings?.snoozeUntil ?? null;
+  if (until === null) {
+    return;
+  }
+  const delay = until - Date.now();
+  if (delay > 0 && delay < 6 * 60 * 60 * 1000) {
+    snoozeExpiryTimer = setTimeout(() => {
+      syncCustomRulesActive();
+      reevaluateDetector?.();
+    }, delay + 250);
+  }
 }
 
 /**
@@ -160,6 +197,7 @@ function applySettingsToAll(settings: Settings): void {
     d.setSettings(settings);
   }
   syncCustomRulesActive();
+  scheduleSnoozeExpiry();
 }
 
 /**
@@ -251,9 +289,9 @@ async function initialize(): Promise<void> {
   };
 
   const evaluateDetector = (): void => {
-    // Allowlisted hosts are exempt from all blocking: tear down any active
-    // detection and lift overlays the page may have shown before being added.
-    if (isAllowlisted(hostname, allowlist)) {
+    // Allowlisted hosts — and an active snooze — are exempt from all blocking:
+    // tear down any active detection and lift overlays the page may have shown.
+    if (isAllowlisted(hostname, allowlist) || isSnoozed()) {
       deactivate();
       removeBlockOverlays();
       return;
@@ -279,6 +317,9 @@ async function initialize(): Promise<void> {
       logger.info('Content detection active', { platform: next.platform });
     }
   };
+
+  // Expose for the snooze-expiry timer to re-block once snooze elapses.
+  reevaluateDetector = evaluateDetector;
 
   evaluateDetector();
 
