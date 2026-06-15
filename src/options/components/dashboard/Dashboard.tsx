@@ -25,6 +25,7 @@ import { QuickActions } from './QuickActions';
 import { ScheduleStatus } from './ScheduleStatus';
 import { TimeUsageCard } from './TimeUsageCard';
 import { ActivityHeatmap } from './ActivityHeatmap';
+import { BlockedBreakdown } from './BlockedBreakdown';
 import type { SectionId, SubSectionId } from '../layout';
 
 interface DashboardProps {
@@ -192,6 +193,12 @@ export function Dashboard({
         <TimeUsageCard
           timeLimitsState={timeLimitsState}
           onViewDetails={() => onNavigate('reports')}
+        />
+
+        {/* Blocked-by-platform breakdown */}
+        <BlockedBreakdown
+          stats={settings.stats}
+          onViewReports={() => onNavigate('reports')}
         />
 
         {/* Activity heatmap */}

@@ -2664,5 +2664,13 @@
   "customRulesErrorFailed": {
     "message": "No se pudo guardar. Inténtalo de nuevo.",
     "description": "Custom rules messages"
+  },
+  "dashboardBlockedBreakdown": {
+    "message": "Bloqueos por plataforma",
+    "description": "Dashboard blocked breakdown"
+  },
+  "dashboardBlockedBreakdownEmpty": {
+    "message": "Aún no hay bloqueos registrados.",
+    "description": "Dashboard blocked breakdown"
   }
 }

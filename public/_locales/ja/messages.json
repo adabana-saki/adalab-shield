@@ -2664,5 +2664,13 @@
   "customRulesErrorFailed": {
     "message": "保存できませんでした。もう一度お試しください。",
     "description": "Custom rules messages"
+  },
+  "dashboardBlockedBreakdown": {
+    "message": "プラットフォーム別ブロック数",
+    "description": "Dashboard blocked breakdown"
+  },
+  "dashboardBlockedBreakdownEmpty": {
+    "message": "まだブロックの記録がありません。",
+    "description": "Dashboard blocked breakdown"
   }
 }

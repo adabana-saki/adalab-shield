@@ -2664,5 +2664,13 @@
   "customRulesErrorFailed": {
     "message": "無法儲存，請重試。",
     "description": "Custom rules messages"
+  },
+  "dashboardBlockedBreakdown": {
+    "message": "各平台封鎖數",
+    "description": "Dashboard blocked breakdown"
+  },
+  "dashboardBlockedBreakdownEmpty": {
+    "message": "尚無封鎖記錄。",
+    "description": "Dashboard blocked breakdown"
   }
 }

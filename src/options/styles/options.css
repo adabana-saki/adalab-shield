@@ -1277,6 +1277,63 @@
   color: var(--color-text-secondary) !important;
 }
 
+/* Blocked-by-platform breakdown (Dashboard) */
+.blocked-breakdown-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.blocked-breakdown-title {
+  @apply text-base font-semibold text-gray-900;
+}
+
+.blocked-breakdown-empty {
+  @apply text-sm text-gray-400 py-6 text-center;
+}
+
+.blocked-breakdown-list {
+  @apply space-y-3;
+}
+
+.blocked-breakdown-row {
+  @apply flex items-center gap-3;
+}
+
+.blocked-breakdown-label {
+  @apply text-sm text-gray-600 w-24 shrink-0 truncate;
+}
+
+.blocked-breakdown-track {
+  @apply flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden;
+}
+
+.blocked-breakdown-bar {
+  @apply block h-full rounded-full transition-all;
+}
+
+.blocked-breakdown-count {
+  @apply text-sm font-semibold text-gray-900 w-10 text-right shrink-0;
+}
+
+.dark .blocked-breakdown-title {
+  color: var(--color-text-primary) !important;
+}
+
+.dark .blocked-breakdown-label {
+  color: var(--color-text-secondary) !important;
+}
+
+.dark .blocked-breakdown-track {
+  background-color: var(--color-bg-hover) !important;
+}
+
+.dark .blocked-breakdown-count {
+  color: var(--color-text-primary) !important;
+}
+
+.dark .blocked-breakdown-empty {
+  color: var(--color-text-muted) !important;
+}
+
 /* Schedule Status (Dashboard) */
 .schedule-status-header {
   @apply flex items-start justify-between gap-2 mb-3;
