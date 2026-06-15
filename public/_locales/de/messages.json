@@ -2796,5 +2796,25 @@
   "reportsExportCsv": {
     "message": "CSV exportieren",
     "description": "Reports weekly summary / export"
+  },
+  "schedulePresets": {
+    "message": "Schnellvorlagen",
+    "description": "Schedule presets"
+  },
+  "schedulePresetWork": {
+    "message": "Arbeitszeit (Mo–Fr 9–17)",
+    "description": "Schedule presets"
+  },
+  "schedulePresetEvening": {
+    "message": "Abends (täglich 18–23)",
+    "description": "Schedule presets"
+  },
+  "schedulePresetBedtime": {
+    "message": "Vor dem Schlafen (täglich 21–24)",
+    "description": "Schedule presets"
+  },
+  "schedulePresetAllDay": {
+    "message": "Ganztägig (täglich)",
+    "description": "Schedule presets"
   }
 }

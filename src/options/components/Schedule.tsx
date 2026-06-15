@@ -38,6 +38,39 @@ function parseTime(timeStr: string): { hour: number; minute: number } {
   };
 }
 
+/** One-click schedule presets (active days + a single time range). */
+const SCHEDULE_PRESETS: {
+  id: string;
+  labelKey: string;
+  activeDays: DayOfWeek[];
+  range: TimeRange;
+}[] = [
+  {
+    id: 'work',
+    labelKey: 'schedulePresetWork',
+    activeDays: [1, 2, 3, 4, 5],
+    range: { startHour: 9, startMinute: 0, endHour: 17, endMinute: 0 },
+  },
+  {
+    id: 'evening',
+    labelKey: 'schedulePresetEvening',
+    activeDays: [0, 1, 2, 3, 4, 5, 6],
+    range: { startHour: 18, startMinute: 0, endHour: 23, endMinute: 0 },
+  },
+  {
+    id: 'bedtime',
+    labelKey: 'schedulePresetBedtime',
+    activeDays: [0, 1, 2, 3, 4, 5, 6],
+    range: { startHour: 21, startMinute: 0, endHour: 23, endMinute: 59 },
+  },
+  {
+    id: 'allDay',
+    labelKey: 'schedulePresetAllDay',
+    activeDays: [0, 1, 2, 3, 4, 5, 6],
+    range: { startHour: 0, startMinute: 0, endHour: 23, endMinute: 59 },
+  },
+];
+
 export function Schedule() {
   const { t } = useI18n();
   const { settings, updateSettings } = useSettings();
@@ -66,6 +99,18 @@ export function Schedule() {
     await updateSettings({
       schedule: {
         enabled: !schedule.enabled,
+      },
+    });
+  };
+
+  const handleApplyPreset = async (
+    preset: (typeof SCHEDULE_PRESETS)[number]
+  ) => {
+    await updateSettings({
+      schedule: {
+        enabled: true,
+        activeDays: preset.activeDays as readonly DayOfWeek[],
+        timeRanges: [preset.range],
       },
     });
   };
@@ -176,6 +221,23 @@ export function Schedule() {
       {/* Config stays visible and editable even when off, so it can be set up
           in advance; the toggle above just activates it. */}
       <>
+        {/* Quick presets */}
+        <div className="schedule-presets">
+          <h3>{t('schedulePresets')}</h3>
+          <div className="schedule-preset-buttons">
+            {SCHEDULE_PRESETS.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                className="schedule-preset-btn"
+                onClick={() => void handleApplyPreset(preset)}
+              >
+                {t(preset.labelKey)}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Active days */}
         <div className="schedule-days">
           <h3>{t('scheduleActiveDays')}</h3>

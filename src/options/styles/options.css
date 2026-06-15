@@ -2928,6 +2928,29 @@
   @apply text-sm font-semibold text-gray-800 mb-4;
 }
 
+/* Schedule quick presets */
+.schedule-presets {
+  @apply mb-8;
+}
+.schedule-presets h3 {
+  @apply text-sm font-semibold text-gray-800 mb-4;
+}
+.schedule-preset-buttons {
+  @apply flex flex-wrap gap-2;
+}
+.schedule-preset-btn {
+  @apply px-4 py-2 text-sm font-medium bg-primary-50 text-primary-700 rounded-xl
+         border border-primary-100 hover:bg-primary-100 transition-all;
+}
+.dark .schedule-presets h3 {
+  color: var(--color-text-primary) !important;
+}
+.dark .schedule-preset-btn {
+  background-color: rgba(96, 165, 250, 0.12) !important;
+  border-color: rgba(96, 165, 250, 0.3) !important;
+  color: var(--color-accent) !important;
+}
+
 .day-checkboxes {
   @apply flex flex-wrap gap-2;
 }
