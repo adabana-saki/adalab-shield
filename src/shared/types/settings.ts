@@ -380,6 +380,8 @@ export interface Settings {
   readonly enabled: boolean;
   readonly platforms: PlatformSettings;
   readonly customDomains: readonly CustomBlockedDomain[];
+  /** Hosts the user always allows — exempt from all blocking */
+  readonly allowlist: readonly string[];
   readonly schedule: ScheduleConfig;
   readonly stats: BlockingStats;
   readonly preferences: UserPreferences;
@@ -412,6 +414,7 @@ export type SettingsUpdate = Partial<{
   platforms: Partial<PlatformSettings>;
   preferences: Partial<UserPreferences>;
   customDomains: readonly CustomBlockedDomain[];
+  allowlist: readonly string[];
   schedule: Partial<ScheduleConfig>;
   stats: Partial<BlockingStats>; // Internal use only for stat resets
   blockPage: Partial<BlockPageSettings>;

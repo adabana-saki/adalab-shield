@@ -2540,5 +2540,53 @@
   "customDomainsErrorProtected": {
     "message": "此網站無法被攔截（adalab study 連動所必需）。",
     "description": "Error: tried to block a protected host"
+  },
+  "allowlistTitle": {
+    "message": "允許清單",
+    "description": "Allowlist messages"
+  },
+  "allowlistDescription": {
+    "message": "此處的網站永不被封鎖——它們會略過所有封鎖規則、排程與專注時段。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHint": {
+    "message": "提示：加入你總是需要的網站（如工作工具），它就不會被封鎖。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTitle": {
+    "message": "允許清單如何運作？",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpIntro": {
+    "message": "主機與下方任一項目相符的頁面將完全不受封鎖。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTip": {
+    "message": "允許清單一律優先：若某網站既被封鎖又在允許清單中，它將保持開啟。",
+    "description": "Allowlist messages"
+  },
+  "allowlistPlaceholder": {
+    "message": "example.com",
+    "description": "Allowlist messages"
+  },
+  "allowlistEmpty": {
+    "message": "尚無允許的網站。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorEmpty": {
+    "message": "請輸入網域。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorInvalid": {
+    "message": "這看起來不是有效的網域。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorDuplicate": {
+    "message": "該網站已在允許清單中。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorFailed": {
+    "message": "無法儲存，請重試。",
+    "description": "Allowlist messages"
   }
 }

@@ -2540,5 +2540,53 @@
   "customDomainsErrorProtected": {
     "message": "Ce site ne peut pas être bloqué (nécessaire à l’intégration avec adalab study).",
     "description": "Error: tried to block a protected host"
+  },
+  "allowlistTitle": {
+    "message": "Liste d’autorisation",
+    "description": "Allowlist messages"
+  },
+  "allowlistDescription": {
+    "message": "Ces sites ne sont jamais bloqués : ils contournent toutes les règles de blocage, planifications et sessions de concentration.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHint": {
+    "message": "Astuce : ajoutez un site dont vous avez toujours besoin (par ex. un outil de travail) pour qu’il ne soit jamais bloqué.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTitle": {
+    "message": "Comment fonctionne la liste d’autorisation ?",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpIntro": {
+    "message": "Toute page dont l’hôte correspond à une entrée ci-dessous est totalement exemptée de blocage.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTip": {
+    "message": "La liste d’autorisation l’emporte toujours : un site à la fois bloqué et autorisé reste ouvert.",
+    "description": "Allowlist messages"
+  },
+  "allowlistPlaceholder": {
+    "message": "example.com",
+    "description": "Allowlist messages"
+  },
+  "allowlistEmpty": {
+    "message": "Aucun site autorisé pour le moment.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorEmpty": {
+    "message": "Saisissez un domaine.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorInvalid": {
+    "message": "Cela ne ressemble pas à un domaine valide.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorDuplicate": {
+    "message": "Ce site est déjà dans la liste d’autorisation.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorFailed": {
+    "message": "Enregistrement impossible. Veuillez réessayer.",
+    "description": "Allowlist messages"
   }
 }

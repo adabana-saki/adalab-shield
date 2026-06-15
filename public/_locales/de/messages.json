@@ -2540,5 +2540,53 @@
   "customDomainsErrorProtected": {
     "message": "Diese Seite kann nicht blockiert werden (für die adalab-study-Integration erforderlich).",
     "description": "Error: tried to block a protected host"
+  },
+  "allowlistTitle": {
+    "message": "Zulassungsliste",
+    "description": "Allowlist messages"
+  },
+  "allowlistDescription": {
+    "message": "Diese Seiten werden nie blockiert — sie umgehen jede Blockierregel, jeden Zeitplan und jede Fokus-Sitzung.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHint": {
+    "message": "Tipp: Füge eine Seite hinzu, die du immer brauchst (z. B. ein Arbeitstool), damit sie nie blockiert wird.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTitle": {
+    "message": "Wie funktioniert die Zulassungsliste?",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpIntro": {
+    "message": "Jede Seite, deren Host mit einem Eintrag unten übereinstimmt, ist vollständig von der Blockierung ausgenommen.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTip": {
+    "message": "Die Zulassungsliste hat immer Vorrang: Ist eine Seite blockiert und zugelassen, bleibt sie offen.",
+    "description": "Allowlist messages"
+  },
+  "allowlistPlaceholder": {
+    "message": "example.com",
+    "description": "Allowlist messages"
+  },
+  "allowlistEmpty": {
+    "message": "Noch keine zugelassenen Seiten.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorEmpty": {
+    "message": "Gib eine Domain ein.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorInvalid": {
+    "message": "Das sieht nicht nach einer gültigen Domain aus.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorDuplicate": {
+    "message": "Diese Seite steht bereits auf der Zulassungsliste.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorFailed": {
+    "message": "Konnte nicht gespeichert werden. Bitte erneut versuchen.",
+    "description": "Allowlist messages"
   }
 }
