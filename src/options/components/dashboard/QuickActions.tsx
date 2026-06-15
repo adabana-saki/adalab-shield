@@ -85,6 +85,7 @@ export function QuickActions({
   };
 
   if (focusState.isActive && focusState.endTime !== null) {
+    // eslint-disable-next-line react-hooks/purity -- countdown derived from current time each render
     const remaining = focusState.endTime - Date.now();
     return (
       <div className="quick-actions">

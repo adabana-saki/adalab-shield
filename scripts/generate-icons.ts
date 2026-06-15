@@ -36,7 +36,6 @@ async function generateIcons(): Promise<void> {
     | undefined;
   try {
     // @ts-expect-error - sharp is optional and types may not be installed
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     sharpModule = await import('sharp');
   } catch {
     console.log('Sharp not installed. Creating placeholder icons...');

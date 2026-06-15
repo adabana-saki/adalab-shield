@@ -50,6 +50,7 @@ export function CustomRules() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async load on mount
     void reload();
     const listener = (
       changes: Record<string, browser.Storage.StorageChange>,
@@ -198,7 +199,7 @@ export function CustomRules() {
           >
             {ACTIONS.map((a) => (
               <option key={a} value={a}>
-                {t(`customRulesAction_${a}` as 'customRulesAction_hide')}
+                {t(`customRulesAction_${a}`)}
               </option>
             ))}
           </select>

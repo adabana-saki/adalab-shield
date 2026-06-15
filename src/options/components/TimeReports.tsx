@@ -69,6 +69,7 @@ export function TimeReports() {
   }, [selectedDays]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async load on filter change
     void fetchHistory();
   }, [fetchHistory]);
 
@@ -179,7 +180,7 @@ export function TimeReports() {
             height: barHeight,
             backgroundColor: color,
           }}
-          title={`${t(`platform${platform.charAt(0).toUpperCase()}${platform.slice(1)}` as keyof typeof t)}: ${formatDuration(ms)}`}
+          title={`${t(`platform${platform.charAt(0).toUpperCase()}${platform.slice(1)}`)}: ${formatDuration(ms)}`}
         />
       );
       currentX += width;
@@ -201,6 +202,7 @@ export function TimeReports() {
 
   // This-week vs last-week comparison (rolling 7-day windows).
   const DAY_MS = 86_400_000;
+  // eslint-disable-next-line react-hooks/purity -- "now" only buckets days; exact value need not be stable
   const now = Date.now();
   const sumWindow = (minAgeDays: number, maxAgeDays: number): number =>
     history.history.reduce((sum, r) => {

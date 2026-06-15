@@ -35,6 +35,7 @@ export function SidebarItem({
   const [isExpanded, setIsExpanded] = useState(expanded);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- mirror controlled prop into local state
     setIsExpanded(expanded);
   }, [expanded]);
 

@@ -31,6 +31,7 @@ export function CloudSync() {
   }, [available]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async load on mount
     void refresh();
   }, [refresh]);
 

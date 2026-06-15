@@ -203,6 +203,7 @@ export function useSettings(): UseSettingsResult {
 
   // Initial load
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async load on mount
     void fetchSettings();
   }, [fetchSettings]);
 

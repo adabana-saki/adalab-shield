@@ -109,7 +109,7 @@ export function Schedule() {
     await updateSettings({
       schedule: {
         enabled: true,
-        activeDays: preset.activeDays as readonly DayOfWeek[],
+        activeDays: preset.activeDays,
         timeRanges: [preset.range],
       },
     });
@@ -128,7 +128,7 @@ export function Schedule() {
 
     await updateSettings({
       schedule: {
-        activeDays: currentDays as readonly DayOfWeek[],
+        activeDays: currentDays,
       },
     });
   };

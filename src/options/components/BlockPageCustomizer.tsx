@@ -67,6 +67,7 @@ export function BlockPageCustomizer() {
 
   // Sync local state with settings when they change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- mirror external settings into local edit state
     setLocalTitle(blockPage.title);
     setLocalMessage(blockPage.message);
   }, [blockPage.title, blockPage.message]);
