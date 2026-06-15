@@ -3,6 +3,7 @@
  */
 
 import { useI18n } from '@/shared/hooks/useI18n';
+import { useSettings } from '@/shared/hooks/useSettings';
 import type { Settings, Platform } from '@/shared/types';
 import { SectionHeader } from '../common/SectionHeader';
 import { ToggleRow } from '../common/ToggleRow';
@@ -24,12 +25,43 @@ interface BlockingSectionProps {
   onTogglePlatform: (platform: Platform) => void;
 }
 
+const CATEGORY_GROUPS: Record<string, Platform[]> = {
+  video: ['youtube', 'tiktok', 'instagram'],
+  fullsite: ['youtube_full', 'instagram_full', 'tiktok_full'],
+  sns: [
+    'twitter',
+    'facebook',
+    'linkedin',
+    'threads',
+    'snapchat',
+    'reddit',
+    'discord',
+    'pinterest',
+    'twitch',
+  ],
+};
+
+const ALL_PLATFORMS: Platform[] = [
+  ...CATEGORY_GROUPS.video!,
+  ...CATEGORY_GROUPS.fullsite!,
+  ...CATEGORY_GROUPS.sns!,
+];
+
 export function BlockingSection({
   settings,
   subSection,
   onTogglePlatform,
 }: BlockingSectionProps) {
   const { t } = useI18n();
+  const { updateSettings } = useSettings();
+
+  const setPlatforms = (keys: Platform[], value: boolean): void => {
+    const patch: Partial<Record<Platform, boolean>> = {};
+    for (const key of keys) {
+      patch[key] = value;
+    }
+    void updateSettings({ platforms: patch });
+  };
 
   if (subSection === 'customDomains') {
     return (
@@ -148,6 +180,41 @@ export function BlockingSection({
         }
       />
       <p className="section-hint">{t('platformsHint')}</p>
+
+      {/* Category presets */}
+      <div className="block-presets">
+        <span className="block-presets-title">{t('blockPresetsTitle')}</span>
+        <div className="block-presets-buttons">
+          <button
+            type="button"
+            className="block-preset-btn"
+            onClick={() => setPlatforms(CATEGORY_GROUPS.video!, true)}
+          >
+            {t('blockPresetVideo')}
+          </button>
+          <button
+            type="button"
+            className="block-preset-btn"
+            onClick={() => setPlatforms(CATEGORY_GROUPS.fullsite!, true)}
+          >
+            {t('blockPresetFullsite')}
+          </button>
+          <button
+            type="button"
+            className="block-preset-btn"
+            onClick={() => setPlatforms(CATEGORY_GROUPS.sns!, true)}
+          >
+            {t('blockPresetSNS')}
+          </button>
+          <button
+            type="button"
+            className="block-preset-btn is-clear"
+            onClick={() => setPlatforms(ALL_PLATFORMS, false)}
+          >
+            {t('blockPresetClearAll')}
+          </button>
+        </div>
+      </div>
 
       {/* Short Video Platforms */}
       <div className="settings-group">

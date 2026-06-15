@@ -2816,5 +2816,25 @@
   "schedulePresetAllDay": {
     "message": "全天（每天）",
     "description": "Schedule presets"
+  },
+  "blockPresetsTitle": {
+    "message": "一鍵封鎖",
+    "description": "Block category presets"
+  },
+  "blockPresetVideo": {
+    "message": "封鎖短影音",
+    "description": "Block category presets"
+  },
+  "blockPresetFullsite": {
+    "message": "封鎖整站",
+    "description": "Block category presets"
+  },
+  "blockPresetSNS": {
+    "message": "封鎖社群",
+    "description": "Block category presets"
+  },
+  "blockPresetClearAll": {
+    "message": "全部清除",
+    "description": "Block category presets"
   }
 }
