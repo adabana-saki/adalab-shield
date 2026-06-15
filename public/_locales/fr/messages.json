@@ -2856,5 +2856,25 @@
   "snoozeResume": {
     "message": "Reprendre",
     "description": "Snooze (temporary allow)"
+  },
+  "focusStreakUnit": {
+    "message": "jours",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakTitle": {
+    "message": "Série de concentration",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakStart": {
+    "message": "Activez le blocage aujourd’hui pour commencer.",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakKeepGoing": {
+    "message": "Bon départ, en douceur.",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakGreat": {
+    "message": "Belle régularité. 🌿",
+    "description": "Gentle focus streak"
   }
 }

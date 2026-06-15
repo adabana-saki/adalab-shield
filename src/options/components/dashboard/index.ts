@@ -10,3 +10,4 @@ export { ScheduleStatus } from './ScheduleStatus';
 export { TimeUsageCard } from './TimeUsageCard';
 export { ActivityHeatmap } from './ActivityHeatmap';
 export { BlockedBreakdown } from './BlockedBreakdown';
+export { FocusStreak } from './FocusStreak';

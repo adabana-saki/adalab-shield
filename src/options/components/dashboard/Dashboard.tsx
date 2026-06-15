@@ -26,6 +26,7 @@ import { ScheduleStatus } from './ScheduleStatus';
 import { TimeUsageCard } from './TimeUsageCard';
 import { ActivityHeatmap } from './ActivityHeatmap';
 import { BlockedBreakdown } from './BlockedBreakdown';
+import { FocusStreak } from './FocusStreak';
 import type { SectionId, SubSectionId } from '../layout';
 
 interface DashboardProps {
@@ -194,6 +195,9 @@ export function Dashboard({
           timeLimitsState={timeLimitsState}
           onViewDetails={() => onNavigate('reports')}
         />
+
+        {/* Gentle focus streak */}
+        <FocusStreak />
 
         {/* Blocked-by-platform breakdown */}
         <BlockedBreakdown
