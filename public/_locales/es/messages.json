@@ -2540,5 +2540,53 @@
   "customDomainsErrorProtected": {
     "message": "Este sitio no se puede bloquear (es necesario para la integración con adalab study).",
     "description": "Error: tried to block a protected host"
+  },
+  "allowlistTitle": {
+    "message": "Lista de permitidos",
+    "description": "Allowlist messages"
+  },
+  "allowlistDescription": {
+    "message": "Estos sitios nunca se bloquean: omiten todas las reglas de bloqueo, horarios y sesiones de concentración.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHint": {
+    "message": "Consejo: añade un sitio que siempre necesites (p. ej. una herramienta de trabajo) para que nunca se bloquee.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTitle": {
+    "message": "¿Cómo funciona la lista de permitidos?",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpIntro": {
+    "message": "Cualquier página cuyo host coincida con una entrada de abajo queda totalmente exenta del bloqueo.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTip": {
+    "message": "La lista de permitidos siempre gana: si un sitio está bloqueado y permitido, permanece abierto.",
+    "description": "Allowlist messages"
+  },
+  "allowlistPlaceholder": {
+    "message": "example.com",
+    "description": "Allowlist messages"
+  },
+  "allowlistEmpty": {
+    "message": "Aún no hay sitios permitidos.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorEmpty": {
+    "message": "Introduce un dominio.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorInvalid": {
+    "message": "Eso no parece un dominio válido.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorDuplicate": {
+    "message": "Ese sitio ya está en la lista de permitidos.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorFailed": {
+    "message": "No se pudo guardar. Inténtalo de nuevo.",
+    "description": "Allowlist messages"
   }
 }

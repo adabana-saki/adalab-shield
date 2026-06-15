@@ -48,12 +48,40 @@ function escapeRegex(s: string): string {
 }
 
 /**
+ * Convert allowlist patterns into DNR `excludedRequestDomains`.
+ * DNR matches a domain and its subdomains automatically, but it has no notion
+ * of wildcards, so we keep only plain-domain entries (stripping a leading
+ * `*.`). Wildcard/substring patterns are still honoured by the content-script
+ * allowlist gate, which is the robust path.
+ */
+function allowlistToExcludedDomains(allowlist: readonly string[]): string[] {
+  const domains = new Set<string>();
+  for (const raw of allowlist) {
+    const pattern = raw
+      .trim()
+      .toLowerCase()
+      .replace(/^www\./, '');
+    if (pattern === '') {
+      continue;
+    }
+    // Accept `*.example.com` → `example.com`; skip any other wildcard form.
+    const stripped = pattern.replace(/^\*\./, '');
+    if (stripped.includes('*')) {
+      continue;
+    }
+    domains.add(stripped);
+  }
+  return [...domains];
+}
+
+/**
  * Build a redirect rule for a set of hosts
  */
 function buildRule(
   id: number,
   hosts: readonly string[],
-  displayName: string
+  displayName: string,
+  excludedRequestDomains: readonly string[]
 ): browser.DeclarativeNetRequest.Rule {
   const hostPattern = hosts.map(escapeRegex).join('|');
   const blockedUrl = browser.runtime.getURL('blocked.html');
@@ -69,6 +97,9 @@ function buildRule(
     condition: {
       regexFilter: `^https?://(${hostPattern})(/.*)?$`,
       resourceTypes: ['main_frame'],
+      ...(excludedRequestDomains.length > 0
+        ? { excludedRequestDomains: [...excludedRequestDomains] }
+        : {}),
     },
   };
 }
@@ -100,13 +131,18 @@ export async function updateDnrRules(): Promise<void> {
     const desired: browser.DeclarativeNetRequest.Rule[] = [];
 
     if (blockingActive) {
+      // Hosts the user always allows are exempted from every block rule.
+      const excludedDomains = allowlistToExcludedDomains(settings.allowlist);
+
       let fullsiteId = RULE_ID_FULLSITE_BASE;
       for (const [platform, cfg] of Object.entries(FULLSITE_HOSTS) as [
         FullSitePlatform,
         (typeof FULLSITE_HOSTS)[FullSitePlatform],
       ][]) {
         if (settings.platforms[platform]) {
-          desired.push(buildRule(fullsiteId, cfg.hosts, cfg.displayName));
+          desired.push(
+            buildRule(fullsiteId, cfg.hosts, cfg.displayName, excludedDomains)
+          );
         }
         fullsiteId++;
       }
@@ -124,7 +160,8 @@ export async function updateDnrRules(): Promise<void> {
             [host, `www.${host}`],
             domain.description !== undefined && domain.description !== ''
               ? domain.description
-              : host
+              : host,
+            excludedDomains
           )
         );
       }

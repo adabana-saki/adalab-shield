@@ -2540,5 +2540,53 @@
   "customDomainsErrorProtected": {
     "message": "该网站无法被拦截（adalab study 联动所必需）。",
     "description": "Error: tried to block a protected host"
+  },
+  "allowlistTitle": {
+    "message": "允许列表",
+    "description": "Allowlist messages"
+  },
+  "allowlistDescription": {
+    "message": "此处的网站永不被拦截——它们会绕过所有拦截规则、计划和专注时段。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHint": {
+    "message": "提示：添加你始终需要的网站（如工作工具），它就不会被拦截。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTitle": {
+    "message": "允许列表如何工作？",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpIntro": {
+    "message": "主机与下方任一条目匹配的页面将完全不受拦截。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTip": {
+    "message": "允许列表始终优先：若某网站既被拦截又在允许列表中，它将保持打开。",
+    "description": "Allowlist messages"
+  },
+  "allowlistPlaceholder": {
+    "message": "example.com",
+    "description": "Allowlist messages"
+  },
+  "allowlistEmpty": {
+    "message": "还没有允许的网站。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorEmpty": {
+    "message": "请输入域名。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorInvalid": {
+    "message": "这看起来不是有效的域名。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorDuplicate": {
+    "message": "该网站已在允许列表中。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorFailed": {
+    "message": "无法保存，请重试。",
+    "description": "Allowlist messages"
   }
 }

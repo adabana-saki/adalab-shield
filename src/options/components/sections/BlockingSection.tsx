@@ -7,9 +7,14 @@ import type { Settings, Platform } from '@/shared/types';
 import { SectionHeader } from '../common/SectionHeader';
 import { ToggleRow } from '../common/ToggleRow';
 import { CustomDomains } from '../CustomDomains';
+import { Allowlist } from '../Allowlist';
 import { TimeLimitsConfig } from '../TimeLimitsConfig';
 
-type BlockingSubSection = 'platforms' | 'customDomains' | 'timeLimits';
+type BlockingSubSection =
+  | 'platforms'
+  | 'customDomains'
+  | 'allowlist'
+  | 'timeLimits';
 
 interface BlockingSectionProps {
   settings: Settings;
@@ -45,6 +50,31 @@ export function BlockingSection({
         />
         <p className="section-hint">{t('customDomainsHint')}</p>
         <CustomDomains />
+      </div>
+    );
+  }
+
+  if (subSection === 'allowlist') {
+    return (
+      <div className="settings-section">
+        <SectionHeader
+          title={t('allowlistTitle')}
+          description={t('allowlistDescription')}
+          icon={
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M9 12l2 2 4-4" />
+              <path d="M21 12c-1 0-3-1-3-3s2-3 3-3-2-3-3-3-3 2-3 3-1 3-3 3-3-2-3-3 2-3 3-3" />
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+          }
+        />
+        <p className="section-hint">{t('allowlistHint')}</p>
+        <Allowlist />
       </div>
     );
   }

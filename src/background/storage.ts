@@ -108,6 +108,7 @@ export async function updateSettings(
       ...(update.stats ?? {}),
     },
     customDomains: update.customDomains ?? current.customDomains,
+    allowlist: update.allowlist ?? current.allowlist,
     schedule: update.schedule
       ? { ...current.schedule, ...update.schedule }
       : current.schedule,

@@ -48,6 +48,7 @@ export async function getSettings(): Promise<Settings> {
         ...stored.preferences,
       },
       customDomains: stored.customDomains ?? DEFAULT_SETTINGS.customDomains,
+      allowlist: stored.allowlist ?? DEFAULT_SETTINGS.allowlist,
       schedule: {
         ...DEFAULT_SETTINGS.schedule,
         ...(stored.schedule ?? {}),
@@ -102,6 +103,7 @@ export async function updateSettings(
       ...(update.stats ?? {}),
     },
     customDomains: update.customDomains ?? current.customDomains,
+    allowlist: update.allowlist ?? current.allowlist,
     schedule: update.schedule
       ? { ...current.schedule, ...update.schedule }
       : current.schedule,

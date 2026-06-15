@@ -407,6 +407,7 @@ export const DEFAULT_SETTINGS: Settings = {
   enabled: true,
   platforms: DEFAULT_PLATFORM_SETTINGS,
   customDomains: [],
+  allowlist: [],
   schedule: DEFAULT_SCHEDULE,
   stats: DEFAULT_STATS,
   preferences: DEFAULT_PREFERENCES,

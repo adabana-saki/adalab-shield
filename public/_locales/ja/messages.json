@@ -2540,5 +2540,53 @@
   "customDomainsErrorProtected": {
     "message": "このサイトはブロックできません（adalab study 連携に必要なため）。",
     "description": "Error: tried to block a protected host"
+  },
+  "allowlistTitle": {
+    "message": "許可リスト",
+    "description": "Allowlist messages"
+  },
+  "allowlistDescription": {
+    "message": "ここに登録したサイトは一切ブロックされません。ブロック・スケジュール・集中モードのすべてを回避します。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHint": {
+    "message": "ヒント: 仕事で必ず使うサイトなどを登録しておくと、ブロックに巻き込まれません。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTitle": {
+    "message": "許可リストの仕組みは？",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpIntro": {
+    "message": "下に登録したホストに一致するページは、ブロックの対象から完全に除外されます。",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTip": {
+    "message": "許可リストが最優先です。ブロック対象と許可リストの両方に該当する場合は開けます。",
+    "description": "Allowlist messages"
+  },
+  "allowlistPlaceholder": {
+    "message": "example.com",
+    "description": "Allowlist messages"
+  },
+  "allowlistEmpty": {
+    "message": "許可したサイトはまだありません。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorEmpty": {
+    "message": "ドメインを入力してください。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorInvalid": {
+    "message": "正しいドメイン形式ではありません。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorDuplicate": {
+    "message": "そのサイトはすでに許可リストにあります。",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorFailed": {
+    "message": "保存できませんでした。もう一度お試しください。",
+    "description": "Allowlist messages"
   }
 }

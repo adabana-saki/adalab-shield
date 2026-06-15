@@ -2540,5 +2540,53 @@
   "customDomainsErrorProtected": {
     "message": "This site cannot be blocked (it is required for adalab study integration).",
     "description": "Error: tried to block a protected host"
+  },
+  "allowlistTitle": {
+    "message": "Allowlist",
+    "description": "Allowlist messages"
+  },
+  "allowlistDescription": {
+    "message": "Sites here are never blocked — they bypass every block rule, schedule and focus session.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHint": {
+    "message": "Tip: add a site you always need (e.g. a work tool) so it is never caught by blocking.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTitle": {
+    "message": "How does the allowlist work?",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpIntro": {
+    "message": "Any page whose host matches an entry below is completely exempt from blocking.",
+    "description": "Allowlist messages"
+  },
+  "allowlistHelpTip": {
+    "message": "The allowlist always wins: if a site is both blocked and allowlisted, it stays open.",
+    "description": "Allowlist messages"
+  },
+  "allowlistPlaceholder": {
+    "message": "example.com",
+    "description": "Allowlist messages"
+  },
+  "allowlistEmpty": {
+    "message": "No allowed sites yet.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorEmpty": {
+    "message": "Enter a domain.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorInvalid": {
+    "message": "That does not look like a valid domain.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorDuplicate": {
+    "message": "That site is already on the allowlist.",
+    "description": "Allowlist messages"
+  },
+  "allowlistErrorFailed": {
+    "message": "Could not save. Please try again.",
+    "description": "Allowlist messages"
   }
 }

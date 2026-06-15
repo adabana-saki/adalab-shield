@@ -180,6 +180,7 @@ export function App() {
               (activeSubSection as
                 | 'platforms'
                 | 'customDomains'
+                | 'allowlist'
                 | 'timeLimits') ?? 'platforms'
             }
             onTogglePlatform={handleTogglePlatform}

@@ -13,12 +13,19 @@ import {
 import { createManagedObserver } from './observer';
 import { initAdalabBridge } from './adalabBridge';
 import { createLogger } from '@/shared/utils/logger';
+import { isAllowlisted } from '@/shared/utils/allowlist';
 import { createMessage } from '@/shared/types';
 import { STORAGE_KEYS } from '@/shared/constants';
 import type { Settings, PomodoroState, FocusModeState } from '@/shared/types';
 import type { BasePlatformDetector } from './platforms/base';
 
 const logger = createLogger('content');
+
+/**
+ * Hosts the user always allows. Mirrored from settings so the detector gate
+ * can consult it synchronously on every re-evaluation.
+ */
+let allowlist: readonly string[] = [];
 
 /**
  * Block overlay element ids used by full-site and custom-domain blocking
@@ -107,6 +114,7 @@ async function getFocusStateSafely(): Promise<FocusModeState | null> {
  * Apply settings to every detector
  */
 function applySettingsToAll(settings: Settings): void {
+  allowlist = settings.allowlist ?? [];
   const customDetector = getCustomDomainDetector();
   setCustomDomains(settings.customDomains);
   customDetector.setSettings(settings);
@@ -196,6 +204,14 @@ async function initialize(): Promise<void> {
   };
 
   const evaluateDetector = (): void => {
+    // Allowlisted hosts are exempt from all blocking: tear down any active
+    // detection and lift overlays the page may have shown before being added.
+    if (isAllowlisted(hostname, allowlist)) {
+      deactivate();
+      removeBlockOverlays();
+      return;
+    }
+
     const next = getDetectorForHostname(hostname);
 
     if (next === activeDetector) {
