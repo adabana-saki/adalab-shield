@@ -2664,5 +2664,13 @@
   "customRulesErrorFailed": {
     "message": "Enregistrement impossible. Veuillez réessayer.",
     "description": "Custom rules messages"
+  },
+  "dashboardBlockedBreakdown": {
+    "message": "Bloqués par plateforme",
+    "description": "Dashboard blocked breakdown"
+  },
+  "dashboardBlockedBreakdownEmpty": {
+    "message": "Aucun blocage enregistré pour le moment.",
+    "description": "Dashboard blocked breakdown"
   }
 }

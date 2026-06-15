@@ -2664,5 +2664,13 @@
   "customRulesErrorFailed": {
     "message": "Konnte nicht gespeichert werden. Bitte erneut versuchen.",
     "description": "Custom rules messages"
+  },
+  "dashboardBlockedBreakdown": {
+    "message": "Blockiert nach Plattform",
+    "description": "Dashboard blocked breakdown"
+  },
+  "dashboardBlockedBreakdownEmpty": {
+    "message": "Noch keine Blockierungen erfasst.",
+    "description": "Dashboard blocked breakdown"
   }
 }

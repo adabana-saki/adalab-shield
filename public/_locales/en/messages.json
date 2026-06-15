@@ -2664,5 +2664,13 @@
   "customRulesErrorFailed": {
     "message": "Could not save. Please try again.",
     "description": "Custom rules messages"
+  },
+  "dashboardBlockedBreakdown": {
+    "message": "Blocked by platform",
+    "description": "Dashboard blocked breakdown"
+  },
+  "dashboardBlockedBreakdownEmpty": {
+    "message": "No blocks recorded yet.",
+    "description": "Dashboard blocked breakdown"
   }
 }
