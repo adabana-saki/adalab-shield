@@ -2796,5 +2796,25 @@
   "reportsExportCsv": {
     "message": "CSV 내보내기",
     "description": "Reports weekly summary / export"
+  },
+  "schedulePresets": {
+    "message": "빠른 프리셋",
+    "description": "Schedule presets"
+  },
+  "schedulePresetWork": {
+    "message": "업무 시간 (월–금 9–17)",
+    "description": "Schedule presets"
+  },
+  "schedulePresetEvening": {
+    "message": "저녁 (매일 18–23)",
+    "description": "Schedule presets"
+  },
+  "schedulePresetBedtime": {
+    "message": "취침 전 (매일 21–24)",
+    "description": "Schedule presets"
+  },
+  "schedulePresetAllDay": {
+    "message": "하루 종일 (매일)",
+    "description": "Schedule presets"
   }
 }

@@ -2796,5 +2796,25 @@
   "reportsExportCsv": {
     "message": "CSVエクスポート",
     "description": "Reports weekly summary / export"
+  },
+  "schedulePresets": {
+    "message": "クイックプリセット",
+    "description": "Schedule presets"
+  },
+  "schedulePresetWork": {
+    "message": "仕事時間（平日 9–17）",
+    "description": "Schedule presets"
+  },
+  "schedulePresetEvening": {
+    "message": "夜間（毎日 18–23）",
+    "description": "Schedule presets"
+  },
+  "schedulePresetBedtime": {
+    "message": "就寝前（毎日 21–24）",
+    "description": "Schedule presets"
+  },
+  "schedulePresetAllDay": {
+    "message": "終日（毎日）",
+    "description": "Schedule presets"
   }
 }

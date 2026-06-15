@@ -2796,5 +2796,25 @@
   "reportsExportCsv": {
     "message": "匯出 CSV",
     "description": "Reports weekly summary / export"
+  },
+  "schedulePresets": {
+    "message": "快捷預設",
+    "description": "Schedule presets"
+  },
+  "schedulePresetWork": {
+    "message": "工作時間（週一至週五 9–17）",
+    "description": "Schedule presets"
+  },
+  "schedulePresetEvening": {
+    "message": "晚間（每天 18–23）",
+    "description": "Schedule presets"
+  },
+  "schedulePresetBedtime": {
+    "message": "睡前（每天 21–24）",
+    "description": "Schedule presets"
+  },
+  "schedulePresetAllDay": {
+    "message": "全天（每天）",
+    "description": "Schedule presets"
   }
 }
