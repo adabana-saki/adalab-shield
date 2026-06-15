@@ -2780,5 +2780,21 @@
   "cloudSyncUnavailable": {
     "message": "このブラウザではクラウド同期を利用できません。",
     "description": "Cloud sync (storage.sync)"
+  },
+  "reportsWeeklySummary": {
+    "message": "週次サマリー",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsThisWeek": {
+    "message": "今週",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsVsLastWeek": {
+    "message": "前週比",
+    "description": "Reports weekly summary / export"
+  },
+  "reportsExportCsv": {
+    "message": "CSVエクスポート",
+    "description": "Reports weekly summary / export"
   }
 }
