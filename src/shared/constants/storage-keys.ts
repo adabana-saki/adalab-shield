@@ -33,6 +33,8 @@ export const STORAGE_KEYS = {
   PREMIUM_STATE: 'shortshield_premium_state',
   /** adalab study sync metadata (external timer flag + current task) */
   ADALAB_META: 'shortshield_adalab_meta',
+  /** Gentle focus streak: local dates on which blocking was active */
+  FOCUS_STREAK: 'shortshield_focus_streak',
 } as const;
 
 /**

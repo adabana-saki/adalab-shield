@@ -14,11 +14,31 @@ import {
   INSTAGRAM_CONFIG,
   TIKTOK_CONFIG,
   isProtectedHost,
+  STORAGE_KEYS,
 } from '@/shared/constants';
 import type { FullSitePlatform } from '@/shared/types';
 import { createLogger } from '@/shared/utils/logger';
+import { withToday } from '@/shared/utils/streak';
 
 const logger = createLogger('dnr');
+
+/**
+ * Record today as a "protection day" for the gentle focus streak. Writes at
+ * most once per day (withToday returns the same array when today is present).
+ */
+async function recordProtectionDay(): Promise<void> {
+  try {
+    const result = await browser.storage.local.get(STORAGE_KEYS.FOCUS_STREAK);
+    const stored = result[STORAGE_KEYS.FOCUS_STREAK];
+    const dates = Array.isArray(stored) ? (stored as string[]) : [];
+    const next = withToday(dates);
+    if (next !== dates) {
+      await browser.storage.local.set({ [STORAGE_KEYS.FOCUS_STREAK]: next });
+    }
+  } catch (error) {
+    logger.warn('Failed to record protection day', { error: String(error) });
+  }
+}
 
 const FULLSITE_HOSTS: Record<
   FullSitePlatform,
@@ -146,6 +166,9 @@ export async function updateDnrRules(): Promise<void> {
     const desired: browser.DeclarativeNetRequest.Rule[] = [];
 
     if (blockingActive) {
+      // Today counts toward the gentle focus streak.
+      void recordProtectionDay();
+
       // Hosts the user always allows are exempted from every block rule.
       const excludedDomains = allowlistToExcludedDomains(settings.allowlist);
 

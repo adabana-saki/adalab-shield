@@ -2856,5 +2856,25 @@
   "snoozeResume": {
     "message": "今すぐ再開",
     "description": "Snooze (temporary allow)"
+  },
+  "focusStreakUnit": {
+    "message": "日",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakTitle": {
+    "message": "集中の連続記録",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakStart": {
+    "message": "今日ブロックをオンにして始めましょう。",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakKeepGoing": {
+    "message": "いい出だしです。無理なく続けましょう。",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakGreat": {
+    "message": "素敵な継続です。🌿",
+    "description": "Gentle focus streak"
   }
 }

@@ -2856,5 +2856,25 @@
   "snoozeResume": {
     "message": "지금 재개",
     "description": "Snooze (temporary allow)"
+  },
+  "focusStreakUnit": {
+    "message": "일",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakTitle": {
+    "message": "집중 연속 기록",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakStart": {
+    "message": "오늘 차단을 켜고 시작해 보세요.",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakKeepGoing": {
+    "message": "좋은 시작이에요. 편하게 이어가요.",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakGreat": {
+    "message": "멋진 꾸준함이에요. 🌿",
+    "description": "Gentle focus streak"
   }
 }

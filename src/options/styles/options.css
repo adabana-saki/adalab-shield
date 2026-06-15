@@ -1435,6 +1435,38 @@
   color: var(--color-text-secondary) !important;
 }
 
+/* Gentle focus streak (Dashboard) */
+.focus-streak {
+  @apply flex items-center gap-4;
+}
+.focus-streak-icon {
+  @apply text-4xl shrink-0;
+}
+.focus-streak-count {
+  @apply text-3xl font-bold text-gray-900 leading-none flex items-baseline gap-1;
+}
+.focus-streak-unit {
+  @apply text-sm font-medium text-gray-500;
+}
+.focus-streak-title {
+  @apply text-sm font-semibold text-gray-700 mt-1;
+}
+.focus-streak-msg {
+  @apply text-xs text-gray-400 mt-0.5;
+}
+.dark .focus-streak-count {
+  color: var(--color-text-primary) !important;
+}
+.dark .focus-streak-unit {
+  color: var(--color-text-muted) !important;
+}
+.dark .focus-streak-title {
+  color: var(--color-text-secondary) !important;
+}
+.dark .focus-streak-msg {
+  color: var(--color-text-muted) !important;
+}
+
 /* Blocked-by-platform breakdown (Dashboard) */
 .blocked-breakdown-header {
   @apply flex items-center justify-between mb-4;

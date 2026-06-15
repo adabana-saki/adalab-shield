@@ -2856,5 +2856,25 @@
   "snoozeResume": {
     "message": "立即恢復",
     "description": "Snooze (temporary allow)"
+  },
+  "focusStreakUnit": {
+    "message": "天",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakTitle": {
+    "message": "專注連續天數",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakStart": {
+    "message": "今天開啟封鎖即可開始。",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakKeepGoing": {
+    "message": "不錯的開始，慢慢來。",
+    "description": "Gentle focus streak"
+  },
+  "focusStreakGreat": {
+    "message": "保持得很好。🌿",
+    "description": "Gentle focus streak"
   }
 }
