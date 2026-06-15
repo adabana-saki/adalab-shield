@@ -2672,5 +2672,53 @@
   "dashboardBlockedBreakdownEmpty": {
     "message": "No blocks recorded yet.",
     "description": "Dashboard blocked breakdown"
+  },
+  "adalabStatusConnected": {
+    "message": "Connected",
+    "description": "adalab connection status"
+  },
+  "adalabStatusConnectedDesc": {
+    "message": "adalab study is open and responding.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStale": {
+    "message": "Reload needed",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStaleDesc": {
+    "message": "The adalab study tab is open but not responding — reload it to reconnect.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusReloadBtn": {
+    "message": "Reload tab",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnected": {
+    "message": "Not connected",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnectedDesc": {
+    "message": "Open adalab study in a tab to control its pomodoro from here.",
+    "description": "adalab connection status"
+  },
+  "adalabOpenStudyBtn": {
+    "message": "Open study",
+    "description": "adalab connection status"
+  },
+  "adalabSetupTitle": {
+    "message": "How to connect",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep1": {
+    "message": "Open study.adalabtech.com in a tab.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep2": {
+    "message": "Keep that tab open while you work.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep3": {
+    "message": "Turn on the sync above to block during focus and unblock on breaks.",
+    "description": "adalab connection status"
   }
 }
