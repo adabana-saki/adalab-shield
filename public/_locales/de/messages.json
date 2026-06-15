@@ -2672,5 +2672,53 @@
   "dashboardBlockedBreakdownEmpty": {
     "message": "Noch keine Blockierungen erfasst.",
     "description": "Dashboard blocked breakdown"
+  },
+  "adalabStatusConnected": {
+    "message": "Verbunden",
+    "description": "adalab connection status"
+  },
+  "adalabStatusConnectedDesc": {
+    "message": "adalab study ist geöffnet und antwortet.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStale": {
+    "message": "Neu laden nötig",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStaleDesc": {
+    "message": "Der adalab-study-Tab ist offen, antwortet aber nicht — lade ihn neu, um die Verbindung wiederherzustellen.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusReloadBtn": {
+    "message": "Tab neu laden",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnected": {
+    "message": "Nicht verbunden",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnectedDesc": {
+    "message": "Öffne adalab study in einem Tab, um den Pomodoro von hier zu steuern.",
+    "description": "adalab connection status"
+  },
+  "adalabOpenStudyBtn": {
+    "message": "Study öffnen",
+    "description": "adalab connection status"
+  },
+  "adalabSetupTitle": {
+    "message": "So verbindest du",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep1": {
+    "message": "Öffne study.adalabtech.com in einem Tab.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep2": {
+    "message": "Lass diesen Tab beim Arbeiten geöffnet.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep3": {
+    "message": "Aktiviere oben die Synchronisierung, um im Fokus zu blockieren und in Pausen freizugeben.",
+    "description": "adalab connection status"
   }
 }

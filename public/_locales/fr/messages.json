@@ -2672,5 +2672,53 @@
   "dashboardBlockedBreakdownEmpty": {
     "message": "Aucun blocage enregistré pour le moment.",
     "description": "Dashboard blocked breakdown"
+  },
+  "adalabStatusConnected": {
+    "message": "Connecté",
+    "description": "adalab connection status"
+  },
+  "adalabStatusConnectedDesc": {
+    "message": "adalab study est ouvert et répond.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStale": {
+    "message": "Rechargement nécessaire",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStaleDesc": {
+    "message": "L’onglet adalab study est ouvert mais ne répond pas — rechargez-le pour vous reconnecter.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusReloadBtn": {
+    "message": "Recharger l’onglet",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnected": {
+    "message": "Non connecté",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnectedDesc": {
+    "message": "Ouvrez adalab study dans un onglet pour piloter son pomodoro depuis ici.",
+    "description": "adalab connection status"
+  },
+  "adalabOpenStudyBtn": {
+    "message": "Ouvrir study",
+    "description": "adalab connection status"
+  },
+  "adalabSetupTitle": {
+    "message": "Comment se connecter",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep1": {
+    "message": "Ouvrez study.adalabtech.com dans un onglet.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep2": {
+    "message": "Gardez cet onglet ouvert pendant que vous travaillez.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep3": {
+    "message": "Activez la synchro ci-dessus pour bloquer en focus et débloquer pendant les pauses.",
+    "description": "adalab connection status"
   }
 }

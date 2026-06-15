@@ -2672,5 +2672,53 @@
   "dashboardBlockedBreakdownEmpty": {
     "message": "아직 차단 기록이 없습니다.",
     "description": "Dashboard blocked breakdown"
+  },
+  "adalabStatusConnected": {
+    "message": "연결됨",
+    "description": "adalab connection status"
+  },
+  "adalabStatusConnectedDesc": {
+    "message": "adalab study가 열려 있고 응답하고 있습니다.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStale": {
+    "message": "새로고침 필요",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStaleDesc": {
+    "message": "adalab study 탭은 열려 있지만 응답하지 않습니다. 새로고침하여 다시 연결하세요.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusReloadBtn": {
+    "message": "탭 새로고침",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnected": {
+    "message": "연결 안 됨",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnectedDesc": {
+    "message": "adalab study를 탭으로 열면 여기에서 포모도로를 제어할 수 있습니다.",
+    "description": "adalab connection status"
+  },
+  "adalabOpenStudyBtn": {
+    "message": "study 열기",
+    "description": "adalab connection status"
+  },
+  "adalabSetupTitle": {
+    "message": "연결 방법",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep1": {
+    "message": "study.adalabtech.com을 탭으로 엽니다.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep2": {
+    "message": "작업하는 동안 그 탭을 열어 둡니다.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep3": {
+    "message": "위의 동기화를 켜면 집중 중에는 차단되고 휴식 중에는 해제됩니다.",
+    "description": "adalab connection status"
   }
 }

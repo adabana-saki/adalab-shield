@@ -2672,5 +2672,53 @@
   "dashboardBlockedBreakdownEmpty": {
     "message": "尚无拦截记录。",
     "description": "Dashboard blocked breakdown"
+  },
+  "adalabStatusConnected": {
+    "message": "已连接",
+    "description": "adalab connection status"
+  },
+  "adalabStatusConnectedDesc": {
+    "message": "adalab study 已打开并正常响应。",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStale": {
+    "message": "需要重新加载",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStaleDesc": {
+    "message": "adalab study 标签页已打开但无响应——请重新加载以重新连接。",
+    "description": "adalab connection status"
+  },
+  "adalabStatusReloadBtn": {
+    "message": "重新加载标签页",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnected": {
+    "message": "未连接",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnectedDesc": {
+    "message": "在标签页中打开 adalab study，即可从这里控制其番茄钟。",
+    "description": "adalab connection status"
+  },
+  "adalabOpenStudyBtn": {
+    "message": "打开 study",
+    "description": "adalab connection status"
+  },
+  "adalabSetupTitle": {
+    "message": "如何连接",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep1": {
+    "message": "在标签页中打开 study.adalabtech.com。",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep2": {
+    "message": "工作时保持该标签页打开。",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep3": {
+    "message": "打开上方的同步，专注时拦截、休息时解除。",
+    "description": "adalab connection status"
   }
 }

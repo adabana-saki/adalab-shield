@@ -2672,5 +2672,53 @@
   "dashboardBlockedBreakdownEmpty": {
     "message": "Aún no hay bloqueos registrados.",
     "description": "Dashboard blocked breakdown"
+  },
+  "adalabStatusConnected": {
+    "message": "Conectado",
+    "description": "adalab connection status"
+  },
+  "adalabStatusConnectedDesc": {
+    "message": "adalab study está abierto y respondiendo.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStale": {
+    "message": "Hace falta recargar",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStaleDesc": {
+    "message": "La pestaña de adalab study está abierta pero no responde: recárgala para reconectar.",
+    "description": "adalab connection status"
+  },
+  "adalabStatusReloadBtn": {
+    "message": "Recargar pestaña",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnected": {
+    "message": "No conectado",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnectedDesc": {
+    "message": "Abre adalab study en una pestaña para controlar su pomodoro desde aquí.",
+    "description": "adalab connection status"
+  },
+  "adalabOpenStudyBtn": {
+    "message": "Abrir study",
+    "description": "adalab connection status"
+  },
+  "adalabSetupTitle": {
+    "message": "Cómo conectar",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep1": {
+    "message": "Abre study.adalabtech.com en una pestaña.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep2": {
+    "message": "Mantén esa pestaña abierta mientras trabajas.",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep3": {
+    "message": "Activa la sincronización de arriba para bloquear en concentración y desbloquear en los descansos.",
+    "description": "adalab connection status"
   }
 }

@@ -2672,5 +2672,53 @@
   "dashboardBlockedBreakdownEmpty": {
     "message": "まだブロックの記録がありません。",
     "description": "Dashboard blocked breakdown"
+  },
+  "adalabStatusConnected": {
+    "message": "接続済み",
+    "description": "adalab connection status"
+  },
+  "adalabStatusConnectedDesc": {
+    "message": "adalab study が開いており、応答しています。",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStale": {
+    "message": "再読み込みが必要",
+    "description": "adalab connection status"
+  },
+  "adalabStatusStaleDesc": {
+    "message": "adalab study のタブは開いていますが応答していません。再読み込みして再接続してください。",
+    "description": "adalab connection status"
+  },
+  "adalabStatusReloadBtn": {
+    "message": "タブを再読み込み",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnected": {
+    "message": "未接続",
+    "description": "adalab connection status"
+  },
+  "adalabStatusDisconnectedDesc": {
+    "message": "adalab study をタブで開くと、ここからポモドーロを操作できます。",
+    "description": "adalab connection status"
+  },
+  "adalabOpenStudyBtn": {
+    "message": "studyを開く",
+    "description": "adalab connection status"
+  },
+  "adalabSetupTitle": {
+    "message": "連携の手順",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep1": {
+    "message": "study.adalabtech.com をタブで開きます。",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep2": {
+    "message": "作業中はそのタブを開いたままにします。",
+    "description": "adalab connection status"
+  },
+  "adalabSetupStep3": {
+    "message": "上の同期をオンにすると、集中中はブロック・休憩中は解除されます。",
+    "description": "adalab connection status"
   }
 }
