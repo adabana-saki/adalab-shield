@@ -2816,5 +2816,25 @@
   "schedulePresetAllDay": {
     "message": "하루 종일 (매일)",
     "description": "Schedule presets"
+  },
+  "blockPresetsTitle": {
+    "message": "한 번에 차단",
+    "description": "Block category presets"
+  },
+  "blockPresetVideo": {
+    "message": "숏폼 동영상 차단",
+    "description": "Block category presets"
+  },
+  "blockPresetFullsite": {
+    "message": "전체 사이트 차단",
+    "description": "Block category presets"
+  },
+  "blockPresetSNS": {
+    "message": "SNS 차단",
+    "description": "Block category presets"
+  },
+  "blockPresetClearAll": {
+    "message": "모두 해제",
+    "description": "Block category presets"
   }
 }

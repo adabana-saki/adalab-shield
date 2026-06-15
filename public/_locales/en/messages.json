@@ -2816,5 +2816,25 @@
   "schedulePresetAllDay": {
     "message": "All day (daily)",
     "description": "Schedule presets"
+  },
+  "blockPresetsTitle": {
+    "message": "Quick block",
+    "description": "Block category presets"
+  },
+  "blockPresetVideo": {
+    "message": "Block short video",
+    "description": "Block category presets"
+  },
+  "blockPresetFullsite": {
+    "message": "Block full sites",
+    "description": "Block category presets"
+  },
+  "blockPresetSNS": {
+    "message": "Block social",
+    "description": "Block category presets"
+  },
+  "blockPresetClearAll": {
+    "message": "Clear all",
+    "description": "Block category presets"
   }
 }

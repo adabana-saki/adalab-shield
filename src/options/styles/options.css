@@ -2928,6 +2928,41 @@
   @apply text-sm font-semibold text-gray-800 mb-4;
 }
 
+/* Block category presets */
+.block-presets {
+  @apply mb-6 p-4 rounded-xl bg-gray-50 border border-gray-100;
+}
+.block-presets-title {
+  @apply block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide;
+}
+.block-presets-buttons {
+  @apply flex flex-wrap gap-2;
+}
+.block-preset-btn {
+  @apply px-4 py-2 text-sm font-medium bg-primary-50 text-primary-700 rounded-xl
+         border border-primary-100 hover:bg-primary-100 transition-all;
+}
+.block-preset-btn.is-clear {
+  @apply bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200;
+}
+.dark .block-presets {
+  background-color: var(--color-bg-hover) !important;
+  border-color: var(--color-border) !important;
+}
+.dark .block-presets-title {
+  color: var(--color-text-muted) !important;
+}
+.dark .block-preset-btn {
+  background-color: rgba(96, 165, 250, 0.12) !important;
+  border-color: rgba(96, 165, 250, 0.3) !important;
+  color: var(--color-accent) !important;
+}
+.dark .block-preset-btn.is-clear {
+  background-color: var(--color-bg-tertiary) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-secondary) !important;
+}
+
 /* Schedule quick presets */
 .schedule-presets {
   @apply mb-8;

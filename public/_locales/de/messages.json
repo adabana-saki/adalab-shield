@@ -2816,5 +2816,25 @@
   "schedulePresetAllDay": {
     "message": "Ganztägig (täglich)",
     "description": "Schedule presets"
+  },
+  "blockPresetsTitle": {
+    "message": "Schnell blockieren",
+    "description": "Block category presets"
+  },
+  "blockPresetVideo": {
+    "message": "Kurzvideos blockieren",
+    "description": "Block category presets"
+  },
+  "blockPresetFullsite": {
+    "message": "Ganze Seiten blockieren",
+    "description": "Block category presets"
+  },
+  "blockPresetSNS": {
+    "message": "Soziale blockieren",
+    "description": "Block category presets"
+  },
+  "blockPresetClearAll": {
+    "message": "Alle zurücksetzen",
+    "description": "Block category presets"
   }
 }

@@ -2816,5 +2816,25 @@
   "schedulePresetAllDay": {
     "message": "終日（毎日）",
     "description": "Schedule presets"
+  },
+  "blockPresetsTitle": {
+    "message": "まとめてブロック",
+    "description": "Block category presets"
+  },
+  "blockPresetVideo": {
+    "message": "動画をブロック",
+    "description": "Block category presets"
+  },
+  "blockPresetFullsite": {
+    "message": "フルサイトをブロック",
+    "description": "Block category presets"
+  },
+  "blockPresetSNS": {
+    "message": "SNSをブロック",
+    "description": "Block category presets"
+  },
+  "blockPresetClearAll": {
+    "message": "すべて解除",
+    "description": "Block category presets"
   }
 }
