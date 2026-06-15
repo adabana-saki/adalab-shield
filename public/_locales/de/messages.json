@@ -2836,5 +2836,13 @@
   "blockPresetClearAll": {
     "message": "Alle zurücksetzen",
     "description": "Block category presets"
+  },
+  "commandOpenPopup": {
+    "message": "Das adalab-shield-Popup öffnen",
+    "description": "Keyboard command descriptions"
+  },
+  "commandToggleBlocking": {
+    "message": "Blockierung ein- oder ausschalten",
+    "description": "Keyboard command descriptions"
   }
 }
