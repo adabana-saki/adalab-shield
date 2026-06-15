@@ -181,6 +181,7 @@ export function App() {
                 | 'platforms'
                 | 'customDomains'
                 | 'allowlist'
+                | 'customRules'
                 | 'timeLimits') ?? 'platforms'
             }
             onTogglePlatform={handleTogglePlatform}

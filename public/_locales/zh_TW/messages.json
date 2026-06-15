@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "無法儲存，請重試。",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "自訂規則",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "透過 CSS 選擇器隱藏、模糊或移除頁面中的特定元素——可選擇僅在某些網站生效。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "進階：精準處理平台開關無法移除的干擾，例如留言區或推薦側欄。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "自訂規則如何運作？",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "每條規則套用一個 CSS 選擇器，在封鎖生效時隱藏相符的元素。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "將「網站」留空表示對所有網站生效，或填入主機（如 youtube.com）以限定規則。",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "id=\"comments\" 的元素",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "class=\"ad-banner\" 的元素",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "規則名稱（如：隱藏 YouTube 留言）",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "網站（選填，如 youtube.com）",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "CSS 選擇器（如 #comments）",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "隱藏",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "模糊",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "移除",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "尚無自訂規則。",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "所有網站",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "請輸入規則名稱。",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "這不是有效的 CSS 選擇器。",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "無法儲存，請重試。",
+    "description": "Custom rules messages"
   }
 }

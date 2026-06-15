@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "Konnte nicht gespeichert werden. Bitte erneut versuchen.",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "Eigene Regeln",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "Blende bestimmte Seitenelemente per CSS-Selektor aus, verwische oder entferne sie — optional nur auf bestimmten Seiten.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "Fortgeschritten: Ziele auf Ablenkungen, die ein Plattform-Schalter nicht erfasst, z. B. einen Kommentarbereich.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "Wie funktionieren eigene Regeln?",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "Jede Regel wendet einen CSS-Selektor an und blendet passende Elemente aus, solange die Blockierung aktiv ist.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "Lass „Seiten“ leer für überall, oder nenne Hosts (z. B. youtube.com), um die Regel einzugrenzen.",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "ein Element mit id=\"comments\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "Elemente mit der Klasse „ad-banner“",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "Regelname (z. B. YouTube-Kommentare ausblenden)",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "Seiten (optional, z. B. youtube.com)",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "CSS-Selektor (z. B. #comments)",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "Ausblenden",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "Verwischen",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "Entfernen",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "Noch keine eigenen Regeln.",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "Alle Seiten",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "Gib einen Namen für die Regel ein.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "Das ist kein gültiger CSS-Selektor.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "Konnte nicht gespeichert werden. Bitte erneut versuchen.",
+    "description": "Custom rules messages"
   }
 }

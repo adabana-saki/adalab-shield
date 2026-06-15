@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "保存できませんでした。もう一度お試しください。",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "カスタムルール",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "CSS セレクターでページ内の特定要素を非表示・ぼかし・削除します（特定サイトのみへの適用も可能）。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "上級者向け: プラットフォーム切替では消せない要素（コメント欄やおすすめサイドバーなど）を狙い撃ちできます。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "カスタムルールの仕組みは？",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "各ルールは CSS セレクターを適用し、ブロック有効中に一致した要素を隠します。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "「サイト」を空にすると全サイトに適用、ホスト（例: youtube.com）を指定するとそのサイトのみに適用します。",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "id=\"comments\" の要素",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "class=\"ad-banner\" の要素",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "ルール名（例: YouTube のコメントを隠す）",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "サイト（任意、例: youtube.com）",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "CSS セレクター（例: #comments）",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "非表示",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "ぼかす",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "削除",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "カスタムルールはまだありません。",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "すべてのサイト",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "ルール名を入力してください。",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "正しい CSS セレクターではありません。",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "保存できませんでした。もう一度お試しください。",
+    "description": "Custom rules messages"
   }
 }

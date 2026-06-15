@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "无法保存，请重试。",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "自定义规则",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "通过 CSS 选择器隐藏、模糊或移除页面中的特定元素——可选择仅在某些网站生效。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "高级：精准处理平台开关无法去除的干扰，例如评论区或推荐侧栏。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "自定义规则如何工作？",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "每条规则应用一个 CSS 选择器，在拦截生效时隐藏匹配的元素。",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "将“网站”留空表示对所有网站生效，或填写主机（如 youtube.com）以限定规则。",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "id=\"comments\" 的元素",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "class=\"ad-banner\" 的元素",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "规则名称（如：隐藏 YouTube 评论）",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "网站（可选，如 youtube.com）",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "CSS 选择器（如 #comments）",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "隐藏",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "模糊",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "移除",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "还没有自定义规则。",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "所有网站",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "请输入规则名称。",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "这不是有效的 CSS 选择器。",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "无法保存，请重试。",
+    "description": "Custom rules messages"
   }
 }

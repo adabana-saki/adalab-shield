@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "저장하지 못했습니다. 다시 시도하세요.",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "사용자 지정 규칙",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "CSS 선택자로 페이지의 특정 요소를 숨기거나 흐리게 하거나 제거합니다(특정 사이트에만 적용 가능).",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "고급: 플랫폼 토글로는 없앨 수 없는 방해 요소(댓글 영역, 추천 사이드바 등)를 정확히 겨냥합니다.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "사용자 지정 규칙은 어떻게 작동하나요?",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "각 규칙은 CSS 선택자를 적용하여 차단이 활성화된 동안 일치하는 요소를 숨깁니다.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "“사이트”를 비우면 모든 곳에 적용되고, 호스트(예: youtube.com)를 적으면 해당 사이트에만 적용됩니다.",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "id=\"comments\"인 요소",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "class=\"ad-banner\"인 요소",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "규칙 이름(예: YouTube 댓글 숨기기)",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "사이트(선택, 예: youtube.com)",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "CSS 선택자(예: #comments)",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "숨기기",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "흐리게",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "제거",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "아직 사용자 지정 규칙이 없습니다.",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "모든 사이트",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "규칙 이름을 입력하세요.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "올바른 CSS 선택자가 아닙니다.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "저장하지 못했습니다. 다시 시도하세요.",
+    "description": "Custom rules messages"
   }
 }

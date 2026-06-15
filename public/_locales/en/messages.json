@@ -2588,5 +2588,81 @@
   "allowlistErrorFailed": {
     "message": "Could not save. Please try again.",
     "description": "Allowlist messages"
+  },
+  "customRulesTitle": {
+    "message": "Custom rules",
+    "description": "Custom rules messages"
+  },
+  "customRulesDescription": {
+    "message": "Hide, blur or remove specific page elements by CSS selector — optionally only on certain sites.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHint": {
+    "message": "Advanced: target distractions a platform toggle cannot, e.g. a comment section or a recommendations sidebar.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTitle": {
+    "message": "How do custom rules work?",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpIntro": {
+    "message": "Each rule applies a CSS selector and hides matching elements while blocking is active.",
+    "description": "Custom rules messages"
+  },
+  "customRulesHelpTip": {
+    "message": "Leave “Sites” empty to apply everywhere, or list hosts (e.g. youtube.com) to scope the rule.",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleId": {
+    "message": "an element with id=\"comments\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesExampleClass": {
+    "message": "elements with class \"ad-banner\"",
+    "description": "Custom rules messages"
+  },
+  "customRulesNamePlaceholder": {
+    "message": "Rule name (e.g. Hide YouTube comments)",
+    "description": "Custom rules messages"
+  },
+  "customRulesHostsPlaceholder": {
+    "message": "Sites (optional, e.g. youtube.com)",
+    "description": "Custom rules messages"
+  },
+  "customRulesSelectorPlaceholder": {
+    "message": "CSS selector (e.g. #comments)",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_hide": {
+    "message": "Hide",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_blur": {
+    "message": "Blur",
+    "description": "Custom rules messages"
+  },
+  "customRulesAction_remove": {
+    "message": "Remove",
+    "description": "Custom rules messages"
+  },
+  "customRulesEmpty": {
+    "message": "No custom rules yet.",
+    "description": "Custom rules messages"
+  },
+  "customRulesAllSites": {
+    "message": "All sites",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorName": {
+    "message": "Enter a name for the rule.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorSelector": {
+    "message": "That is not a valid CSS selector.",
+    "description": "Custom rules messages"
+  },
+  "customRulesErrorFailed": {
+    "message": "Could not save. Please try again.",
+    "description": "Custom rules messages"
   }
 }

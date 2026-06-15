@@ -22,6 +22,7 @@ export type SubSectionId =
   | 'platforms'
   | 'customDomains'
   | 'allowlist'
+  | 'customRules'
   | 'scheduleConfig'
   | 'timeLimits'
   | 'focusMode'
@@ -121,6 +122,12 @@ export function Sidebar({
               label: t('allowlistTitle'),
               active: activeSubSection === 'allowlist',
               onClick: () => onSectionChange('blocking', 'allowlist'),
+            },
+            {
+              id: 'customRules',
+              label: t('customRulesTitle'),
+              active: activeSubSection === 'customRules',
+              onClick: () => onSectionChange('blocking', 'customRules'),
             },
             {
               id: 'timeLimits',
