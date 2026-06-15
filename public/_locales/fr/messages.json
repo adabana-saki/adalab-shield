@@ -2720,5 +2720,65 @@
   "adalabSetupStep3": {
     "message": "Activez la synchro ci-dessus pour bloquer en focus et débloquer pendant les pauses.",
     "description": "adalab connection status"
+  },
+  "cloudSyncTitle": {
+    "message": "Synchronisation cloud",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncDescription": {
+    "message": "Enregistrez votre configuration dans votre compte de navigateur pour la restaurer sur un autre appareil. Les statistiques, l’historique et les réglages de verrouillage ne sont pas synchronisés.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSavedAt": {
+    "message": "Dernier enregistrement",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncNever": {
+    "message": "Rien n’a encore été enregistré dans le cloud.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSave": {
+    "message": "Enregistrer dans le cloud",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaving": {
+    "message": "Enregistrement…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveDesc": {
+    "message": "Téléversez votre configuration actuelle.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestore": {
+    "message": "Restaurer depuis le cloud",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoring": {
+    "message": "Restauration…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreDesc": {
+    "message": "Appliquez la configuration enregistrée dans le cloud.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveSuccess": {
+    "message": "Configuration enregistrée dans le cloud.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreSuccess": {
+    "message": "Configuration restaurée depuis le cloud.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncError": {
+    "message": "Une erreur est survenue. Veuillez réessayer.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncEmpty": {
+    "message": "Il n’y a rien à restaurer.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncUnavailable": {
+    "message": "La synchronisation cloud n’est pas disponible dans ce navigateur.",
+    "description": "Cloud sync (storage.sync)"
   }
 }

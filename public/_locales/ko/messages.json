@@ -2720,5 +2720,65 @@
   "adalabSetupStep3": {
     "message": "위의 동기화를 켜면 집중 중에는 차단되고 휴식 중에는 해제됩니다.",
     "description": "adalab connection status"
+  },
+  "cloudSyncTitle": {
+    "message": "클라우드 동기화",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncDescription": {
+    "message": "설정을 브라우저 계정에 저장하여 다른 기기에서 복원할 수 있습니다. 통계·기록·잠금 설정은 동기화되지 않습니다.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSavedAt": {
+    "message": "마지막 저장",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncNever": {
+    "message": "아직 클라우드에 저장된 것이 없습니다.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSave": {
+    "message": "클라우드에 저장",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaving": {
+    "message": "저장 중…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveDesc": {
+    "message": "현재 설정을 업로드합니다.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestore": {
+    "message": "클라우드에서 복원",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoring": {
+    "message": "복원 중…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreDesc": {
+    "message": "클라우드에 저장된 설정을 적용합니다.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveSuccess": {
+    "message": "설정을 클라우드에 저장했습니다.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreSuccess": {
+    "message": "클라우드에서 설정을 복원했습니다.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncError": {
+    "message": "문제가 발생했습니다. 다시 시도하세요.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncEmpty": {
+    "message": "복원할 저장 데이터가 없습니다.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncUnavailable": {
+    "message": "이 브라우저에서는 클라우드 동기화를 사용할 수 없습니다.",
+    "description": "Cloud sync (storage.sync)"
   }
 }

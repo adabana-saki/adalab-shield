@@ -2720,5 +2720,65 @@
   "adalabSetupStep3": {
     "message": "Turn on the sync above to block during focus and unblock on breaks.",
     "description": "adalab connection status"
+  },
+  "cloudSyncTitle": {
+    "message": "Cloud sync",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncDescription": {
+    "message": "Save your configuration to your browser account so it can be restored on another device. Stats, history and lock settings are not synced.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSavedAt": {
+    "message": "Last saved",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncNever": {
+    "message": "Nothing saved to the cloud yet.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSave": {
+    "message": "Save to cloud",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaving": {
+    "message": "Saving…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveDesc": {
+    "message": "Upload your current configuration.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestore": {
+    "message": "Restore from cloud",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoring": {
+    "message": "Restoring…",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreDesc": {
+    "message": "Apply the configuration saved in the cloud.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncSaveSuccess": {
+    "message": "Configuration saved to the cloud.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncRestoreSuccess": {
+    "message": "Configuration restored from the cloud.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncError": {
+    "message": "Something went wrong. Please try again.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncEmpty": {
+    "message": "There is nothing saved to restore.",
+    "description": "Cloud sync (storage.sync)"
+  },
+  "cloudSyncUnavailable": {
+    "message": "Cloud sync is not available in this browser.",
+    "description": "Cloud sync (storage.sync)"
   }
 }

@@ -1277,6 +1277,26 @@
   color: var(--color-text-secondary) !important;
 }
 
+/* Cloud sync (settings backup) */
+.cloud-sync-divider {
+  @apply my-6 border-t border-gray-100;
+}
+.cloud-sync-title {
+  @apply text-base font-semibold text-gray-900 mb-1;
+}
+.cloud-sync-status {
+  @apply text-xs text-gray-500 mb-4;
+}
+.dark .cloud-sync-divider {
+  border-color: var(--color-border) !important;
+}
+.dark .cloud-sync-title {
+  color: var(--color-text-primary) !important;
+}
+.dark .cloud-sync-status {
+  color: var(--color-text-muted) !important;
+}
+
 /* adalab connection status (settings) */
 .adalab-conn {
   @apply flex items-center gap-3 p-4 rounded-xl border mb-4;
